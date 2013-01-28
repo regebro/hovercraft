@@ -1,3 +1,5 @@
+import os
+import configparser
 from lxml import etree, html
 from docutils.core import publish_string
 from docutils.writers.docutils_xml import Writer
@@ -95,7 +97,6 @@ def position_slides(tree):
     """Position the slides in the tree"""
     
     # For now, just put them side by side
-    import pdb;pdb.set_trace()
     for count, step in enumerate(tree.findall('step')):
         step.attrib['data-y'] = str(0)
         step.attrib['data-x'] = str(1600*count)
@@ -108,8 +109,71 @@ class ResourceResolver(etree.Resolver):
         if url.startswith('resource:'):
             prefix, filename = url.split(':', 1)
             return self.resolve_string(resource_string(__name__, filename), context)
+    
+    
+def get_template_info(template=None):
+    result = {'css': [], 'js':[], 'files': {} }
+
+    # It it is a builtin template we use pkg_resources to find them.
+    if template is None or template in ('default',):
+        builtin_template = True
+        if template is None:
+            template = 'default'
+        template = '/templates/%s/' % template
+    else:
+        builtin_template = False
         
-def rest2impress(rststring, template=None):
+        
+    config = configparser.ConfigParser()
+    if builtin_template:
+        cfg_string = resource_string(__name__, template + 'template.cfg').decode('UTF-8')
+        config.read_string(cfg_string)
+    else:
+        if os.path.isdir(template):
+            config_file = os.path.join(template, 'template.cfg')
+        else:
+            config_file = template
+        config.read(config_file)
+    
+    hovercraft = config['hovercraft']
+    template_file = hovercraft['template']        
+
+    # The template
+    if builtin_template:
+        xslt = resource_string(__name__, template + template_file)
+    else:
+        xslt = open(template_file, 'rb').read()
+    result['xslt'] = xslt
+        
+    # Screen CSS files:
+    for key in hovercraft:
+        if key.startswith('css'):
+            # This is a css_file. The media can be specified, and defaults to 'screen,print,projection':
+            if '-' in key:
+                css, media = key.split('-')
+            else:
+                media = 'screen,print,projection'
+            for file in hovercraft[key].split():
+                result['css'].append((file, media))
+                result['files'][file] = '' # Add the file to the file list. We'll read it later.
+
+    for file in hovercraft['js'].split():
+        result['js'].append(file)
+        result['files'][file] = '' # Add the file to the file list. We'll read it later.
+        
+    for file in result['files']:
+        if builtin_template:
+            data = resource_string(__name__, template + file).decode('UTF-8')
+        else:
+            with open(file, 'tr', encoding='UTF-8') as infile:
+                data = infile.read()
+        result['files'][file] = data
+        
+    return result
+    
+def rest2impress(rststring, template_info):
+    # Get template information
+    
     # First convert reST to XML
     xml = publish_string(rststring, writer=Writer())
     tree = etree.fromstring(xml)
@@ -128,12 +192,20 @@ def rest2impress(rststring, template=None):
     parser = etree.XMLParser()
     parser.resolvers.add(ResourceResolver())
     
-    if template is None:
-        xslt = resource_string(__name__, 'templates/default/template.xslt')
-    else:
-        xslt = open(template, 'rb').read()
-        
-    xsl_tree = etree.fromstring(xslt, parser)
+    xsl_tree = etree.fromstring(template_info['xslt'], parser)
     transformer = etree.XSLT(xsl_tree)
     tree = transformer(tree)
-    return html.tostring(tree)
+    result = html.tostring(tree)
+    
+    return result
+    
+def copy_files(template_info, destination):
+    for file in template_info['files']:
+        filepath = os.path.join(destination, file)
+        directory_name, filename = os.path.split(filepath)
+        if not os.path.exists(directory_name):
+            os.makedirs(directory_name)
+            
+        with open(filepath, 'tw', encoding='UTF-8') as outfile:
+            outfile.write(template_info['files'][file])
+    

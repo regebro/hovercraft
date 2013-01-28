@@ -40,6 +40,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       </xsl:for-each>
     </div> 
   </xsl:for-each>
+  
+  <script src="js/impress.js"></script>
+  <script src="js/impressConsole.js"></script>
+  <script src="js/hovercraft.js"></script>
+  
 </body>
 </html>
 </xsl:template>
