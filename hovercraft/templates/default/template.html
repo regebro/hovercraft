@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    
+    <title>{{head_title}}</title>
+    
+    <!-- Styles -->
+    {% if embed %}
+    <style type="text/css" media="print">
+      {{ css.print.contents }}
+    </style>
+    <style type="text/css" media="screen, projection">
+      {{ css.screen.contents }}
+    </style>
+    {% else %}
+    <link rel="stylesheet" media="print" href="{{ css.print.path_url }}">
+    <link rel="stylesheet" media="screen, projection" href="{{ css.screen.path_url }}">
+    {% endif %}
+    {% for css in user_css %}
+      {% if embed %}
+      <style type="text/css" media="screen, projection">
+        {{ css.contents }}
+      </style>
+      {% else %}
+      <link rel="stylesheet" href="{{ css.path_url }}">
+      {% endif %}
+    {% endfor %}
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    {% if embed %}
+    <script>
+      {{ js.contents }}
+    </script>
+    {% else %}
+    <script type="text/javascript" src="{{ js.path_url }}"></script>
+    {% endif %}
+    {% for js in user_js %}
+      {% if embed %}
+      <script>
+        {{ js.contents }}
+      </script>
+      {% else %}
+      <script type="text/javascript" src="{{ js.path_url }}"></script>
+      {% endif %}
+    {% endfor %}
+    <!-- /Javascripts -->
+    
+</head>
+<body class="impress-not-supported">
+
+    <div class="fallback-message">
+        <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+        <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+    </div>
+    
+    <div id="impress">
+        {% for slide in slides %}
+        <div class="step slide{% if slide.classes %}{% for class in slide.classes %} {{ class }}{% endfor %}{% endif %}"
+             data-x="{{slide.number * 1600 }}" data-y="0">
+            {% if slide.header %}
+            <header>{{ slide.header }}</header>
+            {% endif %}
+            {% if slide.content %}
+            <section>{{ slide.content }}</section>
+            {% endif %}
+          <div class="notes">
+            {% if slide.presenter_notes %}
+              {{ slide.presenter_notes }}
+            {% endif %}
+          </div>
+          <footer>
+            {% if slide.source %}
+            <aside class="source">
+              Source: <a href="{{ slide.source.rel_path }}">{{ slide.source.rel_path }}</a>
+            </aside>
+            {% endif %}
+            <aside class="page_number">
+              {{ slide.number }}/{{ num_slides }}
+            </aside>
+          </footer>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{theme_dir}}/js/impress.js"></script>
+    <script src="{{theme_dir}}/js/impressConsole.js"></script>
+    <script>
+    
+      var showSlideNumbers = function() {
+          var asides = document.getElementsByClassName('page_number');
+          var hidden = asides[0].style.display != 'block';
+          for (var i = 0; i < asides.length; i++) {
+              asides.item(i).style.display = hidden ? 'block' : 'none';
+          }
+      };
+  
+      var showSlideSources = function() {
+          var asides = document.getElementsByClassName('source');
+          var hidden = asides[0].style.display != 'block';
+          for (var i = 0; i < asides.length; i++) {
+              asides.item(i).style.display = hidden ? 'block' : 'none';
+          }
+      };
+    
+      impress().init();
+      console().init(cssFile="{{theme_dir}}/css/impressConsole.css");
+      console().open();
+      
+      console().registerKeyEvent([78], showSlideNumbers)
+      console().registerKeyEvent([78], showSlideNumbers, window)
+      console().registerKeyEvent([83], showSlideSources)
+      console().registerKeyEvent([83], showSlideSources, window)
+    </script>
+    
+</body>
+</html>
