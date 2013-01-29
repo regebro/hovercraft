@@ -21,5 +21,5 @@ setup(name='hovercraft',
           'docutils',
           'Jinja2',
       ],
-      test_suite='hovercraft.tests.test_template',
+      test_suite='hovercraft.tests',
       )

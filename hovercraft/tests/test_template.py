@@ -1,7 +1,6 @@
 import os
 import unittest
-from pkg_resources import resource_string
-from hovercraft import get_template_info, rest2impress, copy_files
+from hovercraft import get_template_info
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
