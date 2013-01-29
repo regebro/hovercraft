@@ -112,7 +112,7 @@ class ResourceResolver(etree.Resolver):
     
     
 def get_template_info(template=None):
-    result = {'css': [], 'js':[], 'files': {} }
+    result = {'css': [], 'js-header':[], 'js-footer': [], 'files': {} }
 
     # It it is a builtin template we use pkg_resources to find them.
     if template is None or template in ('default',):
@@ -130,8 +130,10 @@ def get_template_info(template=None):
         config.read_string(cfg_string)
     else:
         if os.path.isdir(template):
+            template_root = template
             config_file = os.path.join(template, 'template.cfg')
         else:
+            template_root = os.path.split(template)[0]
             config_file = template
         config.read(config_file)
     
@@ -140,10 +142,10 @@ def get_template_info(template=None):
 
     # The template
     if builtin_template:
-        xslt = resource_string(__name__, template + template_file)
+        xsl = resource_string(__name__, template + template_file)
     else:
-        xslt = open(template_file, 'rb').read()
-    result['xslt'] = xslt
+        with open(os.path.join(template_root, template_file), 'rb') as xslfile:
+            result['xsl'] = xslfile.read()
         
     # Screen CSS files:
     for key in hovercraft:
@@ -156,16 +158,16 @@ def get_template_info(template=None):
             for file in hovercraft[key].split():
                 result['css'].append((file, media))
                 result['files'][file] = '' # Add the file to the file list. We'll read it later.
-
-    for file in hovercraft['js'].split():
-        result['js'].append(file)
-        result['files'][file] = '' # Add the file to the file list. We'll read it later.
+        if key in ('js-header', 'js-footer'):
+            for file in hovercraft[key].split():
+                result[key].append(file)
+                result['files'][file] = '' # Add the file to the file list. We'll read it later.
         
     for file in result['files']:
         if builtin_template:
             data = resource_string(__name__, template + file).decode('UTF-8')
         else:
-            with open(file, 'tr', encoding='UTF-8') as infile:
+            with open(os.path.join(template_root, file), 'tr', encoding='UTF-8') as infile:
                 data = infile.read()
         result['files'][file] = data
         
@@ -192,7 +194,7 @@ def rest2impress(rststring, template_info):
     parser = etree.XMLParser()
     parser.resolvers.add(ResourceResolver())
     
-    xsl_tree = etree.fromstring(template_info['xslt'], parser)
+    xsl_tree = etree.fromstring(template_info['xsl'], parser)
     transformer = etree.XSLT(xsl_tree)
     tree = transformer(tree)
     result = html.tostring(tree)

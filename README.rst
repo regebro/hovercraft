@@ -20,6 +20,10 @@ fairly certain that this is feasible, and not even that complicated.
 
 Lennart Regebro <regebro@mail.com>
 
+This software is written by Lennart Regebro, and licensed as CC-0, except for
+the reST.xsl file, which is (c) Michael Alyn Miller <malyn@strangeGizmo.com>
+and published under a BSD-style license included in reST.xsl itself.
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _landslide-impress: https://github.com/regebro/landslide-impress
 .. _impress-console: https://github.com/regebro/impress-console

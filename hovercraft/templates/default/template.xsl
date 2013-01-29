@@ -15,7 +15,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <title><xsl:value-of select="/document/@title"/></title>
 
-    <link rel="stylesheet" media="print" href="css/screen.css"/>
+    <link rel="stylesheet" media="print,screen,projection" href="css/screen.css"/>
     <link rel="stylesheet" media="screen, projection" href="css/impressConsole.css"/>
     <script type="text/javascript" src="js/impress.js"></script>
     <script type="text/javascript" src="js/impressConsole.js"></script>
