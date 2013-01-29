@@ -1,4 +1,5 @@
 *.py[cod]
+pyvenv.cfg
 
 # C extensions
 *.so
@@ -33,3 +34,7 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# IDE project files
+*.wpr
+*.wpu

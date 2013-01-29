@@ -185,7 +185,6 @@ def rest2impress(rststring, template_info):
     
     # Fix up the resulting XML so it makes sense
     tree = SlideMaker(tree).walk()
-    print(etree.tostring(tree))
     
     # TODO: Position all slides
     position_slides(tree)
