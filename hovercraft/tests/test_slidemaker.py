@@ -5,7 +5,7 @@ from docutils.core import publish_string
 from docutils.writers.docutils_xml import Writer
 from lxml import etree
 
-from hovercraft import SlideMaker
+from hovercraft.parsing import SlideMaker
 
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
