@@ -14,7 +14,7 @@ It also sets a title and a transition-duration.
 :data-x: 1000
 :data-y: 1600
 
-Advanced presentation
+Advanced Presentation
 =====================
 
 Here we show the positioning feature, where we can explicitly set a position

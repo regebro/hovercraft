@@ -38,7 +38,7 @@ class SlideMakerTests(unittest.TestCase):
             b'the\npresentation at all.</paragraph><paragraph>It also sets a title '\
             b'and a transition-duration.</paragraph><step step="0" data-x="1000" '\
             b'data-y="1600"><section ids="advanced-presentation" names="advanced\\ '\
-            b'presentation"><title>Advanced presentation</title><paragraph>Here we '\
+            b'presentation"><title>Advanced Presentation</title><paragraph>Here we '\
             b'show the positioning feature, where we can explicitly set a '\
             b'position\non one of the steps.</paragraph></section></step><step '\
             b'step="1"><section ids="formatting" names="formatting"><title>'\

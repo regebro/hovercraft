@@ -23,7 +23,7 @@ xmlns="http://www.w3.org/1999/xhtml">
     </xsl:for-each>
   
   <xsl:for-each select="/document/templateinfo/body/js">
-      <script>
+      <script type="text/javascript">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
