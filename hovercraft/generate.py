@@ -7,7 +7,7 @@ from pkg_resources import resource_string
 
 from .parse import SlideMaker
 from .position import position_slides
-from .template import template_info_node
+from .template import get_template_info, template_info_node
         
 class ResourceResolver(etree.Resolver):
     
@@ -51,6 +51,25 @@ def copy_files(template_info, destination):
         if not os.path.exists(directory_name):
             os.makedirs(directory_name)
             
-        with open(filepath, 'tw', encoding='UTF-8') as outfile:
+        with open(filepath, 'bw') as outfile:
             outfile.write(template_info['files'][file])
+    
+    
+def main(infile, outdir, template=None, extra_css=None, console=False):
+    # Parse the template info
+    template_info = get_template_info(template)
+
+    # Read the infile
+    with open(infile, 'rb') as infile:
+        rst = infile.read()
+
+    # Make the resulting HTML
+    html = rst2html(rst, template_info)
+    
+    # Write the HTML out
+    with open(os.path.join(outdir, 'index.html'), 'wb') as outfile:
+        outfile.write(html)
+        
+    # Copy supporting files
+    copy_files(template_info, outdir)
     

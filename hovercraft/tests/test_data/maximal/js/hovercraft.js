@@ -16,7 +16,7 @@ var showSlideSources = function() {
 
 impress().init();
 console().init(cssFile="{{theme_dir}}/css/impressConsole.css");
-console().open();
+//console().open();
 
 console().registerKeyEvent([78], showSlideNumbers)
 console().registerKeyEvent([78], showSlideNumbers, window)
