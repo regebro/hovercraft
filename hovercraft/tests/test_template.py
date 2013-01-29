@@ -32,6 +32,9 @@ class TemplateInfoTests(unittest.TestCase):
         self.assertIn('js/impress.js', template_info['files'])
         self.assertIn('js/impressConsole.js', template_info['files'])
         self.assertIn('js/hovercraft.js', template_info['files'])
+
+        print([x for x in template_info['files'].keys()])
+        self.assertIn('images/python-logo-master-v3-TM.png', template_info['files'])
         
         self.assertIn(('css/style.css', 'screen,print,projection'), template_info['css'])
         self.assertIn(('css/print.css', 'print'), template_info['css'])

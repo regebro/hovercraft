@@ -162,12 +162,15 @@ def get_template_info(template=None):
             for file in hovercraft[key].split():
                 result[key].append(file)
                 result['files'][file] = '' # Add the file to the file list. We'll read it later.
+        if key == 'resources':
+            for file in hovercraft[key].split():
+                result['files'][file] = '' # Add the file to the file list. We'll read it later.
         
     for file in result['files']:
         if builtin_template:
-            data = resource_string(__name__, template + file).decode('UTF-8')
+            data = resource_string(__name__, template + file)
         else:
-            with open(os.path.join(template_root, file), 'tr', encoding='UTF-8') as infile:
+            with open(os.path.join(template_root, file), 'br') as infile:
                 data = infile.read()
         result['files'][file] = data
         
