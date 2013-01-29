@@ -72,7 +72,7 @@
               {{ slide.presenter_notes }}
             {% endif %}
           </div>
-          <footer>
+          <body>
             {% if slide.source %}
             <aside class="source">
               Source: <a href="{{ slide.source.rel_path }}">{{ slide.source.rel_path }}</a>
@@ -81,7 +81,7 @@
             <aside class="page_number">
               {{ slide.number }}/{{ num_slides }}
             </aside>
-          </footer>
+          </body>
         </div>
         {% endfor %}
     </div>

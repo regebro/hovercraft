@@ -66,7 +66,7 @@ The parameters in the [hovercraft] section are:
     js-header    A list of filenames separated by whitespace. These files will
                  get included in the target file as header script links.
 
-    js-footer    A list of filenames separated by whitespace. These files will
+    js-body    A list of filenames separated by whitespace. These files will
                  get included in the target file as script links at the end of
                  the file. The files impress.js, impressConsole.js and
                  hovercraft.js typically need to be included here.
@@ -87,9 +87,9 @@ An example:
 
     js-header = js/dateinput.js
     
-    js-footer = js/impress.js
-                js/impressConsole.js
-                js/hovercraft.js
+    js-body = js/impress.js
+              js/impressConsole.js
+              js/hovercraft.js
 
     resource = images/back.png
                images/forward.png

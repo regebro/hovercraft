@@ -1,5 +1,7 @@
 import os
 import unittest
+from lxml import etree
+
 from hovercraft.templating import get_template_info, template_info_node
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
@@ -26,11 +28,17 @@ class TemplateInfoTests(unittest.TestCase):
         with open(os.path.join(TEST_DATA, 'maximal', 'template.xsl'), 'rb') as xslfile:
             xsl = xslfile.read()
         self.assertEqual(template_info['xsl'], xsl)
+
+        self.assertIn('images/python-logo-master-v3-TM.png', template_info['files'])
+
         self.assertIn('js/impress.js', template_info['files'])
         self.assertIn('js/impressConsole.js', template_info['files'])
         self.assertIn('js/hovercraft.js', template_info['files'])
 
-        self.assertIn('images/python-logo-master-v3-TM.png', template_info['files'])
+        self.assertIn('js/impress.js', template_info['js-body'])
+        self.assertIn('js/impressConsole.js', template_info['js-body'])
+        self.assertIn('js/hovercraft.js', template_info['js-body'])
+        self.assertIn('js/dummy.js', template_info['js-header'])
         
         self.assertIn(('css/style.css', 'screen,print,projection'), template_info['css'])
         self.assertIn(('css/print.css', 'print'), template_info['css'])
@@ -40,14 +48,35 @@ class TemplateInfoTests(unittest.TestCase):
 
 class TemplateInfoNodeTests(unittest.TestCase):
     
-    def test_make_node(self):
+    def test_minimal_template(self):
         info = {'css': [], 
                 'js-header':[], 
-                'js-footer': ['js/impress.js', 'js/hovercraft-minimal.js'],
+                'js-body': ['js/impress.js', 'js/hovercraft-minimal.js'],
                 'files': {} }
         node = template_info_node(info)
         
+        self.assertEqual(etree.tostring(node),
+            b'<templateinfo><header/><body>'\
+            b'<js link="js/impress.js"/><js link="js/hovercraft-minimal.js"/>'\
+            b'</body></templateinfo>')
         
+    def test_maximal_template(self):
+        info = {'css': [('css/style.css', 'screen,print,projection'),
+                        ('css/print.css', 'print'),
+                        ('css/impressConsole.css', 'screen,projection')], 
+                'js-header':['js/dummy.js'], 
+                'js-body': ['js/impress.js', 'js/hovercraft-minimal.js'],
+                'files': {} }
+        node = template_info_node(info)
+        
+        self.assertEqual(etree.tostring(node),
+            b'<templateinfo><header>'\
+            b'<css link="css/style.css" media="screen,print,projection"/>'\
+            b'<css link="css/print.css" media="print"/>'\
+            b'<css link="css/impressConsole.css" media="screen,projection"/>'\
+            b'<js link="js/dummy.js"/></header>'\
+            b'<body><js link="js/impress.js"/><js link="js/hovercraft-minimal.js"/>'\
+            b'</body></templateinfo>')
         
         
 
