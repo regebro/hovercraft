@@ -6,7 +6,7 @@ from docutils.writers.docutils_xml import Writer
 from pkg_resources import resource_string    
     
 def get_template_info(template=None):
-    result = {'css': [], 'js-header':[], 'js-body': [], 'files': {} }
+    result = {'css': [], 'js-header':[], 'js-body': [], 'files': {}, 'doctype': b'<!DOCTYPE html>' }
 
     # It it is a builtin template we use pkg_resources to find them.
     if template is None or template in ('default',):
@@ -40,9 +40,9 @@ def get_template_info(template=None):
     else:
         with open(os.path.join(template_root, template_file), 'rb') as xslfile:
             result['xsl'] = xslfile.read()
-        
-    # Screen CSS files:
+    
     for key in hovercraft:
+        # CSS files:
         if key.startswith('css'):
             # This is a css_file. The media can be specified, and defaults to 'screen,print,projection':
             if '-' in key:
@@ -52,14 +52,23 @@ def get_template_info(template=None):
             for file in hovercraft[key].split():
                 result['css'].append((file, media))
                 result['files'][file] = '' # Add the file to the file list. We'll read it later.
-        if key in ('js-header', 'js-body'):
+
+        # JS files:
+        elif key in ('js-header', 'js-body'):
             for file in hovercraft[key].split():
                 result[key].append(file)
                 result['files'][file] = '' # Add the file to the file list. We'll read it later.
-        if key == 'resources':
+
+        # Other files:
+        elif key == 'resources':
             for file in hovercraft[key].split():
                 result['files'][file] = '' # Add the file to the file list. We'll read it later.
+
+        # And finally the optional doctype:
+        elif key == 'doctype':
+            result['doctype'] = hovercraft['doctype'].encode()
         
+    # Load the file contents:
     for file in result['files']:
         if builtin_template:
             data = resource_string(__name__, template + file)
@@ -82,14 +91,14 @@ def template_info_node(template_info):
     header = etree.Element('header')
     node.append(header)
     for css in template_info['css']:
-        header.append(etree.Element('css', attrib={'link': css[0], 'media': css[1]}))
+        header.append(etree.Element('css', attrib={'href': css[0], 'media': css[1]}))
     for js in template_info['js-header']:
-        header.append(etree.Element('js', attrib={'link': js}))
+        header.append(etree.Element('js', attrib={'src': js}))
 
     body = etree.Element('body')
     node.append(body)
     for js in template_info['js-body']:
-        body.append(etree.Element('js', attrib={'link': js}))
+        body.append(etree.Element('js', attrib={'src': js}))
     
     return node
                       

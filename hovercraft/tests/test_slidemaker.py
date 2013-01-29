@@ -5,7 +5,7 @@ from docutils.core import publish_string
 from docutils.writers.docutils_xml import Writer
 from lxml import etree
 
-from hovercraft.parsing import SlideMaker
+from hovercraft.parse import SlideMaker
 
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
@@ -14,6 +14,7 @@ def make_tree(file_name):
     return etree.fromstring(xml)
 
 class SlideMakerTests(unittest.TestCase):
+    """Test the conversion of docutils XML into XML suitable to give to the templates"""
     
     def test_simple(self): 
         tree = SlideMaker(make_tree('test_data/simple.rst')).walk()
@@ -23,7 +24,7 @@ class SlideMakerTests(unittest.TestCase):
             b'<title>Simple Presentation</title><paragraph>This presentation '\
             b'has two slides, each with a header and some text.</paragraph>'\
             b'</section></step><step step="1"><section ids="second-slide" '\
-            b'names="second\\ slide"><title>Second  slide</title><paragraph>'\
+            b'names="second\\ slide"><title>Second slide</title><paragraph>'\
             b'There is no positioning or anything fancy.</paragraph>'\
             b'</section></step></document>')
 
