@@ -7,8 +7,6 @@ from lxml import etree
 
 from hovercraft import SlideMaker
 
-#TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
-
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
     rst = resource_string(__name__, file_name)

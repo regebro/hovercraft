@@ -1,17 +1,15 @@
 import os
 import unittest
-from hovercraft import get_template_info
+from hovercraft.templating import get_template_info, template_info_node
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
 class TemplateInfoTests(unittest.TestCase):
     
     def test_template_paths(self):
-        # You can specify a folder...
+        # You can specify a folder or a cfg file and that's the same thing.
         template_info1 = get_template_info(os.path.join(TEST_DATA, 'minimal'))
-        # ...or a cfg file...
         template_info2 = get_template_info(os.path.join(TEST_DATA, 'minimal', 'template.cfg'))
-        # ...and that's the same thing.
         self.assertEqual(template_info1, template_info2)
         
     def test_template_minimal(self):
@@ -37,6 +35,20 @@ class TemplateInfoTests(unittest.TestCase):
         self.assertIn(('css/style.css', 'screen,print,projection'), template_info['css'])
         self.assertIn(('css/print.css', 'print'), template_info['css'])
         self.assertIn(('css/impressConsole.css', 'screen,projection'), template_info['css'])
+        
+
+
+class TemplateInfoNodeTests(unittest.TestCase):
+    
+    def test_make_node(self):
+        info = {'css': [], 
+                'js-header':[], 
+                'js-footer': ['js/impress.js', 'js/hovercraft-minimal.js'],
+                'files': {} }
+        node = template_info_node(info)
+        
+        
+        
         
 
 if __name__ == '__main__':
