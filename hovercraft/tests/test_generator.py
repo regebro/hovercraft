@@ -55,10 +55,10 @@ class GeneratorTests(unittest.TestCase):
             b'formatting, like <em>italic</em>, and <strong>bold</strong>.</p>'\
             b'<ul><li>We can also</li><li>have a list</li><li>of things.</li>'\
             b'</ul></div><div class="step" step="2" data-y="0" data-x="3200">'\
-            b'<div class="literal-block">There should also be possible to '\
+            b'<pre>There should also be possible to '\
             b'have\npreformatted text for code.\n\nThis slide has only code, '\
             b'and the next step\nhas only an image. This is necessary for\n'\
-            b'many types of presentations.</div></div><div class="step" '\
+            b'many types of presentations.</pre></div><div class="step" '\
             b'step="3" data-y="0" data-x="4800"><img '\
             b'src="images/python-logo-master-v3-TM.jpg" alt="" width="" '\
             b'height=""></img></div><div class="step" step="4" data-y="0" '\

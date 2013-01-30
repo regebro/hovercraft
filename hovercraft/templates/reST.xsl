@@ -32,6 +32,14 @@
 	 SUCH DAMAGE.
 -->
 
+<!-- Modifications by Lennart Regebro, 2013:
+
+* Added support for the <notes>-tag.
+
+* Changed literal block rendering from a <div class="literal-block"> to <pre>.
+
+-->
+
 <xsl:stylesheet
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -123,7 +131,7 @@
 
 
 <xsl:template match="literal_block">
-	<div class="literal-block"><xsl:apply-templates /></div>
+	<pre><xsl:apply-templates /></pre>
 </xsl:template>
 
 <xsl:template match="literal_block/br">

@@ -78,7 +78,6 @@ def get_template_info(template=None, extra_css=None):
         result['files'][file] = data
 
     if extra_css:
-        import pdb;pdb.set_trace()
         filename = os.path.split(extra_css)[-1]
         target = 'css/' + filename
         result['css'].append((target, 'all'))
