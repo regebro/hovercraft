@@ -1,0 +1,15 @@
+#!python
+    
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Create impress.js presentations with reStructuredText', add_help=False)
+    parser.add_argument('presentation', help='The path to the reStructuredText presentation')
+    parser.add_argument('targetdir', help='The directory where the presentation is written. Will be created if it doens\'t exist.')
+    parser.add_argument('-h', '--help', action='help', help='Show this help')
+    parser.add_argument('-c', '--extra_css', help='An additional css file for the presentation to use')
+    parser.add_argument('-a', '--auto-console', action='store_true', help='Pop up the console automatically')
+    
+    args = parser.parse_args()
+
+    from hovercraft.generate import main
+    main(args.presentation, args.targetdir, extra_css=args.extra_css, auto_console=args.auto_console)

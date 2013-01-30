@@ -15,11 +15,12 @@ setup(name='hovercraft',
       url='',
       license='CC-0',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      scripts=['hovercraft/hovercraft'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'docutils',
-          'Jinja2',
+          'lxml',
       ],
       test_suite='hovercraft.tests',
       )

@@ -1,5 +1,4 @@
 import os
-import configparser
 from lxml import etree, html
 from docutils.core import publish_string
 from docutils.writers.docutils_xml import Writer
@@ -55,21 +54,23 @@ def copy_files(template_info, destination):
             outfile.write(template_info['files'][file])
     
     
-def main(infile, outdir, template=None, extra_css=None, console=False):
+def main(presentation, targetdir, template=None, extra_css=None, auto_console=False):
     # Parse the template info
     template_info = get_template_info(template)
 
     # Read the infile
-    with open(infile, 'rb') as infile:
+    with open(presentation, 'rb') as infile:
         rst = infile.read()
 
     # Make the resulting HTML
     html = rst2html(rst, template_info)
     
     # Write the HTML out
-    with open(os.path.join(outdir, 'index.html'), 'wb') as outfile:
+    if not os.path.exists(targetdir):
+        os.makedirs(targetdir)
+    with open(os.path.join(targetdir, 'index.html'), 'wb') as outfile:
         outfile.write(html)
         
     # Copy supporting files
-    copy_files(template_info, outdir)
+    copy_files(template_info, targetdir)
     

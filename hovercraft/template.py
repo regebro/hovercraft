@@ -36,7 +36,7 @@ def get_template_info(template=None):
 
     # The template
     if builtin_template:
-        xsl = resource_string(__name__, template + template_file)
+        result['xsl'] = resource_string(__name__, template + template_file)
     else:
         with open(os.path.join(template_root, template_file), 'rb') as xslfile:
             result['xsl'] = xslfile.read()
