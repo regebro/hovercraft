@@ -14,9 +14,7 @@ xmlns="http://www.w3.org/1999/xhtml">
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>
-              <xsl:for-each select="section">
-                <xsl:apply-templates />
-              </xsl:for-each>
+            <xsl:apply-templates />
           </div>
         </xsl:for-each>
       </div> 

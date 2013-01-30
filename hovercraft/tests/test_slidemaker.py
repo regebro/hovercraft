@@ -60,6 +60,33 @@ class SlideMakerTests(unittest.TestCase):
         
         self.assertEqual(etree.tostring(tree), target)
 
+    def test_presenter_notes(self): 
+        tree = SlideMaker(make_tree('test_data/presenter-notes.rst')).walk()
+        target = b'<document ids="document-title" names="document\\ title" '\
+        b'source="&lt;string&gt;" title="Document title"><title>Document '\
+        b'title</title><system_message level="3" line="4" '\
+        b'source="&lt;string&gt;" type="ERROR"><paragraph>Document or section '\
+        b'may not begin with a transition.</paragraph></system_message><step '\
+        b'step="0"><section ids="hovercrafts-presenter-notes" '\
+        b'names="hovercrafts\\ presenter\\ notes"><title>Hovercrafts presenter '\
+        b'notes</title><paragraph>Hovercraft supports presenter notes. It does '\
+        b'this by taking anything in a\nwhat is calles a "notes-admonition" and '\
+        b'making that into presenter notes.</paragraph><note><paragraph>Hence, '\
+        b'this will show up as presenter notes.\nYou have still access to a lot '\
+        b'of formatting, like</paragraph><bullet_list bullet="*"><list_item>'\
+        b'<paragraph>Bullet lists</paragraph></list_item><list_item><paragraph>'\
+        b'And <emphasis>all</emphasis> types of <strong>inline formatting'\
+        b'</strong></paragraph></list_item></bullet_list></note></section>'\
+        b'</step><step step="1"><image '\
+        b'uri="images/python-logo-master-v3-TM.jpg"/><note><paragraph>You '\
+        b'don\'t have to start the text on the same line as\nthe note, but '\
+        b'you can.</paragraph><paragraph>You can also have several paragraphs.'\
+        b' You can not have any\nheadings of any kind '\
+        b'though.</paragraph><paragraph><strong>But you can fake them through '\
+        b'bold-text</strong></paragraph><paragraph>And that\'s useful enough '\
+        b'for presentation notes.</paragraph></note></step></document>'
+        self.assertEqual(etree.tostring(tree), target)
+
 if __name__ == '__main__':
     unittest.main()
     

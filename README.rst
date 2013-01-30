@@ -45,7 +45,7 @@ Contributors
 ------------
 
 Hovercraft was written by Lennart Regebro <regebro@mail.com>, and is licensed
-as CC-0, except for the reST.xsl file, which is (c) Michael Alyn Miller
+as CC-0, except for the "reST.xsl" file, which is (c) Michael Alyn Miller
 <malyn@strangeGizmo.com> and published under a BSD-style license included in
 reST.xsl itself.
 
