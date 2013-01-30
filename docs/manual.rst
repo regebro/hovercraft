@@ -25,12 +25,7 @@ Parameters:
 Presentations
 -------------
 
-Presentations are reStructuredText files. TODO: Find links for good
-reStructuredText manuals.
-
-Hovercraft has some specific ways it uses reStructuredText. First of all, all
-reStructuredText fields are converted into attributes on the current tag.
-Most of these will typically be ignored by the
+For information on how to make presentations with Hovercraft, see presentations.rst.
 
 
 Templates
