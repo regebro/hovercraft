@@ -56,7 +56,7 @@ def copy_files(template_info, destination):
     
 def main(presentation, targetdir, template=None, extra_css=None, auto_console=False):
     # Parse the template info
-    template_info = get_template_info(template)
+    template_info = get_template_info(template, extra_css)
 
     # Read the infile
     with open(presentation, 'rb') as infile:

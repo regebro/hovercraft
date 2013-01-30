@@ -42,7 +42,7 @@ class TemplateInfoTests(unittest.TestCase):
         self.assertIn('js/hovercraft.js', template_info['js-body'])
         self.assertIn('js/dummy.js', template_info['js-header'])
         
-        self.assertIn(('css/style.css', 'screen,print,projection'), template_info['css'])
+        self.assertIn(('css/style.css', 'all'), template_info['css'])
         self.assertIn(('css/print.css', 'print'), template_info['css'])
         self.assertIn(('css/impressConsole.css', 'screen,projection'), template_info['css'])
         
@@ -65,7 +65,7 @@ class TemplateInfoNodeTests(unittest.TestCase):
             b'</body></templateinfo>')
         
     def test_maximal_template(self):
-        info = {'css': [('css/style.css', 'screen,print,projection'),
+        info = {'css': [('css/style.css', 'all'),
                         ('css/print.css', 'print'),
                         ('css/impressConsole.css', 'screen,projection')], 
                 'js-header':['js/dummy.js'], 
@@ -75,7 +75,7 @@ class TemplateInfoNodeTests(unittest.TestCase):
         
         self.assertEqual(etree.tostring(node),
             b'<templateinfo><header>'\
-            b'<css href="css/style.css" media="screen,print,projection"/>'\
+            b'<css href="css/style.css" media="all"/>'\
             b'<css href="css/print.css" media="print"/>'\
             b'<css href="css/impressConsole.css" media="screen,projection"/>'\
             b'<js src="js/dummy.js"/></header>'\

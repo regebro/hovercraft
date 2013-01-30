@@ -17,7 +17,7 @@ Parameters:
                          a built-in template (currently only "default").
                          
   --css                  Specify and additional css file to be added to the 
-                         presentation, with "screen,print,projection" as media.
+                         presentation, with "all" as media.
 
   --auto-console, -a     Pop up the presenter console automatically when 
                          opening the presentation.
@@ -49,8 +49,8 @@ The parameters in the [hovercraft] section are:
     template     The name of the xsl template.
     
     css          A list of css filenames separated by whitespace. These files
-                 will get included in the final file with "screen, print, 
-                 projection" as the media specification.
+                 will get included in the final file with "all" as the media 
+                 specification.
                  
     css-<media>  A list of css filenames separated by whitespace. These files
                  will get included in the final file with the media given in

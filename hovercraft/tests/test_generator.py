@@ -40,7 +40,7 @@ class GeneratorTests(unittest.TestCase):
         target = b'<!DOCTYPE html SYSTEM "about:legacy-compat">'\
             b'<html xmlns="http://www.w3.org/1999/xhtml"><head><title>'\
             b'Presentation title</title><link rel="stylesheet" '\
-            b'href="css/style.css" media="screen,print,projection"></link>'\
+            b'href="css/style.css" media="all"></link>'\
             b'<link rel="stylesheet" href="css/print.css" media="print">'\
             b'</link><link rel="stylesheet" href="css/impressConsole.css" '\
             b'media="screen,projection"></link><script type="text/javascript" '\
@@ -82,7 +82,7 @@ class GeneratorTests(unittest.TestCase):
         target = b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '\
             b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document '\
             b'title</title><link rel="stylesheet" href="css/style.css" '\
-            b'media="screen,print,projection"></link><link rel="stylesheet" '\
+            b'media="all"></link><link rel="stylesheet" '\
             b'href="css/print.css" media="print"></link><link rel="stylesheet" '\
             b'href="css/impressConsole.css" '\
             b'media="screen,projection"></link><script type="text/javascript" '\
