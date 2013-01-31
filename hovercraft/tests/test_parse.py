@@ -1,15 +1,13 @@
 import unittest
 from pkg_resources import resource_string
-from docutils.core import publish_string
-from docutils.writers.docutils_xml import Writer
 from lxml import etree
 
-from hovercraft.parse import SlideMaker
+from hovercraft.parse import SlideMaker, rst2xml
 
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
     rst = resource_string(__name__, file_name)
-    xml = publish_string(rst, writer=Writer())
+    xml = rst2xml(rst)
     return etree.fromstring(xml)
 
 class SlideMakerTests(unittest.TestCase):
@@ -63,12 +61,10 @@ class SlideMakerTests(unittest.TestCase):
         tree = SlideMaker(make_tree('test_data/presenter-notes.rst')).walk()
         target = b'<document ids="document-title" names="document\\ title" '\
         b'source="&lt;string&gt;" title="Document title"><title>Document '\
-        b'title</title><system_message level="3" line="4" '\
-        b'source="&lt;string&gt;" type="ERROR"><paragraph>Document or section '\
-        b'may not begin with a transition.</paragraph></system_message><step '\
+        b'title</title><step '\
         b'step="0"><section ids="hovercrafts-presenter-notes" '\
         b'names="hovercrafts\\ presenter\\ notes"><title>Hovercrafts presenter '\
-        b'notes</title><paragraph>Hovercraft supports presenter notes. It does '\
+        b'notes</title><paragraph>Hovercraft! supports presenter notes. It does '\
         b'this by taking anything in a\nwhat is calles a "notes-admonition" and '\
         b'making that into presenter notes.</paragraph><note><paragraph>Hence, '\
         b'this will show up as presenter notes.\nYou have still access to a lot '\

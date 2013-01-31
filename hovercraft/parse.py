@@ -1,4 +1,60 @@
+from docutils import nodes
+from docutils.core import publish_string
+from docutils.readers.standalone import Reader
+from docutils.transforms.misc import Transitions
+from docutils.writers.docutils_xml import Writer
 from lxml import etree
+
+class HovercraftTransitions(Transitions):
+    def visit_transition(self, node):
+        index = node.parent.index(node)
+        error = None
+        # Here the default transformer complained if you had a transition as
+        # the first thing in a section. I don't see why.
+        if isinstance(node.parent[index - 1], nodes.transition):
+            error = self.document.reporter.error(
+                'At least one body element must separate transitions; '
+                'adjacent transitions are not allowed.',
+                source=node.source, line=node.line)
+        if error:
+            # Insert before node and update index.
+            node.parent.insert(index, error)
+            index += 1
+        assert index < len(node.parent)
+        if index != len(node.parent) - 1:
+            # No need to move the node.
+            return
+        # Node behind which the transition is to be moved.
+        sibling = node
+        # While sibling is the last node of its parent.
+        while index == len(sibling.parent) - 1:
+            sibling = sibling.parent
+            # If sibling is the whole document (i.e. it has no parent).
+            if sibling.parent is None:
+                # Transition at the end of document.  Do not move the
+                # transition up, and place an error behind.
+                error = self.document.reporter.error(
+                    'Document may not end with a transition.',
+                    line=node.line)
+                node.parent.insert(node.parent.index(node) + 1, error)
+                return
+            index = sibling.parent.index(sibling)
+        # Remove the original transition node.
+        node.parent.remove(node)
+        # Insert the transition after the sibling.
+        sibling.parent.insert(index + 1, node)
+    
+
+class HovercraftReader(Reader):
+    
+    def get_transforms(self):
+        transforms = Reader().get_transforms()
+        transforms.remove(Transitions)
+        transforms.append(HovercraftTransitions)
+        return transforms
+
+def rst2xml(rststring):
+    return publish_string(rststring, reader=HovercraftReader(), writer=Writer())    
 
 def copy_node(node):
     """Makes a copy of a node with the same attributes and text, but no children."""

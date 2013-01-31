@@ -1,5 +1,5 @@
-Hovercraft manual
-=================
+Hovercraft! manual
+==================
 
 
 Usage
@@ -25,7 +25,7 @@ Parameters:
 Presentations
 -------------
 
-For information on how to make presentations with Hovercraft, see presentations.rst.
+For information on how to make presentations with Hovercraft!, see presentations.rst.
 
 
 Templates

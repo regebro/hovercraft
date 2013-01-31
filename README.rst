@@ -1,7 +1,7 @@
-Hovercraft
-==========
+Hovercraft!
+===========
 
-Hovercraft will be a tool to make impress.js_ presentations from
+Hovercraft! will be a tool to make impress.js_ presentations from
 reStructuredText. 
 
 Why?
@@ -44,7 +44,7 @@ So, I have to make something myself. Hence: Hovercraft!
 Contributors
 ------------
 
-Hovercraft was written by Lennart Regebro <regebro@mail.com>, and is licensed
+Hovercraft! was written by Lennart Regebro <regebro@mail.com>, and is licensed
 as CC-0, except for the "reST.xsl" file, which is (c) Michael Alyn Miller
 <malyn@strangeGizmo.com> and published under a BSD-style license included in
 reST.xsl itself.

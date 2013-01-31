@@ -8,11 +8,11 @@ Traditionally a presentation is made up of slides. Calling them "slides" is
 not really relevant in an impress.js context, as they can overlap and doesn't
 necessarily slide, but can zoom, roll and pitch. The name "steps" is
 better, but it's also more ambigiouos. Hence Impress.js uses the terms "slide"
-and "step" as meaning the same thing, and so does Hovercraft.
+and "step" as meaning the same thing, and so does Hovercraft!
 
 
-Hovercraft syntax
------------------
+Hovercraft! syntax
+------------------
 
 Presentations are reStructuredText files. TODO: Find links for good
 reStructuredText manuals. If you are reading this documentation from the
@@ -61,10 +61,10 @@ like links, footnotes, and more. It is in fact advanced enough so you can write 
 whole book_ in it, but for all that you need to read the documentation_.
 
 
-Hovercraft specialities
------------------------
+Hovercraft! specialities
+------------------------
 
-Hovercraft has some specific ways it uses reStructuredText. First of all, the
+Hovercraft! has some specific ways it uses reStructuredText. First of all, the
 reStructuredText "transition" is used to mark the separation between
 different slides or steps. A transition is simply a line with four or more
 dashes::
@@ -85,7 +85,7 @@ slide div. This is used primarily to set the position/zoom/rotation of the
 slide, either with the ``data-x``, ``data-y`` and other impress.js settings,
 or the ``hovercraft-path`` setting, more on that later.
 
-Hovercraft will start making the first slide when it first encounters either
+Hovercraft! will start making the first slide when it first encounters either
 a transition or a header. Everything that comes before that will belong to the
 presentation as a whole.
 

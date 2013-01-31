@@ -89,7 +89,7 @@ class GeneratorTests(unittest.TestCase):
             b'class="impress-not-supported"><div id="impress">'\
             b'<div class="step" step="0" data-y="0" '\
             b'data-x="0"><h1 id="hovercrafts-presenter-notes">Hovercrafts presenter '\
-            b'notes</h1><p>Hovercraft supports presenter notes. It does this by '\
+            b'notes</h1><p>Hovercraft! supports presenter notes. It does this by '\
             b'taking anything in a\nwhat is calles a "notes-admonition" and making '\
             b'that into presenter notes.</p><div class="notes"><p>Hence, this will '\
             b'show up as presenter notes.\nYou have still access to a lot of '\

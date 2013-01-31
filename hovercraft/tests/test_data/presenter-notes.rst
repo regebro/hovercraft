@@ -6,7 +6,7 @@ Document title
 Hovercrafts presenter notes
 ===========================
    
-Hovercraft supports presenter notes. It does this by taking anything in a
+Hovercraft! supports presenter notes. It does this by taking anything in a
 what is calles a "notes-admonition" and making that into presenter notes.
 
 .. note:: Hence, this will show up as presenter notes.

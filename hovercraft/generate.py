@@ -1,10 +1,8 @@
 import os
 from lxml import etree, html
-from docutils.core import publish_string
-from docutils.writers.docutils_xml import Writer
 from pkg_resources import resource_string
 
-from .parse import SlideMaker
+from .parse import rst2xml, SlideMaker
 from .position import position_slides
 from .template import get_template_info, template_info_node
         
@@ -18,7 +16,7 @@ class ResourceResolver(etree.Resolver):
     
 def rst2html(rststring, template_info):
     # First convert reST to XML
-    xml = publish_string(rststring, writer=Writer())
+    xml = rst2xml(rststring)
     tree = etree.fromstring(xml)
     
     # Fix up the resulting XML so it makes sense
