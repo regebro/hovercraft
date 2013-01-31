@@ -94,7 +94,7 @@ class PositionTests(unittest.TestCase):
         ]
 
         position_list = calculate_positions(position_list)
-        
+
         self.assertEqual(position_list, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
@@ -110,7 +110,81 @@ class PositionTests(unittest.TestCase):
             {'data-x': '3000', 'data-y': '1000'},
         ])
 
+    def test_absolute_path(self):
+        # Position slides along a path
+        position_list = [
+            'M 100 100 L 300 100 L 300 300',
+            None, 
+            None,
+            None,
+            None,
+        ]
+        
+        position_list = calculate_positions(position_list)
+        
+        self.assertEqual(position_list, [
+            {'data-x': '100', 'data-y': '100'},
+            {'data-x': '200', 'data-y': '100'},
+            {'data-x': '300', 'data-y': '100'},
+            {'data-x': '300', 'data-y': '200'},
+            {'data-x': '300', 'data-y': '300'},        
+        ])
 
+    def test_relative_path(self):
+        position_list = [
+            None,
+            None,
+            'm 100 100 l 200 0 l 0 200',
+            None, 
+            None,
+            None,
+            None,
+        ]
+
+        position_list = calculate_positions(position_list)
+        
+        self.assertEqual(position_list, [
+            {'data-x': '0', 'data-y': '0'},
+            {'data-x': '1600', 'data-y': '0'},
+            {'data-x': '3300', 'data-y': '100'},
+            {'data-x': '3400', 'data-y': '100'},
+            {'data-x': '3500', 'data-y': '100'},
+            {'data-x': '3500', 'data-y': '200'},
+            {'data-x': '3500', 'data-y': '300'},
+        ])
+
+
+    def test_complex_path(self):
+        position_list = [
+            None,
+            None,
+            'm 100 100 l 200 0 l 0 200',
+            None, 
+            None,
+            {'data-x': '0', 'data-y': '0'},
+            None,
+            'm 100 100 l 200 0 l 0 200',
+            None,
+            None,
+            {'data-x': '3000', 'data-y': '1000'},            
+        ]
+  
+        position_list = calculate_positions(position_list)
+        
+        self.assertEqual(position_list, [
+            {'data-x': '0', 'data-y': '0'},
+            {'data-x': '1600', 'data-y': '0'},
+            {'data-x': '3300', 'data-y': '100'},
+            {'data-x': '3500', 'data-y': '100'},
+            {'data-x': '3500', 'data-y': '300'},
+            {'data-x': '0', 'data-y': '0'},
+            {'data-x': '-3500', 'data-y': '-300'},
+            {'data-x': '-6900', 'data-y': '-500'},
+            {'data-x': '-6700', 'data-y': '-500'},
+            {'data-x': '-6700', 'data-y': '-300'},
+            {'data-x': '3000', 'data-y': '1000'},
+        ])
+        
 if __name__ == '__main__':
     unittest.main()
     
