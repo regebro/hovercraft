@@ -45,6 +45,9 @@ class GeneratorTests(unittest.TestCase):
             self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
 
 
+    # TODO Add tests of the hovercraft command with parameters.
+    
+    
 if __name__ == '__main__':
     unittest.main()
     
