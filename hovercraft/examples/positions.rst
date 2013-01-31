@@ -1,6 +1,6 @@
 .. title:: Slideshow title
 
-:transition-duration: 2000
+:data-transition-duration: 2000
 :data-x: 200
 :data-y: 500
 

@@ -19,7 +19,7 @@ class GeneratorTests(unittest.TestCase):
         
         html = rst2html(rst, template)
         target = b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">'\
-            b'<body><div id="impress" transition-duration="">'\
+            b'<body><div id="impress">'\
             b'<div class="step" step="0" data-y="0" data-x="0">'\
             b'<h1 id="simple-presentation">Simple Presentation</h1>'\
             b'<p>This presentation has two slides, each with a header and '\
@@ -46,7 +46,7 @@ class GeneratorTests(unittest.TestCase):
             b'media="screen,projection"></link><script type="text/javascript" '\
             b'src="js/dummy.js"></script></head><body '\
             b'class="impress-not-supported"><div id="impress" '\
-            b'transition-duration=""><div class="step" step="0" data-x="0" '\
+            b'data-transition-duration="2000"><div class="step" step="0" data-x="0" '\
             b'data-y="0"><h1 id="advanced-presentation">Advanced Presentation'\
             b'</h1><p>Here we show the positioning feature, where we can '\
             b'explicitly set a position\non one of the steps.</p></div><div '\
@@ -87,8 +87,8 @@ class GeneratorTests(unittest.TestCase):
             b'href="css/impressConsole.css" '\
             b'media="screen,projection"></link><script type="text/javascript" '\
             b'src="js/dummy.js"></script></head><body '\
-            b'class="impress-not-supported"><div id="impress" '\
-            b'transition-duration=""><div class="step" step="0" data-y="0" '\
+            b'class="impress-not-supported"><div id="impress">'\
+            b'<div class="step" step="0" data-y="0" '\
             b'data-x="0"><h1 id="hovercrafts-presenter-notes">Hovercrafts presenter '\
             b'notes</h1><p>Hovercraft supports presenter notes. It does this by '\
             b'taking anything in a\nwhat is calles a "notes-admonition" and making '\

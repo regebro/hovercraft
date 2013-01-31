@@ -10,7 +10,12 @@ xmlns="http://www.w3.org/1999/xhtml">
   <body>
   
     <xsl:for-each select="/document">
-      <div id="impress" transition-duration="{@transition-duration}">
+      <div id="impress">
+        <xsl:if test="@data-transition-duration">
+          <xsl:attribute name="data-transition-duration">
+            <xsl:value-of select="@data-transition-duration" />
+          </xsl:attribute>
+        </xsl:if>
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>

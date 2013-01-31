@@ -78,7 +78,7 @@ them first in the document, or first on a slide.
 
 Any fields you put first in a document will be rendered into attributes on
 the main impress.js div. This is currently only used to set the
-transition-duration.
+transition-duration with ``data-transition-duration``.
 
 Any fields you put first in a slide will be rendered into attributes on the
 slide div. This is used primarily to set the position/zoom/rotation of the
