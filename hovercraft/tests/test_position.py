@@ -1,6 +1,5 @@
 import os
 import unittest
-from lxml import etree
 
 from hovercraft.position import gather_positions, calculate_positions, update_positions
 

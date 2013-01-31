@@ -1,8 +1,6 @@
 import os
 import configparser
-from lxml import etree, html
-from docutils.core import publish_string
-from docutils.writers.docutils_xml import Writer
+from lxml import etree
 from pkg_resources import resource_string    
     
 def get_template_info(template=None, extra_css=None):

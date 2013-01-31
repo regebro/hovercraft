@@ -1,10 +1,8 @@
 import os
 from  tempfile import TemporaryDirectory
 import unittest
-from lxml import etree
 
 from hovercraft.generate import main
-from hovercraft.template import get_template_info
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 

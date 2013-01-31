@@ -1,9 +1,8 @@
 import os
 import unittest
-from lxml import etree
 
 from hovercraft.generate import rst2html
-from hovercraft.template import get_template_info, template_info_node
+from hovercraft.template import get_template_info
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 

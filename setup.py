@@ -1,13 +1,18 @@
 from setuptools import setup, find_packages
-import sys, os
 
 version = '0.1'
+
+with open('README.rst', 'tr') as readme:
+    description = readme.read()
+
+with open('CHANGES.txt', 'tr') as changes:
+    history = changes.read()
+    
 
 setup(name='hovercraft',
       version=version,
       description="Makes impress.js presentations from reStructuredText",
-      long_description="""\
-""",
+      long_description=description + '\n' + history,
       classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
       keywords='presentations restructuredtext',
       author='Lennart Regebro',

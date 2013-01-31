@@ -1,7 +1,7 @@
 from __future__ import division
 import unittest
 from hovercraft.svgpath import CubicBezier, QuadraticBezier, Line, Arc, Path
-from hovercraft.svgparser import parse_path, get_path, find_path
+from hovercraft.svgparser import parse_path
 
 class TestParser(unittest.TestCase):
     

@@ -1,9 +1,4 @@
-import os
-import configparser
-from lxml import etree, html
-from docutils.core import publish_string
-from docutils.writers.docutils_xml import Writer
-from pkg_resources import resource_string
+from lxml import etree
 
 def copy_node(node):
     """Makes a copy of a node with the same attributes and text, but no children."""

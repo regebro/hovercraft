@@ -1,4 +1,3 @@
-import os
 import unittest
 from pkg_resources import resource_string
 from docutils.core import publish_string

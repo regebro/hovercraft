@@ -1,6 +1,5 @@
 # This is not a generic SVG parser. It just looks for the first path it can
 # find and makes a Path object out of it.
-from string import digits
 from hovercraft import svgpath 
 
 COMMANDS = 'MmZzLlHhVvCcSsQqTtAa'
