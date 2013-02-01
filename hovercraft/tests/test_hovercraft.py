@@ -74,6 +74,29 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})
             # Ni images = no image dir:
             self.assertFalse(os.path.exists(os.path.join(tmpdir, 'images')))
+
+    def test_auto_console(self):
+        with TemporaryDirectory() as tmpdir:
+            # Adding a non-existant subdir, to test that it gets created.
+            tmpdir = os.path.join(tmpdir, 'foo')
+            
+            sys.argv = [
+                'bin/hovercraft',
+                '-a',
+                os.path.join(TEST_DATA, 'simple.rst'),
+                tmpdir, 
+            ]
+            main()
+            
+            with open(os.path.join(tmpdir, 'index.html')) as outfile:
+                self.assertEqual(len(outfile.read()), 1586)
+                
+            js_files = os.listdir(os.path.join(tmpdir, 'js'))
+            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js'})
+            css_files = os.listdir(os.path.join(tmpdir, 'css'))
+            self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})
+            # Ni images = no image dir:
+            self.assertFalse(os.path.exists(os.path.join(tmpdir, 'images')))
         
     
 if __name__ == '__main__':

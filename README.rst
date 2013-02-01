@@ -40,6 +40,12 @@ losing the whole point of impress.js.
 
 So, I have to make something myself. Hence: Hovercraft!
 
+TODO
+----
+
+* Perhaps support a directory of infiles, Sphinx-style?
+
+* 
 
 Contributors
 ------------

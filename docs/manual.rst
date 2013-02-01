@@ -5,22 +5,35 @@ Hovercraft! manual
 Usage
 -----
 
-hovercraft <presentation.rst> <outdirectory>
+hovercraft [-h] [-t TEMPLATE] [-c CSS] [-a] <presentation> <targetdir>
 
-QQQ: Support a directory of rst-files? index.rst? What does sphinx do?
-Outdirectory has to be a directory. css and js files *will* be copied. 
+Required arguments:
 
-Parameters: 
+    ``<presentation>``
+        The path to the reStructuredText presentation file.
 
-  --template, -t         Select a template. Must be a directory with a 
-                         template.cfg file, or a .cfg file, or the name of
-                         a built-in template (currently only "default").
-                         
-  --css                  Specify and additional css file to be added to the 
-                         presentation, with "all" as media.
+    ``<targetdir>``
+        The directory where the presentation is written. Will
+        be created if it does not exist.
 
-  --auto-console, -a     Pop up the presenter console automatically when 
-                         opening the presentation.
+Optional arguments:
+
+    -h, --help
+        Show this help.
+        
+    -t TEMPLATE, --template TEMPLATE
+        Specify a template. Must be a .cfg file, or a
+        directory with a template.cfg file. If not given it
+        will use a default template.
+          
+    -c CSS, --css CSS
+        An additional css file for the presentation to use.
+    
+    -a, --auto-console
+        Pop up the console automatically. This is useful when
+        you are rehearsing and making sure the presenter notes
+        are correct.
+       
 
 Presentations
 -------------
