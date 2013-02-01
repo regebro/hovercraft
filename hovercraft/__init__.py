@@ -3,7 +3,8 @@ def main():
 
     import os
     import argparse
-    from hovercraft.generate import get_template_info, rst2html, copy_files
+    from hovercraft.generate import rst2html, copy_files
+    from hovercraft.template import get_template_info
     
     parser = argparse.ArgumentParser(description='Create impress.js presentations with reStructuredText', add_help=False)
     parser.add_argument('presentation', help='The path to the reStructuredText presentation')
