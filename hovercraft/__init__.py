@@ -3,6 +3,10 @@ def main():
 
     import os
     import argparse
+    import shutil
+    
+    from lxml import html
+    
     from hovercraft.generate import rst2html, copy_files
     from hovercraft.template import get_template_info
     
@@ -40,8 +44,6 @@ def main():
     
     args = parser.parse_args()
 
-    # not used yet: args.auto_console
-
     # Parse the template info
     template_info = get_template_info(args.template, args.css)
 
@@ -50,14 +52,31 @@ def main():
         rst = infile.read()
 
     # Make the resulting HTML
-    html = rst2html(rst, template_info, args.auto_console)
+    htmldata = rst2html(rst, template_info, args.auto_console)
     
     # Write the HTML out
     if not os.path.exists(args.targetdir):
         os.makedirs(args.targetdir)
     with open(os.path.join(args.targetdir, 'index.html'), 'wb') as outfile:
-        outfile.write(html)
+        outfile.write(htmldata)
         
     # Copy supporting files
     copy_files(template_info, args.targetdir)
+
+    # Copy images from the source:
+    sourcedir = os.path.split(os.path.abspath(args.presentation))[0]
+    tree = html.fromstring(htmldata)
+    for image in tree.iterdescendants('img'):
+        filename = image.attrib['src']
+        if filename[0] == '/' or ':' in filename:
+            # Absolute path or URI.
+            continue
+        sourcepath = os.path.join(sourcedir, filename)
+        targetpath = os.path.join(args.targetdir, filename)
+        targetdir = os.path.split(targetpath)[0]
+        if not os.path.exists(targetdir):
+            os.makedirs(targetdir)
+        
+        shutil.copy2(sourcepath, targetpath)
     
+    # All done!

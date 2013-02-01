@@ -4,7 +4,12 @@ from lxml import etree
 from pkg_resources import resource_string    
     
 def get_template_info(template=None, extra_css=None):
-    result = {'css': [], 'js-header':[], 'js-body': [], 'files': {}, 'doctype': b'<!DOCTYPE html>' }
+    result = {'css': [], 
+              'js-header':[], 
+              'js-body': [], 
+              'files': {}, 
+              'resources': [],
+              'doctype': b'<!DOCTYPE html>' }
 
     # It it is a builtin template we use pkg_resources to find them.
     if template is None or template in ('default',):
@@ -60,13 +65,14 @@ def get_template_info(template=None, extra_css=None):
         # Other files:
         elif key == 'resources':
             for file in hovercraft[key].split():
-                result['files'][file] = '' # Add the file to the file list. We'll read it later.
+                result['resources'].append(file) # Resorces can't be inlined.
 
         # And finally the optional doctype:
         elif key == 'doctype':
             result['doctype'] = hovercraft['doctype'].encode()
         
-    # Load the file contents:
+    # Load the file contents. We do this because this enables the template to
+    # inline css and javascript.
     for file in result['files']:
         if builtin_template:
             data = resource_string(__name__, template + file)
