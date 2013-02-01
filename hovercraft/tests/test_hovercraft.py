@@ -33,7 +33,7 @@ class GeneratorTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 # We have verified the contents in test_geerator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 1734)
+                self.assertEqual(len(outfile.read()), 1752)
                 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
