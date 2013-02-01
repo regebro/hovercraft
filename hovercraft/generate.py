@@ -51,24 +51,3 @@ def copy_files(template_info, destination):
         with open(filepath, 'bw') as outfile:
             outfile.write(template_info['files'][file])
     
-    
-def main(presentation, targetdir, template=None, extra_css=None, auto_console=False):
-    # Parse the template info
-    template_info = get_template_info(template, extra_css)
-
-    # Read the infile
-    with open(presentation, 'rb') as infile:
-        rst = infile.read()
-
-    # Make the resulting HTML
-    html = rst2html(rst, template_info)
-    
-    # Write the HTML out
-    if not os.path.exists(targetdir):
-        os.makedirs(targetdir)
-    with open(os.path.join(targetdir, 'index.html'), 'wb') as outfile:
-        outfile.write(html)
-        
-    # Copy supporting files
-    copy_files(template_info, targetdir)
-    

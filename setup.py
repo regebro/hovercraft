@@ -20,7 +20,7 @@ setup(name='hovercraft',
       url='',
       license='CC-0',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-      scripts=['hovercraft/hovercraft'],
+      #scripts=['hovercraft/hovercraft'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
@@ -28,4 +28,9 @@ setup(name='hovercraft',
           'lxml',
       ],
       test_suite='hovercraft.tests',
-      )
+      entry_points={
+               'console_scripts': [
+                   'hovercraft = hovercraft:main',
+               ],
+      },
+)
