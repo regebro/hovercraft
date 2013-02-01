@@ -15,10 +15,16 @@ var showSlideSources = function() {
 };
 
 impress().init();
-console().init(cssFile="css/impressConsole.css");
-/* console().open();*/
+console().init(cssFile='css/impressConsole.css');
 
-console().registerKeyEvent([78], showSlideNumbers)
-console().registerKeyEvent([78], showSlideNumbers, window)
-console().registerKeyEvent([83], showSlideSources)
-console().registerKeyEvent([83], showSlideSources, window)
+var impressattrs = document.getElementById('impress').attributes
+if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value === 'True') {
+    consoleWindow = console().open();
+    /*
+        
+        console().registerKeyEvent([78], showSlideNumbers);
+        console().registerKeyEvent([83], showSlideSources); */
+}
+
+console().registerKeyEvent([78], showSlideNumbers, window);
+console().registerKeyEvent([83], showSlideSources, window);

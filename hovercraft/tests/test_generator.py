@@ -45,7 +45,7 @@ class GeneratorTests(unittest.TestCase):
             b'media="screen,projection"></link><script type="text/javascript" '\
             b'src="js/dummy.js"></script></head><body '\
             b'class="impress-not-supported"><div id="impress" '\
-            b'data-transition-duration="2000"><div class="step" step="0" data-x="1000" '\
+            b'data-transition-duration="2000" auto-console="True"><div class="step" step="0" data-x="1000" '\
             b'data-y="1600"><h1 id="advanced-presentation">Advanced Presentation'\
             b'</h1><p>Here we show the positioning feature, where we can '\
             b'explicitly set a position\non one of the steps.</p></div><div '\

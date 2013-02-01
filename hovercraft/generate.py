@@ -14,7 +14,7 @@ class ResourceResolver(etree.Resolver):
             return self.resolve_string(resource_string(__name__, filename), context)
     
     
-def rst2html(rststring, template_info):
+def rst2html(rststring, template_info, auto_console=False):
     # First convert reST to XML
     xml = rst2xml(rststring)
     tree = etree.fromstring(xml)
@@ -27,6 +27,10 @@ def rst2html(rststring, template_info):
 
     # Add the template info to the tree:
     tree.append(template_info_node(template_info))
+    
+    # If the console-should open automatically, set an attribute on the document:
+    if auto_console:
+        tree.attrib['auto-console'] = 'True'
                     
     # We need to set up a resolver for resources, so we can include the
     # reST.xsl file if so desired.

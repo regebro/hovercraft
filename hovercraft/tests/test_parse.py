@@ -28,7 +28,7 @@ class SlideMakerTests(unittest.TestCase):
     def test_advanced(self): 
         tree = SlideMaker(make_tree('test_data/advanced.rst')).walk()                         
         target = b'<document source="&lt;string&gt;" title="Presentation title" '\
-            b'data-transition-duration="2000"><paragraph>This is an advanced '\
+            b'data-transition-duration="2000" auto-console="True"><paragraph>This is an advanced '\
             b'presentation. It doesn\'t have a section in the first\nstep, meaning '\
             b'the first step will not be a step at all, but a sort of\nintroductory '\
             b'comment about the presentation, that will not show up in '\

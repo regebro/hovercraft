@@ -52,7 +52,7 @@
     // The console object
     var console = window.console = function (rootId) {
 
-        rootId = rootId || 'impress';        
+        rootId = rootId || 'impress';
         
         if (allConsoles[rootId]) {
             return allConsoles[rootId];

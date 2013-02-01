@@ -50,7 +50,7 @@ def main():
         rst = infile.read()
 
     # Make the resulting HTML
-    html = rst2html(rst, template_info)
+    html = rst2html(rst, template_info, args.auto_console)
     
     # Write the HTML out
     if not os.path.exists(args.targetdir):

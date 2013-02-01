@@ -45,7 +45,8 @@ TODO
 
 * Perhaps support a directory of infiles, Sphinx-style?
 
-* 
+* Add a temporary "pop-up" that shows key-bindings when you start plus a
+  parameter to not show it.
 
 Contributors
 ------------

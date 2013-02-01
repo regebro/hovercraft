@@ -44,7 +44,7 @@ class HTMLTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 # We have verified the contents in test_geerator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 1815)
+                self.assertEqual(len(outfile.read()), 1835)
                 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
@@ -66,7 +66,7 @@ class HTMLTests(unittest.TestCase):
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
-                self.assertEqual(len(outfile.read()), 1586)
+                self.assertEqual(len(outfile.read()), 1606)
                 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js'})
@@ -89,14 +89,8 @@ class HTMLTests(unittest.TestCase):
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
-                self.assertEqual(len(outfile.read()), 1586)
-                
-            js_files = os.listdir(os.path.join(tmpdir, 'js'))
-            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js'})
-            css_files = os.listdir(os.path.join(tmpdir, 'css'))
-            self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})
-            # Ni images = no image dir:
-            self.assertFalse(os.path.exists(os.path.join(tmpdir, 'images')))
+                result = outfile.read()
+                self.assertIn('auto-console="True"', result)
         
     
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 .. title:: Presentation title
 
 :data-transition-duration: 2000
+:auto-console: True
 
 This is an advanced presentation. It doesn't have a section in the first
 step, meaning the first step will not be a step at all, but a sort of
