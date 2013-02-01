@@ -31,7 +31,7 @@ class TemplateInfoTests(unittest.TestCase):
             xsl = xslfile.read()
         self.assertEqual(template_info['xsl'], xsl)
 
-        self.assertIn('images/python-logo-master-v3-TM.png', template_info['files'])
+        self.assertIn('images/python-logo-master-v3-TM.png', template_info['resources'])
 
         self.assertIn('js/impress.js', template_info['files'])
         self.assertIn('js/impressConsole.js', template_info['files'])

@@ -18,7 +18,7 @@ what is calles a "notes-admonition" and making that into presenter notes.
     
 ----
 
-.. image:: images/python-logo-master-v3-TM.jpg
+.. image:: images/python-logo-master-v3-TM.png
 
 .. note:: 
 

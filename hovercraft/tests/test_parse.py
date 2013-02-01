@@ -49,7 +49,7 @@ class SlideMakerTests(unittest.TestCase):
             b'possible to have\npreformatted text for code.\n\nThis slide has only '\
             b'code, and the next step\nhas only an image. This is necessary '\
             b'for\nmany types of presentations.</literal_block></step><step '\
-            b'step="3"><image uri="images/python-logo-master-v3-TM.jpg"/></step>'\
+            b'step="3"><image uri="images/python-logo-master-v3-TM.png"/></step>'\
             b'<step step="4"><section ids="character-sets" names="character\\ '\
             b'sets"><title>Character sets</title><paragraph>The character set is '\
             b'UTF-8 as of now. Like this: '\
@@ -73,7 +73,7 @@ class SlideMakerTests(unittest.TestCase):
         b'And <emphasis>all</emphasis> types of <strong>inline formatting'\
         b'</strong></paragraph></list_item></bullet_list></note></section>'\
         b'</step><step step="1"><image '\
-        b'uri="images/python-logo-master-v3-TM.jpg"/><note><paragraph>You '\
+        b'uri="images/python-logo-master-v3-TM.png"/><note><paragraph>You '\
         b'don\'t have to start the text on the same line as\nthe note, but '\
         b'you can.</paragraph><paragraph>You can also have several paragraphs.'\
         b' You can not have any\nheadings of any kind '\

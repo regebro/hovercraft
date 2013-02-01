@@ -59,7 +59,7 @@ class GeneratorTests(unittest.TestCase):
             b'and the next step\nhas only an image. This is necessary for\n'\
             b'many types of presentations.</pre></div><div class="step" '\
             b'step="3" data-x="5800" data-y="1600"><img '\
-            b'src="images/python-logo-master-v3-TM.jpg" alt="" width="" '\
+            b'src="images/python-logo-master-v3-TM.png" alt="" width="" '\
             b'height=""></img></div><div class="step" step="4" data-x="7400" '\
             b'data-y="1600"><h1 id="character-sets">Character sets</h1>'\
             b'<p>The character set is UTF-8 as of now. Like this: '\
@@ -95,7 +95,7 @@ class GeneratorTests(unittest.TestCase):
             b'formatting, like</p><ul><li>Bullet lists</li><li>And <em>all</em> '\
             b'types of <strong>inline formatting</strong></li></ul></div></div><div '\
             b'class="step" step="1" data-x="1600" data-y="0"><img '\
-            b'src="images/python-logo-master-v3-TM.jpg" alt="" width="" '\
+            b'src="images/python-logo-master-v3-TM.png" alt="" width="" '\
             b'height=""></img><div class="notes"><p>You don\'t have to start the '\
             b'text on the same line as\nthe note, but you can.</p><p>You can also '\
             b'have several paragraphs. You can not have any\nheadings of any kind '\

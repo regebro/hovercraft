@@ -48,7 +48,7 @@ TODO
 
 * Perhaps support a directory of infiles, Sphinx-style?
 
-
+  
 Contributors
 ------------
 

@@ -14,7 +14,7 @@ setup(name='hovercraft',
       description="Makes impress.js presentations from reStructuredText",
       long_description=description + '\n' + history,
       # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      classifiers=['Development Status :: 3 - Alpha',
+      classifiers=['Development Status :: 4 - Beta',
                    'Topic :: Multimedia :: Graphics :: Presentation',
                    'Topic :: Text Processing',
                    'Operating System :: OS Independent',

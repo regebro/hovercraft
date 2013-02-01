@@ -45,7 +45,7 @@ Let us also try some basic formatting, like *italic*, and **bold**.
     
 ----
 
-.. image:: images/python-logo-master-v3-TM.jpg
+.. image:: images/python-logo-master-v3-TM.png
 
 ----
 

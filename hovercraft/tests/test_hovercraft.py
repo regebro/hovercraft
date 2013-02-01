@@ -71,9 +71,9 @@ class HTMLTests(unittest.TestCase):
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
-            self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})
-            # Ni images = no image dir:
-            self.assertFalse(os.path.exists(os.path.join(tmpdir, 'images')))
+            self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})            
+            image_files = os.listdir(os.path.join(tmpdir, 'images'))
+            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})            
 
     def test_auto_console(self):
         with TemporaryDirectory() as tmpdir:
