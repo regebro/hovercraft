@@ -4,7 +4,7 @@ from pkg_resources import resource_string
 
 from .parse import rst2xml, SlideMaker
 from .position import position_slides
-from .template import get_template_info, template_info_node
+from .template import template_info_node
         
 class ResourceResolver(etree.Resolver):
     
