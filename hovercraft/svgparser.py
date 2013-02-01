@@ -5,9 +5,6 @@ from hovercraft import svgpath
 COMMANDS = 'MmZzLlHhVvCcSsQqTtAa'
 UPPERCASE = 'MZLHVCSQTA'
 
-def find_path(svgdata):
-    pass
-
 def tokenize_path(pathdef):
     # Commas are separators, just like spaces.
     pathdef = pathdef.replace(',', ' ')
@@ -184,9 +181,4 @@ def parse_path(pathdef, current_pos=0j):
             
     return segments
     
-    
-def get_path(filename):
-    with open(filename, 'rb') as svgfile:
-        path = find_path(svgfile.read())
-        return parse_path(path)
     

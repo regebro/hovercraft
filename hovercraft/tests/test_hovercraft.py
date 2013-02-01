@@ -55,12 +55,14 @@ class HTMLTests(unittest.TestCase):
             
     def test_default_template(self):
         with TemporaryDirectory() as tmpdir:
+            # Adding a non-existant subdir, to test that it gets created.
+            tmpdir = os.path.join(tmpdir, 'foo')
+            
             sys.argv = [
                 'bin/hovercraft',
                 os.path.join(TEST_DATA, 'advanced.rst'),
                 tmpdir,
             ]
-            
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
