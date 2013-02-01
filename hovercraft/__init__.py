@@ -10,7 +10,7 @@ def main():
     parser.add_argument('targetdir', help='The directory where the presentation is written. Will be created if it doens\'t exist.')
     parser.add_argument('-h', '--help', action='help', help='Show this help')
     parser.add_argument('-t', '--template', help='The path to a Hovercraft! template')
-    parser.add_argument('-e', '--extra_css', help='An additional css file for the presentation to use')
+    parser.add_argument('-c', '--css', help='An additional css file for the presentation to use')
     parser.add_argument('-a', '--auto-console', action='store_true', help='Pop up the console automatically')
     
     args = parser.parse_args()
@@ -18,7 +18,7 @@ def main():
     # not used yet: args.auto_console
 
     # Parse the template info
-    template_info = get_template_info(args.template, args.extra_css)
+    template_info = get_template_info(args.template, args.css)
 
     # Read the infile
     with open(args.presentation, 'rb') as infile:
