@@ -42,16 +42,25 @@ class HTMLTests(unittest.TestCase):
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
-                # We have verified the contents in test_geerator.py, let's
+                # We have verified the contents in test_generator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 1835)
+                self.assertEqual(len(outfile.read()), 1831)
                 
+            out_files = os.listdir(tmpdir)
+            self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
-            self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css', 'extra.css'})
+            self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            font_files = os.listdir(os.path.join(tmpdir, 'fonts'))
+            self.assertEqual(set(font_files), {
+                'texgyreschola-regular-webfont.ttf',
+                'texgyreschola-regular-webfont.eot',
+                'texgyreschola-regular-webfont.woff',
+                'texgyreschola-regular-webfont.svg',
+            })
             
     def test_default_template(self):
         with TemporaryDirectory() as tmpdir:

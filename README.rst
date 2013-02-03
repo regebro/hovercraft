@@ -48,6 +48,7 @@ TODO
 
 * Perhaps support a directory of infiles, Sphinx-style?
 
+* You should be able to set a class on almost anything, at least images and headings and steps.
   
 Contributors
 ------------

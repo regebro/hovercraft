@@ -16,3 +16,15 @@ aside.source,
 aside.page_number {
     display: none;
 }
+
+@font-face {
+    font-family: 'TeXGyreSchola';
+    src: url('fonts/texgyreschola-regular-webfont.eot');
+    src: url('fonts/texgyreschola-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/texgyreschola-regular-webfont.woff') format('woff'),
+         url('fonts/texgyreschola-regular-webfont.ttf') format('truetype'),
+         url('fonts/texgyreschola-regular-webfont.svg#TeXGyreScholaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

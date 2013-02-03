@@ -2,6 +2,7 @@
 def main():
 
     import os
+    import re
     import argparse
     import shutil
     
@@ -9,6 +10,18 @@ def main():
     
     from hovercraft.generate import rst2html, copy_files
     from hovercraft.template import get_template_info
+
+    def copy_resource(filename, sourcedir, targetdir):
+        if filename[0] == '/' or ':' in filename:
+            # Absolute path or URI: Do nothing
+            return
+        sourcepath = os.path.join(sourcedir, filename)
+        targetpath = os.path.join(targetdir, filename)
+        targetdir = os.path.split(targetpath)[0]
+        if not os.path.exists(targetdir):
+            os.makedirs(targetdir)
+        
+        shutil.copy2(sourcepath, targetpath)
     
     parser = argparse.ArgumentParser(
         description='Create impress.js presentations with reStructuredText',
@@ -68,15 +81,15 @@ def main():
     tree = html.fromstring(htmldata)
     for image in tree.iterdescendants('img'):
         filename = image.attrib['src']
-        if filename[0] == '/' or ':' in filename:
-            # Absolute path or URI.
-            continue
-        sourcepath = os.path.join(sourcedir, filename)
-        targetpath = os.path.join(args.targetdir, filename)
-        targetdir = os.path.split(targetpath)[0]
-        if not os.path.exists(targetdir):
-            os.makedirs(targetdir)
-        
-        shutil.copy2(sourcepath, targetpath)
+        copy_resource(filename, sourcedir, args.targetdir)
+
+    RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
+    
+    # Copy any files referenced by url() in the css-files:
+    for file, target in template_info['css']:
+        uris = RE_CSS_URL.findall(template_info['files'][file])        
+        uris = [uri.decode() for uri in uris]
+        for filename in uris:
+            copy_resource(filename, sourcedir, args.targetdir)
     
     # All done!

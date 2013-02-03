@@ -1,8 +1,8 @@
 import os
 import configparser
 from lxml import etree
-from pkg_resources import resource_string    
-    
+from pkg_resources import resource_string
+
 def get_template_info(template=None, extra_css=None):
     result = {'css': [], 
               'js-header':[], 
@@ -84,10 +84,10 @@ def get_template_info(template=None, extra_css=None):
     if extra_css:
         filename = os.path.split(extra_css)[-1]
         target = 'css/' + filename
-        result['css'].append((target, 'all'))
+        result['css'].append((filename, 'all'))
         with open(os.path.join(extra_css), 'rb') as infile:
-            result['files'][target] = infile.read()
-        
+            result['files'][filename] = infile.read()
+    
     return result
 
 
