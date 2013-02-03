@@ -52,6 +52,6 @@ def copy_files(template_info, destination):
         if not os.path.exists(directory_name):
             os.makedirs(directory_name)
             
-        with open(filepath, 'bw') as outfile:
+        with open(filepath, 'wb') as outfile:
             outfile.write(template_info['files'][file])
     

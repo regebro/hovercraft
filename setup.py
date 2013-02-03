@@ -2,10 +2,10 @@ from setuptools import setup, find_packages
 
 version = '0.1'
 
-with open('README.rst', 'tr') as readme:
+with open('README.rst', 'rt') as readme:
     description = readme.read()
 
-with open('CHANGES.txt', 'tr') as changes:
+with open('CHANGES.txt', 'rt') as changes:
     history = changes.read()
     
 
@@ -19,6 +19,7 @@ setup(name='hovercraft',
                    'Topic :: Text Processing',
                    'Operating System :: OS Independent',
                    'Programming Language :: Python :: 3',
+                   'Programming Language :: Python :: 3.2',
                    'Programming Language :: Python :: 3.3',
                    ], 
       keywords='presentations restructuredtext',
@@ -32,6 +33,7 @@ setup(name='hovercraft',
       install_requires=[
           'docutils',
           'lxml',
+          'svg.path',
       ],
       test_suite='hovercraft.tests',
       entry_points={

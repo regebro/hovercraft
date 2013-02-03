@@ -1,6 +1,6 @@
 from lxml import etree
 
-from hovercraft.svgparser import parse_path
+from svg.path import parse_path
 
 DEFAULT_MOVEMENT = 1600 # If no other movement is specified, go 1600px to the right.
 

@@ -77,7 +77,7 @@ def get_template_info(template=None, extra_css=None):
         if builtin_template:
             data = resource_string(__name__, template + file)
         else:
-            with open(os.path.join(template_root, file), 'br') as infile:
+            with open(os.path.join(template_root, file), 'rb') as infile:
                 data = infile.read()
         result['files'][file] = data
 
@@ -85,7 +85,7 @@ def get_template_info(template=None, extra_css=None):
         filename = os.path.split(extra_css)[-1]
         target = 'css/' + filename
         result['css'].append((target, 'all'))
-        with open(os.path.join(extra_css), 'br') as infile:
+        with open(os.path.join(extra_css), 'rb') as infile:
             result['files'][target] = infile.read()
         
     return result
