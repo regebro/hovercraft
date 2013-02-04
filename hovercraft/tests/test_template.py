@@ -59,10 +59,10 @@ class TemplateInfoNodeTests(unittest.TestCase):
                 'files': {} }
         node = template_info_node(info)
         
-        self.assertEqual(etree.tostring(node),
-            b'<templateinfo><header/><body>'\
-            b'<js src="js/impress.js"/><js src="js/hovercraft-minimal.js"/>'\
-            b'</body></templateinfo>')
+        self.assertEqual(etree.tostring(node), (
+            b'<templateinfo><header/><body>'
+            b'<js src="js/impress.js"/><js src="js/hovercraft-minimal.js"/>'
+            b'</body></templateinfo>'))
         
     def test_maximal_template(self):
         info = {'css': [('css/style.css', 'all'),
@@ -73,14 +73,14 @@ class TemplateInfoNodeTests(unittest.TestCase):
                 'files': {} }
         node = template_info_node(info)
         
-        self.assertEqual(etree.tostring(node),
-            b'<templateinfo><header>'\
-            b'<css href="css/style.css" media="all"/>'\
-            b'<css href="css/print.css" media="print"/>'\
-            b'<css href="css/impressConsole.css" media="screen,projection"/>'\
-            b'<js src="js/dummy.js"/></header>'\
-            b'<body><js src="js/impress.js"/><js src="js/hovercraft-minimal.js"/>'\
-            b'</body></templateinfo>')
+        self.assertEqual(etree.tostring(node), (
+            b'<templateinfo><header>'
+            b'<css href="css/style.css" media="all"/>'
+            b'<css href="css/print.css" media="print"/>'
+            b'<css href="css/impressConsole.css" media="screen,projection"/>'
+            b'<js src="js/dummy.js"/></header>'
+            b'<body><js src="js/impress.js"/><js src="js/hovercraft-minimal.js"/>'
+            b'</body></templateinfo>'))
         
         
 
