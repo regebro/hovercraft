@@ -1,4 +1,5 @@
 import os
+import shutil
 from lxml import etree, html
 from pkg_resources import resource_string
 
@@ -55,3 +56,19 @@ def copy_files(template_info, destination):
         with open(filepath, 'wb') as outfile:
             outfile.write(template_info['files'][file])
     
+def copy_resource(filename, sourcedir, targetdir):
+    if filename[0] == '/' or ':' in filename:
+        # Absolute path or URI: Do nothing
+        return
+    sourcepath = os.path.join(sourcedir, filename)
+    targetpath = os.path.join(targetdir, filename)
+    
+    if (os.path.exists(targetpath) and 
+        os.path.getmtime(sourcepath) <= os.path.getmtime(targetpath)):
+        # File has not changed since last copy, so skip.
+        return
+    targetdir = os.path.split(targetpath)[0]
+    if not os.path.exists(targetdir):
+        os.makedirs(targetdir)
+    
+    shutil.copy2(sourcepath, targetpath)

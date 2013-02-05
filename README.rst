@@ -48,7 +48,10 @@ TODO
 
 * Perhaps support a directory of infiles, Sphinx-style?
 
-* You should be able to set a class on almost anything, at least images and headings and steps.
+* A parameter to skip the presentation notes for web-publishing.
+
+* Somehow specify what DEFAULT_MOVEMENT should be.
+
   
 Contributors
 ------------

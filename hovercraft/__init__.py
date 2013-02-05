@@ -4,24 +4,11 @@ def main():
     import os
     import re
     import argparse
-    import shutil
     
     from lxml import html
     
-    from hovercraft.generate import rst2html, copy_files
+    from hovercraft.generate import rst2html, copy_files, copy_resource
     from hovercraft.template import get_template_info
-
-    def copy_resource(filename, sourcedir, targetdir):
-        if filename[0] == '/' or ':' in filename:
-            # Absolute path or URI: Do nothing
-            return
-        sourcepath = os.path.join(sourcedir, filename)
-        targetpath = os.path.join(targetdir, filename)
-        targetdir = os.path.split(targetpath)[0]
-        if not os.path.exists(targetdir):
-            os.makedirs(targetdir)
-        
-        shutil.copy2(sourcepath, targetpath)
     
     parser = argparse.ArgumentParser(
         description='Create impress.js presentations with reStructuredText',

@@ -46,11 +46,15 @@ def calculate_positions(positions):
     current_movement = DEFAULT_MOVEMENT
     
     positer = iter(positions)
+    position = next(positer)
     while True:
-        position = next(positer)
         
         # This is an SVG path specification
         if isinstance(position, str):
+            
+            # Paths that end in Z or z are closed.
+            closed_path = position.strip()[-1].upper() == 'Z'
+                    
             if last_position is None:
                 first_point = 0
             else:
@@ -72,24 +76,36 @@ def calculate_positions(positions):
                     break
                 count += 1
         
+            
+            if closed_path:
+                # This path closes in on itself. Skip the last part, so that
+                # the first and last step doesn't overlap.
+                endcount = count + 1 
+            
+            import pdb;pdb.set_trace()
+            multiplier = (endcount * DEFAULT_MOVEMENT) / path.length()
+            offset = path.point(0)
+            
             for x in range(count):
-                point = path.point(x/(count-1))
+                point = path.point(x/(endcount-1))
+                point = ((point - offset) * multiplier) + offset
                 yield _coord_to_pos(point)
                 if last_position is not None:
                     current_movement = point - last_position
                 last_position = point
-                
+            
             if last:
                 break
-        
+            
         # Calculate path from linear movements.
-        if position is None:
+        elif position is None:
             if last_position is None:
                 position = 0
             else:
                 position = last_position + current_movement
             last_position = position 
             yield _coord_to_pos(position)
+            position = next(positer)
             
         # Absolute position specified
         else:
@@ -103,7 +119,7 @@ def calculate_positions(positions):
                 current_movement = position - last_position
             last_position = position
             yield _coord_to_pos(position)
-
+            position = next(positer)
     
     
 def update_positions(tree, positions):
