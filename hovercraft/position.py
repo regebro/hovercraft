@@ -80,9 +80,10 @@ def calculate_positions(positions):
             if closed_path:
                 # This path closes in on itself. Skip the last part, so that
                 # the first and last step doesn't overlap.
-                endcount = count + 1 
+                endcount = count + 1
+            else:
+                endcount = count
             
-            import pdb;pdb.set_trace()
             multiplier = (endcount * DEFAULT_MOVEMENT) / path.length()
             offset = path.point(0)
             
