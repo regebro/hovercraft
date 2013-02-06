@@ -19,16 +19,18 @@ class GatherTests(unittest.TestCase):
 
     def test_gathering(self):
         tree = make_tree('positioning.rst')
+        
         positions = list(gather_positions(tree))
+        
         self.assertEqual(positions,[
             None,
             None,
-            'm 100 100 l 200 0 l 0 200',
+             ('m 100 100 l 200 0 l 0 200', {'data-x': 'r0', 'data-y': 'r0'}),
             None, 
             None,
             {'data-x': '0', 'data-y': '0'},
             None,
-            'm 100 100 l 200 0 l 0 200',
+            ('m 100 100 l 200 0 l 0 200', {'data-x': 'r0', 'data-y': 'r0'}),
             None,
             None,
             {'data-x': '3000', 'data-y': '1000'},            
@@ -141,28 +143,7 @@ class CalculateTests(unittest.TestCase):
     def test_absolute_path(self):
         # Position slides along a path
         positions = [
-            'M 100 100 L 300 100 L 300 300',
-            None, 
-            None,
-            None,
-            None,
-        ]
-        
-        positions = list(calculate_positions(positions))
-        
-        self.assertEqual(positions, [
-            {'data-x': '100', 'data-y': '100'},
-            {'data-x': '200', 'data-y': '100'},
-            {'data-x': '300', 'data-y': '100'},
-            {'data-x': '300', 'data-y': '200'},
-            {'data-x': '300', 'data-y': '300'},        
-        ])
-
-    def test_relative_path(self):
-        positions = [
-            None,
-            None,
-            'm 100 100 l 200 0 l 0 200',
+            ('M 100 100 L 300 100 L 300 300',  {'data-x': 'r0', 'data-y': 'r0'}),
             None, 
             None,
             None,
@@ -173,12 +154,33 @@ class CalculateTests(unittest.TestCase):
         
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
+            {'data-x': '2000', 'data-y': '0'},
+            {'data-x': '4000', 'data-y': '0'},
+            {'data-x': '4000', 'data-y': '2000'},
+            {'data-x': '4000', 'data-y': '4000'},        
+        ])
+
+    def test_relative_path(self):
+        positions = [
+            None,
+            None,
+            ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
+            None, 
+            None,
+            None,
+            None,
+        ]
+
+        positions = list(calculate_positions(positions))
+
+        self.assertEqual(positions, [
+            {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
-            {'data-x': '3300', 'data-y': '100'},
-            {'data-x': '3400', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '200'},
-            {'data-x': '3500', 'data-y': '300'},
+            {'data-x': '3200', 'data-y': '0'},
+            {'data-x': '5200', 'data-y': '0'},
+            {'data-x': '7200', 'data-y': '0'},
+            {'data-x': '7200', 'data-y': '2000'},
+            {'data-x': '7200', 'data-y': '4000'}
         ])
 
 
@@ -186,30 +188,31 @@ class CalculateTests(unittest.TestCase):
         positions = [
             None,
             None,
-            'm 100 100 l 200 0 l 0 200',
+            ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
             None, 
             None,
             {'data-x': '0', 'data-y': '0'},
             None,
-            'm 100 100 l 200 0 l 0 200',
+            ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
             None,
             None,
             {'data-x': '3000', 'data-y': '1000'},            
         ]
   
         positions = list(calculate_positions(positions))
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
-            {'data-x': '3300', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '300'},
+            {'data-x': '3200', 'data-y': '0'},
+            {'data-x': '5600', 'data-y': '0'},
+            {'data-x': '5600', 'data-y': '2400'},
             {'data-x': '0', 'data-y': '0'},
-            {'data-x': '-3500', 'data-y': '-300'},
-            {'data-x': '-6900', 'data-y': '-500'},
-            {'data-x': '-6700', 'data-y': '-500'},
-            {'data-x': '-6700', 'data-y': '-300'},
-            {'data-x': '3000', 'data-y': '1000'},
+            {'data-x': '-5600', 'data-y': '-2400'},
+            {'data-x': '-11200', 'data-y': '-4800'},
+            {'data-x': '-8800', 'data-y': '-4800'},
+            {'data-x': '-8800', 'data-y': '-2400'},
+            {'data-x': '3000', 'data-y': '1000'}
         ])
 
 
@@ -219,21 +222,22 @@ class PositionTest(unittest.TestCase):
         tree = make_tree('positioning.rst')
         # Position the slides:
         position_slides(tree)
+        
         # Gather the positions (we cheat and use the function for that)
         positions = list(gather_positions(tree))
         
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
-            {'data-x': '1600', 'data-y': '0'},
-            {'data-x': '3300', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '100'},
-            {'data-x': '3500', 'data-y': '300'},
-            {'data-x': '0', 'data-y': '0'},
-            {'data-x': '-3500', 'data-y': '-300'},
-            {'data-x': '-6900', 'data-y': '-500'},
-            {'data-x': '-6700', 'data-y': '-500'},
-            {'data-x': '-6700', 'data-y': '-300'},
-            {'data-x': '3000', 'data-y': '1000'},
+             {'data-x': '1600', 'data-y': '0'},
+             {'data-x': '3200', 'data-y': '0'},
+             {'data-x': '5600', 'data-y': '0'},
+             {'data-x': '5600', 'data-y': '2400'},
+             {'data-x': '0', 'data-y': '0'},
+             {'data-x': '-5600', 'data-y': '-2400'},
+             {'data-x': '-11200', 'data-y': '-4800'},
+             {'data-x': '-8800', 'data-y': '-4800'},
+             {'data-x': '-8800', 'data-y': '-2400'},
+             {'data-x': '3000', 'data-y': '1000'},
         ])
 
         
