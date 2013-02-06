@@ -153,11 +153,11 @@ class CalculateTests(unittest.TestCase):
         positions = list(calculate_positions(positions))
         
         self.assertEqual(positions, [
-            {'data-x': '0', 'data-y': '0'},
-            {'data-x': '2000', 'data-y': '0'},
-            {'data-x': '4000', 'data-y': '0'},
-            {'data-x': '4000', 'data-y': '2000'},
-            {'data-x': '4000', 'data-y': '4000'},        
+            {'data-rotate': 0, 'data-x': '0', 'data-y': '0'},
+            {'data-rotate': 0, 'data-x': '2000', 'data-y': '0'},
+            {'data-rotate': 44.99999999999999, 'data-x': '4000', 'data-y': '0'},
+            {'data-rotate': 90.0, 'data-x': '4000', 'data-y': '2000'},
+            {'data-rotate': 90.0, 'data-x': '4000', 'data-y': '4000'},        
         ])
 
     def test_relative_path(self):
@@ -172,15 +172,15 @@ class CalculateTests(unittest.TestCase):
         ]
 
         positions = list(calculate_positions(positions))
-
+        
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
-            {'data-x': '3200', 'data-y': '0'},
-            {'data-x': '5200', 'data-y': '0'},
-            {'data-x': '7200', 'data-y': '0'},
-            {'data-x': '7200', 'data-y': '2000'},
-            {'data-x': '7200', 'data-y': '4000'}
+            {'data-rotate': 0, 'data-x': '3200', 'data-y': '0'},
+            {'data-rotate': 0, 'data-x': '5200', 'data-y': '0'},
+            {'data-rotate': 44.99999999999999, 'data-x': '7200', 'data-y': '0'},
+            {'data-rotate': 90.0, 'data-x': '7200', 'data-y': '2000'},
+            {'data-rotate': 90.0, 'data-x': '7200', 'data-y': '4000'}
         ])
 
 
@@ -200,18 +200,18 @@ class CalculateTests(unittest.TestCase):
         ]
   
         positions = list(calculate_positions(positions))
-
+        
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
-            {'data-x': '3200', 'data-y': '0'},
-            {'data-x': '5600', 'data-y': '0'},
-            {'data-x': '5600', 'data-y': '2400'},
+            {'data-rotate': 0, 'data-x': '3200', 'data-y': '0'},
+            {'data-rotate': 44.99999999999999, 'data-x': '5600', 'data-y': '0'},
+            {'data-rotate': 90.0, 'data-x': '5600', 'data-y': '2400'},
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '-5600', 'data-y': '-2400'},
-            {'data-x': '-11200', 'data-y': '-4800'},
-            {'data-x': '-8800', 'data-y': '-4800'},
-            {'data-x': '-8800', 'data-y': '-2400'},
+            {'data-rotate': 0, 'data-x': '-11200', 'data-y': '-4800'},
+            {'data-rotate': 44.99999999999999, 'data-x': '-8800', 'data-y': '-4800'},
+            {'data-rotate': 90.0, 'data-x': '-8800', 'data-y': '-2400'},
             {'data-x': '3000', 'data-y': '1000'}
         ])
 
