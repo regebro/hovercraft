@@ -83,7 +83,7 @@ The parameters in the [hovercraft] section are:
                  copied to the target directory, but nothing else is done
                  with them. This is useful for images used by the css.
                  
-An example:
+An example::
 
     [hovercraft]
     template = template.xsl
