@@ -18,9 +18,7 @@ def gather_positions(tree):
                 
         if 'hovercraft-path' in step.attrib:
             # Path given
-            if explicit_position:
-                raise ValueError("You can't specify both a path and a position on a step: %s" % etree.tostring(step))
-            yield step.attrib['hovercraft-path']
+            yield step.attrib['hovercraft-path'], pos
         elif explicit_position:
             # Position given
             yield pos
@@ -50,18 +48,21 @@ def calculate_positions(positions):
     while True:
         
         # This is an SVG path specification
-        if isinstance(position, str):
-            
-            # Paths that end in Z or z are closed.
-            closed_path = position.strip()[-1].upper() == 'Z'
+        if isinstance(position, tuple):
+            position, newpos = position
                     
             if last_position is None:
                 first_point = 0
             else:
                 first_point = last_position + current_movement
+            first_point = _pos_to_cord(newpos, first_point)
+                
+            # Paths that end in Z or z are closed.
+            closed_path = position.strip()[-1].upper() == 'Z'
+            
             # The the first point of the path is absolute,
             # first_point is ignored.
-            path = parse_path(position, first_point)
+            path = parse_path(position)#, first_point)
             
             # Find out how many positions should be calculated:
             count = 1
@@ -89,7 +90,7 @@ def calculate_positions(positions):
             
             for x in range(count):
                 point = path.point(x/(endcount-1))
-                point = ((point - offset) * multiplier) + offset
+                point = ((point - offset) * multiplier) + first_point
                 yield _coord_to_pos(point)
                 if last_position is not None:
                     current_movement = point - last_position
