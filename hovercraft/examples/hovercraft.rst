@@ -7,8 +7,8 @@
 The problem:
 ============
 
-Making presentations is painful!
---------------------------------
+Making presentations is no fun!
+-------------------------------
 
 ----
 
@@ -23,8 +23,8 @@ You get caught up in design early in the process.
 
 ----
 
-reStructuredText!
-=================
+Use reStructuredText!
+=====================
 
 You can use your favorite text-editor!
 
@@ -77,12 +77,12 @@ So we are back to square one.
 
 ----
 
-Impress.js
-==========
+What about Impress.js?
+======================
 
-Open source!
+It's open source!
 
-Pan, tilt and zoom
+Supports pan, tilt and zoom!
 
 ----
 
@@ -100,7 +100,7 @@ But....
 It's HTML
 =========
 
-Not an friendly format to edit.
+Not an friendly format to edit
 
 ----
 
@@ -109,7 +109,9 @@ Not an friendly format to edit.
 Manual positioning!
 ===================
 
-So inserting one slide means repositioning all slides after.
+So inserting one slide means 
+
+repositioning all the following slides!
 
 ----
 
@@ -167,6 +169,17 @@ Absolutely!
 Relative the the previous slide!
 
 Along an SVG path!
+
+----
+
+Presenter console!
+==================
+
+* A view of the current slide
+* A view of the next slide
+* Your notes
+* The time
+* and a timer!
 
 ----
 
