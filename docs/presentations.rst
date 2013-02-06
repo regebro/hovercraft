@@ -6,9 +6,9 @@ A note on terminology
 
 Traditionally a presentation is made up of slides. Calling them "slides" is
 not really relevant in an impress.js context, as they can overlap and doesn't
-necessarily slide, but can zoom, roll and pitch. The name "steps" is
-better, but it's also more ambigiouos. Hence Impress.js uses the terms "slide"
-and "step" as meaning the same thing, and so does Hovercraft!
+necessarily slide. The name "steps" is better, but it's also more ambigiouos.
+Hence Impress.js uses the terms "slide" and "step" as meaning the same thing,
+and so does Hovercraft!
 
 
 Hovercraft! syntax
@@ -45,8 +45,13 @@ You can also mark text as *italic* or **bold**, and you can have bullet lists::
 
 You can include images::
 
-   .. image:: path/to/image.png
+    .. image:: path/to/image.png
+        :height: 600px
+        :width: 800px
    
+As you see you can also specify height and width and loads of other parameters_, but they
+are all optional.
+
 And you can mark text as being preformatted, for example when adding example source code::
 
     ::
@@ -93,6 +98,8 @@ A presentation can therefore look something like this:
 
 ::
 
+    .. title: Presentation Title
+    
     :data-transition-duration: 2000
     
     ----
@@ -119,5 +126,12 @@ A presentation can therefore look something like this:
     1. Numbers automatically
 
 
+Paths
+-----
+
+
+
+
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
+.. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images
 .. _book: http://python3porting.com/

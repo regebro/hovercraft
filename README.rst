@@ -1,8 +1,11 @@
 Hovercraft!
 ===========
 
-Hovercraft! will be a tool to make impress.js_ presentations from
-reStructuredText. 
+*The merging of convenience and cool!*
+
+Hovercraft! is a tool to make impress.js_ presentations from
+reStructuredText. Documentation is currently sparse, but available in the
+documentation subdirectory.
 
 Why?
 ----
@@ -57,9 +60,13 @@ Contributors
 ------------
 
 Hovercraft! was written by Lennart Regebro <regebro@mail.com>, and is licensed
-as CC-0, except for the "reST.xsl" file, which is (c) Michael Alyn Miller
-<malyn@strangeGizmo.com> and published under a BSD-style license included in
-reST.xsl itself.
+as CC-0, except for the following:
+
+* ``reST.xsl`` is (c) Michael Alyn Miller <malyn@strangeGizmo.com> and
+  published under a BSD-style license included in reST.xsl itself.
+
+* ``impress.js`` is (c) Bartek Szopka (@bartaz) released under MIT and GPL
+  licenses. See the impress.js_ page for more information.
 
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _landslide-impress: https://github.com/regebro/landslide-impress

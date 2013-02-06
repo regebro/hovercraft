@@ -37,9 +37,9 @@ Convenient (and powerful!)
 But then there was Prezi
 ========================
 
-Sliding from left to right was no longer enough.
+Sliding from left to right is no longer enough.
 
-You needed to be able to...
+You need to be able to...
 
 ----
 
@@ -57,8 +57,8 @@ You needed to be able to...
 
 ----
 
-:data-x: r-10
-:data-y: r18
+:data-x: r0
+:data-y: r500
 :data-scale: 0.02
 
 ...and zoom!
