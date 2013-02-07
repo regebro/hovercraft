@@ -42,22 +42,6 @@ impress.js was slides that boringly went from left to right, completely
 losing the whole point of impress.js.
 
 So, I have to make something myself. Hence: Hovercraft!
-
-TODO
-----
-
-* Add a parameter to not show the help pop up when starting.
-
-* Add a keybinding to pop up the help when pressing "h".
-
-* A parameter to skip the presentation notes for web-publishing.
-
-* Somehow specify what DEFAULT_MOVEMENT should be.
-
-Future features:
-................
-
-* Perhaps support a directory of infiles, Sphinx-style?
   
 Contributors
 ------------
