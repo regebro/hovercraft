@@ -47,6 +47,13 @@ xmlns="http://www.w3.org/1999/xhtml">
       </div> 
     </xsl:for-each>
   
+    <div class="help">
+      <table>
+        <tr><th>Space, Left, Down, Page Down</th><td>Next slide</td></tr>
+        <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>P</th><td>Open presenter console</td></tr>
+      </table>
+    </div>
     <xsl:for-each select="/document/templateinfo/body/js">
       <script type="text/javascript">
         <xsl:copy-of select="@*"/>

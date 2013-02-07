@@ -46,15 +46,18 @@ So, I have to make something myself. Hence: Hovercraft!
 TODO
 ----
 
-* Add a temporary "pop-up" that shows key-bindings when you start plus a
-  parameter to not show it.
+* Add a parameter to not show the help pop up when starting.
 
-* Perhaps support a directory of infiles, Sphinx-style?
+* Add a keybinding to pop up the help when pressing "h".
 
 * A parameter to skip the presentation notes for web-publishing.
 
 * Somehow specify what DEFAULT_MOVEMENT should be.
 
+Future features:
+................
+
+* Perhaps support a directory of infiles, Sphinx-style?
   
 Contributors
 ------------

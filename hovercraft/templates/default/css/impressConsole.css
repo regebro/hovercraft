@@ -83,3 +83,32 @@ div#timer {
     text-align: center;
     float: left;
 }
+
+/* Help popup */
+
+.help {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    color: #EEEEEE;
+    display: none;
+    font-size: 20px;
+    left: 2em;
+    bottom: 2em;
+    width: 30em;
+    
+    opacity: 0;
+    padding: 1em;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+}
+
+.impress-enabled .help {
+    display: block;
+}
+
+.impress-on-step-1 .help {
+    opacity: 1;
+    transform: translateY(10em);
+    transition: opacity 1s ease 1s, transform 2s ease 10s;
+}
