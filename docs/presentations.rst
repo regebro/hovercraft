@@ -1,5 +1,5 @@
-Presentations
-=============
+Making presentations
+====================
 
 A note on terminology
 ---------------------
@@ -7,7 +7,7 @@ A note on terminology
 Traditionally a presentation is made up of slides. Calling them "slides" is
 not really relevant in an impress.js context, as they can overlap and doesn't
 necessarily slide. The name "steps" is better, but it's also more ambigiouos.
-Hence Impress.js uses the terms "slide" and "step" as meaning the same thing,
+Hence impress.js uses the terms "slide" and "step" as meaning the same thing,
 and so does Hovercraft!
 
 
@@ -33,7 +33,10 @@ order of them is relevant, so the first type of underline encountered in the
 file will make a level 1 heading, the second type a level 2 heading and so
 on. In this file = is used for level 1, and - for level 2.
 
-You can also mark text as *italic* or **bold**, and you can have bullet lists::
+You can also mark text as *italic* or **bold**, with ``*single asterixes*``
+or ``**double asterixes**`` respectively.
+
+You can also have bullet lists::
 
     * Bullet 1
     
@@ -42,6 +45,17 @@ You can also mark text as *italic* or **bold**, and you can have bullet lists::
     * Bullet 2
     
     * Bullet 3
+
+And numbered lists::
+    
+    1. Item 1
+        
+        1.1. Item 1.1
+    
+    2. Item 2
+    
+    3. Item 3
+
 
 You can include images::
 
@@ -52,10 +66,12 @@ You can include images::
 As you see you can also specify height and width and loads of other parameters_, but they
 are all optional.
 
-And you can mark text as being preformatted, for example when adding example source code::
+And you can mark text as being preformatted, for example when adding example source code.
+You do that by ending the previous row with double colons, or have a row of double colons
+by itself::
 
     ::
-    
+
         # This code here will be preformatted.
         def some_example_code(foo):
             return foo * foo
@@ -64,6 +80,49 @@ That is the most important things you'll need to know about reStructuredText for
 making presentations. There is a lot more to know, and a lot of advanced features
 like links, footnotes, and more. It is in fact advanced enough so you can write a
 whole book_ in it, but for all that you need to read the documentation_.
+
+
+impress.js fields
+-----------------
+
+The documentation on impress.js is contained as comments in the `demo html
+file <https://github.com/bartaz/impress.js/blob/master/index.html>`_. It is
+not always very clear, so here comes a short summary for convenience.
+
+The different data fields that impress.js will use in 0.5.3, which is the
+current version, are the following:
+
+* **data-transition-duration**: The time it will take to move from one slide to
+  another. Defaults to 1000 (1 second). This is only valid on the presentation
+  as a whole.
+                                
+* **data-perspective**: Controls the "perspective" in the 3d effects. It
+  defaults to 500. Setting it to 0 disables 3D effects.
+
+* **data-x**: The horizontal position of a slide in pixels. Can be negative.
+    
+* **data-y**: The vertical position of a slide in pixels. Can be negative.
+    
+* **data-scale**: Sets the scale of a slide, which is what creates the zoom.
+  Defaults to 1. A value of 4 means the slide is four times larger. In short:
+  Lower means zooming in, higher means zooming out.
+
+* **data-rotate-z**: The rotation of a slide in the x-axis, in degrees. This
+  will cause the slide to be rotated clockwise or counter-clockwise.
+
+* **data-rotate**: The same as **data-rotate-z**.
+                                    
+* **data-rotate-x**: The rotation of a slide in the x-axis, in degrees. This
+  means you are moving the slide in a third dimension compared with other
+  slides. This is generally cooll effect, if used right.
+
+* **data-rotate-y**: The rotation of a slide in the x-axis, in degrees.
+                                
+* **data-z**: This controls the position of the slide on the z-axis. Setting
+  this value to -3000 means it's positioned -3000 pixels away. This is only
+  useful when you use **data-rotate-x** or **data-rotate-y**, otherwise it will
+  only give the impression that the slide is made smaller, which isn't really
+  useful.
 
 
 Hovercraft! specialities
@@ -82,21 +141,19 @@ is two places where the tags will make a difference, and that is by putting
 them first in the document, or first on a slide.
 
 Any fields you put first in a document will be rendered into attributes on
-the main impress.js div. This is currently only used to set the
+the main impress.js ``<div>``. This is currently only used to set the
 transition-duration with ``data-transition-duration``.
 
 Any fields you put first in a slide will be rendered into attributes on the
-slide div. This is used primarily to set the position/zoom/rotation of the
-slide, either with the ``data-x``, ``data-y`` and other impress.js settings,
-or the ``hovercraft-path`` setting, more on that later.
+slide ``<div>``. This is used primarily to set the position/zoom/rotation of
+the slide, either with the ``data-x``, ``data-y`` and other impress.js
+settings, or the ``hovercraft-path`` setting, more on that later.
 
 Hovercraft! will start making the first slide when it first encounters either
 a transition or a header. Everything that comes before that will belong to the
 presentation as a whole.
 
-A presentation can therefore look something like this:
-
-::
+A presentation can therefore look something like this::
 
     .. title: Presentation Title
     
@@ -117,30 +174,48 @@ A presentation can therefore look something like this:
     This is the second slide
     ========================
     
-    1. Here we have
+    #. Here we have
     
-    1. A numbered list
+    #. A numbered list
     
-    1. It will get correct 
+    #. It will get correct 
     
-    1. Numbers automatically
+    #. Numbers automatically
 
 
-Paths
------
+Relative positioning
+--------------------
+
+Hovercraft! gives you the ability to position slides relative to each other.
+You do this by starting the coordinates with "r". This will position the
+slide 500 pixels to the right and a thousant pixels above the previous slide::
+
+    :data-x: r500
+    :data-y: r-1000
+    
+Relative paths allow you to insert and remove slides and have other slides
+adjust automatically. It's probably the most useful way of positioning.
+
+
+SVG Paths
+---------
 
 Hovercraft supports positioning slides along and SVG path. This is handy, as
 you can create a drawing in a software that supports SVG, and then copy-paste
 that drawings path into your presentation.
 
-There are some things you need to be careful about, though.
+You specify the SVG path with the ``:hovercraft-path:`` field. For example::
+
+    :hovercraft-path: m275,175 v-150 a150,150 0 0,0 -150,150 z
+
+There are some things you need to be careful about when using SVG paths.
 
 Relative and absolute coordinates
 .................................
 
-In SVG coordinates can either be absolute, that is in reference to the page,
-or relative, which is in reference to the last point. Hovercraft can handle
-both, but what it can not handle very well is a mixture of them.
+In SVG coordinates can either be absolute, with a reference to the page
+origin; or relative, which is in reference to the last point. Hovercraft can
+handle both, but what it can not handle very well is a mixture of them.
 
 Specifically, if you take an SVG path that starts with a relative movement
 and extract that from the SVG document, you will lose the context. All
@@ -171,17 +246,17 @@ organising slides in squares, etc, is quite simple anyway, and the shapes can
 be made into paths. Usually in the software you will have to select the shape
 and tell your software to make it into a path. In Inkscape, transforming an
 object into a path will generally mean that the whole path is made of
-CubicBezier curves, which are unecessariy complex. Using the "Simplify"
+CubicBezier curves, which are unecessarily complex. Using the "Simplify"
 command in Inkscape is usually enough to make the shapes into paths.
 
 Shape-scaling
 .............
 
-Hovercraft will counts how many slides that are to fit into the path you are
-using, and it will scale the path accordingly. If you therefore have several
-paths in your presentation, they will **not** keep their relative sizes, but
-will be resized so the slides fit. If you need to let the shapes keep their
-relative sizes, you need to combine them into one object/path.
+Hovercraft will scale the path so that all the slides that need to fit into
+the path will fit into the path. If you therefore have several paths in your
+presentation, they will **not** keep their relative sizes, but will be
+resized so the slides fit. If you need to have the shapes keep their relative
+sizes, you need to combine them into one path.
 
 
 .. _documentation: http://docutils.sourceforge.net/docs/index.html

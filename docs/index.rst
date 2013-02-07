@@ -8,13 +8,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   manual.rst
+   usage.rst
    presentations.rst
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   templates.rst
 

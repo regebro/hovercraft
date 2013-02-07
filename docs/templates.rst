@@ -1,60 +1,24 @@
-Hovercraft! manual
-==================
-
-
-Usage
------
-
-hovercraft [-h] [-t TEMPLATE] [-c CSS] [-a] <presentation> <targetdir>
-
-Required arguments:
-
-    ``<presentation>``
-        The path to the reStructuredText presentation file.
-
-    ``<targetdir>``
-        The directory where the presentation is written. Will
-        be created if it does not exist.
-
-Optional arguments:
-
-    -h, --help
-        Show this help.
-        
-    -t TEMPLATE, --template TEMPLATE
-        Specify a template. Must be a .cfg file, or a
-        directory with a template.cfg file. If not given it
-        will use a default template.
-          
-    -c CSS, --css CSS
-        An additional css file for the presentation to use.
-    
-    -a, --auto-console
-        Pop up the console automatically. This is useful when
-        you are rehearsing and making sure the presenter notes
-        are correct.
-       
-
-Presentations
--------------
-
-For information on how to make presentations with Hovercraft!, see presentations.rst.
-
-
 Templates
----------
+=========
 
 Templates are directories with a configuration file, a template xsl file,
 and any number of css, js and other resource files. You can specify the
 template either with the name of the configuration file, or the name of the
-directory. If you specify the directory, the default name for the
-configuration file is template.cfg.
+directory.
+
+The template configuration file
+-------------------------------
+
+The configuration file is normally called template.cfg, but if you have
+several configuration files in one template directory, you can specify which
+one by specifying the full path to the configuration file. However, if you
+just specify the template directory, ``template.cfg`` will be used.
 
 Template files are in configparser format, which is an extended ini-style
 format. They are very simple, and have only one section, [hovercraft]. Any
 other sections will be ignored. Many of the parameters are lists that often
 do not fit on one line. In that case you can split the line up over several
-lines, but indenting the lines. The amount of indentation doens't make any
+lines, but indenting the lines. The amount of indentation doesn't make any
 difference, except aestethically.
 
 The parameters in the [hovercraft] section are:

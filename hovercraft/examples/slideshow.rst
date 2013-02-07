@@ -117,7 +117,7 @@ We also of course need code blocks.
 :data-x: 200
 :data-y: 500
 
-Impress.js support
+impress.js support
 ==================
 
 Is done by setting position 

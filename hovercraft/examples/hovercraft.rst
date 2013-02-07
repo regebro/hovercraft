@@ -77,7 +77,7 @@ So we are back to square one.
 
 ----
 
-What about Impress.js?
+What about impress.js?
 ======================
 
 It's open source!
