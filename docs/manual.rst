@@ -105,9 +105,3 @@ An example::
                images/down.png
 
 
-
-The xsl template
-++++++++++++++++
-
-TODO add instructions for how to make your own XSLT templates.
-Specifically mention the resource:reST.xml include.

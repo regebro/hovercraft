@@ -14,9 +14,9 @@ and so does Hovercraft!
 Hovercraft! syntax
 ------------------
 
-Presentations are reStructuredText files. TODO: Find links for good
-reStructuredText manuals. If you are reading this documentation from the
-source code, then you are looking at a reStructuredText document already.
+Presentations are reStructuredText files. If you are reading this
+documentation from the source code, then you are looking at a
+reStructuredText document already.
 
 It's fairly simple, you underline headings to mark them as headings::
 
@@ -129,7 +129,59 @@ A presentation can therefore look something like this:
 Paths
 -----
 
+Hovercraft supports positioning slides along and SVG path. This is handy, as
+you can create a drawing in a software that supports SVG, and then copy-paste
+that drawings path into your presentation.
 
+There are some things you need to be careful about, though.
+
+Relative and absolute coordinates
+.................................
+
+In SVG coordinates can either be absolute, that is in reference to the page,
+or relative, which is in reference to the last point. Hovercraft can handle
+both, but what it can not handle very well is a mixture of them.
+
+Specifically, if you take an SVG path that starts with a relative movement
+and extract that from the SVG document, you will lose the context. All
+coordinates later must then also be relative. If you have an absolute
+coordinate you then suddenly regain the context, and everything after the
+first absolute corrdinate will be misplaced compared to the points that come
+before.
+
+Most notable, the open source software "Inkscape" will mix absolute and
+relative coordinates, if you allow it to use relative coordinates. You
+therefore need to go into it's settings and uncheck the checkbox that allows
+you to use relative coordinates. This forces Inkscape to save all coordinates
+as absolute, which woll work fine.
+
+SVG transforms
+..............
+
+SVG allows you to draw up path and then transform it. Hovercraft has no
+support for these transforms, so before you extract the path you should make
+sure the SVG software doesn't use transforms. In Inkscape you can do this by
+the "Simplify" command.
+
+Other SVG shapes
+................
+
+Hovercraft doesn't support other SVG shapes, just the path. This is because
+organising slides in squares, etc, is quite simple anyway, and the shapes can
+be made into paths. Usually in the software you will have to select the shape
+and tell your software to make it into a path. In Inkscape, transforming an
+object into a path will generally mean that the whole path is made of
+CubicBezier curves, which are unecessariy complex. Using the "Simplify"
+command in Inkscape is usually enough to make the shapes into paths.
+
+Shape-scaling
+.............
+
+Hovercraft will counts how many slides that are to fit into the path you are
+using, and it will scale the path accordingly. If you therefore have several
+paths in your presentation, they will **not** keep their relative sizes, but
+will be resized so the slides fit. If you need to let the shapes keep their
+relative sizes, you need to combine them into one object/path.
 
 
 .. _documentation: http://docutils.sourceforge.net/docs/index.html

@@ -23,7 +23,7 @@ def rst2html(rststring, template_info, auto_console=False):
     # Fix up the resulting XML so it makes sense
     tree = SlideMaker(tree).walk()
     
-    # TODO: Position all slides
+    # Position all slides
     position_slides(tree)
 
     # Add the template info to the tree:
