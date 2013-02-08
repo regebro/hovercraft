@@ -82,6 +82,17 @@ like links, footnotes, and more. It is in fact advanced enough so you can write 
 whole book_ in it, but for all that you need to read the documentation_.
 
 
+External files
+--------------
+
+Any image file referenced in the presentation by a relative path will be
+copied to the target directory, keeping it's relative path to the
+presentation. The same goes for images or fonts referenced in any
+CSS files used by the presentation or the template.
+
+Images or fonts referenced by absolute paths or URI's will not be copied.
+
+
 impress.js fields
 -----------------
 
@@ -197,10 +208,23 @@ Relative paths allow you to insert and remove slides and have other slides
 adjust automatically. It's probably the most useful way of positioning.
 
 
+Automatic positioning
+---------------------
+
+If you don't specify either ``:data-x:`` or ``:data-y:`` the slide position
+will be automatic. That simply means it will move in the same direction
+and distance as the previous slide. This gives a linear movement, and your
+slides will end up in a straight line.
+
+By default the movement is 1600 pixels to the right, which means that if you
+don't position any slides at all, you get a standard presentation where the
+slides will simply slide from right to left.
+
+
 SVG Paths
 ---------
 
-Hovercraft supports positioning slides along and SVG path. This is handy, as
+Hovercraft! supports positioning slides along and SVG path. This is handy, as
 you can create a drawing in a software that supports SVG, and then copy-paste
 that drawings path into your presentation.
 
@@ -208,13 +232,16 @@ You specify the SVG path with the ``:hovercraft-path:`` field. For example::
 
     :hovercraft-path: m275,175 v-150 a150,150 0 0,0 -150,150 z
 
+Every following slide that does not have any explicit positioning will be
+placed on this path.
+
 There are some things you need to be careful about when using SVG paths.
 
 Relative and absolute coordinates
 .................................
 
 In SVG coordinates can either be absolute, with a reference to the page
-origin; or relative, which is in reference to the last point. Hovercraft can
+origin; or relative, which is in reference to the last point. Hovercraft! can
 handle both, but what it can not handle very well is a mixture of them.
 
 Specifically, if you take an SVG path that starts with a relative movement
@@ -230,10 +257,22 @@ therefore need to go into it's settings and uncheck the checkbox that allows
 you to use relative coordinates. This forces Inkscape to save all coordinates
 as absolute, which woll work fine.
 
+Start position
+..............
+
+By default the start position of the path, and hence the start position of
+the first slide, will be whatever the start position would have been if the
+slide had no positioning at all. If you want to change this position then
+just include ``:data-x:`` or ``:data-y:`` fields. Both relative and absolute
+positioning will work here.
+
+In all cases, the first ``m`` or ``M`` command of the SVG path is effectively
+ignored, but you have to include it anyway.
+
 SVG transforms
 ..............
 
-SVG allows you to draw up path and then transform it. Hovercraft has no
+SVG allows you to draw up path and then transform it. Hovercraft! has no
 support for these transforms, so before you extract the path you should make
 sure the SVG software doesn't use transforms. In Inkscape you can do this by
 the "Simplify" command.
@@ -241,7 +280,7 @@ the "Simplify" command.
 Other SVG shapes
 ................
 
-Hovercraft doesn't support other SVG shapes, just the path. This is because
+Hovercraft! doesn't support other SVG shapes, just the path. This is because
 organising slides in squares, etc, is quite simple anyway, and the shapes can
 be made into paths. Usually in the software you will have to select the shape
 and tell your software to make it into a path. In Inkscape, transforming an
@@ -252,12 +291,11 @@ command in Inkscape is usually enough to make the shapes into paths.
 Shape-scaling
 .............
 
-Hovercraft will scale the path so that all the slides that need to fit into
+Hovercraft! will scale the path so that all the slides that need to fit into
 the path will fit into the path. If you therefore have several paths in your
 presentation, they will **not** keep their relative sizes, but will be
 resized so the slides fit. If you need to have the shapes keep their relative
 sizes, you need to combine them into one path.
-
 
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
 .. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images

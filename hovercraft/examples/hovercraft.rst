@@ -166,7 +166,7 @@ Automatically!
 
 Absolutely!
 
-Relative the the previous slide!
+Relative to the previous slide!
 
 Along an SVG path!
 
