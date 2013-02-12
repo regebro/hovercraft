@@ -54,7 +54,10 @@ class HovercraftReader(Reader):
         return transforms
 
 def rst2xml(rststring):
-    return publish_string(rststring, reader=HovercraftReader(), writer=Writer())    
+    return publish_string(rststring, 
+                          reader=HovercraftReader(),
+                          writer=Writer(),
+                          settings_overrides={'syntax_highlight': 'short'})
 
 def copy_node(node):
     """Makes a copy of a node with the same attributes and text, but no children."""

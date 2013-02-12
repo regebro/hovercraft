@@ -34,14 +34,16 @@ Let us also try some basic formatting, like *italic*, and **bold**.
 
 ----
 
-::
+There should also be possible to have 
+preformatted text for code.
 
-    There should also be possible to have 
-    preformatted text for code.
-    
-    This slide has only code, and the next step
-    has only an image. This is necessary for 
-    many types of presentations.
+.. code:: python
+
+    def foo(bar):
+        # Comment
+        a = 1 + "hubbub"
+        return None
+
     
 ----
 

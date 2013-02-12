@@ -32,6 +32,7 @@ setup(name='hovercraft',
       zip_safe=True,
       install_requires=[
           'docutils',
+          'pygments',
           'lxml',
           'svg.path',
       ],
