@@ -93,8 +93,8 @@ div#timer {
     font-size: 20px;
     left: 2em;
     bottom: 2em;
-    width: 30em;
-    
+    width: 26em;
+    border-radius: 1em;
     opacity: 0;
     padding: 1em;
     position: fixed;

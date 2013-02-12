@@ -9,7 +9,7 @@ reStructuredText. For a quick explanation, see the demo_.
 Features
 --------
 
-* Write your presentations in a simple text markup language. No slow, limiting GUI, no annoying HTML!
+* Write your presentations in a text markup language. No slow, limiting GUI, no annoying HTML!
 
 * Pan, rotate and zoom in 3D, with automatic repositioning of slides!
 

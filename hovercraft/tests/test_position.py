@@ -30,6 +30,7 @@ class GatherTests(unittest.TestCase):
             None,
             {'data-x': '0', 'data-y': '0'},
             None,
+            None,
             ('m 100 100 l 200 0 l 0 200', {'data-x': 'r0', 'data-y': 'r0'}),
             None,
             None,
@@ -213,8 +214,7 @@ class CalculateTests(unittest.TestCase):
             {'data-rotate': 44.99999999999999, 'data-x': '-8800', 'data-y': '-4800'},
             {'data-rotate': 90.0, 'data-x': '-8800', 'data-y': '-2400'},
             {'data-x': '3000', 'data-y': '1000'}
-        ])
-
+        ])        
 
 class PositionTest(unittest.TestCase):
     
@@ -222,24 +222,41 @@ class PositionTest(unittest.TestCase):
         tree = make_tree('positioning.rst')
         # Position the slides:
         position_slides(tree)
+
+        # Get all slide position data:
         
-        # Gather the positions (we cheat and use the function for that)
-        positions = list(gather_positions(tree))
+        positions = []
+        for step in tree.findall('step'):
+            pos = {}
+            for key in step.attrib:
+                if key.startswith('data-'):
+                    pos[key] = step.attrib[key]
+                    
+            if 'hovercraft-path' in step.attrib:
+                positions.append((step.attrib['hovercraft-path'], pos))
+            else:
+                positions.append(pos)
         
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
              {'data-x': '1600', 'data-y': '0'},
-             {'data-x': '3200', 'data-y': '0'},
-             {'data-x': '5600', 'data-y': '0'},
-             {'data-x': '5600', 'data-y': '2400'},
-             {'data-x': '0', 'data-y': '0'},
-             {'data-x': '-5600', 'data-y': '-2400'},
-             {'data-x': '-11200', 'data-y': '-4800'},
-             {'data-x': '-8800', 'data-y': '-4800'},
-             {'data-x': '-8800', 'data-y': '-2400'},
-             {'data-x': '3000', 'data-y': '1000'},
+             # Because of the path, we now get an explicit rotation:
+             {'data-x': '3200', 'data-y': '0', 'data-rotate-z': '0'},
+             {'data-x': '5600', 'data-y': '0', 'data-rotate-z': '44.99999999999999'},
+             {'data-x': '5600', 'data-y': '2400', 'data-rotate-z': '90.0'},
+             # Rotation carries over from last part of path.
+             {'data-x': '0', 'data-y': '0', 'data-rotate-z': '90.0'},
+             {'data-x': '-5600', 'data-y': '-2400', 'data-rotate-z': '90'},
+             # The explicit rotate should continue here:
+             {'data-x': '-11200', 'data-y': '-4800', 'data-rotate-z': '90'},
+             # Path starts, rotation comes from path:
+             {'data-x': '-16800', 'data-y': '-7200', 'data-rotate-z': '0'},
+             {'data-x': '-14400', 'data-y': '-7200', 'data-rotate-z': '44.99999999999999'},
+             # Explicit rotate-x and z, automatic position including rotate-z from path.
+             {'data-x': '-14400', 'data-y': '-4800', 'data-rotate-z': '90.0', 'data-rotate-x': '180', 'data-z': '1000'},
+             # Explicit x and y, all other carry over from last slide.
+             {'data-x': '3000', 'data-y': '1000', 'data-rotate-z': '90.0', 'data-rotate-x': '180', 'data-z': '1000'},
         ])
-
         
         
 if __name__ == '__main__':

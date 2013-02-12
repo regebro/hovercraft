@@ -66,15 +66,25 @@ You can include images::
 As you see you can also specify height and width and loads of other parameters_, but they
 are all optional.
 
-And you can mark text as being preformatted, for example when adding example source code.
-You do that by ending the previous row with double colons, or have a row of double colons
-by itself::
+And you can mark text as being preformatted. You do that by ending the
+previous row with double colons, or have a row of double colons by itself::
 
     ::
 
-        # This code here will be preformatted.
+        This code here will be preformatted
+         and shown with a  monospaced font
+        and    all    spaces     preserved.
+        
+If you want to add source code, you can use the ``code`` directive, and get
+syntax highlighting::
+
+    .. code:: python
+
         def some_example_code(foo):
             return foo * foo
+
+The syntax highlighting is done by Pygments_ and supports lots and lots of
+languages_.
 
 That is the most important things you'll need to know about reStructuredText for
 making presentations. There is a lot more to know, and a lot of advanced features
@@ -300,3 +310,5 @@ sizes, you need to combine them into one path.
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
 .. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images
 .. _book: http://python3porting.com/
+.. _Pygments: http://pygments.org/
+.. _languages: http://pygments.org/docs/lexers/

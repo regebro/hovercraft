@@ -49,7 +49,8 @@ xmlns="http://www.w3.org/1999/xhtml">
   
     <div class="help">
       <table>
-        <tr><th>Space, Left, Down, Page Down</th><td>Next slide</td></tr>
+        <tr><th>Space</th><td>Forward</td></tr>
+        <tr><th>Left, Down, Page Down</th><td>Next slide</td></tr>
         <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
         <tr><th>P</th><td>Open presenter console</td></tr>
       </table>
