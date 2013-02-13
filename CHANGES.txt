@@ -4,7 +4,12 @@ Changes
 1.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added syntax highlighting support.
+
+- #9: All positioning variables except data-x and data-y are now "sticky" so
+      they will keep their previous value if not defined.
+      
+- Documentation on https://hovercraft.readthedocs.org/
 
 
 1.0b1 (2013-02-07)
