@@ -1,7 +1,7 @@
 Changes
 =======
 
-1.0b2 (unreleased)
+1.0b2 (2013-02-13)
 ------------------
 
 - Added syntax highlighting support.
