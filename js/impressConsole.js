@@ -16,7 +16,7 @@
 
     // This is the default template for the speaker console window
     var consoleTemplate = '<!DOCTYPE html>' + 
-        '<html><head>' + 
+        '<html id="impressconsole"><head>' + 
           '<link rel="stylesheet" type="text/css" media="screen" href="{{cssFile}}">' +
         '</head><body>' + 
         '<div id="console">' +
@@ -191,7 +191,7 @@
                 }
             }, false);
                     
-                // trigger impress action on keyup
+            // trigger impress action on keyup
             window.document.addEventListener("keyup", function ( event ) {
                 if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) != -1) {
                         handler();
@@ -243,7 +243,7 @@
                 return consoleWindow;
             }
         };
-        
+
         var init = function(css) {
             if (css !== undefined) {
                 cssFile = css;
