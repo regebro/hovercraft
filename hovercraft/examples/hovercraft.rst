@@ -1,14 +1,19 @@
 .. title:: Hovercraft! demo
 
-:author: Me!
+:data-transition-duration: 1500
+:css: hovercraft.css
 
 ---
 
 The problem:
 ============
 
-Making presentations is no fun!
--------------------------------
+Making presentations is no *fun!*
+---------------------------------
+
+.. note::
+
+    Welcome to the presenter console!
 
 ----
 
@@ -21,6 +26,11 @@ Sluggy and memory hungry
 
 You get caught up in design early in the process.
 
+.. note::
+
+    Here you have a view of the current slide, a preview of the next slide
+    and your notes.
+
 ----
 
 Use reStructuredText!
@@ -32,6 +42,11 @@ Many tools available: Landslide, S5
 
 Convenient (and powerful!)
 
+.. note::
+
+    You also have a clock and a timer, so you know how much time you have
+    left.
+
 ----
 
 But then there was Prezi
@@ -41,6 +56,12 @@ Sliding from left to right was no longer enough.
 
 You needed to be able to...
 
+.. note::
+
+    If you click on the timer it restarts from zero. This is handy when you
+    are rehearsing the presentation and need to make sure it fits in the time
+    allocated.
+
 ----
 
 :data-y: r1000
@@ -48,12 +69,23 @@ You needed to be able to...
 ...pan...
 =========
 
+.. note::
+
+    If you have more notes than fits in the console, you can scroll down, but
+    more handily, you can scroll the text up by pressing space bar.
+
 ----
 
 :data-rotate: 90
 
 ...rotate...
 ============
+
+.. note::
+
+   If there isn't more text to scroll up, space bar will go to the next
+   slide. Therefore you, as a presenter, just press space everytime you run
+   out of things to say!
 
 ----
 
@@ -63,6 +95,11 @@ You needed to be able to...
 
 ...and zoom!
 ============
+
+.. note::
+
+    Zooming is cool. But one day it will grow old as well. What will we do
+    then to make presentations interesting?
 
 ----
 
@@ -75,6 +112,10 @@ So we are back to square one.
 
 (And it is closed source to boot)
 
+.. note::
+
+    It's probably back to making bad jokes again.
+    
 ----
 
 What about Impress.js?
@@ -84,21 +125,27 @@ It's open source!
 
 Supports pan, tilt and zoom!
 
+
 ----
 
-:data-y: r800
+:id: ThreeD
+:data-y: r1200
 :data-rotate-x: 180
 
 In three dimensions!
 ====================
 
-But....
+*But...*
 
+.. note::
+
+    Wow! 3D! You didn't see that one coming, did you?
+    
 ----
 
 
-It's HTML
-=========
+It's HTML...
+============
 
 Not an friendly format to edit
 
@@ -106,19 +153,34 @@ Not an friendly format to edit
 
 :data-x: 1000
 
-Manual positioning!
-===================
+...and manual positioning
+=========================
 
 So inserting one slide means 
 
 repositioning all the following slides!
 
+
+.. note:: 
+
+    The endless repositioning of slides is what prompted me to write
+    Hovercraft! in the first place.
+
 ----
 
-Is there no solution?
-=====================
+:id: thequestion
+:data-x: r0
+:data-y: r-1200
+
+*Is there no solution?*
+=======================
 
 Of course there is!
+
+.. note::
+
+    What would be the point of this slide show if I didn't have a solution?
+    Duh!
 
 ----
 
@@ -127,9 +189,13 @@ Of course there is!
 :data-x: r1500
 :data-y: r1000
 
-Introducing *Hovercraft!*
-=========================
+Introducing **Hovercraft!**
+===========================
 
+.. note::
+
+    TADA!
+    
 ----
 
 :data-x: r-3500
@@ -162,14 +228,16 @@ positioning!
 Position slides
 ===============
 
-Automatically!
+* Automatically!
+* Absolutely!
+* Relative to the previous slide!
+* Along an SVG path!
 
-Absolutely!
+.. note::
 
-Relative the the previous slide!
-
-Along an SVG path!
-
+    That SVG path support was a lot of work. And all I used it for was to
+    position the slides in circles.
+    
 ----
 
 Presenter console!
@@ -178,15 +246,23 @@ Presenter console!
 * A view of the current slide
 * A view of the next slide
 * Your notes
-* The time
-* and a timer!
+* A clock
+* A timer
 
+.. note::
+
+    But you already know that.
+    
 ----
 
-Hovercraft!
-===========
+**Hovercraft!**
+===============
 
 The merge of convenience and cool!
+
+.. note::
+
+    A slogan: The ad-mans best friend!
 
 ----
 
@@ -194,10 +270,14 @@ The merge of convenience and cool!
 :data-x: 0
 :data-y: 1800
 
-Hovercraft!
-===========
+**Hovercraft!**
+===============
 
 On Github: 
 
 https://github.com/regebro/hovercraft
 
+.. note::
+
+    Fork and contribute!
+    

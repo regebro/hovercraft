@@ -1,7 +1,34 @@
 Changes
 =======
 
-0.1 (Unreleased)
-----------------
+1.0b3 (unreleased)
+------------------
+
+- #1, #2: Add key-binding to pop up the help, a parameter and a presentation
+  field setting to not show the help at load.
+  
+- Added documentation for #8: Naming steps.
+
+- #7: You can now define CSS-files to be included with a :css:-field in the
+  presentation.
+
+- #3: You can now leave out the presenter notes from the output with the
+  parameter -n or --skip-notes
+  
+- Added a "simple" template that has no presenter console.
+
+1.0b2 (2013-02-13)
+------------------
+
+- Added syntax highlighting support.
+
+- #9: All positioning variables except data-x and data-y are now "sticky" so
+      they will keep their previous value if not defined.
+      
+- Documentation on https://hovercraft.readthedocs.org/
+
+
+1.0b1 (2013-02-07)
+------------------
 
 - Initial release
