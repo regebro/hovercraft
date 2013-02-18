@@ -20,11 +20,11 @@ Making presentations is no *fun!*
 GUI tools are inflexible
 ========================
 
-It's hard to reorganize or import text
+* It's hard to reorganize or import text
 
-Sluggy and memory hungry
+* Sluggy and memory hungry
 
-You get caught up in design early in the process.
+* You get caught up in design early in the process.
 
 .. note::
 
@@ -36,11 +36,11 @@ You get caught up in design early in the process.
 Use reStructuredText!
 =====================
 
-You can use your favorite text-editor!
+* You can use your favorite text-editor!
 
-Many tools available: Landslide, S5
+* Many tools available: Landslide, S5
 
-Convenient (and powerful!)
+* Convenient (and powerful!)
 
 .. note::
 
@@ -52,9 +52,9 @@ Convenient (and powerful!)
 But then there was Prezi
 ========================
 
-Sliding from left to right was no longer enough.
+Sliding from left to right is no longer enough.
 
-You needed to be able to...
+You need to be able to...
 
 .. note::
 
@@ -89,9 +89,9 @@ You needed to be able to...
 
 ----
 
-:data-x: r-10
-:data-y: r18
-:data-scale: 0.02
+:data-x: r0
+:data-y: r500
+:data-scale: 0.1
 
 ...and zoom!
 ============
@@ -103,7 +103,8 @@ You needed to be able to...
 
 ----
 
-:data-x: r-1000
+:data-x: r-800
+:data-scale: 1
 
 But Prezi is a GUI
 ==================
@@ -118,7 +119,7 @@ So we are back to square one.
     
 ----
 
-What about Impress.js?
+What about impress.js?
 ======================
 
 It's open source!
@@ -151,7 +152,7 @@ Not an friendly format to edit
 
 ----
 
-:data-x: 1000
+:data-x: r800
 
 ...and manual positioning
 =========================
@@ -184,10 +185,10 @@ Of course there is!
 
 ----
 
-:data-rotate-x: 180
+:data-rotate-y: 180
 :data-scale: 3
-:data-x: r1500
-:data-y: r1000
+:data-x: r-2500
+:data-y: r0
 
 Introducing **Hovercraft!**
 ===========================
@@ -198,7 +199,8 @@ Introducing **Hovercraft!**
     
 ----
 
-:data-x: r-3500
+:data-x: r-3000
+:data-scale: 1
 
 reStructuredText
 ----------------
@@ -223,7 +225,7 @@ positioning!
 
 ----
 
-:data-y: r-1000
+:data-y: r-1200
 
 Position slides
 ===============
@@ -232,6 +234,7 @@ Position slides
 * Absolutely!
 * Relative to the previous slide!
 * Along an SVG path!
+
 
 .. note::
 
@@ -266,9 +269,10 @@ The merge of convenience and cool!
 
 ----
 
-:data-scale: 5
 :data-x: 0
-:data-y: 1800
+:data-y: 2500
+:data-z: 4000
+:data-rotate-x: 90
 
 **Hovercraft!**
 ===============

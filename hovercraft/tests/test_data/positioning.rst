@@ -31,6 +31,12 @@ Explicit position
 
 -----
 
+:data-rotate: 90
+
+No position, but rotation
+
+----
+
 No position
 
 ----
@@ -45,7 +51,10 @@ No position
 
 ----
 
-No position
+:data-rotate-x: 180
+:data-z: 1000
+
+No position (because z doesn't count)
 
 ----
 

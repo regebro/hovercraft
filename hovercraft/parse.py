@@ -54,7 +54,10 @@ class HovercraftReader(Reader):
         return transforms
 
 def rst2xml(rststring):
-    return publish_string(rststring, reader=HovercraftReader(), writer=Writer())    
+    return publish_string(rststring, 
+                          reader=HovercraftReader(),
+                          writer=Writer(),
+                          settings_overrides={'syntax_highlight': 'short'})
 
 def copy_node(node):
     """Makes a copy of a node with the same attributes and text, but no children."""
@@ -69,11 +72,12 @@ def copy_node(node):
 class SlideMaker(object):
     """A docutils XML walker that will organize the XML into slides"""
     
-    def __init__(self, intree):
+    def __init__(self, intree, skip_notes=False):
         self.intree = intree
         self.result = None
         self.curnode = None
         self.steps = 0
+        self.skip_notes = skip_notes
         self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
 
     def _newstep(self):
@@ -142,3 +146,10 @@ class SlideMaker(object):
         parent = node.getparent()
         if parent.tag != 'field_body':
             self.default_end(node)
+
+    def start_note(self, node):
+        if not self.skip_notes:
+            return self.default_start(node)
+        # Skip this node completely, including children:
+        while len(node) > 0:
+            del node[0]

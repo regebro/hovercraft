@@ -44,7 +44,42 @@ class HTMLTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 # We have verified the contents in test_generator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 1831)
+                self.assertEqual(len(outfile.read()), 2201)
+                
+            out_files = os.listdir(tmpdir)
+            self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
+            js_files = os.listdir(os.path.join(tmpdir, 'js'))
+            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
+            css_files = os.listdir(os.path.join(tmpdir, 'css'))
+            self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
+            image_files = os.listdir(os.path.join(tmpdir, 'images'))
+            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            font_files = os.listdir(os.path.join(tmpdir, 'fonts'))
+            self.assertEqual(set(font_files), {
+                'texgyreschola-regular-webfont.ttf',
+                'texgyreschola-regular-webfont.eot',
+                'texgyreschola-regular-webfont.woff',
+                'texgyreschola-regular-webfont.svg',
+            })
+
+
+    def test_skip_notes(self):
+        with TemporaryDirectory() as tmpdir:
+            sys.argv = [
+                'bin/hovercraft',
+                '-t' + os.path.join(TEST_DATA, 'maximal'),
+                '-c' + os.path.join(TEST_DATA, 'extra.css'),
+                '-n', 
+                os.path.join(TEST_DATA, 'presenter-notes.rst'),
+                tmpdir,
+            ]
+            
+            main()
+            
+            with open(os.path.join(tmpdir, 'index.html')) as outfile:
+                # We have verified the contents in test_generator.py, let's
+                # just check that it writes the right thing:
+                self.assertEqual(len(outfile.read()), 1140)
                 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
@@ -75,12 +110,14 @@ class HTMLTests(unittest.TestCase):
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
-                self.assertEqual(len(outfile.read()), 1606)
+                self.assertEqual(len(outfile.read()), 2358)
                 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
-            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js'})
+            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js',
+                                             'impressConsole.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
-            self.assertEqual(set(css_files), {'style.css', 'impressConsole.css'})            
+            self.assertEqual(set(css_files), {'hovercraft.css',
+                                              'impressConsole.css', 'highlight.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})            
 

@@ -7,8 +7,8 @@ def main():
     
     from lxml import html
     
-    from hovercraft.generate import rst2html, copy_files, copy_resource
-    from hovercraft.template import get_template_info
+    from hovercraft.generate import rst2html, copy_resource
+    from hovercraft.template import Template, CSS_RESOURCE
     
     parser = argparse.ArgumentParser(
         description='Create impress.js presentations with reStructuredText',
@@ -41,18 +41,29 @@ def main():
         action='store_true',
         help=('Pop up the console automatically. This is useful when you are '
              'rehearsing and making sure the presenter notes are correct.'))
+    parser.add_argument(
+        '-s',
+        '--skip-help',
+        action='store_true',
+        help=('Do not show the initial help popup.'))
+    parser.add_argument(
+        '-n',
+        '--skip-notes',
+        action='store_true',
+        help=('Do not include presenter notes in the output.'))
     
     args = parser.parse_args()
 
     # Parse the template info
-    template_info = get_template_info(args.template, args.css)
-
-    # Read the infile
-    with open(args.presentation, 'rb') as infile:
-        rst = infile.read()
+    template_info = Template(args.template)
+    if args.css:
+        presentation_dir = os.path.split(args.presentation)[0]
+        target_path = os.path.relpath(args.css, presentation_dir)
+        template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
+        
 
     # Make the resulting HTML
-    htmldata = rst2html(rst, template_info, args.auto_console)
+    htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help, args.skip_notes)
     
     # Write the HTML out
     if not os.path.exists(args.targetdir):
@@ -61,7 +72,7 @@ def main():
         outfile.write(htmldata)
         
     # Copy supporting files
-    copy_files(template_info, args.targetdir)
+    template_info.copy_resources(args.targetdir)
 
     # Copy images from the source:
     sourcedir = os.path.split(os.path.abspath(args.presentation))[0]
@@ -73,8 +84,10 @@ def main():
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
     
     # Copy any files referenced by url() in the css-files:
-    for file, target in template_info['css']:
-        uris = RE_CSS_URL.findall(template_info['files'][file])        
+    for resource in template_info.resources:
+        if resource.resource_type != CSS_RESOURCE:
+            continue
+        uris = RE_CSS_URL.findall(template_info.read_data(resource))
         uris = [uri.decode() for uri in uris]
         for filename in uris:
             copy_resource(filename, sourcedir, args.targetdir)

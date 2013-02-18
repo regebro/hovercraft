@@ -36,7 +36,10 @@
 
 * Added support for the <notes>-tag.
 
-* Changed literal block rendering from a <div class="literal-block"> to <pre>.
+* Changed literal block rendering from a <div class="literal-block"> to <pre>,
+  with @classes copied over to @class for syntax highlighting.
+
+* Added support for the <inline> tag for code highlighting.
 
 -->
 
@@ -131,7 +134,12 @@
 
 
 <xsl:template match="literal_block">
-	<pre><xsl:apply-templates /></pre>
+	<pre class="highlight">
+		<xsl:attribute name="class">
+			<xsl:value-of select="concat('highlight ', @classes)" />
+		</xsl:attribute>
+		<xsl:apply-templates />
+	</pre>
 </xsl:template>
 
 <xsl:template match="literal_block/br">
@@ -400,6 +408,15 @@
 <!-- Make a note into a div with a notes class, for Hovercraft! -->
 <xsl:template match="note">
 	<div class="notes"><xsl:apply-templates /></div>
+</xsl:template>
+
+<xsl:template match="inline">
+	<span>
+		<xsl:attribute name="class">
+			<xsl:value-of select="@classes" />
+		</xsl:attribute>
+		<xsl:apply-templates />
+	</span>
 </xsl:template>
 
 </xsl:stylesheet>

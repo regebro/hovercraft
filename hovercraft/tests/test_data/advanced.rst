@@ -2,6 +2,8 @@
 
 :data-transition-duration: 2000
 :auto-console: True
+:css-screen: extra.css
+
 
 This is an advanced presentation. It doesn't have a section in the first
 step, meaning the first step will not be a step at all, but a sort of
@@ -23,6 +25,8 @@ on one of the steps.
 
 ----
 
+:id: name-this-step
+
 Formatting
 ==========
 
@@ -34,14 +38,16 @@ Let us also try some basic formatting, like *italic*, and **bold**.
 
 ----
 
-::
+There should also be possible to have 
+preformatted text for code.
 
-    There should also be possible to have 
-    preformatted text for code.
-    
-    This slide has only code, and the next step
-    has only an image. This is necessary for 
-    many types of presentations.
+.. code:: python
+
+    def foo(bar):
+        # Comment
+        a = 1 + "hubbub"
+        return None
+
     
 ----
 

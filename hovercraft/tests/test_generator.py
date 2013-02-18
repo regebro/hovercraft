@@ -2,7 +2,7 @@ import os
 import unittest
 
 from hovercraft.generate import rst2html
-from hovercraft.template import get_template_info
+from hovercraft.template import Template
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
@@ -12,11 +12,8 @@ class GeneratorTests(unittest.TestCase):
     This tests the whole path except the copying of files."""
     
     def test_small(self):
-        with open(os.path.join(TEST_DATA, 'simple.rst'), 'rb') as infile:
-            rst = infile.read()
-        template = get_template_info(os.path.join(TEST_DATA, 'minimal'))
-        
-        html = rst2html(rst, template)
+        template = Template(os.path.join(TEST_DATA, 'minimal'))
+        html = rst2html(os.path.join(TEST_DATA, 'simple.rst'), template)
         target = (
             b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">'
             b'<body><div id="impress">'
@@ -33,10 +30,8 @@ class GeneratorTests(unittest.TestCase):
         self.assertEqual(html, target)
 
     def test_big(self):
-        with open(os.path.join(TEST_DATA, 'advanced.rst'), 'rb') as infile:
-            rst = infile.read()
-        template = get_template_info(os.path.join(TEST_DATA, 'maximal'))
-        html = rst2html(rst, template)
+        template = Template(os.path.join(TEST_DATA, 'maximal'))
+        html = rst2html(os.path.join(TEST_DATA, 'advanced.rst'), template)
         target = (
             b'<!DOCTYPE html SYSTEM "about:legacy-compat">'
             b'<html xmlns="http://www.w3.org/1999/xhtml"><head><title>'
@@ -44,22 +39,27 @@ class GeneratorTests(unittest.TestCase):
             b'href="css/style.css" media="all"></link>'
             b'<link rel="stylesheet" href="css/print.css" media="print">'
             b'</link><link rel="stylesheet" href="css/impressConsole.css" '
-            b'media="screen,projection"></link><script type="text/javascript" '
+            b'media="screen,projection"></link><link rel="stylesheet" href="extra.css" '
+            b'media="screen"></link><script type="text/javascript" '
             b'src="js/dummy.js"></script></head><body '
             b'class="impress-not-supported"><div id="impress" '
             b'data-transition-duration="2000" auto-console="True"><div class="step" step="0" data-x="1000" '
             b'data-y="1600"><h1 id="advanced-presentation">Advanced Presentation'
             b'</h1><p>Here we show the positioning feature, where we can '
             b'explicitly set a position\non one of the steps.</p></div><div '
-            b'class="step" step="1" data-x="2600" data-y="1600"><h1 '
+            b'class="step" step="1" id="name-this-step" data-x="2600" data-y="1600"><h1 '
             b'id="formatting">Formatting</h1><p>Let us also try some basic '
             b'formatting, like <em>italic</em>, and <strong>bold</strong>.</p>'
             b'<ul><li>We can also</li><li>have a list</li><li>of things.</li>'
             b'</ul></div><div class="step" step="2" data-x="4200" data-y="1600">'
-            b'<pre>There should also be possible to '
-            b'have\npreformatted text for code.\n\nThis slide has only code, '
-            b'and the next step\nhas only an image. This is necessary for\n'
-            b'many types of presentations.</pre></div><div class="step" '
+            b'<p>There should also be possible to have\npreformatted text for '
+            b'code.</p><pre class="highlight code python"><span class="k">def'
+            b'</span> <span class="nf">foo</span><span class="p">(</span><span '
+            b'class="n">bar</span><span class="p">):</span>\n    <span class="c">'
+            b'# Comment</span>\n    <span class="n">a</span> <span class="o">='
+            b'</span> <span class="mi">1</span> <span class="o">+</span> <span '
+            b'class="s">"hubbub"</span>\n    <span class="k">return</span> '
+            b'<span class="bp">None</span></pre></div><div class="step" '
             b'step="3" data-x="5800" data-y="1600"><img '
             b'src="images/python-logo-master-v3-TM.png" alt="" width="" '
             b'height=""></img></div><div class="step" step="4" data-x="7400" '
@@ -70,15 +70,12 @@ class GeneratorTests(unittest.TestCase):
             b'type="text/javascript" src="js/impressConsole.js"></script>'
             b'<script type="text/javascript" src="js/hovercraft.js"></script>'
             b'</body></html>')
+        
         self.assertEqual(html, target)
 
-
     def test_presenter_notes(self):
-        with open(os.path.join(TEST_DATA, 'presenter-notes.rst'), 'rb') as infile:
-            rst = infile.read()
-        template = get_template_info(os.path.join(TEST_DATA, 'maximal'))
-        
-        html = rst2html(rst, template)
+        template = Template(os.path.join(TEST_DATA, 'maximal'))
+        html = rst2html(os.path.join(TEST_DATA, 'presenter-notes.rst'), template)
         target = (
             b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
             b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document '
@@ -105,6 +102,35 @@ class GeneratorTests(unittest.TestCase):
             b'though.</p><p><strong>But you can fake them through '
             b'bold-text</strong></p><p>And that\'s useful enough for presentation '
             b'notes.</p></div></div></div><script type="text/javascript" '
+            b'src="js/impress.js"></script><script type="text/javascript" '
+            b'src="js/impressConsole.js"></script><script type="text/javascript" '
+            b'src="js/hovercraft.js"></script></body></html>')
+        
+        self.assertEqual(html, target)
+
+
+    def test_skip_presenter_notes(self):
+        template = Template(os.path.join(TEST_DATA, 'maximal'))
+        html = rst2html(os.path.join(TEST_DATA, 'presenter-notes.rst'), template, skip_notes=True)
+        
+        target = (
+            b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
+            b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document '
+            b'title</title><link rel="stylesheet" href="css/style.css" '
+            b'media="all"></link><link rel="stylesheet" '
+            b'href="css/print.css" media="print"></link><link rel="stylesheet" '
+            b'href="css/impressConsole.css" '
+            b'media="screen,projection"></link><script type="text/javascript" '
+            b'src="js/dummy.js"></script></head><body '
+            b'class="impress-not-supported"><div id="impress">'
+            b'<div class="step" step="0" data-x="0" '
+            b'data-y="0"><h1 id="hovercrafts-presenter-notes">Hovercrafts presenter '
+            b'notes</h1><p>Hovercraft! supports presenter notes. It does this by '
+            b'taking anything in a\nwhat is calles a "notes-admonition" and making '
+            b'that into presenter notes.</p></div><div '
+            b'class="step" step="1" data-x="1600" data-y="0"><img '
+            b'src="images/python-logo-master-v3-TM.png" alt="" width="" '
+            b'height=""></img></div></div><script type="text/javascript" '
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')

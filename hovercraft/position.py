@@ -1,7 +1,5 @@
 import math
 
-from lxml import etree
-
 from svg.path import parse_path
 
 DEFAULT_MOVEMENT = 1600 # If no other movement is specified, go 1600px to the right.
@@ -162,6 +160,14 @@ def calculate_positions(positions):
     
 def update_positions(tree, positions):
     """Updates the tree with new positions"""
+    # The persistent positioning variables:
+    persistent = {'data-rotate-x': '0',
+                  'data-rotate-y': '0',
+                  'data-rotate-z': '0',
+                  'data-z': '0',
+                  'data-scale': '0',
+                  }
+    
     for step, pos in zip(tree.findall('step'), positions):
         step.attrib['data-x'] = str(pos['data-x'])
         step.attrib['data-y'] = str(pos['data-y'])
@@ -169,6 +175,17 @@ def update_positions(tree, positions):
             step.attrib['data-rotate'] = str(pos['data-rotate'])
         if 'hovercraft-path' in step.attrib:
             del step.attrib['hovercraft-path']
+        
+        # data-rotate is an alias for data-rotate-z
+        if 'data-rotate' in step.attrib:            
+            step.attrib['data-rotate-z'] = step.attrib['data-rotate']
+            del step.attrib['data-rotate']
+            
+        for key in persistent:
+            if key in step.attrib:
+                persistent[key] = step.attrib[key]
+            elif persistent[key] != '0': # Skip if zero.
+                step.attrib[key] = persistent[key]
         
 
 def position_slides(tree):

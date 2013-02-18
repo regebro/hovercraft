@@ -1,8 +1,8 @@
-html {
+html#impressconsole {
     height: 100%
 }
 
-body {
+#impressconsole body {
     padding: 0;
     margin: 20px;
     font-family: verdana, arial, sans-serif;

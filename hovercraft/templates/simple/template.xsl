@@ -33,11 +33,6 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@data-transition-duration" />
           </xsl:attribute>
         </xsl:if>
-        <xsl:if test="@auto-console">
-          <xsl:attribute name="auto-console">
-            <xsl:value-of select="@auto-console" />
-          </xsl:attribute>
-        </xsl:if>
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>
@@ -55,10 +50,8 @@ xmlns="http://www.w3.org/1999/xhtml">
         <xsl:attribute name="class">hide</xsl:attribute>
       </xsl:if>
       <table>
-        <tr><th>Space</th><td>Forward</td></tr>
-        <tr><th>Left, Down, Page Down</th><td>Next slide</td></tr>
+        <tr><th>Left, Down, Page Down, Space</th><td>Next slide</td></tr>
         <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
-        <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>
     </div>
