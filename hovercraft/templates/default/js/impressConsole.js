@@ -177,6 +177,13 @@
             minutes = Math.floor(seconds / 60);
             seconds = Math.floor(seconds % 60);
             consoleWindow.document.getElementById('timer').firstChild.nodeValue = zeroPad(minutes) + 'm ' + zeroPad(seconds) + 's';
+            
+            if (!consoleWindow.initialized) {
+                // Nudge the slide windows after load, or they will scrolled wrong on Firefox.
+                consoleWindow.document.getElementById('slideView').contentWindow.scrollTo(0,0);
+                consoleWindow.document.getElementById('preView').contentWindow.scrollTo(0,0);
+                consoleWindow.initialized = true;
+            }
         };
 
         var registerKeyEvent = function(keyCodes, handler, window) {
@@ -235,11 +242,12 @@
                     // I don't know why onunload doesn't work here.
                     clearInterval(consoleWindow.clockInterval);
                 };
-                // Show the current slide
-                onStepLeave();
-                onStepEnter();
-                consoleWindow.document.close();
                 
+                // It will need a little nudge on Firefox, but only after loading:                
+                onStepEnter();
+                consoleWindow.initialized = false;
+                consoleWindow.document.close();
+
                 return consoleWindow;
             }
         };
