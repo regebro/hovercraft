@@ -254,7 +254,7 @@ Presenter console!
 
 .. note::
 
-    But you already know that.
+    You found the presenter console already!
     
 ----
 

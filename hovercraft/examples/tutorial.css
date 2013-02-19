@@ -38,6 +38,10 @@ tt {
     font-size: 125;
 }
 
+ul {
+    list-style-position: inside;
+}
+
 li {
     font-family: serif;
     font-weight: normal;
