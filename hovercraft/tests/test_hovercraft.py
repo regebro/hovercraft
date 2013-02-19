@@ -44,7 +44,7 @@ class HTMLTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 # We have verified the contents in test_generator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 2201)
+                self.assertEqual(len(outfile.read()), 2429)
                 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
@@ -79,7 +79,7 @@ class HTMLTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 # We have verified the contents in test_generator.py, let's
                 # just check that it writes the right thing:
-                self.assertEqual(len(outfile.read()), 1140)
+                self.assertEqual(len(outfile.read()), 1368)
                 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
@@ -110,7 +110,7 @@ class HTMLTests(unittest.TestCase):
             main()
             
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
-                self.assertEqual(len(outfile.read()), 2358)
+                self.assertEqual(len(outfile.read()), 2438)
                 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js',

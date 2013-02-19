@@ -47,6 +47,19 @@ xmlns="http://www.w3.org/1999/xhtml">
       </div> 
     </xsl:for-each>
   
+    <div id="hovercraft-help">
+      <xsl:if test="not(/document/@skip-help)">
+        <xsl:attribute name="class">show</xsl:attribute>
+      </xsl:if>
+      <xsl:if test="/document/@skip-help">
+        <xsl:attribute name="class">hide</xsl:attribute>
+      </xsl:if>
+      <table>
+        <tr><th>Left, Down, Page Down, Space</th><td>Next slide</td></tr>
+        <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>H</th><td>Toggle this help</td></tr>
+      </table>
+    </div>
     <xsl:for-each select="/document/templateinfo/body/js">
       <script type="text/javascript">
         <xsl:copy-of select="@*"/>

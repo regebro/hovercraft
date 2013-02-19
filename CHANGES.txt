@@ -17,6 +17,9 @@ Changes
   
 - Added a "simple" template that has no presenter console.
 
+- Updated to impress-console 1.1, fixing a Firefox bug.
+
+
 1.0b2 (2013-02-13)
 ------------------
 

@@ -10,7 +10,29 @@ xmlns="http://www.w3.org/1999/xhtml">
 <html>
   <head>
     <title><xsl:value-of select="/document/@title"/></title>
-
+    <meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft"/>
+    <xsl:if test="/document/author"> <!-- Author is a child to the document, everything else become attributes -->
+      <meta name="author">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/author" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@description">
+      <meta name="description">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@description" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@keywords">
+      <meta name="keywords">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@keywords" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    
     <xsl:for-each select="/document/templateinfo/header/css">
       <link rel="stylesheet">
         <xsl:copy-of select="@*"/>
@@ -48,9 +70,6 @@ xmlns="http://www.w3.org/1999/xhtml">
     </xsl:for-each>
   
     <div id="hovercraft-help">
-      <xsl:if test="not(/document/@skip-help)">
-        <xsl:attribute name="class">show</xsl:attribute>
-      </xsl:if>
       <xsl:if test="/document/@skip-help">
         <xsl:attribute name="class">hide</xsl:attribute>
       </xsl:if>

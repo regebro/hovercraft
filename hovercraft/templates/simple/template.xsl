@@ -33,6 +33,11 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@data-transition-duration" />
           </xsl:attribute>
         </xsl:if>
+        <xsl:if test="@auto-console">
+          <xsl:attribute name="auto-console">
+            <xsl:value-of select="@auto-console" />
+          </xsl:attribute>
+        </xsl:if>
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>

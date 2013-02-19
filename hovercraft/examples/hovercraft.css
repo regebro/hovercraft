@@ -46,23 +46,6 @@ a {
     color: black;
 }
 
-.notes {
-    display: none;
-}
-
-.unhide {
-    display: none;
-}
-
-.active .unhide {
-    display: block;
-}
-
-.step {
-    width: 1000px;
-}
-
-
 #ThreeD H1 {
     font-family: Racing Sans One;
     font-size: 300%;

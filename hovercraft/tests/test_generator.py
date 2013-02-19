@@ -65,11 +65,14 @@ class GeneratorTests(unittest.TestCase):
             b'height=""></img></div><div class="step" step="4" data-x="7400" '
             b'data-y="1600"><h1 id="character-sets">Character sets</h1>'
             b'<p>The character set is UTF-8 as of now. Like this: '
-            b'&#xE5;&#xE4;&#xF6;.</p></div></div><script '
-            b'type="text/javascript" src="js/impress.js"></script><script '
-            b'type="text/javascript" src="js/impressConsole.js"></script>'
-            b'<script type="text/javascript" src="js/hovercraft.js"></script>'
-            b'</body></html>')
+            b'&#xE5;&#xE4;&#xF6;.</p></div></div>'
+            b'<div id="hovercraft-help" class="show"><table><tr>'
+            b'<th>Left, Down, Page Down, Space</th><td>Next slide</td></tr><tr>'
+            b'<th>Right, Up, Page Up</th><td>Previous slide</td></tr><tr><th>H</th>'
+            b'<td>Toggle this help</td></tr></table></div><script type="text/javascript" '
+            b'src="js/impress.js"></script><script type="text/javascript" '
+            b'src="js/impressConsole.js"></script><script type="text/javascript" '
+            b'src="js/hovercraft.js"></script></body></html>')
         
         self.assertEqual(html, target)
 
@@ -101,7 +104,11 @@ class GeneratorTests(unittest.TestCase):
             b'have several paragraphs. You can not have any\nheadings of any kind '
             b'though.</p><p><strong>But you can fake them through '
             b'bold-text</strong></p><p>And that\'s useful enough for presentation '
-            b'notes.</p></div></div></div><script type="text/javascript" '
+            b'notes.</p></div></div></div>'
+            b'<div id="hovercraft-help" class="show"><table><tr>'
+            b'<th>Left, Down, Page Down, Space</th><td>Next slide</td></tr><tr>'
+            b'<th>Right, Up, Page Up</th><td>Previous slide</td></tr><tr><th>H</th>'
+            b'<td>Toggle this help</td></tr></table></div><script type="text/javascript" '
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')
@@ -129,8 +136,11 @@ class GeneratorTests(unittest.TestCase):
             b'taking anything in a\nwhat is calles a "notes-admonition" and making '
             b'that into presenter notes.</p></div><div '
             b'class="step" step="1" data-x="1600" data-y="0"><img '
-            b'src="images/python-logo-master-v3-TM.png" alt="" width="" '
-            b'height=""></img></div></div><script type="text/javascript" '
+            b'src="images/python-logo-master-v3-TM.png" alt="" width="" height="">'
+            b'</img></div></div><div id="hovercraft-help" class="show"><table><tr>'
+            b'<th>Left, Down, Page Down, Space</th><td>Next slide</td></tr><tr>'
+            b'<th>Right, Up, Page Up</th><td>Previous slide</td></tr><tr><th>H</th>'
+            b'<td>Toggle this help</td></tr></table></div><script type="text/javascript" '
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')

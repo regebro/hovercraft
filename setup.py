@@ -35,6 +35,9 @@ setup(name='hovercraft',
           'lxml',
           'svg.path',
       ],
+      tests_require=[
+          'manuel',
+      ],
       test_suite='hovercraft.tests',
       entry_points={
                'console_scripts': [
