@@ -19,6 +19,8 @@ Changes
 
 - Updated to impress-console 1.1, fixing a Firefox bug.
 
+- Added support for more HTML metadata.
+
 
 1.0b2 (2013-02-13)
 ------------------
