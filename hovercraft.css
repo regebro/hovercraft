@@ -30,6 +30,10 @@ h1, h2, h3, h4 {
     margin-top: 0.3em;
 }
 
+ul {
+    list-style-position: inside;
+}
+
 li {
     font-size: 125%;
     font-family: serif;
@@ -45,23 +49,6 @@ a {
     text-decoration: none;
     color: black;
 }
-
-.notes {
-    display: none;
-}
-
-.unhide {
-    display: none;
-}
-
-.active .unhide {
-    display: block;
-}
-
-.step {
-    width: 1000px;
-}
-
 
 #ThreeD H1 {
     font-family: Racing Sans One;

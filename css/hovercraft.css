@@ -16,7 +16,7 @@
 }
 
 .step {
-    width: 1000px;
+    width: 800px;
 }
 
 
@@ -25,7 +25,7 @@
 #hovercraft-help {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
     color: #EEEEEE;
-    font-size: 20px;
+    font-size: 50%;
     left: 2em;
     bottom: 2em;
     width: 26em;
@@ -35,7 +35,7 @@
     right: 0;
     text-align: center;
     z-index: 100;
-    display: none;
+    display: block;
     font-family: Verdana, Arial, Sans;
 }
 
@@ -43,6 +43,10 @@
     display: none;
 }
 
-.impress-enabled #hovercraft-help.show {
-    display: block;
+/*.impress-enabled #hovercraft-help.show {*/
+    /*display: block;*/
+/*}*/
+
+#hovercraft-help.disabled {
+    display: none;
 }

@@ -7,7 +7,7 @@
  *
  * Copyright 2012 impress-console contributors (see README.txt)
  *
- * version: 1.0-dev
+ * version: 1.1
  * 
  */
 
@@ -46,8 +46,8 @@
     
     // Zero padding helper function:
     var zeroPad = function(i) {
-        return (i < 10 ? '0' : '') + i
-    }
+        return (i < 10 ? '0' : '') + i;
+    };
     
     // The console object
     var console = window.console = function (rootId) {
@@ -74,8 +74,8 @@
                 nextElement = nextElement.nextElementSibling;
             }
             // No next element. Pick the first
-            return document.querySelector('.step')
-        } 
+            return document.querySelector('.step');
+        };
         
         // Sync the notes to the step
         var onStepLeave = function(){
@@ -148,11 +148,11 @@
             } else {
                impress().next();
             }
-        }
+        };
         
         var timerReset = function () {
             consoleWindow.timerStart = new Date();
-        }
+        };
         
         // Show a clock
         var clockTick = function () {
@@ -165,7 +165,7 @@
             if (useAMPM) {
                 ampm = ( hours < 12 ) ? 'AM' : 'PM';
                 hours = ( hours > 12 ) ? hours - 12 : hours;
-                hours = ( hours == 0 ) ? 12 : hours;
+                hours = ( hours === 0 ) ? 12 : hours;
             }
           
             // Clock
@@ -177,7 +177,14 @@
             minutes = Math.floor(seconds / 60);
             seconds = Math.floor(seconds % 60);
             consoleWindow.document.getElementById('timer').firstChild.nodeValue = zeroPad(minutes) + 'm ' + zeroPad(seconds) + 's';
-        }
+            
+            if (!consoleWindow.initialized) {
+                // Nudge the slide windows after load, or they will scrolled wrong on Firefox.
+                consoleWindow.document.getElementById('slideView').contentWindow.scrollTo(0,0);
+                consoleWindow.document.getElementById('preView').contentWindow.scrollTo(0,0);
+                consoleWindow.initialized = true;
+            }
+        };
 
         var registerKeyEvent = function(keyCodes, handler, window) {
             if (window === undefined) {
@@ -186,14 +193,14 @@
             
             // prevent default keydown action when one of supported key is pressed
             window.document.addEventListener("keydown", function ( event ) {
-                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) != -1) {
+                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
                     event.preventDefault();
                 }
             }, false);
                     
             // trigger impress action on keyup
             window.document.addEventListener("keyup", function ( event ) {
-                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) != -1) {
+                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
                         handler();
                         event.preventDefault();
                 }
@@ -235,11 +242,12 @@
                     // I don't know why onunload doesn't work here.
                     clearInterval(consoleWindow.clockInterval);
                 };
-                // Show the current slide
-                onStepLeave();
-                onStepEnter();
-                consoleWindow.document.close();
                 
+                // It will need a little nudge on Firefox, but only after loading:                
+                onStepEnter();
+                consoleWindow.initialized = false;
+                consoleWindow.document.close();
+
                 return consoleWindow;
             }
         };
@@ -250,21 +258,24 @@
             }
 
             // Register the event
-            root.addEventListener('impress:stepleave', onStepLeave)
-            root.addEventListener('impress:stepenter', onStepEnter)
+            root.addEventListener('impress:stepleave', onStepLeave);
+            root.addEventListener('impress:stepenter', onStepEnter);
             
             //When the window closes, clean up after ourselves.
             window.onunload = function(){
-                consoleWindow && !consoleWindow.closed && consoleWindow.close();
+                if (consoleWindow && !consoleWindow.closed) {
+                    consoleWindow.close();
+                }
             };
             
             //Open speaker console when they press 'p'
             registerKeyEvent([80], open, window);
-        }
+        };
                 
         // Return the object        
-        return allConsoles[rootId] = {init: init, open: open, clockTick: clockTick, registerKeyEvent: registerKeyEvent}
+        allConsoles[rootId] = {init: init, open: open, clockTick: clockTick, registerKeyEvent: registerKeyEvent};
+        return allConsoles[rootId];
         
-    }
+    };
     
 })(document, window);
