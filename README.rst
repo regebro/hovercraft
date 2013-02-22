@@ -1,66 +1,39 @@
 Hovercraft!
 ===========
 
-Hovercraft! will be a tool to make impress.js_ presentations from
-reStructuredText. 
+*The merge of convenience and cool!*
 
-Why?
-----
+Hovercraft! is a tool to make impress.js_ presentations from
+reStructuredText. For a quick explanation, see the demo_.
 
-As a programmer, I like making my presentations in some sort of text-markup.
-GUI tools feel restricted and limited when it comes to creating the
-presentation, simply writing it in text makes it easier to move things around
-as you like.
+Features
+--------
 
-But the tools that exist to make presentations from text-markup will make
-slideshows that has a sequence of slides from left to right. That was fine
-until Prezi arrived, with zooms and slides and twists and turns.
+* Write your presentations in a text markup language. No slow, limiting GUI, no annoying HTML!
 
-But Prezi is a GUI toool. And it's closed source. But the open source
-community fixed that problem with impress.js.
+* Pan, rotate and zoom in 3D, with automatic repositioning of slides!
 
-But impress.js is an HTML tools. Sitting and writing HTML is an annoying
-pain. It's not a very smooth tool compared reStructuredText or markdown.
-It's especially annoying since you have to sit and add x/y/zoom/rotation
-for each slide, and if you insert a new slide in the middle, you have to
-change everything around.
+* A presenter console with notes and slide previews!
 
-There are GUI tools to layout impress.js presentations but they are all in
-alpha-state, and doesn't work very well. They also do not support having
-presenter notes via impress-console_, a feature I of course need. After all,
-that's why I wrote it.
+* The slide show generated is in HTML, so you only need a web browser to show it.
 
-So, I wanted to make impress.js presentations from reStructuredText. That
-turned out to be easy, I make landslide-impress_, a template for Landslide
-that create an impress.js presentation. But I ran into a limitation of
-Landslide. There was no way to get the position information out from the
-reStructuredText to impress.js. As such, with Landslide all I could do with
-impress.js was slides that boringly went from left to right, completely
-losing the whole point of impress.js.
+* Easy sharing, as it can be put up on a website for anyone to see!
 
-So, I have to make something myself. Hence: Hovercraft!
+Full documentation is available at readthedocs.org_, and also in the
+documentation subdirectory.
 
-TODO
-----
-
-* Add a temporary "pop-up" that shows key-bindings when you start plus a
-  parameter to not show it.
-
-* Perhaps support a directory of infiles, Sphinx-style?
-
-* A parameter to skip the presentation notes for web-publishing.
-
-* Somehow specify what DEFAULT_MOVEMENT should be.
-
-  
 Contributors
 ------------
 
 Hovercraft! was written by Lennart Regebro <regebro@mail.com>, and is licensed
-as CC-0, except for the "reST.xsl" file, which is (c) Michael Alyn Miller
-<malyn@strangeGizmo.com> and published under a BSD-style license included in
-reST.xsl itself.
+as CC-0, except for the following:
+
+* ``reST.xsl`` is (c) Michael Alyn Miller <malyn@strangeGizmo.com> and
+  published under a BSD-style license included in reST.xsl itself.
+
+* ``impress.js`` is (c) Bartek Szopka (@bartaz) released under MIT and GPL
+  licenses. See the impress.js_ page for more information.
 
 .. _impress.js: http://github.com/bartaz/impress.js
-.. _landslide-impress: https://github.com/regebro/landslide-impress
-.. _impress-console: https://github.com/regebro/impress-console
+.. _demo: http://regebro.github.com/hovercraft
+.. _readthedocs.org: https://hovercraft.readthedocs.org/
