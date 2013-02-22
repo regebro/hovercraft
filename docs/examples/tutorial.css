@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville|Racing+Sans+One|Satisfy);
+@import url(http://fonts.googleapis.com/css?family=Libre+Baskerville);
 
 body {
     font-size: 200%;
@@ -12,17 +12,6 @@ p {
     margin-top: 0.3em;
     text-align: left;
 }
-
-/*em {*/
-    /*font-family: Satisfy;*/
-    /*font-size: 142%;*/
-/*}*/
-
-/*strong {*/
-    /*font-family: Racing Sans One;*/
-    /*font-size: 127%;*/
-    /*letter-spacing: -2px;*/
-/*}*/
 
 pre {
     text-align: left;

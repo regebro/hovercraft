@@ -162,7 +162,7 @@ to use relative positioning.
 
 ----
 
-:data-x: 2000
+:data-x: r1000
 :data-scale: 1
 
 Didn't that slide look good?
@@ -172,4 +172,195 @@ Don't worry, when you make big zooms, different browsers will behave
 differently and be good at different things. Some will be slow and jerky on
 the 3D effects, and others will show fonts with jagged edges when you zoom.
 Older and less common browsers can also have problems with 3D effects.
+
+----
+
+:hovercraft-path: m275,175 a150,150 0 0,1 -150,150
+
+SVG paths
+=========
+
+The field ``:hovercraft-path:`` tells Hovercraft! to place the slides
+along a SVG path. This enables you to put slides along a graphical shape.
+
+----
+
+SVG paths
+=========
+
+You can design the shape in a vector graphics program like Inkscape
+and then lift it out of the SVG file (which are in XML) and use it
+in Hovercraft! 
+
+This example is an arc.
+
+----
+
+SVG paths
+=========
+
+Using SVG path so is not entirely without it's difficulties and
+surprises, and this is discussed more in the documentation, under
+the SVG Paths heading.
+
+----
+
+SVG paths
+=========
+
+Every following slide will be placed along the path,
+and the path will be scaled to fit the slides.
+
+----
+
+:data-rotate: -180
+:data-x: r-1200
+
+SVG paths
+=========
+
+And the positioning along the path will end when you get a path that has
+explicit positioning, like this one.
+
+----
+
+:data-rotate-y: -45
+:data-y: r-100
+:data-x: r-800
+
+3D!
+===
+
+Now it get's complicated!
+
+----
+
+:data-rotate-y: 0
+:data-y: r100
+:data-x: r-1000
+
+3D Rotation
+===========
+
+We have already seen how we can rotate the slide with ``:data-rotate:``. This is actually rotation
+in the Z-axis, so you can use ``:data-rotate-z:`` as well, it's the same thing.
+But you can also rotate in the Y-axis.
+
+----
+
+:data-x: r0
+:data-y: r0
+:data-rotate-y: 90
+
+3D Rotation
+===========
+
+That was a 90 degree rotation in the Y-axis.
+Let's go back.
+
+----
+
+:data-x: r0
+:data-y: r0
+:data-rotate-y: 0
+
+----
+
+:data-x: r-1000
+:data-y: r0
+:data-rotate-y: 0
+
+3D Rotation
+===========
+
+Notice how the text was invisible before the rotation?
+The text is there, but it has no depth, so you can't see it.
+Of course, the same happens in the X-axis.
+
+----
+
+:data-x: r0
+:data-y: r0
+:data-rotate-x: 90
+
+3D Rotation
+===========
+
+That was a 90 degree rotation in the X-axis.
+Let's go back.
+
+----
+
+:data-x: r0
+:data-y: r0
+:data-rotate-x: 0
+
+----
+
+:data-x: r-1000
+
+3D Positioning
+==============
+
+You can not only rotate in all three dimensions, but also position in all
+three dimensions. So far we have only used ``:data-x`` and ``:data-y``, but
+there is a ``:data-z`` as well.
+
+----
+
+:data-z: 1000
+:data-x: r0
+:data-y: r0
+
+Z-space
+=======
+
+----
+
+:data-x: r0
+:data-y: r-500
+
+Z-space
+=======
+
+This can be used for all sorts of interesting effects. It should be noted
+that the depth of the Z-axis is quite limited in some browsers.
+
+If you set it too high, you'll find the slide appearing low and upside down.
+
+----
+
+:data-x: r800
+:data-y: r0
+
+Z-space
+=======
+
+But well used it can give an extra wow-factor, 
+
+----
+
+:data-z: 0
+:data-x: r0
+:data-y: r-200
+:data-scale: 2
+
+and have text pop out at you!
+
+----
+
+
+:data-x: r3000
+:data-y: r-1500
+:data-scale: 15
+:data-rotate-z: 0
+:data-rotate-x: 0
+:data-rotate-y: 0
+:data-z: 0
+
+
+That's all for now
+==================
+
+*Have fun!*
 
