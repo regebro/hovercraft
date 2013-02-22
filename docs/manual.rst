@@ -33,7 +33,13 @@ Optional arguments:
         Pop up the console automatically. This is useful when
         you are rehearsing and making sure the presenter notes
         are correct.
-       
+
+    -s, --skip-help
+        Do not show the initial help popup.
+        
+    -n, --skip-notes
+        Do not include presenter notes in the output.
+
 
 Presentations
 -------------

@@ -1,6 +1,14 @@
-
 def main():
 
+    # That the argparse default strings are lowercase is ugly.
+    
+    import gettext
+    
+    def my_gettext(s):
+        return s.capitalize()
+    gettext.gettext = my_gettext
+    
+    
     import os
     import re
     import argparse

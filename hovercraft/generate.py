@@ -80,6 +80,7 @@ def copy_resource(filename, sourcedir, targetdir):
         os.path.getmtime(sourcepath) <= os.path.getmtime(targetpath)):
         # File has not changed since last copy, so skip.
         return
+    
     targetdir = os.path.split(targetpath)[0]
     if not os.path.exists(targetdir):
         os.makedirs(targetdir)

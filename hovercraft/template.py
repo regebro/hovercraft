@@ -164,8 +164,8 @@ class Template(object):
         if (os.path.exists(target_path) and 
             os.path.getmtime(source_path) <= os.path.getmtime(target_path)):
                 # File has not changed since last copy, so skip.
-                return
-
+            return
+        
         shutil.copy2(source_path, target_path)
         
     def copy_resources(self, targetdir):
