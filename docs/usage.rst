@@ -33,10 +33,24 @@ Optional arguments:
         rehearsing and making sure the presenter notes are correct.
         You can also set this by having ``:auto-console: true`` first in the 
         presentation.
-        
 
     ``-s, --skip-help``
         Pop up the console automatically. This is useful when you are
         rehearsing and making sure the presenter notes are correct.
         You can also set this by having ``:skip-help: true`` first in the 
         presentation.
+
+    ``--n, --skip-notes``
+        Do not include presenter notes in the output.
+
+
+Built in templates
+------------------
+
+There are two templates that come with Hovercraft! One is called ``default``
+and will be used unless you specify a template. This is the template you will
+use most of the time.
+
+The second is called ``simple`` and it doesn't have a presenter console. This
+template is especially useful if you combine it with the ``--skip-notes``
+parameter to prepare a version of your presentation to be put online.

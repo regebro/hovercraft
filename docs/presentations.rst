@@ -390,6 +390,12 @@ presentation, they will **not** keep their relative sizes, but will be
 resized so the slides fit. If you need to have the shapes keep their relative
 sizes, you need to combine them into one path.
 
+Examples
+========
+
+To see how to use Hovercraft! in practice, there are three example presentations
+included with Hovercraft! These are.
+
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
 .. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images
 .. _book: http://python3porting.com/

@@ -13,16 +13,16 @@ p {
     text-align: left;
 }
 
-em {
-    font-family: Satisfy;
-    font-size: 142%;
-}
+/*em {*/
+    /*font-family: Satisfy;*/
+    /*font-size: 142%;*/
+/*}*/
 
-strong {
-    font-family: Racing Sans One;
-    font-size: 127%;
-    letter-spacing: -2px;
-}
+/*strong {*/
+    /*font-family: Racing Sans One;*/
+    /*font-size: 127%;*/
+    /*letter-spacing: -2px;*/
+/*}*/
 
 pre {
     text-align: left;

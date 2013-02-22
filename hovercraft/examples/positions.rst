@@ -1,4 +1,5 @@
 :title: Positioning tutorial
+:css: tutorial.css
 
 This is a tutorial for Hovercraft! positioning. It's meant to be read as 
 source code, and not as a finished presentation.
@@ -85,7 +86,7 @@ So here we rotated 90 degrees and zoomed out five times.
 
 ----
 
-:data-x: -1000
+:data-x: -4000
 
 Sticky data!
 ============
@@ -94,8 +95,12 @@ All fields except data-x and data-y are "sticky!" That means that
 they keep the same value as the last slide. So this slide will
 keep the 90 degree rotation and scale of 5.
 
-But I set the X position to -1000, so we now move on the X-scale instead.
+But I set the X position to -4000, so we now move on the X-scale instead.
 Negative numbers are not a problem.
+
+It needs to be -4000 now, since we zoomed out five times. That means that the
+ordinary presentation size of 1024*800 pixels are now 5120*400 pixels
+(assuming you use a 4:3 screen size).
 
 ----
 
@@ -105,22 +110,21 @@ Relative positions
 
 One thing that *is* a problem is the absolute positioning. All the positions
 we used so far above are in relation to the start of the coordinate system.
-But if we no need to insert a slide somewhere in between the slides above, we
-need to make room for it, and that means we have to reposition all the slides
-that come after. That quickly becomes annoying.
+But if we now need to insert a slide somewhere in between the slides above,
+we need to make room for it, and that means we have to reposition all the
+slides that come after. That quickly becomes annoying.
 
 Hovercraft! therefore supports relative positioning where you just give a
-relative coordinate to the last slide.
+relative coordinate to the last slide. 
 
 ----
 
-:data-scale: 0.1
-:data-y: r-500
-:data-x: r350
+:data-scale: 1
+:data-y: r3000
 :data-rotate: 0
 
-Like this!
-==========
+Like this
+=========
 
 You just prefix the position with an ``r`` and it becomes relative. That
 means that if the previous slide moves, this moves with it. You'll find that
@@ -132,3 +136,27 @@ For some types of presentation, where typography is important, you need to
 decide everything that the slide should say and their position from the
 start. Then absolute positioning works fine. But otherwise you probably want
 to use relative positioning.
+
+----
+
+:data-scale: 0.15
+:data-y: r-275
+:data-x: r150
+:data-rotate: -90
+
+**A warning!**
+==============
+
+----
+
+:data-x: 2000
+:data-scale: 1
+
+Didn't that slide look good?
+============================
+
+Don't worry, when you make big zooms, different browsers will behave
+differently and be good at different things. Some will be slow and jerky on
+the 3D effects, and others will show fonts with jagged edges when you zoom.
+Older and less common browsers can also have problems with 3D effects.
+

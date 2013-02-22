@@ -11,4 +11,5 @@ Contents:
    introduction.rst
    usage.rst
    presentations.rst
+   designing.rst
    templates.rst
