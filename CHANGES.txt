@@ -1,8 +1,8 @@
 Changes
 =======
 
-1.0b3 (unreleased)
-------------------
+1.0 (2013-02-22)
+----------------
 
 - #1, #2: Add key-binding to pop up the help, a parameter and a presentation
   field setting to not show the help at load.
@@ -21,6 +21,8 @@ Changes
 
 - Added support for more HTML metadata.
 
+- Finished documentation and examples.
+
 
 1.0b2 (2013-02-13)
 ------------------
@@ -36,4 +38,4 @@ Changes
 1.0b1 (2013-02-07)
 ------------------
 
-- Initial release
+- Initial release.
