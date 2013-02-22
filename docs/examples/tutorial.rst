@@ -6,7 +6,25 @@
 
 This slide show is a sort of tutorial of how to use Hovercraft! to make
 presentations. It will show the most important features of Hovercraft! with
-explanations. It's meant to read as source code, not as a presentation.
+explanations. 
+
+Hopefully you ended up here by the link from the official documentation at
+https://hovercraft.readthedocs.org/ . If not, you probably want to go there
+and read through it first.
+
+This totorial is meant to be read as source code, not in any HTML form, so if
+you can see this text (it won't be visible in the final presentation) and you
+aren't seeing the source code, you are doing it wrong. It's going to be
+confusing and not very useful. Again, go to the official docs. There are
+links to the source code in the Examples section.
+
+You can render this presentation to HTML with the command::
+
+    hovercraft positions.rst outdir
+    
+And then view the outdir/index.html file to see how it turned out.
+
+**Now then, on to the tutorial part!**
 
 The first thing to note is the special syntax for information about the
 presentation that you see above. This is in reStrcuturedText called "fields"

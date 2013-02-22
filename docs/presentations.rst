@@ -391,13 +391,26 @@ resized so the slides fit. If you need to have the shapes keep their relative
 sizes, you need to combine them into one path.
 
 Examples
-========
+--------
 
 To see how to use Hovercraft! in practice, there are three example presentations
-included with Hovercraft! These are.
+included with Hovercraft!
+
+    hovercraft.rst_
+        The demo presentation you can see at http://regebro.github.com/hovercraft
+    
+    tutorial.rst_
+        A step by step guide to the features of Hovercraft!
+    
+    positions.rst_
+        An explanation of how to use the positioning features.
+    
 
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
 .. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images
 .. _book: http://python3porting.com/
 .. _Pygments: http://pygments.org/
 .. _languages: http://pygments.org/docs/lexers/
+.. _hovercraft.rst: ./_sources/examples/hovercraft.txt
+.. _tutorial.rst: ./_sources/examples/tutorial.txt
+.. _positions.rst: ./_sources/examples/positions.txt

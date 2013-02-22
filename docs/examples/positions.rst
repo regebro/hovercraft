@@ -1,8 +1,21 @@
 :title: Positioning tutorial
 :css: tutorial.css
 
-This is a tutorial for Hovercraft! positioning. It's meant to be read as 
-source code, and not as a finished presentation.
+This is a tutorial for Hovercraft! positioning. It's meant to be read as
+`source code <../_sources/examples/positions.txt>`_.
+
+You can render this presentation to HTML with the command::
+
+    hovercraft positions.rst outdir
+    
+And then view the outdir/index.html file to see how it turned out.
+
+If you are seeing this text, and not reading this as source code, you are
+doing it wrong! It's going to be confusing and not very useful.
+
+Use The Source, Luke! But first you probably want to read through the
+official documentation at https://hovercraft.readthedocs.org/
+There are links to the source code in the Examples section.
 
 ----
 

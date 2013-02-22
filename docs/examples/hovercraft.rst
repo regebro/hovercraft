@@ -1,9 +1,27 @@
-.. title:: Hovercraft! demo
-
+:title: Hovercraft! demo
 :data-transition-duration: 1500
 :css: hovercraft.css
 
----
+This is a demo for Hovercraft! You can view it as a finished presentation
+at http://regebro.github.com/hovercraft/
+
+
+It's also useful as an example, in which case it's supposed to be read as
+`source code <../_sources/examples/hovercraft.txt>`_.
+
+You can render this presentation to HTML with the command::
+
+    hovercraft hovercraft.rst outdir
+    
+And then view the outdir/index.html file to see how it turned out.
+
+If you are seeing this text, and not reading this as source code, you are
+doing it wrong! It's going to be confusing and not very useful.
+
+Use The Source, Luke! But first you probably want to read through the
+official documentation at https://hovercraft.readthedocs.org/
+
+----
 
 The problem:
 ============
