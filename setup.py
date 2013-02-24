@@ -34,6 +34,7 @@ setup(name='hovercraft',
           'docutils',
           'lxml',
           'svg.path',
+          'pygments',
       ],
       tests_require=[
           'manuel',
