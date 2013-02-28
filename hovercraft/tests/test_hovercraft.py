@@ -137,9 +137,25 @@ class HTMLTests(unittest.TestCase):
             with open(os.path.join(tmpdir, 'index.html')) as outfile:
                 result = outfile.read()
                 self.assertIn('auto-console="True"', result)
-        
-    
+
+
+    def test_subdirectory_css(self):
+        with TemporaryDirectory() as tmpdir:
+            sys.argv = [
+                'bin/hovercraft',
+                os.path.join(TEST_DATA, 'subdir-css.rst'),
+                tmpdir,
+            ]
+
+            main()
+
+            out_files = os.listdir(tmpdir)
+            self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
+            css_files = os.listdir(os.path.join(tmpdir, 'css'))
+            self.assertEqual(set(css_files), {'hovercraft.css', 'highlight.css', 'sub.css', 'impressConsole.css'})
+            image_files = os.listdir(os.path.join(tmpdir, 'images'))
+            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+
+
 if __name__ == '__main__':
     unittest.main()
-    
-    
