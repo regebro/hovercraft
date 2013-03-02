@@ -4,7 +4,7 @@ Changes
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- ReST comments are no longer rendered to HTML. [carljm]
 
 
 1.0 (2013-02-22)

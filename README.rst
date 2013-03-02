@@ -34,6 +34,11 @@ as CC-0, except for the following:
 * ``impress.js`` is (c) Bartek Szopka (@bartaz) released under MIT and GPL
   licenses. See the impress.js_ page for more information.
 
+Other contributors (see CHANGES.txt for details):
+
+* Carl Meyer [carljm]
+
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.org/

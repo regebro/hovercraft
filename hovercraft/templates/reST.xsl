@@ -41,6 +41,10 @@
 
 * Added support for the <inline> tag for code highlighting.
 
+Modification by Carl Mayer, 2013:
+
+* Skipped rendering of ReST comments.
+
 -->
 
 <xsl:stylesheet
@@ -419,6 +423,7 @@
 	</span>
 </xsl:template>
 
+<!-- Skip ReST comments -->
 <xsl:template match="comment">
 </xsl:template>
 
