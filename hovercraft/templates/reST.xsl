@@ -419,4 +419,7 @@
 	</span>
 </xsl:template>
 
+<xsl:template match="comment">
+</xsl:template>
+
 </xsl:stylesheet>
