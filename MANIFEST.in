@@ -1,0 +1,4 @@
+include CHANGES.txt
+include README.rst
+recursive-include docs *.rst *.py *.bat
+include docs/Makefile
