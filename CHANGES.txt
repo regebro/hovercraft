@@ -6,6 +6,8 @@ Changes
 
 - ReST comments are no longer rendered to HTML. [carljm]
 
+- Fixed a bug in the path handling for CSS resources. [carljm]
+
 
 1.0 (2013-02-22)
 ----------------
