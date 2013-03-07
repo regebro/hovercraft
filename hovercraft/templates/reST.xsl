@@ -152,7 +152,30 @@ Modification by Carl Mayer, 2013:
 
 
 <xsl:template match="paragraph">
-	<p><xsl:apply-templates /></p>
+	<p>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+        </p>
+</xsl:template>
+
+<xsl:template match="container">
+	<div>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+        <xsl:if test="@ids">
+	<xsl:attribute name="id">
+		<xsl:value-of select="@ids" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+        </div>
 </xsl:template>
 
 <xsl:template match="substitution_definition" />
@@ -346,7 +369,19 @@ Modification by Carl Mayer, 2013:
 	 A similar field exists for specifying the valign value.  This field
 	 is called ":table-cell-valign:".  -->
 <xsl:template match="table">
-	<table cellpadding="0" cellspacing="0"><xsl:apply-templates /></table>
+	<table cellpadding="0" cellspacing="0">
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+        <xsl:if test="@ids">
+	<xsl:attribute name="id">
+		<xsl:value-of select="@ids" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+	</table>
 </xsl:template>
 
 <xsl:template match="thead">

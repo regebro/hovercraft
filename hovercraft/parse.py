@@ -81,7 +81,10 @@ class SlideMaker(object):
         self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
 
     def _newstep(self):
-        step = etree.Element('step', attrib={'step': str(self.steps)})
+        step = etree.Element('step', attrib={
+                'step': str(self.steps),
+                'class': 'step'
+                })
         self.steps += 1
         self.result.append(step)
         self.curnode = step
@@ -126,11 +129,11 @@ class SlideMaker(object):
         self._newstep()
         
     def start_field_name(self, node):
-        # Fields are made into attributes.
-        self.curnode.set(node.text, '')
+        # Fields are made into attribute, nothing to do here:.
+        pass
 
     def end_field_name(self, node):
-        # Fields are made into attributes, nothing to do here:
+        # Fields are made into attributes
         pass
     
     def start_paragraph(self, node):
@@ -138,7 +141,12 @@ class SlideMaker(object):
         parent = node.getparent()
         if parent.tag == 'field_body':
             fieldname = parent.getprevious().text
-            self.curnode.set(fieldname, node.text)
+            current = self.curnode.get(fieldname)
+            if current:
+                value = current + ' ' + node.text
+            else:
+                value = node.text
+            self.curnode.set(fieldname, value)
         else:
             self.default_start(node)
             
