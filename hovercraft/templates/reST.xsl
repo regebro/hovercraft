@@ -152,7 +152,14 @@ Modification by Carl Mayer, 2013:
 
 
 <xsl:template match="paragraph">
-	<p><xsl:apply-templates /></p>
+	<p>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+        </p>
 </xsl:template>
 
 <xsl:template match="substitution_definition" />
