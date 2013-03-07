@@ -346,7 +346,12 @@ Modification by Carl Mayer, 2013:
 	 A similar field exists for specifying the valign value.  This field
 	 is called ":table-cell-valign:".  -->
 <xsl:template match="table">
-	<table cellpadding="0" cellspacing="0"><xsl:apply-templates /></table>
+	<table cellpadding="0" cellspacing="0">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+	<xsl:apply-templates />
+	</table>
 </xsl:template>
 
 <xsl:template match="thead">

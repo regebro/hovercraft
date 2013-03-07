@@ -173,6 +173,25 @@ class GeneratorTests(unittest.TestCase):
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')
         self.assertEqual(html, target)
+        
+    def test_table_class(self):
+        template = Template(os.path.join(TEST_DATA, 'minimal'))
+        html = rst2html(os.path.join(TEST_DATA, 'table.rst'), template)
+        target = (
+            b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">'
+            b'<body><div id="impress">'
+            b'<div class="step" step="0" data-x="0" data-y="0">'
+            b'<table cellpadding="0" cellspacing="0" class="my-table-class">'
+            b'Truth table for "not"'
+            b'<thead><tr><th><p>Name</p></th><th><p>Money Owed</p></th></tr>'
+            b'</thead><tbody>'
+            b'<tr><td><p>Adam Alpha</p></td><td><p>100</p></td></tr>'
+            b'</tbody></table></div></div>'
+            b'<script type="text/javascript" src="js/impress.js"></script>'
+            b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
+            b'</script></body></html>')
+        self.assertEqual(html, target)
+
 
 if __name__ == '__main__':
     unittest.main()
