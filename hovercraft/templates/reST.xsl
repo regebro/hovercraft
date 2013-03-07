@@ -162,6 +162,15 @@ Modification by Carl Mayer, 2013:
         </p>
 </xsl:template>
 
+<xsl:template match="container">
+	<div>
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+	<xsl:apply-templates />
+        </div>
+</xsl:template>
+
 <xsl:template match="substitution_definition" />
 
 
