@@ -174,7 +174,7 @@ class GeneratorTests(unittest.TestCase):
             b'</script></body></html>')
         self.assertEqual(html, target)
         
-    def test_table_class(self):
+    def test_tables(self):
         template = Template(os.path.join(TEST_DATA, 'minimal'))
         html = rst2html(os.path.join(TEST_DATA, 'table.rst'), template)
         target = (
@@ -186,7 +186,13 @@ class GeneratorTests(unittest.TestCase):
             b'<thead><tr><th><p>Name</p></th><th><p>Money Owed</p></th></tr>'
             b'</thead><tbody>'
             b'<tr><td><p>Adam Alpha</p></td><td><p>100</p></td></tr>'
-            b'</tbody></table></div></div>'
+            b'</tbody></table>'
+            b'<table cellpadding="0" cellspacing="0" id="my-table">'
+            b'<thead><tr><th><p>Number</p></th><th><p>Two</p></th></tr>'
+            b'</thead><tbody>'
+            b'<tr><td><p>Adam Alpha</p></td><td><p>100</p></td></tr>'
+            b'</tbody></table>'
+            b'</div></div>'
             b'<script type="text/javascript" src="js/impress.js"></script>'
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')
@@ -215,7 +221,11 @@ class GeneratorTests(unittest.TestCase):
             b'<div class="step" step="0" data-x="0" data-y="0">'
             b'<div class="my-class">'
             b'<p>This is some text in the container</p>'
-            b'</div></div></div>'
+            b'</div>'
+            b'<div id="my-thing">'
+            b'<p>This should have an id</p>'
+            b'</div>'
+            b'</div></div>'
             b'<script type="text/javascript" src="js/impress.js"></script>'
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')

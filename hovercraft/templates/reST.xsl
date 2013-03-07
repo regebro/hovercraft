@@ -164,9 +164,16 @@ Modification by Carl Mayer, 2013:
 
 <xsl:template match="container">
 	<div>
+        <xsl:if test="@classes">
 	<xsl:attribute name="class">
 		<xsl:value-of select="@classes" />
 	</xsl:attribute>
+        </xsl:if>
+        <xsl:if test="@ids">
+	<xsl:attribute name="id">
+		<xsl:value-of select="@ids" />
+	</xsl:attribute>
+        </xsl:if>
 	<xsl:apply-templates />
         </div>
 </xsl:template>
@@ -363,9 +370,16 @@ Modification by Carl Mayer, 2013:
 	 is called ":table-cell-valign:".  -->
 <xsl:template match="table">
 	<table cellpadding="0" cellspacing="0">
+        <xsl:if test="@classes">
 	<xsl:attribute name="class">
 		<xsl:value-of select="@classes" />
 	</xsl:attribute>
+        </xsl:if>
+        <xsl:if test="@ids">
+	<xsl:attribute name="id">
+		<xsl:value-of select="@ids" />
+	</xsl:attribute>
+        </xsl:if>
 	<xsl:apply-templates />
 	</table>
 </xsl:template>
