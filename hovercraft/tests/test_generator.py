@@ -161,6 +161,18 @@ class GeneratorTests(unittest.TestCase):
         
         self.assertEqual(html, target)
 
+    def test_slide_with_class(self):
+        template = Template(os.path.join(TEST_DATA, 'minimal'))
+        html = rst2html(os.path.join(TEST_DATA, 'slide_class.rst'), template)
+        target = (
+            b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">'
+            b'<body><div id="impress">'
+            b'<div class="step something-else" step="0" data-x="0" data-y="0">'
+            b'<p>This is some text</p></div></div>'
+            b'<script type="text/javascript" src="js/impress.js"></script>'
+            b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
+            b'</script></body></html>')
+        self.assertEqual(html, target)
 
 if __name__ == '__main__':
     unittest.main()
