@@ -279,6 +279,8 @@ Presenter console!
 **Hovercraft!**
 ===============
 
+.. image:: images/hovercraft_logo.png
+
 The merge of convenience and cool!
 
 .. note::
