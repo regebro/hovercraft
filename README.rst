@@ -38,6 +38,7 @@ Other contributors (see CHANGES.txt for details):
 
 * Carl Meyer [carljm]
 
+* Chris Withers [cjw296]
 
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft

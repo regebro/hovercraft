@@ -8,6 +8,8 @@ Changes
 
 - Fixed a bug in the path handling for CSS resources. [carljm]
 
+- Various fixes and improvements in ReST handling. [cjw296]
+
 
 1.0 (2013-02-22)
 ----------------
