@@ -75,8 +75,8 @@ xmlns="http://www.w3.org/1999/xhtml">
       </xsl:if>
       <table>
         <tr><th>Space</th><td>Forward</td></tr>
-        <tr><th>Left, Down, Page Down</th><td>Next slide</td></tr>
-        <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>Right, Down, Page Down</th><td>Next slide</td></tr>
+        <tr><th>Left, Up, Page Up</th><td>Previous slide</td></tr>
         <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>
