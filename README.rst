@@ -1,6 +1,14 @@
 Hovercraft!
 ===========
 
+.. image:: https://pypip.in/v/hovercraft/badge.png
+    :target: https://crate.io/packages/hovercraft/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/hovercraft/badge.png
+    :target: https://crate.io/packages/hovercraft/
+    :alt: Number of PyPI downloads
+
 *The merge of convenience and cool!*
 
 Hovercraft! is a tool to make impress.js_ presentations from
