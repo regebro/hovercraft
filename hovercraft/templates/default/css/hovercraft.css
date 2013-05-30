@@ -25,7 +25,7 @@
 #hovercraft-help {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
     color: #EEEEEE;
-    font-size: 50%;
+    font-size: 100%;
     left: 2em;
     bottom: 2em;
     width: 26em;
@@ -42,10 +42,6 @@
 .impress-enabled #hovercraft-help.hide {
     display: none;
 }
-
-/*.impress-enabled #hovercraft-help.show {*/
-    /*display: block;*/
-/*}*/
 
 #hovercraft-help.disabled {
     display: none;
