@@ -6,7 +6,7 @@ A note on terminology
 
 Traditionally a presentation is made up of slides. Calling them "slides" is
 not really relevant in an impress.js context, as they can overlap and doesn't
-necessarily slide. The name "steps" is better, but it's also more ambigiouos.
+necessarily slide. The name "steps" is better, but it's also more ambiguous.
 Hence impress.js uses the terms "slide" and "step" as meaning the same thing,
 and so does Hovercraft!
 
