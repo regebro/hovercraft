@@ -36,6 +36,7 @@ setup(name='hovercraft',
           'lxml>=3.1.0',
           'svg.path',
           'pygments',
+          'configparser'
       ],
       tests_require=[
           'manuel',
