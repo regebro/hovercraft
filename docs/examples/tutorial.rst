@@ -273,7 +273,7 @@ And your visible code will now be runnable with Manuel:
    >>> datetime(2013, 2, 19, 12)
    datetime.datetime(2013, 2, 19, 12, 0)
 
-.. _Manuel: http://pygments.org/
+.. _Manuel: https://pypi.python.org/pypi/manuel
 
 ----
 
