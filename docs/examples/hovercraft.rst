@@ -12,7 +12,7 @@ It's also useful as an example, in which case it's supposed to be read as
 You can render this presentation to HTML with the command::
 
     hovercraft hovercraft.rst outdir
-    
+
 And then view the outdir/index.html file to see how it turned out.
 
 If you are seeing this text, and not reading this as source code, you are
@@ -89,7 +89,7 @@ You need to be able to...
 
 .. note::
 
-    If you have more notes than fits in the console, you can scroll down, but
+    If you have more notes than fit in the console, you can scroll down, but
     more handily, you can scroll the text up by pressing space bar.
 
 ----
@@ -102,7 +102,7 @@ You need to be able to...
 .. note::
 
    If there isn't more text to scroll up, space bar will go to the next
-   slide. Therefore you, as a presenter, just press space everytime you run
+   slide. Therefore you, as a presenter, just press space every time you run
    out of things to say!
 
 ----
@@ -134,7 +134,7 @@ So we are back to square one.
 .. note::
 
     It's probably back to making bad jokes again.
-    
+
 ----
 
 What about impress.js?
@@ -159,14 +159,14 @@ In three dimensions!
 .. note::
 
     Wow! 3D! You didn't see that one coming, did you?
-    
+
 ----
 
 
 It's HTML...
 ============
 
-Not an friendly format to edit
+Not a friendly format to edit
 
 ----
 
@@ -175,12 +175,12 @@ Not an friendly format to edit
 ...and manual positioning
 =========================
 
-So inserting one slide means 
+So inserting a slide means
 
 repositioning all the following slides!
 
 
-.. note:: 
+.. note::
 
     The endless repositioning of slides is what prompted me to write
     Hovercraft! in the first place.
@@ -214,7 +214,7 @@ Introducing **Hovercraft!**
 .. note::
 
     TADA!
-    
+
 ----
 
 :data-x: r-3000
@@ -258,7 +258,7 @@ Position slides
 
     That SVG path support was a lot of work. And all I used it for was to
     position the slides in circles.
-    
+
 ----
 
 Presenter console!
@@ -273,7 +273,7 @@ Presenter console!
 .. note::
 
     You found the presenter console already!
-    
+
 ----
 
 **Hovercraft!**
@@ -297,11 +297,10 @@ The merge of convenience and cool!
 **Hovercraft!**
 ===============
 
-On Github: 
+On Github:
 
 https://github.com/regebro/hovercraft
 
 .. note::
 
     Fork and contribute!
-    
