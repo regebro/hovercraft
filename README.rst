@@ -30,6 +30,17 @@ Features
 Full documentation is available at readthedocs.org_, and also in the
 documentation subdirectory.
 
+Installation
+------------
+
+Hovercraft requires Python 3.2 or later, and can be installed like any Python package. 
+The easiest way is to install `pip`, and then run::
+
+    $ pip install hovercraft
+    
+Hovercraft is untested on Windows, but there is no reason it shouldn't work, at least in theory.
+
+
 Contributors
 ------------
 
