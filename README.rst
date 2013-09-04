@@ -34,7 +34,7 @@ Installation
 ------------
 
 Hovercraft requires Python 3.2 or later, and can be installed like any Python package. 
-The easiest way is to install `pip`, and then run::
+The easiest way is to install ``pip``, and then run::
 
     $ pip install hovercraft
     
@@ -62,3 +62,4 @@ Other contributors (see CHANGES.txt for details):
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.org/
+.. _pip: http://www.pip-installer.org/en/latest/
