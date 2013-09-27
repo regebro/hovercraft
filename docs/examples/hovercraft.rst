@@ -166,7 +166,7 @@ In three dimensions!
 It's HTML...
 ============
 
-Not an friendly format to edit
+Not a friendly format to edit
 
 ----
 
