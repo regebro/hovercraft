@@ -12,7 +12,7 @@ Hopefully you ended up here by the link from the official documentation at
 https://hovercraft.readthedocs.org/ . If not, you probably want to go there
 and read through it first.
 
-This totorial is meant to be read as source code, not in any HTML form, so if
+This tutorial is meant to be read as source code, not in any HTML form, so if
 you can see this text (it won't be visible in the final presentation) and you
 aren't seeing the source code, you are doing it wrong. It's going to be
 confusing and not very useful. Again, go to the official docs. There are
@@ -20,14 +20,14 @@ links to the source code in the Examples section.
 
 You can render this presentation to HTML with the command::
 
-    hovercraft positions.rst outdir
+    hovercraft tutorial.rst outdir
     
 And then view the outdir/index.html file to see how it turned out.
 
 **Now then, on to the tutorial part!**
 
 The first thing to note is the special syntax for information about the
-presentation that you see above. This is in reStrcuturedText called "fields"
+presentation that you see above. This is in reStructuredText called "fields"
 and it's used all the time in Hovercraft! to change attributes and set data
 on the presentation, on slides and on images. The order of the fields is not
 important, but you can only have one of each field.
@@ -38,7 +38,7 @@ presentation by putting the HTML online. If you are only going to show this
 presentation yourself in a meeting you can skip all of it.
 
 The title set is the title that is going to be shown in the title bar of the
-browser. reStructuredText also have a separete syntax for titles that is also
+browser. reStructuredText also has a separete syntax for titles that is also
 supported by Hovercraft::
 
     .. title:: Slideshow Tutorial
@@ -74,7 +74,7 @@ This is a first slide
 =====================
 
 Restructured text takes any line that is underlines with punctuation and
-makes it into a heading. Each type of undeline will be made into a different
+makes it into a heading. Each type of underlines will be made into a different
 level of heading, but it is not the type that is important, but rather the
 order of which each type will be enountered.
 
@@ -125,7 +125,7 @@ All the normal reStructuredText functions are supported in Hovercraft!
 More formatting
 ===============
 
-#. Numbered lists is of course also supported.
+#. Numbered lists are of course also supported.
 
 #. They are automatically numbered.
 
