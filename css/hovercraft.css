@@ -43,10 +43,6 @@
     display: none;
 }
 
-/*.impress-enabled #hovercraft-help.show {*/
-    /*display: block;*/
-/*}*/
-
 #hovercraft-help.disabled {
     display: none;
 }
