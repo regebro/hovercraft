@@ -1,4 +1,8 @@
 from setuptools import setup, find_packages
+import sys
+if sys.version < '3':
+    print("Hovercraft requires Python 3.2 or higher.")
+    sys.exit(1)
 
 version = '1.2.dev0'
 
