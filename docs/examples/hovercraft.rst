@@ -89,7 +89,7 @@ You need to be able to...
 
 .. note::
 
-    If you have more notes than fits in the console, you can scroll down, but
+    If you have more notes than fit in the console, you can scroll down, but
     more handily, you can scroll the text up by pressing space bar.
 
 ----
@@ -102,7 +102,7 @@ You need to be able to...
 .. note::
 
    If there isn't more text to scroll up, space bar will go to the next
-   slide. Therefore you, as a presenter, just press space everytime you run
+   slide. Therefore you, as a presenter, just press space every time you run
    out of things to say!
 
 ----
@@ -175,7 +175,7 @@ Not a friendly format to edit
 ...and manual positioning
 =========================
 
-So inserting one slide means 
+So inserting a slide means 
 
 repositioning all the following slides!
 
