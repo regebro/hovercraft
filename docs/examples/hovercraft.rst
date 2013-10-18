@@ -40,7 +40,7 @@ GUI tools are inflexible
 
 * It's hard to reorganize or import text
 
-* Sluggy and memory hungry
+* Slow and memory hungry
 
 * You get caught up in design early in the process.
 
@@ -71,7 +71,6 @@ But then there was Prezi
 ========================
 
 Sliding from left to right is no longer enough.
-
 You need to be able to...
 
 .. note::
