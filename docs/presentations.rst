@@ -157,7 +157,7 @@ You can then style that slide specifically with::
 
 If you don't give it a specific ID, it will get an ID based on it's sequence
 number. And that means the slide's ID will change if you insert or remove
-slides that can before it, and in that case your custom stylings of that
+slides that came before it, and in that case your custom stylings of that
 slide will stop working.
 
 Portable presentations
@@ -348,7 +348,7 @@ Most notable, the open source software "Inkscape" will mix absolute and
 relative coordinates, if you allow it to use relative coordinates. You
 therefore need to go into it's settings and uncheck the checkbox that allows
 you to use relative coordinates. This forces Inkscape to save all coordinates
-as absolute, which woll work fine.
+as absolute, which will work fine.
 
 Start position
 ..............
@@ -378,7 +378,7 @@ organising slides in squares, etc, is quite simple anyway, and the shapes can
 be made into paths. Usually in the software you will have to select the shape
 and tell your software to make it into a path. In Inkscape, transforming an
 object into a path will generally mean that the whole path is made of
-CubicBezier curves, which are unecessarily complex. Using the "Simplify"
+CubicBezier curves, which are unnecessarily complex. Using the "Simplify"
 command in Inkscape is usually enough to make the shapes into paths.
 
 Shape-scaling

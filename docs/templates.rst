@@ -25,8 +25,8 @@ The template configuration file
 
 The configuration file is normally called template.cfg, but if you have
 several configuration files in one template directory, you can specify which
-one by specifying the full path to the configuration file. However, if you
-just specify the template directory, ``template.cfg`` will be used.
+one to use by specifying the full path to the configuration file. However, if
+you just specify the template directory, ``template.cfg`` will be used.
 
 Template files are in configparser format, which is an extended ini-style
 format. They are very simple, and have only one section, [hovercraft]. Any
