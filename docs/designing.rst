@@ -13,7 +13,7 @@ scale of more than 5 is rarely going to look good. It would make for a nice
 cool zooming effect if it did, but this is not what browsers are designed
 for, so it won't.
 
-And the 3D effects can be really cool of used well. But not all the time,
+And the 3D effects can be really cool if used well. But not all the time,
 it gets tiring for the audience.
 
 Try, if you can, to use the zoom and 3D effects when they make sense in the
