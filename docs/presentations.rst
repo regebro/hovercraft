@@ -292,7 +292,7 @@ Relative positioning
 
 Hovercraft! gives you the ability to position slides relative to each other.
 You do this by starting the coordinates with "r". This will position the
-slide 500 pixels to the right and a thousant pixels above the previous slide::
+slide 500 pixels to the right and a thousand pixels above the previous slide::
 
     :data-x: r500
     :data-y: r-1000
