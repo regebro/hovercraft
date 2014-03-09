@@ -44,7 +44,7 @@ Hovercraft is untested on Windows, but there is no reason it shouldn't work, at 
 Contributors
 ------------
 
-Hovercraft! was written by Lennart Regebro <regebro@mail.com>, and is licensed
+Hovercraft! was written by Lennart Regebro <regebro@gmail.com>, and is licensed
 as CC-0, except for the following:
 
 * ``reST.xsl`` is (c) Michael Alyn Miller <malyn@strangeGizmo.com> and
