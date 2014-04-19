@@ -34,7 +34,7 @@ setup(name='hovercraft',
       license='CC0 1.0 Universal',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
-      zip_safe=True,
+      zip_safe=False,
       install_requires=[
           'docutils >= 0.9',
           'lxml>=3.1.0',
