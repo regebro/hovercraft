@@ -37,7 +37,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
             else:
                 media = 'screen,projection'
             template_info.add_resource(
-                os.path.join(presentation_dir, tree.attrib[attrib]),
+                os.path.abspath(os.path.join(presentation_dir, tree.attrib[attrib])),
                 CSS_RESOURCE,
                 target=tree.attrib[attrib],
                 extra_info=media)
