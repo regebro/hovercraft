@@ -122,6 +122,11 @@ Modification by Carl Mayer, 2013:
 		<xsl:attribute name="height">
 			<xsl:value-of select="@height" />
 		</xsl:attribute>
+		<xsl:if test="@align">
+			<xsl:attribute name="class">
+				<xsl:value-of select="concat('image-align-', @align)" />
+			</xsl:attribute>
+		</xsl:if>
 	</xsl:element>
 </xsl:template>
 
