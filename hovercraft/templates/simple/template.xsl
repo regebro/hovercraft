@@ -10,7 +10,29 @@ xmlns="http://www.w3.org/1999/xhtml">
 <html>
   <head>
     <title><xsl:value-of select="/document/@title"/></title>
-
+    <meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft"/>
+    <xsl:if test="/document/author"> <!-- Author is a child to the document, everything else become attributes -->
+      <meta name="author">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/author" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@description">
+      <meta name="description">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@description" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@keywords">
+      <meta name="keywords">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@keywords" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    
     <xsl:for-each select="/document/templateinfo/header/css">
       <link rel="stylesheet">
         <xsl:copy-of select="@*"/>
@@ -47,16 +69,23 @@ xmlns="http://www.w3.org/1999/xhtml">
       </div> 
     </xsl:for-each>
   
+    <xsl:if test="/document/@progressbar">
+    	<div class="progressbar"><div></div></div>	
+    </xsl:if>
+    
+    <xsl:if test="/document/@progress">
+    	<div class="progress"><div></div></div>	
+    </xsl:if>
+
     <div id="hovercraft-help">
-      <xsl:if test="not(/document/@skip-help)">
-        <xsl:attribute name="class">show</xsl:attribute>
-      </xsl:if>
       <xsl:if test="/document/@skip-help">
         <xsl:attribute name="class">hide</xsl:attribute>
       </xsl:if>
       <table>
-        <tr><th>Left, Down, Page Down, Space</th><td>Next slide</td></tr>
+        <tr><th>Space</th><td>Forward</td></tr>
+        <tr><th>Left, Down, Page Down</th><td>Next slide</td></tr>
         <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>
     </div>
