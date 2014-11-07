@@ -11,7 +11,6 @@ with open('README.rst', 'rt') as readme:
 
 with open('CHANGES.txt', 'rt') as changes:
     history = changes.read()
-    
 
 setup(name='hovercraft',
       version=version,
@@ -25,8 +24,9 @@ setup(name='hovercraft',
                    'Programming Language :: Python :: 3',
                    'Programming Language :: Python :: 3.2',
                    'Programming Language :: Python :: 3.3',
+                   'Programming Language :: Python :: 3.4',
                    'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
-                   ], 
+                   ],
       keywords='presentations restructuredtext',
       author='Lennart Regebro',
       author_email='regebro@gmail.com',
