@@ -113,19 +113,25 @@ Modification by Carl Mayer, 2013:
 		<xsl:attribute name="src">
 			<xsl:value-of select="@uri" />
 		</xsl:attribute>
-		<xsl:attribute name="alt">
-			<xsl:value-of select="@alt" />
-		</xsl:attribute>
-		<xsl:attribute name="width">
-			<xsl:value-of select="@width" />
-		</xsl:attribute>
-		<xsl:attribute name="height">
-			<xsl:value-of select="@height" />
-		</xsl:attribute>
+		<xsl:if test="@alt">
+			<xsl:attribute name="alt">
+				<xsl:value-of select="@alt" />
+			</xsl:attribute>
+		</xsl:if>
+		<xsl:if test="@width">
+			<xsl:attribute name="width">
+				<xsl:value-of select="@width" />
+			</xsl:attribute>
+		</xsl:if>
+		<xsl:if test="@height">
+			<xsl:attribute name="height">
+				<xsl:value-of select="@height" />
+			</xsl:attribute>
+		</xsl:if>
 		<xsl:if test="@classes">
-		<xsl:attribute name="class">
-			<xsl:value-of select="@classes" />
-		</xsl:attribute>
+			<xsl:attribute name="class">
+				<xsl:value-of select="@classes" />
+			</xsl:attribute>
 		</xsl:if>
 	</xsl:element>
 </xsl:template>
