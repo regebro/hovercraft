@@ -1,11 +1,11 @@
 <!--
 	 Copyright (c) 2006, Michael Alyn Miller <malyn@strangeGizmo.com>.
 	 All rights reserved.
-	 
+
 	 Redistribution and use in source and binary forms, with or without
 	 modification, are permitted provided that the following conditions
 	 are met:
-	 
+
 	 1.  Redistributions of source code must retain the above copyright
 		 notice unmodified, this list of conditions, and the following
 		 disclaimer.
@@ -17,7 +17,7 @@
 		 contributors to this software may be used to endorse or promote
 		 products derived from this software without specific prior
 		 written permission.
-	 
+
 	 THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS "AS IS"
 	 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
 	 TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
@@ -51,8 +51,8 @@ Modification by Carl Mayer, 2013:
 	version="1.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns="http://www.w3.org/1999/xhtml">
- 
- 
+
+
 
 <!-- Suppress the reST document title, information, and topic name.
 	 These values should be pulled in by the main XSL template. -->
@@ -122,6 +122,11 @@ Modification by Carl Mayer, 2013:
 		<xsl:attribute name="height">
 			<xsl:value-of select="@height" />
 		</xsl:attribute>
+		<xsl:if test="@classes">
+		<xsl:attribute name="class">
+			<xsl:value-of select="@classes" />
+		</xsl:attribute>
+		</xsl:if>
 	</xsl:element>
 </xsl:template>
 
@@ -365,7 +370,7 @@ Modification by Carl Mayer, 2013:
 	 ":table-cell-halign:" directly before the table.  Each of the cells
 	 (td elements) will include an "align" attribute with the specified
 	 value.
-	 
+
 	 A similar field exists for specifying the valign value.  This field
 	 is called ":table-cell-valign:".  -->
 <xsl:template match="table">

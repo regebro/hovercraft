@@ -38,7 +38,7 @@ Let us also try some basic formatting, like *italic*, and **bold**.
 
 ----
 
-There should also be possible to have 
+There should also be possible to have
 preformatted text for code.
 
 .. code:: python
@@ -48,10 +48,14 @@ preformatted text for code.
         a = 1 + "hubbub"
         return None
 
-    
+
 ----
 
+An image, with attributes:
+
 .. image:: images/python-logo-master-v3-TM.png
+    :class: imageclass
+    :width: 50%
 
 ----
 

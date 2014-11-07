@@ -12,8 +12,8 @@ def make_tree(file_name):
 
 class SlideMakerTests(unittest.TestCase):
     """Test the conversion of docutils XML into XML suitable to give to the templates"""
-    
-    def test_simple(self): 
+
+    def test_simple(self):
         tree = SlideMaker(make_tree('test_data/simple.rst')).walk()
         self.assertEqual(etree.tostring(tree), (
             b'<document source="&lt;string&gt;"><step class="step" step="0">'
@@ -25,7 +25,7 @@ class SlideMakerTests(unittest.TestCase):
             b'There is no positioning or anything fancy.</paragraph>'
             b'</section></step></document>'))
 
-    def test_advanced(self): 
+    def test_advanced(self):
         tree = SlideMaker(make_tree('test_data/advanced.rst')).walk()
         xml = etree.tostring(tree)
         target = (
@@ -61,14 +61,15 @@ class SlideMakerTests(unittest.TestCase):
             b'classes="o">+</inline> <inline classes="s">"hubbub"</inline>'
             b'\n    <inline classes="k">return</inline> <inline classes="bp">'
             b'None</inline></literal_block></step><step '
-            b'class="step" step="3"><image uri="images/python-logo-master-v3-TM.png"/>'
+            b'class="step" step="3"><paragraph>An image, with attributes:</paragraph>'
+            b'<image classes="imageclass" uri="images/python-logo-master-v3-TM.png" width="50%"/>'
             b'</step><step class="step" step="4"><section ids="character-sets" '
             b'names="character\\ sets"><title>Character sets</title><paragraph>'
             b'The character set is UTF-8 as of now. Like this: '
             b'&#229;&#228;&#246;.</paragraph></section></step></document>')
         self.assertEqual(xml, target)
 
-    def test_presenter_notes(self): 
+    def test_presenter_notes(self):
         tree = SlideMaker(make_tree('test_data/presenter-notes.rst')).walk()
         target = (
         b'<document ids="document-title" names="document\\ title" '
@@ -96,5 +97,5 @@ class SlideMakerTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
-    
+
+

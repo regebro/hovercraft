@@ -8,9 +8,9 @@ TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
 class GeneratorTests(unittest.TestCase):
     """Tests that the resulting HTML is correct.
-    
+
     This tests the whole path except the copying of files."""
-    
+
     def test_small(self):
         template = Template(os.path.join(TEST_DATA, 'minimal'))
         html = rst2html(os.path.join(TEST_DATA, 'simple.rst'), template)
@@ -26,7 +26,7 @@ class GeneratorTests(unittest.TestCase):
             b'<script type="text/javascript" src="js/impress.js"></script>'
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')
-        
+
         self.assertEqual(html, target)
 
     def test_big(self):
@@ -60,9 +60,9 @@ class GeneratorTests(unittest.TestCase):
             b'</span> <span class="mi">1</span> <span class="o">+</span> <span '
             b'class="s">"hubbub"</span>\n    <span class="k">return</span> '
             b'<span class="bp">None</span></pre></div><div class="step" '
-            b'step="3" data-x="5800" data-y="1600"><img '
-            b'src="images/python-logo-master-v3-TM.png" alt="" width="" '
-            b'height=""></img></div><div class="step" step="4" data-x="7400" '
+            b'step="3" data-x="5800" data-y="1600"><p>An image, with attributes:</p>'
+            b'<img src="images/python-logo-master-v3-TM.png" alt="" width="50%" '
+            b'height="" class="imageclass"></img></div><div class="step" step="4" data-x="7400" '
             b'data-y="1600"><h1 id="character-sets">Character sets</h1>'
             b'<p>The character set is UTF-8 as of now. Like this: '
             b'&#xE5;&#xE4;&#xF6;.</p></div></div>'
@@ -73,7 +73,7 @@ class GeneratorTests(unittest.TestCase):
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')
-        
+
         self.assertEqual(html, target)
 
     def test_presenter_notes(self):
@@ -112,14 +112,14 @@ class GeneratorTests(unittest.TestCase):
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')
-        
+
         self.assertEqual(html, target)
 
 
     def test_skip_presenter_notes(self):
         template = Template(os.path.join(TEST_DATA, 'maximal'))
         html = rst2html(os.path.join(TEST_DATA, 'presenter-notes.rst'), template, skip_notes=True)
-        
+
         target = (
             b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
             b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document '
@@ -144,7 +144,7 @@ class GeneratorTests(unittest.TestCase):
             b'src="js/impress.js"></script><script type="text/javascript" '
             b'src="js/impressConsole.js"></script><script type="text/javascript" '
             b'src="js/hovercraft.js"></script></body></html>')
-        
+
         self.assertEqual(html, target)
 
     def test_comments(self):
@@ -158,7 +158,7 @@ class GeneratorTests(unittest.TestCase):
             b'<script type="text/javascript" src="js/impress.js"></script>'
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')
-        
+
         self.assertEqual(html, target)
 
     def test_slide_with_class(self):
@@ -173,7 +173,7 @@ class GeneratorTests(unittest.TestCase):
             b'<script type="text/javascript" src="js/hovercraft-minimal.js">'
             b'</script></body></html>')
         self.assertEqual(html, target)
-        
+
     def test_tables(self):
         template = Template(os.path.join(TEST_DATA, 'minimal'))
         html = rst2html(os.path.join(TEST_DATA, 'table.rst'), template)
@@ -233,5 +233,5 @@ class GeneratorTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    
-    
+
+
