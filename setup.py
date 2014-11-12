@@ -1,8 +1,6 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
 import sys
-if sys.version < '3':
-    print("Hovercraft requires Python 3.2 or higher.")
-    sys.exit(1)
 
 version = '1.2.dev0'
 
@@ -11,6 +9,14 @@ with open('README.rst', 'rt') as readme:
 
 with open('CHANGES.txt', 'rt') as changes:
     history = changes.read()
+
+class CustomInstall(install):
+    def initialize_options(self):
+        if sys.version < '3':
+            print("Hovercraft requires Python 3.2 or higher.")
+            sys.exit(1)
+
+        return install.initialize_options(self)
 
 setup(name='hovercraft',
       version=version,
@@ -50,4 +56,5 @@ setup(name='hovercraft',
                    'hovercraft = hovercraft:main',
                ],
       },
+      cmdclass={'install': CustomInstall}
 )

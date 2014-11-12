@@ -6,6 +6,9 @@ Changes
 
 - Images can now also have a :class: attribute.
 
+- Having the "Requires Python 3" error when setup.py runs messes with some
+  tools, so I moved it to a custom install class instead.
+
 
 1.1 (2013-03-15)
 ----------------
