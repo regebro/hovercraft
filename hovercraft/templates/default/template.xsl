@@ -69,14 +69,22 @@ xmlns="http://www.w3.org/1999/xhtml">
       </div> 
     </xsl:for-each>
   
+    <xsl:if test="/document/@progressbar">
+    	<div class="progressbar"><div></div></div>	
+    </xsl:if>
+    
+    <xsl:if test="/document/@progress">
+    	<div class="progress"><div></div></div>	
+    </xsl:if>
+
     <div id="hovercraft-help">
       <xsl:if test="/document/@skip-help">
         <xsl:attribute name="class">hide</xsl:attribute>
       </xsl:if>
       <table>
         <tr><th>Space</th><td>Forward</td></tr>
-        <tr><th>Right, Down, Page Down</th><td>Next slide</td></tr>
-        <tr><th>Left, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>Left, Down, Page Down</th><td>Next slide</td></tr>
+        <tr><th>Right, Up, Page Up</th><td>Previous slide</td></tr>
         <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>
