@@ -1,16 +1,20 @@
+import argparse
+import gettext
+import os
+import sys
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from tempfile import TemporaryDirectory
+from watchdog.observers import Observer
+from .generate import generate
+
 def main():
 
     # That the argparse default strings are lowercase is ugly.
 
-    import gettext
 
     def my_gettext(s):
         return s.capitalize()
     gettext.gettext = my_gettext
-
-
-    import argparse
-    from hovercraft.generate import generate
 
     parser = argparse.ArgumentParser(
         description='Create impress.js presentations with reStructuredText',
@@ -64,13 +68,13 @@ def main():
         generate(args)
     else:
         # Server mode. Start a server that serves a temporary directory.
-        import os
-        from tempfile import TemporaryDirectory
-        from http.server import HTTPServer, SimpleHTTPRequestHandler
 
         with TemporaryDirectory() as targetdir:
             args.targetdir = targetdir
             generate(args)
+
+            # Set up watchdog to regenerate presentation if saved.
+            observer = Observer()
 
             os.chdir(targetdir)
             bind, port = ('0.0.0.0',8000)

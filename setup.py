@@ -46,6 +46,7 @@ setup(name='hovercraft',
           'lxml>=3.1.0',
           'svg.path',
           'pygments',
+          'watchdog',
       ],
       tests_require=[
           'manuel',
