@@ -2,10 +2,53 @@ import argparse
 import gettext
 import os
 import sys
+import threading
+import time
+from collections import defaultdict
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from tempfile import TemporaryDirectory
 from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
 from .generate import generate
+
+class HovercraftEventHandler(FileSystemEventHandler):
+    def __init__(self, filelist):
+        self.filelist = filelist
+        self.quit = False
+        super().__init__()
+
+    def on_modified(self, event):
+        if event.src_path in self.filelist:
+            print("File %s modified, update presentation" % event.src_path)
+            self.quit = True
+
+
+def generate_and_observe(args, event):
+    while event.isSet():
+        # Generate the presentation
+        monitor_list = generate(args)
+        print("Presentation generated.")
+
+        # Make a list of involved directories
+        directories = defaultdict(list)
+        for file in monitor_list:
+            directory, filename = os.path.split(file)
+            directories[directory].append(filename)
+
+        observer = Observer()
+        handler = HovercraftEventHandler(monitor_list)
+        for directory, files in directories.items():
+            observer.schedule(handler, directory, recursive=False)
+
+        observer.start()
+        while event.wait(1):
+            if handler.quit:
+                break
+
+        observer.stop()
+        observer.join()
+
 
 def main():
 
@@ -29,7 +72,7 @@ def main():
         nargs='?',
         help=('The directory where the presentation is saved. Will be created '
              'if it does not exist. If you do not specify a targetdir '
-             'Hovecraft will instead start a webserver and serve the'
+             'Hovercraft! will instead start a webserver and serve the'
              'presentation from that server.'))
     parser.add_argument(
         '-h', '--help',
@@ -71,11 +114,15 @@ def main():
 
         with TemporaryDirectory() as targetdir:
             args.targetdir = targetdir
-            generate(args)
+            args.presentation = os.path.abspath(args.presentation)
 
             # Set up watchdog to regenerate presentation if saved.
-            observer = Observer()
+            event = threading.Event()
+            event.set()
+            thread = threading.Thread(target=generate_and_observe, args=(args, event))
+            thread.start()
 
+            # Serve presentation
             os.chdir(targetdir)
             bind, port = ('0.0.0.0',8000)
             server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
@@ -86,4 +133,6 @@ def main():
             except KeyboardInterrupt:
                 print("\nKeyboard interrupt received, exiting.")
                 server.server_close()
+                event.clear()
+                thread.join()
                 sys.exit(0)

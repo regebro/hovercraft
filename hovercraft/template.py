@@ -12,18 +12,18 @@ JS_POSITIONS = range(2)
 JS_POSIION_HEADER, JS_POSIION_BODY = JS_POSITIONS
 
 class Resource(object):
-    
+
     def __init__(self, filepath, resource_type, target=None, extra_info=None, is_in_template=False):
         self.filepath = filepath
         assert resource_type in RESOURCE_TYPES
         self.resource_type = resource_type
         if resource_type == JS_RESOURCE:
             assert extra_info in JS_POSITIONS
-        
+
         self.target = target
         self.extra_info = extra_info
         self.is_in_template = is_in_template
-        
+
     def final_path(self):
         if self.target is None:
             self.target = self.filepath
@@ -36,13 +36,13 @@ class Resource(object):
 
         return self.target
 
-                
+
 class Template(object):
-    
+
     def __init__(self, template=None):
         self.doctype = b'<!DOCTYPE html>'
         self.resources = []
-        
+
         if template is None or template in ('default', 'simple'):
             self.builtin_template = True
             if template is None:
@@ -51,11 +51,11 @@ class Template(object):
         else:
             self.builtin_template = False
             self.template = template
-                    
+
         self._load_template_config()
         self._load_template_xsl()
         self._load_template_files()
-                
+
     def add_resource(self, filepath, resource_type, target=None, extra_info=None, is_in_template=False):
         self.resources.append(Resource(filepath, resource_type, target=target, extra_info=extra_info, is_in_template=is_in_template))
 
@@ -73,11 +73,11 @@ class Template(object):
                 self.template_root = os.path.split(self.template)[0]
                 config_file = self.template
             config.read(config_file)
-        
+
         self.config = config['hovercraft']
-        
+
     def _load_template_files(self):
-        
+
         for key, files in self.config.items():
             # CSS files:
             if key.startswith('css'):
@@ -88,7 +88,7 @@ class Template(object):
                     media = 'all'
                 for filename in files.split():
                     self.add_resource(filename, CSS_RESOURCE, extra_info=media, is_in_template=True)
-    
+
             # JS files:
             elif key == 'js-header':
                 for filename in files.split():
@@ -97,18 +97,18 @@ class Template(object):
             elif key == 'js-body':
                 for filename in files.split():
                     self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_BODY, is_in_template=True)
-    
+
             # Other files:
             elif key == 'resources':
                 for filename in self.config[key].split():
                     self.add_resource(filename, OTHER_RESOURCE, is_in_template=True)
-    
+
             # And finally the optional doctype:
             elif key == 'doctype':
-                self.doctype = self.config['doctype'].encode()        
-        
+                self.doctype = self.config['doctype'].encode()
+
     def _load_template_xsl(self):
-        xsl_template = self.config['template']        
+        xsl_template = self.config['template']
 
         # The template
         if self.builtin_template:
@@ -125,13 +125,13 @@ class Template(object):
         # In template
         if self.builtin_template:
             resource_name = self.template + resource.filepath
-            # Note that this will raise NotImplementedError if Hovercraft is
+            # Note that this will raise NotImplementedError if Hovercraft! is
             # installed as zip-file.
             return resource_filename(__name__, resource_name)
 
         # External template
         return os.path.join(self.template_root, resource.filepath)
-        
+
     def read_data(self, resource):
         try:
             source_path = self.get_source_path(resource)
@@ -142,36 +142,39 @@ class Template(object):
             return resource_string(__name__, self.template + file)
 
     def copy_resource(self, resource, targetdir):
+        """Copies a resource file and returns the source path for monitoring"""
         final_path = resource.final_path()
         if final_path[0] == '/' or ':' in final_path:
             # Absolute path or URI: Do nothing
-            return
+            return None
 
         target_path = os.path.join(targetdir, final_path)
         directory_name, filename = os.path.split(target_path)
         if not os.path.exists(directory_name):
             os.makedirs(directory_name)
-        
+
         try:
             source_path = self.get_source_path(resource)
         except NotImplementedError:
-            # Zip file! Read the data as binary and write out to the outfile.
+            # The template is in a zipped package!
+            # Read the data as binary and write out to the outfile.
             with open(target_path, 'wb') as outfile:
                 outfile.write(self.read_data(resource))
             # Done!
-            return
-        
-        if (os.path.exists(target_path) and 
+            return None  # Although copied, we do not monitor zip-files.
+
+        if (os.path.exists(target_path) and
             os.path.getmtime(source_path) <= os.path.getmtime(target_path)):
                 # File has not changed since last copy, so skip.
-            return
-        
+            return source_path  # This file should be monitored for changes
+
         shutil.copy2(source_path, target_path)
-        
+        return source_path  # This file should be monitored for changes
+
     def copy_resources(self, targetdir):
         for resource in self.resources:
-            self.copy_resource(resource, targetdir)
-        
+            yield self.copy_resource(resource, targetdir)
+
     def xml_node(self):
         node = etree.Element('templateinfo')
         header = etree.Element('header')

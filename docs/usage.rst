@@ -1,6 +1,21 @@
 Using Hovercraft!
 =================
 
+You can either use Hovercraft! to generate the presentation as HTML in a
+target directory, or you can let Hovercraft! serve the presentation from
+it's builtin webserver.
+
+The latter have several benefits. One is that most webbrowsers will be very
+reluctant to open popup-windows from pages served from the file system
+this is a security measure which can be changed, but it's easier to
+just point the browser to http://localhost:8000 instead.
+
+The second benefit is that Hovercraft! will monitor the source files for the
+presentation, and if they are modified Hovercraft! will generate the
+presentation again automatically. That way you don't have to run Hovercraft!
+everytime you save a file, you only need to refresh the browser.
+
+
 Parameters
 ----------
 
@@ -13,7 +28,7 @@ Required arguments:
 
     ``<targetdir>``
         The directory where the presentation is saved. Will be created if it
-        does not exist. If you do not specify a targetdir Hovecraft will
+        does not exist. If you do not specify a targetdir Hovercraft! will
         instead start a webserver and serve the presentation from that server.
 
 Optional arguments:
