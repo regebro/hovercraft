@@ -1,33 +1,33 @@
 def main():
 
     # That the argparse default strings are lowercase is ugly.
-    
+
     import gettext
-    
+
     def my_gettext(s):
         return s.capitalize()
     gettext.gettext = my_gettext
-    
-    
+
+
     import os
     import re
     import argparse
-    
+
     from lxml import html
-    
+
     from hovercraft.generate import rst2html, copy_resource
-    from hovercraft.template import Template, CSS_RESOURCE
-    
+    from hovercraft.template import Template, CSS_RESOURCE, OTHER_RESOURCE
+
     parser = argparse.ArgumentParser(
         description='Create impress.js presentations with reStructuredText',
         add_help=False)
     parser.add_argument(
-        'presentation', 
+        'presentation',
         metavar='<presentation>',
         help='The path to the reStructuredText presentation file.')
     parser.add_argument(
-        'targetdir', 
-        metavar='<targetdir>', 
+        'targetdir',
+        metavar='<targetdir>',
         help=('The directory where the presentation is written. '
              'Will be created if it does not exist.'))
     parser.add_argument(
@@ -59,7 +59,7 @@ def main():
         '--skip-notes',
         action='store_true',
         help=('Do not include presenter notes in the output.'))
-    
+
     args = parser.parse_args()
 
     # Parse the template info
@@ -68,17 +68,17 @@ def main():
         presentation_dir = os.path.split(args.presentation)[0]
         target_path = os.path.relpath(args.css, presentation_dir)
         template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
-        
+
 
     # Make the resulting HTML
     htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help, args.skip_notes)
-    
+
     # Write the HTML out
     if not os.path.exists(args.targetdir):
         os.makedirs(args.targetdir)
     with open(os.path.join(args.targetdir, 'index.html'), 'wb') as outfile:
         outfile.write(htmldata)
-        
+
     # Copy supporting files
     template_info.copy_resources(args.targetdir)
 
@@ -90,7 +90,7 @@ def main():
         copy_resource(filename, sourcedir, args.targetdir)
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
-    
+
     # Copy any files referenced by url() in the css-files:
     for resource in template_info.resources:
         if resource.resource_type != CSS_RESOURCE:
@@ -101,7 +101,11 @@ def main():
         css_targetdir = os.path.dirname(os.path.join(args.targetdir, resource.final_path()))
         uris = RE_CSS_URL.findall(template_info.read_data(resource))
         uris = [uri.decode() for uri in uris]
-        for filename in uris:
-            copy_resource(filename, css_sourcedir, css_targetdir)
-    
+        if resource.is_in_template and template_info.builtin_template:
+            for filename in uris:
+                template_info.add_resource(filename, OTHER_RESOURCE, target=css_targetdir, is_in_template=True)
+        else:
+            for filename in uris:
+                copy_resource(filename, css_sourcedir, css_targetdir)
+
     # All done!

@@ -15,7 +15,6 @@ class SlideMakerTests(unittest.TestCase):
 
     def test_simple(self):
         tree = SlideMaker(make_tree('test_data/simple.rst')).walk()
-        print(etree.tostring(tree))
         self.assertEqual(etree.tostring(tree), (
             b'<document source="&lt;string&gt;"><step class="step step-level-1" step="0">'
             b'<section ids="simple-presentation" names="simple\\ presentation">'
