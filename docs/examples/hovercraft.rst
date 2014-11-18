@@ -12,7 +12,7 @@ It's also useful as an example, in which case it's supposed to be read as
 You can render this presentation to HTML with the command::
 
     hovercraft hovercraft.rst outdir
-    
+
 And then view the outdir/index.html file to see how it turned out.
 
 If you are seeing this text, and not reading this as source code, you are
@@ -21,7 +21,7 @@ doing it wrong! It's going to be confusing and not very useful.
 Use The Source, Luke! But first you probably want to read through the
 official documentation at https://hovercraft.readthedocs.org/
 
-----
+====
 
 The problem:
 ============
@@ -133,7 +133,7 @@ So we are back to square one.
 .. note::
 
     It's probably back to making bad jokes again.
-    
+
 ----
 
 What about impress.js?
@@ -158,7 +158,7 @@ In three dimensions!
 .. note::
 
     Wow! 3D! You didn't see that one coming, did you?
-    
+
 ----
 
 
@@ -174,12 +174,12 @@ Not a friendly format to edit
 ...and manual positioning
 =========================
 
-So inserting a slide means 
+So inserting a slide means
 
 repositioning all the following slides!
 
 
-.. note:: 
+.. note::
 
     The endless repositioning of slides is what prompted me to write
     Hovercraft! in the first place.
@@ -213,7 +213,7 @@ Introducing **Hovercraft!**
 .. note::
 
     TADA!
-    
+
 ----
 
 :data-x: r-3000
@@ -257,7 +257,7 @@ Position slides
 
     That SVG path support was a lot of work. And all I used it for was to
     position the slides in circles.
-    
+
 ----
 
 Presenter console!
@@ -272,7 +272,7 @@ Presenter console!
 .. note::
 
     You found the presenter console already!
-    
+
 ----
 
 **Hovercraft!**
@@ -296,11 +296,11 @@ The merge of convenience and cool!
 **Hovercraft!**
 ===============
 
-On Github: 
+On Github:
 
 https://github.com/regebro/hovercraft
 
 .. note::
 
     Fork and contribute!
-    
+

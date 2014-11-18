@@ -6,7 +6,21 @@ from docutils.writers.docutils_xml import Writer
 from lxml import etree
 
 class HovercraftTransitions(Transitions):
+
+    @property
+    def _doc_transitions(self):
+        if not hasattr(self.document, '_transitions'):
+            self.document._transitions = []
+        return self.document._transitions
+
     def visit_transition(self, node):
+        # First add the level of the transition as a class
+        char = node.rawsource[0]
+        if char not in self._doc_transitions:
+            self._doc_transitions.append(char)
+        level = self._doc_transitions.index(char) + 1
+        node.attributes['level'] = str(level)
+
         index = node.parent.index(node)
         error = None
         # Here the default transformer complained if you had a transition as
@@ -43,10 +57,10 @@ class HovercraftTransitions(Transitions):
         node.parent.remove(node)
         # Insert the transition after the sibling.
         sibling.parent.insert(index + 1, node)
-    
+
 
 class HovercraftReader(Reader):
-    
+
     def get_transforms(self):
         transforms = Reader().get_transforms()
         transforms.remove(Transitions)
@@ -54,7 +68,7 @@ class HovercraftReader(Reader):
         return transforms
 
 def rst2xml(rststring):
-    return publish_string(rststring, 
+    return publish_string(rststring,
                           reader=HovercraftReader(),
                           writer=Writer(),
                           settings_overrides={'syntax_highlight': 'short'})
@@ -66,12 +80,13 @@ def copy_node(node):
     element.tail = node.tail
     for key, value in node.items():
         element.set(key, value)
-        
+
     return element
+
 
 class SlideMaker(object):
     """A docutils XML walker that will organize the XML into slides"""
-    
+
     def __init__(self, intree, skip_notes=False):
         self.intree = intree
         self.result = None
@@ -80,15 +95,14 @@ class SlideMaker(object):
         self.skip_notes = skip_notes
         self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
 
-    def _newstep(self):
+    def _newstep(self, level):
         step = etree.Element('step', attrib={
                 'step': str(self.steps),
-                'class': 'step'
+                'class': 'step step-level-%s' % level,
                 })
         self.steps += 1
-        self.result.append(step)
-        self.curnode = step
-        
+        return step
+
     def walk(self):
         walken = etree.iterwalk(self.intree, events=('start', 'end'))
         for event, node in walken:
@@ -103,31 +117,52 @@ class SlideMaker(object):
                         self.default_end(node)
             else:
                 method(node)
-                
+
         return self.result
-                
+
     def default_start(self, node):
         new = copy_node(node)
         self.curnode.append(new)
         self.curnode = new
-        
+
     def default_end(self, node):
         if self.curnode.tag != 'step':
             self.curnode = self.curnode.getparent()
-                
+
     def start_document(self, node):
         self.curnode = self.result = copy_node(node)
-        
+
     def start_section(self, node):
         # If there has been no transition by now, start a new step:
         if self.steps == 0:
-            self._newstep()
+            step = self._newstep(1)
+            self.result.append(step)
+            self.curnode = step
+
         # Then carry on as normal
         self.default_start(node)
 
     def start_transition(self, node):
-        self._newstep()
-        
+        level = int(node.attrib['level'])
+        step = self._newstep(level)
+        # Walk back up to a transition of the same level
+        curnode = self.curnode
+        while (curnode.tag != 'step' or
+               int(curnode.attrib['class'].split('-')[-1]) >= level):
+            parent = curnode.getparent()
+            if parent is None:
+                # Top of tree
+                break
+            curnode = parent
+
+        # This is the transition above the new transition.
+        # Add the new transition to the end.
+        curnode.append(step)
+        self.curnode = step
+
+    def end_transition(self, node):
+        self.default_end(node)
+
     def start_field_name(self, node):
         # Fields are made into attribute, nothing to do here:.
         pass
@@ -135,7 +170,7 @@ class SlideMaker(object):
     def end_field_name(self, node):
         # Fields are made into attributes
         pass
-    
+
     def start_paragraph(self, node):
         # Fields are made into attributes.
         parent = node.getparent()
@@ -149,7 +184,7 @@ class SlideMaker(object):
             self.curnode.set(fieldname, value)
         else:
             self.default_start(node)
-            
+
     def end_paragraph(self, node):
         parent = node.getparent()
         if parent.tag != 'field_body':

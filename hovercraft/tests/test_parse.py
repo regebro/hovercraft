@@ -15,12 +15,13 @@ class SlideMakerTests(unittest.TestCase):
 
     def test_simple(self):
         tree = SlideMaker(make_tree('test_data/simple.rst')).walk()
+        print(etree.tostring(tree))
         self.assertEqual(etree.tostring(tree), (
-            b'<document source="&lt;string&gt;"><step class="step" step="0">'
+            b'<document source="&lt;string&gt;"><step class="step step-level-1" step="0">'
             b'<section ids="simple-presentation" names="simple\\ presentation">'
             b'<title>Simple Presentation</title><paragraph>This presentation '
             b'has two slides, each with a header and some text.</paragraph>'
-            b'</section></step><step class="step" step="1"><section ids="second-slide" '
+            b'</section></step><step class="step step-level-1" step="1"><section ids="second-slide" '
             b'names="second\\ slide"><title>Second slide</title><paragraph>'
             b'There is no positioning or anything fancy.</paragraph>'
             b'</section></step></document>'))
@@ -37,12 +38,12 @@ class SlideMakerTests(unittest.TestCase):
             b'comment about the presentation, that will not show up in '
             b'the\npresentation at all.</paragraph><paragraph>It also sets a title '
             b'and a transition-duration.</paragraph>'
-            b'<step class="step" step="0" data-x="1000" '
+            b'<step class="step step-level-1" step="0" data-x="1000" '
             b'data-y="1600"><section ids="advanced-presentation" names="advanced\\ '
             b'presentation"><title>Advanced Presentation</title><paragraph>Here we '
             b'show the positioning feature, where we can explicitly set a '
             b'position\non one of the steps.</paragraph></section></step><step '
-            b'class="step" step="1" id="name-this-step">'
+            b'class="step step-level-1" step="1" id="name-this-step">'
             b'<section ids="formatting" names="formatting"><title>'
             b'Formatting</title><paragraph>Let us also try some basic formatting, '
             b'like <emphasis>italic</emphasis>, and <strong>bold</strong>.'
@@ -50,7 +51,7 @@ class SlideMakerTests(unittest.TestCase):
             b'also</paragraph></list_item><list_item><paragraph>have a '
             b'list</paragraph></list_item><list_item><paragraph>of '
             b'things.</paragraph></list_item></bullet_list></section></step><step '
-            b'class="step" step="2"><paragraph>There should also be possible to have\n'
+            b'class="step step-level-1" step="2"><paragraph>There should also be possible to have\n'
             b'preformatted text for code.</paragraph><literal_block '
             b'classes="code python" xml:space="preserve"><inline classes="k">'
             b'def</inline> <inline classes="nf">foo</inline><inline '
@@ -61,9 +62,9 @@ class SlideMakerTests(unittest.TestCase):
             b'classes="o">+</inline> <inline classes="s">"hubbub"</inline>'
             b'\n    <inline classes="k">return</inline> <inline classes="bp">'
             b'None</inline></literal_block></step><step '
-            b'class="step" step="3"><paragraph>An image, with attributes:</paragraph>'
+            b'class="step step-level-1" step="3"><paragraph>An image, with attributes:</paragraph>'
             b'<image classes="imageclass" uri="images/python-logo-master-v3-TM.png" width="50%"/>'
-            b'</step><step class="step" step="4"><section ids="character-sets" '
+            b'</step><step class="step step-level-1" step="4"><section ids="character-sets" '
             b'names="character\\ sets"><title>Character sets</title><paragraph>'
             b'The character set is UTF-8 as of now. Like this: '
             b'&#229;&#228;&#246;.</paragraph></section></step></document>')
@@ -75,7 +76,7 @@ class SlideMakerTests(unittest.TestCase):
         b'<document ids="document-title" names="document\\ title" '
         b'source="&lt;string&gt;" title="Document title"><title>Document '
         b'title</title><step '
-        b'class="step" step="0"><section ids="hovercrafts-presenter-notes" '
+        b'class="step step-level-1" step="0"><section ids="hovercrafts-presenter-notes" '
         b'names="hovercrafts\\ presenter\\ notes"><title>Hovercrafts presenter '
         b'notes</title><paragraph>Hovercraft! supports presenter notes. It does '
         b'this by taking anything in a\nwhat is calles a "notes-admonition" and '
@@ -85,7 +86,7 @@ class SlideMakerTests(unittest.TestCase):
         b'<paragraph>Bullet lists</paragraph></list_item><list_item><paragraph>'
         b'And <emphasis>all</emphasis> types of <strong>inline formatting'
         b'</strong></paragraph></list_item></bullet_list></note></section>'
-        b'</step><step class="step" step="1"><image '
+        b'</step><step class="step step-level-1" step="1"><image '
         b'uri="images/python-logo-master-v3-TM.png"/><note><paragraph>You '
         b'don\'t have to start the text on the same line as\nthe note, but '
         b'you can.</paragraph><paragraph>You can also have several paragraphs.'
@@ -93,6 +94,47 @@ class SlideMakerTests(unittest.TestCase):
         b'though.</paragraph><paragraph><strong>But you can fake them through '
         b'bold-text</strong></paragraph><paragraph>And that\'s useful enough '
         b'for presentation notes.</paragraph></note></step></document>')
+        self.assertEqual(etree.tostring(tree), target)
+
+
+    def test_transition_levels(self):
+        # Make the XML
+        xml = rst2xml(
+        b'Intro\n\n====\n\nLevel 1\n\n====\n\nLevel 1\n\n----\n\nLevel 2\n\n'
+        b'....\n\nLevel 3\n\n----\n\nLevel 2\n\n....\n\nLevel 3\n\n'
+        b'====\n\nLevel 1')
+
+        target = (
+        b'<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE document PUBLIC "+'
+        b'//IDN docutils.sourceforge.net//DTD Docutils Generic//EN//XML" '
+        b'"http://docutils.sourceforge.net/docs/ref/docutils.dtd">\n'
+        b'<!-- Generated by Docutils 0.12 -->\n'
+        b'<document source="&lt;string&gt;"><paragraph>Intro</paragraph>'
+        b'<transition level="1"></transition><paragraph>Level 1</paragraph>'
+        b'<transition level="1"></transition><paragraph>Level 1</paragraph>'
+        b'<transition level="2"></transition><paragraph>Level 2</paragraph>'
+        b'<transition level="3"></transition><paragraph>Level 3</paragraph>'
+        b'<transition level="2"></transition><paragraph>Level 2</paragraph>'
+        b'<transition level="3"></transition><paragraph>Level 3</paragraph>'
+        b'<transition level="1"></transition><paragraph>Level 1</paragraph>'
+        b'</document>'
+        )
+        self.assertEqual(xml, target)
+
+        # Make the slides:
+        tree = SlideMaker(etree.fromstring(xml)).walk()
+
+        target = (
+        b'<document source="&lt;string&gt;"><paragraph>Intro</paragraph>'
+        b'<step class="step step-level-1" step="0"><paragraph>Level 1</paragraph></step>'
+        b'<step class="step step-level-1" step="1"><paragraph>Level 1</paragraph>'
+        b'<step class="step step-level-2" step="2"><paragraph>Level 2</paragraph>'
+        b'<step class="step step-level-3" step="3"><paragraph>Level 3</paragraph></step></step>'
+        b'<step class="step step-level-2" step="4"><paragraph>Level 2</paragraph>'
+        b'<step class="step step-level-3" step="5"><paragraph>Level 3</paragraph></step></step></step>'
+        b'<step class="step step-level-1" step="6"><paragraph>Level 1</paragraph></step>'
+        b'</document>'
+        )
         self.assertEqual(etree.tostring(tree), target)
 
 if __name__ == '__main__':
