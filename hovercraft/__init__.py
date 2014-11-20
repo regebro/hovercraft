@@ -54,9 +54,9 @@ def main():
 
     # That the argparse default strings are lowercase is ugly.
 
-
     def my_gettext(s):
         return s.capitalize()
+
     gettext.gettext = my_gettext
 
     parser = argparse.ArgumentParser(
@@ -72,7 +72,7 @@ def main():
         nargs='?',
         help=('The directory where the presentation is saved. Will be created '
              'if it does not exist. If you do not specify a targetdir '
-             'Hovercraft! will instead start a webserver and serve the'
+             'Hovercraft! will instead start a webserver and serve the '
              'presentation from that server.'))
     parser.add_argument(
         '-h', '--help',
@@ -86,13 +86,16 @@ def main():
     parser.add_argument(
         '-c',
         '--css',
-        help='An additional css file for the presentation to use.')
+        help=('An additional css file for the presentation to use. '
+              'See also the ``:css:`` settings of the presentation.'))
     parser.add_argument(
         '-a',
         '--auto-console',
         action='store_true',
-        help=('Pop up the console automatically. This is useful when you are '
-             'rehearsing and making sure the presenter notes are correct.'))
+        help=('Open the presenter console automatically. This is useful when '
+              'you are rehearsing and making sure the presenter notes are '
+              'correct. You can also set this by having ``:auto-console: '
+              'true`` first in the presentation.'))
     parser.add_argument(
         '-s',
         '--skip-help',
@@ -103,6 +106,12 @@ def main():
         '--skip-notes',
         action='store_true',
         help=('Do not include presenter notes in the output.'))
+    parser.add_argument(
+        '-p',
+        '--port',
+        default='0.0.0.0:8000',
+        help=('The address and port that the server uses. '
+              'Ex 8080 or 127.0.0.1:9000. Defaults to 0.0.0.0:8000.'))
 
     args = parser.parse_args()
 
@@ -120,19 +129,43 @@ def main():
             event = threading.Event()
             event.set()
             thread = threading.Thread(target=generate_and_observe, args=(args, event))
-            thread.start()
-
-            # Serve presentation
-            os.chdir(targetdir)
-            bind, port = ('0.0.0.0',8000)
-            server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
-
-            print("Serving HTTP on", bind, "port", port, "...")
             try:
-                server.serve_forever()
-            except KeyboardInterrupt:
-                print("\nKeyboard interrupt received, exiting.")
-                server.server_close()
-                event.clear()
-                thread.join()
-                sys.exit(0)
+                # Serve presentation
+                os.chdir(targetdir)
+                if ':' in args.port:
+                    bind, port = args.port.split(':')
+                else:
+                    bind, port = '0.0.0.0', args.port
+                port = int(port)
+
+                # First create the server. This checks that we can connect to
+                # the port we want to.
+                server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
+                print("Serving HTTP on", bind, "port", port, "...")
+
+                try:
+                    # Now generate the presentation
+                    thread.start()
+
+                    try:
+                        # All is good, start the server
+                        server.serve_forever()
+                    except KeyboardInterrupt:
+                        print("\nKeyboard interrupt received, exiting.")
+                    finally:
+                        # Server exited
+                        server.server_close()
+
+                finally:
+                    # Stop the generation thread
+                    event.clear()
+                    # Wait for it to end
+                    thread.join()
+
+            except PermissionError:
+                print("Can't bind to port %s:%s: No permission" % (bind, port))
+            except OSError as e:
+                if e.errno == 98:
+                    print("Can't bind to port %s:%s: port already in use" % (bind, port))
+                else:
+                    raise

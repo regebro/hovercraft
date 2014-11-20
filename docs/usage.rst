@@ -19,9 +19,9 @@ everytime you save a file, you only need to refresh the browser.
 Parameters
 ----------
 
-``hovercraft [-h] [-t TEMPLATE] [-c CSS] [-a] <presentation> [<targetdir>]``
+``hovercraft [-h] [-t TEMPLATE] [-c CSS] [-a] [-s] [-n] [-p PORT] <presentation> [<targetdir>]``
 
-Required arguments:
+Positional arguments:
 
     ``<presentation>``
         The path to the reStructuredText presentation file.
@@ -36,28 +36,29 @@ Optional arguments:
     ``-h, --help``
         Show this help.
 
-    ``-t TEMPLATE, --template``
-        TEMPLATE Specify a template. Must be a .cfg file, or a directory with
-        a ``template.cfg file``. If not given it will use a default template.
+    ``-t TEMPLATE, --template TEMPLATE``
+        Specify a template. Must be a .cfg file, or a directory with
+        a ``template.cfg`` file. If not given it will use a default template.
 
     ``-c CSS, --css CSS``
         An additional CSS file for the presentation to use.
         See also the ``:css:`` settings of the presentation.
 
     ``-a, --auto-console``
-        Pop up the console automatically. This is useful when you are
+        Open the presenter console automatically. This is useful when you are
         rehearsing and making sure the presenter notes are correct.
         You can also set this by having ``:auto-console: true`` first in the
         presentation.
 
     ``-s, --skip-help``
-        Pop up the console automatically. This is useful when you are
-        rehearsing and making sure the presenter notes are correct.
-        You can also set this by having ``:skip-help: true`` first in the
-        presentation.
+        Do not show the initial help popup.
 
     ``--n, --skip-notes``
         Do not include presenter notes in the output.
+
+    ``-p PORT, --port PORT``
+        The address and port that the server uses. Ex 8080 or
+        127.0.0.1:9000. Defaults to 0.0.0.0:8000.
 
 
 Built in templates
