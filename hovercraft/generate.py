@@ -133,8 +133,12 @@ def generate(args):
         css_targetdir = os.path.dirname(os.path.join(args.targetdir, resource.final_path()))
         uris = RE_CSS_URL.findall(template_info.read_data(resource))
         uris = [uri.decode() for uri in uris]
-        for filename in uris:
-            source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))
+        if resource.is_in_template and template_info.builtin_template:
+            for filename in uris:
+                template_info.add_resource(filename, OTHER_RESOURCE, target=css_targetdir, is_in_template=True)
+        else:
+            for filename in uris:
+                source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))
 
     # All done!
 
