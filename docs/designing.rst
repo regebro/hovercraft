@@ -60,7 +60,7 @@ Test with different browsers
 
 If you are putting the presentation online, test it with a couple of major
 browsers, to make sure nothing breaks and that everything still looks good.
-Not only are there subtle differences in how things may get positioned, 
+Not only are there subtle differences in how things may get positioned,
 different browsers are also good at different things.
 
 I've tested some browsers, all on Ubuntu, and it is likely that they behave

@@ -19,14 +19,14 @@ class GatherTests(unittest.TestCase):
 
     def test_gathering(self):
         tree = make_tree('positioning.rst')
-        
+
         positions = list(gather_positions(tree))
-        
+
         self.assertEqual(positions,[
             None,
             None,
              ('m 100 100 l 200 0 l 0 200', {'data-x': 'r0', 'data-y': 'r0'}),
-            None, 
+            None,
             None,
             {'data-x': '0', 'data-y': '0'},
             None,
@@ -34,20 +34,20 @@ class GatherTests(unittest.TestCase):
             ('m 100 100 l 200 0 l 0 200', {'data-x': 'r0', 'data-y': 'r0'}),
             None,
             None,
-            {'data-x': '3000', 'data-y': '1000'},            
+            {'data-x': '3000', 'data-y': '1000'},
         ])
 
 class CalculateTests(unittest.TestCase):
     """Tests that positions are correctly calculated"""
-    
+
     maxDiff = None
-    
+
     def test_no_position(self):
         # Ten slides, none have any position information:
         positions = [None] * 10
-        
+
         positions = list(calculate_positions(positions))
-        
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
@@ -80,7 +80,7 @@ class CalculateTests(unittest.TestCase):
         ]
 
         positions = list(calculate_positions(positions))
-        
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1200', 'data-y': '0'},
@@ -102,16 +102,16 @@ class CalculateTests(unittest.TestCase):
         # It allows you to insert or remove a slide, and everything adjusts.
         positions = [
             # First some automatic positions.
-            None, 
+            None,
             None,
             # Then suddenly we move vertically!
             {'data-x': 'r0', 'data-y': 'r1000'},
             # Continue the same way one slide.
-            None, 
+            None,
             # Stand still
-            {'data-x': 'r0', 'data-y': 'r0'}, 
+            {'data-x': 'r0', 'data-y': 'r0'},
             # Stand still again!
-            None, 
+            None,
             # Move a little bit
             {'data-x': 'r-40', 'data-y': 'r-200'},
             # Go back to normal movement to the right
@@ -145,20 +145,20 @@ class CalculateTests(unittest.TestCase):
         # Position slides along a path
         positions = [
             ('M 100 100 L 300 100 L 300 300',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None, 
+            None,
             None,
             None,
             None,
         ]
-        
+
         positions = list(calculate_positions(positions))
-        
+
         self.assertEqual(positions, [
             {'data-rotate': 0, 'data-x': '0', 'data-y': '0'},
             {'data-rotate': 0, 'data-x': '2000', 'data-y': '0'},
             {'data-rotate': 44.99999999999999, 'data-x': '4000', 'data-y': '0'},
             {'data-rotate': 90.0, 'data-x': '4000', 'data-y': '2000'},
-            {'data-rotate': 90.0, 'data-x': '4000', 'data-y': '4000'},        
+            {'data-rotate': 90.0, 'data-x': '4000', 'data-y': '4000'},
         ])
 
     def test_relative_path(self):
@@ -166,14 +166,14 @@ class CalculateTests(unittest.TestCase):
             None,
             None,
             ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None, 
+            None,
             None,
             None,
             None,
         ]
 
         positions = list(calculate_positions(positions))
-        
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
@@ -190,18 +190,18 @@ class CalculateTests(unittest.TestCase):
             None,
             None,
             ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None, 
+            None,
             None,
             {'data-x': '0', 'data-y': '0'},
             None,
             ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
             None,
             None,
-            {'data-x': '3000', 'data-y': '1000'},            
+            {'data-x': '3000', 'data-y': '1000'},
         ]
-  
+
         positions = list(calculate_positions(positions))
-        
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
             {'data-x': '1600', 'data-y': '0'},
@@ -214,29 +214,29 @@ class CalculateTests(unittest.TestCase):
             {'data-rotate': 44.99999999999999, 'data-x': '-8800', 'data-y': '-4800'},
             {'data-rotate': 90.0, 'data-x': '-8800', 'data-y': '-2400'},
             {'data-x': '3000', 'data-y': '1000'}
-        ])        
+        ])
 
 class PositionTest(unittest.TestCase):
-    
+
     def test_complete(self):
         tree = make_tree('positioning.rst')
         # Position the slides:
         position_slides(tree)
 
         # Get all slide position data:
-        
+
         positions = []
         for step in tree.findall('step'):
             pos = {}
             for key in step.attrib:
                 if key.startswith('data-'):
                     pos[key] = step.attrib[key]
-                    
+
             if 'hovercraft-path' in step.attrib:
                 positions.append((step.attrib['hovercraft-path'], pos))
             else:
                 positions.append(pos)
-        
+
         self.assertEqual(positions, [
             {'data-x': '0', 'data-y': '0'},
              {'data-x': '1600', 'data-y': '0'},
@@ -257,9 +257,8 @@ class PositionTest(unittest.TestCase):
              # Explicit x and y, all other carry over from last slide.
              {'data-x': '3000', 'data-y': '1000', 'data-rotate-z': '90.0', 'data-rotate-x': '180', 'data-z': '1000'},
         ])
-        
-        
+
+
 if __name__ == '__main__':
     unittest.main()
-    
-    
+

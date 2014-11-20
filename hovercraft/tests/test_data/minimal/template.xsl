@@ -8,7 +8,7 @@ xmlns="http://www.w3.org/1999/xhtml">
 <xsl:template match="/" name="main">
 <html>
   <body>
-  
+
     <xsl:for-each select="/document">
       <div id="impress">
         <xsl:if test="@data-transition-duration">
@@ -27,15 +27,15 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates />
           </div>
         </xsl:for-each>
-      </div> 
+      </div>
     </xsl:for-each>
-  
+
   <xsl:for-each select="/document/templateinfo/body/js">
       <script type="text/javascript">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
-  
+
 </body>
 </html>
 </xsl:template>

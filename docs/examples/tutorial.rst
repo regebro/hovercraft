@@ -6,7 +6,7 @@
 
 This slide show is a sort of tutorial of how to use Hovercraft! to make
 presentations. It will show the most important features of Hovercraft! with
-explanations. 
+explanations.
 
 Hopefully you ended up here by the link from the official documentation at
 https://hovercraft.readthedocs.org/ . If not, you probably want to go there
@@ -21,7 +21,7 @@ links to the source code in the Examples section.
 You can render this presentation to HTML with the command::
 
     hovercraft positions.rst outdir
-    
+
 And then view the outdir/index.html file to see how it turned out.
 
 **Now then, on to the tutorial part!**
@@ -52,7 +52,7 @@ how the presentation will look. You can also specify different media for
 the CSS, for example "screen,projection"::
 
     :css-screen,projection: hovercraft.css
-    
+
 This way you can have different CSS for print and for display. You can only
 specify one CSS-file per field, however. If you want to include more you
 need to use the @import directive in CSS.
@@ -115,9 +115,9 @@ All the normal reStructuredText functions are supported in Hovercraft!
   following lines.
 
    - And you can have many levels of bullets.
-   
+
        - Like this.
-    
+
 - There is *Emphasis* and **strong emphasis**, rendered as <em> and <strong>.
 
 ----
@@ -172,13 +172,13 @@ support a presenter console. You add presenter notes in the slide like this:
 
     And then you indent the text afterwards. You can have a lot of formatting
     in the presenter notes, like *emphasis* and **strong** emphasis.
-    
+
     - Even bullet lists!
-    
+
     - Which can be handy!
-    
+
     But you can't have any headings.
-    
+
 
 ----
 
@@ -191,7 +191,7 @@ you use the inline syntax with ``double backticks`` we saw earlier.
 
 If you want a whole block of preformatted text you can use double colons::
 
-    And then you 
+    And then you
     need to indent the block
     of text that
     should be preformatted
@@ -200,11 +200,11 @@ You can even have the double colons on a line by themselves:
 
 ::
 
-    And this text will 
+    And this text will
     now be
-    rendered as 
+    rendered as
     preformatted text
-    
+
 ----
 
 Syntax highlighting
@@ -217,10 +217,10 @@ directive. This enables you to syntax highlight the code.
 
     def day_of_year(month, day):
         return (month - 1) * 30 + day_of_month
-    
+
     def day_of_week(day):
-        return ((day - 1) % 10) + 1 
-    
+        return ((day - 1) % 10) + 1
+
     def weekno(month, day):
         return ((day_of_year(month, day) - 1) // 10) + 1
 
@@ -232,7 +232,7 @@ More code features
 The syntax highlighting is done via docutils by a module called Pygments_
 which support all popular languages, and a lot of unpopular ones as well.
 
-The coloring is done by CSS, if you want to change it, copy the CSS in 
+The coloring is done by CSS, if you want to change it, copy the CSS in
 the highlight.css file and override it in your custom CSS.
 
 .. _Pygments: http://pygments.org/
@@ -253,9 +253,9 @@ To do that, you can simply set a class on the code block.
 
 .. code:: python
     :class: hidden
-    
+
     from datetime import datetime
-    
+
 Add the hidden class in your css:
 
 .. code:: css

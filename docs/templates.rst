@@ -38,18 +38,18 @@ difference, except aestethically.
 The parameters in the [hovercraft] section are:
 
     template     The name of the xsl template.
-    
+
     css          A list of CSS filenames separated by whitespace. These files
-                 will get included in the final file with "all" as the media 
+                 will get included in the final file with "all" as the media
                  specification.
-                 
+
     css-<media>  A list of CSS filenames separated by whitespace. These files
                  will get included in the final file with the media given in
                  the parameter. So the files listed for the parameter
                  "css-print" will get "print" as their media specification
                  and a key like "css-screen,print" will return media
                  "screen,print".
-                 
+
     js-header    A list of filenames separated by whitespace. These files
                  will get included in the target file as header script links.
 
@@ -57,12 +57,12 @@ The parameters in the [hovercraft] section are:
                  will get included in the target file as script links at the
                  end of the file. The files impress.js, impressConsole.js and
                  hovercraft.js typically need to be included here.
-                 
+
     resource     A list of filenames separated by whitespace that will be
                  copied to the target directory, but nothing else is done
                  with them. Images and fonts used by CSS will be copied
                  anyway, but other resources may be added here.
-                 
+
 An example::
 
     [hovercraft]
@@ -74,7 +74,7 @@ An example::
     css-print = css/print.css
 
     js-header = js/dateinput.js
-    
+
     js-body = js/impress.js
               js/impressConsole.js
               js/hovercraft.js

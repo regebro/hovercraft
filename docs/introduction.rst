@@ -21,7 +21,7 @@ presentation on every level, not only by reorganizing slides.**
 
 The solution for me and many others, is to use a text-markup language, like
 reStructuredText, Markdown or similar, and then use a tool that generates an
-HTML slide show from that. 
+HTML slide show from that.
 
 **Text-markup gives you the convenience and freedom to quickly move parts
 around as you like.**
@@ -37,7 +37,7 @@ Pan, rotate and zoom
 The tools that exist to make presentations from text-markup will make
 slideshows that has a sequence of slides from left to right. But the fashion
 now is to have presentations that rotate and zoon in and out. One open source
-solution for that is impress.js_. 
+solution for that is impress.js_.
 
 **With impress.js you can make modern cool presentations.**
 
@@ -65,18 +65,18 @@ There are four ways to position slides:
 
  #. Absolute positioning: You simply add X and Y coordinates to a slide,
     in pixels. Doing only this will not be fun, but someone might need it.
- 
+
  #. Relative positioning: By specifying x and/or y with with a starting r,
     you specify the distance from the previous slide. By using this form of
     positioning you can insert a slide, and the other slides will just move
     to make space for the new slide.
- 
+
  #. Automatically: If you don’t specify any position the slide will end
     up the same distance from the previous slide as the previous slide was
     from it’s previous slide. This defaults to moving 1600px to the right,
     which means that if you supply no positions at all anywhere in the
     presentation, you get the standard boring slide-to-the-left presentation.
-     
+
  #. With an SVG path: In this last way of positioning, you can take an
     SVG path from an SVG document and stick it into the presentation, and that
     slide + all slides following that has no explicit positioning will be

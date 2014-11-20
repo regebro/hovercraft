@@ -9,13 +9,13 @@ def gather_positions(tree):
     for step in tree.findall('step'):
         pos = {'data-x': 'r0', 'data-y': 'r0'}
         explicit_position = False
-        
+
         for key in ('data-x', 'data-y'):
             value = step.get(key)
             if value is not None:
                 explicit_position = True
                 pos[key] = value
-                
+
         if 'hovercraft-path' in step.attrib:
             # Path given
             yield step.attrib['hovercraft-path'], pos
@@ -25,8 +25,8 @@ def gather_positions(tree):
         else:
             # No position given
             yield None
-        
-    
+
+
 def _coord_to_pos(coord):
     return {'data-x': str(int(coord.real)), 'data-y': str(int(coord.imag))}
 
@@ -40,7 +40,7 @@ def _val_to_int(val, cur):
 def _pos_to_cord(coord, current_position):
     return _val_to_int(coord['data-x'], current_position.real) + _val_to_int(coord['data-y'], current_position.imag) * 1j
 
-    
+
 def _path_angle(path, point):
     start = point - 0.01
     end = point + 0.01
@@ -50,7 +50,7 @@ def _path_angle(path, point):
     elif end > 1:
         end = 1
         start -= 0.01
-        
+
     distance = path.point(end) - path.point(start)
     hyp = math.hypot(distance.real, distance.imag)
     result = math.degrees(math.asin(distance.imag/hyp))
@@ -63,33 +63,33 @@ def _path_angle(path, point):
 
     return result
 
-    
+
 def calculate_positions(positions):
     """Calculates position information"""
     last_position = None
     current_movement = DEFAULT_MOVEMENT
-    
+
     positer = iter(positions)
     position = next(positer)
     while True:
-        
+
         # This is an SVG path specification
         if isinstance(position, tuple):
             position, newpos = position
-                    
+
             if last_position is None:
                 first_point = 0
             else:
                 first_point = last_position + current_movement
             first_point = _pos_to_cord(newpos, first_point)
-                
+
             # Paths that end in Z or z are closed.
             closed_path = position.strip()[-1].upper() == 'Z'
-            
+
             # The the first point of the path is absolute,
             # first_point is ignored.
             path = parse_path(position)#, first_point)
-            
+
             # Find out how many positions should be calculated:
             count = 1
             last = False
@@ -102,18 +102,18 @@ def calculate_positions(positions):
                 if position is not None:
                     break
                 count += 1
-        
-            
+
+
             if closed_path:
                 # This path closes in on itself. Skip the last part, so that
                 # the first and last step doesn't overlap.
                 endcount = count + 1
             else:
                 endcount = count
-            
+
             multiplier = (endcount * DEFAULT_MOVEMENT) / path.length()
             offset = path.point(0)
-            
+
             for x in range(count):
                 point = path.point(x/(endcount-1))
                 point = ((point - offset) * multiplier) + first_point
@@ -122,15 +122,15 @@ def calculate_positions(positions):
                 last_position = point
 
                 result = _coord_to_pos(point)
-                
+
                 if not 'data-rotate' in result:
                     rotation = _path_angle(path, x/(endcount-1))
                     result['data-rotate'] = rotation
                     yield result
-            
+
             if last:
                 break
-            
+
         # Calculate path from linear movements.
         elif position is None:
             if last_position is None:
@@ -141,7 +141,7 @@ def calculate_positions(positions):
             position = _coord_to_pos(pos)
             yield position
             position = next(positer)
-            
+
         # Absolute position specified
         else:
             if last_position is None:
@@ -156,8 +156,8 @@ def calculate_positions(positions):
             position.update(_coord_to_pos(pos))
             yield position
             position = next(positer)
-    
-    
+
+
 def update_positions(tree, positions):
     """Updates the tree with new positions"""
     # The persistent positioning variables:
@@ -167,7 +167,7 @@ def update_positions(tree, positions):
                   'data-z': '0',
                   'data-scale': '0',
                   }
-    
+
     for step, pos in zip(tree.findall('step'), positions):
         step.attrib['data-x'] = str(pos['data-x'])
         step.attrib['data-y'] = str(pos['data-y'])
@@ -175,22 +175,22 @@ def update_positions(tree, positions):
             step.attrib['data-rotate'] = str(pos['data-rotate'])
         if 'hovercraft-path' in step.attrib:
             del step.attrib['hovercraft-path']
-        
+
         # data-rotate is an alias for data-rotate-z
-        if 'data-rotate' in step.attrib:            
+        if 'data-rotate' in step.attrib:
             step.attrib['data-rotate-z'] = step.attrib['data-rotate']
             del step.attrib['data-rotate']
-            
+
         for key in persistent:
             if key in step.attrib:
                 persistent[key] = step.attrib[key]
             elif persistent[key] != '0': # Skip if zero.
                 step.attrib[key] = persistent[key]
-        
+
 
 def position_slides(tree):
     """Position the slides in the tree"""
-    
+
     positions = gather_positions(tree)
     positions = calculate_positions(positions)
     update_positions(tree, positions)

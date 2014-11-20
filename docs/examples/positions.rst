@@ -7,7 +7,7 @@ This is a tutorial for Hovercraft! positioning. It's meant to be read as
 You can render this presentation to HTML with the command::
 
     hovercraft positions.rst outdir
-    
+
 And then view the outdir/index.html file to see how it turned out.
 
 If you are seeing this text, and not reading this as source code, you are
@@ -69,19 +69,19 @@ supported by impress.js, they should just work from Hovercraft! as well.
 The ones impress.js currently uses are::
 
     data-x          Position on the X-axis
-    
+
     data-y          Position on the Y-axis
-    
+
     data-z          Position on the Z-axis (which means 3D!)
-    
+
     data-rotate     Rotation in degrees
-    
+
     data-rotate-z   An alias for data-rotate
-    
+
     data-rotate-x   Rotation on the X-axis, which agains means 3D effects
-    
+
     data-rotate-y   Rotation on the Y-axis
-    
+
     data-scale      The size of the slide, which means zooming effects
 
 Let's do some zoom and rotate!
@@ -128,7 +128,7 @@ we need to make room for it, and that means we have to reposition all the
 slides that come after. That quickly becomes annoying.
 
 Hovercraft! therefore supports relative positioning where you just give a
-relative coordinate to the last slide. 
+relative coordinate to the last slide.
 
 ----
 
@@ -190,7 +190,7 @@ SVG paths
 
 You can design the shape in a vector graphics program like Inkscape
 and then lift it out of the SVG file (which are in XML) and use it
-in Hovercraft! 
+in Hovercraft!
 
 This example is an arc.
 
@@ -336,7 +336,7 @@ If you set it too high, you'll find the slide appearing low and upside down.
 Z-space
 =======
 
-But well used it can give an extra wow-factor, 
+But well used it can give an extra wow-factor,
 
 ----
 
