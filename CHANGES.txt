@@ -9,6 +9,9 @@ Changes
 - Having the "Requires Python 3" error when setup.py runs messes with some
   tools, so I moved it to a custom install class instead.
 
+- Now includes a server-mode, that will serve the presentation via http and
+  also re-generate the presentation if the source-files change.
+
 
 1.1 (2013-03-15)
 ----------------
