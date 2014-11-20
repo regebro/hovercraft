@@ -19,7 +19,6 @@ class HovercraftTransitions(Transitions):
         if char not in self._doc_transitions:
             self._doc_transitions.append(char)
         level = self._doc_transitions.index(char) + 1
-        print(level)
         node.attributes['level'] = str(level)
 
         index = node.parent.index(node)
