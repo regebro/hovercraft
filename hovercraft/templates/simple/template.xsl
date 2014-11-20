@@ -6,6 +6,13 @@ xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:import href="resource:templates/reST.xsl" />
 
+<xsl:template match="step" name="step">
+    <div class="step">
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates />
+    </div>
+</xsl:template>
+
 <xsl:template match="/" name="main">
 <html>
   <head>
@@ -25,7 +32,7 @@ xmlns="http://www.w3.org/1999/xhtml">
 
   </head>
   <body class="impress-not-supported">
-  
+
     <xsl:for-each select="/document">
       <div id="impress">
         <xsl:if test="@data-transition-duration">
@@ -44,9 +51,9 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates />
           </div>
         </xsl:for-each>
-      </div> 
+      </div>
     </xsl:for-each>
-  
+
     <div id="hovercraft-help">
       <xsl:if test="not(/document/@skip-help)">
         <xsl:attribute name="class">show</xsl:attribute>
@@ -65,7 +72,7 @@ xmlns="http://www.w3.org/1999/xhtml">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
-  
+
 </body>
 </html>
 </xsl:template>

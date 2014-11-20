@@ -23,7 +23,7 @@ It's fairly simple, you underline headings to mark them as headings::
 
     This becomes a h1
     =================
-    
+
     And this a h2
     -------------
 
@@ -39,21 +39,21 @@ or ``**double asterixes**`` respectively.
 You can also have bullet lists::
 
     * Bullet 1
-    
+
       * Bullet 1.1
-    
+
     * Bullet 2
-    
+
     * Bullet 3
 
 And numbered lists::
-    
+
     1. Item 1
-        
+
         1.1. Item 1.1
-    
+
     2. Item 2
-    
+
     3. Item 3
 
 
@@ -62,7 +62,7 @@ You can include images::
     .. image:: path/to/image.png
         :height: 600px
         :width: 800px
-   
+
 As you see you can also specify height and width and loads of other parameters_, but they
 are all optional.
 
@@ -74,7 +74,7 @@ previous row with double colons, or have a row of double colons by itself::
         This code here will be preformatted
          and shown with a  monospaced font
         and    all    spaces     preserved.
-        
+
 If you want to add source code, you can use the ``code`` directive, and get
 syntax highlighting::
 
@@ -111,7 +111,7 @@ Images or fonts referenced by absolute paths or URI's will not be copied.
 Styling your Presentation
 -------------------------
 
-The css that is included by the default template are three files. 
+The css that is included by the default template are three files.
 
 * ``impressConsole.css`` contains the CSS needed for the presenter console to work,
 
@@ -127,13 +127,13 @@ For this reason you want to include your own CSS to style your slides. To
 include a CSS file you add a ``:css:``-field at the top of the presentation::
 
     :css: css/presentation.css
-    
+
 You can also optionally specify that the css should be only valid for certain
 CSS media::
 
     :css-screen,projection: css/presentation.css
     :css-print: css/print.css
-    
+
 You can specify any number of css files in this way.
 
 You can also add one extra CSS-file via a command-line parameter:
@@ -197,14 +197,14 @@ current version, are the following:
 * **data-transition-duration**: The time it will take to move from one slide to
   another. Defaults to 1000 (1 second). This is only valid on the presentation
   as a whole.
-                                
+
 * **data-perspective**: Controls the "perspective" in the 3d effects. It
   defaults to 500. Setting it to 0 disables 3D effects.
 
 * **data-x**: The horizontal position of a slide in pixels. Can be negative.
-    
+
 * **data-y**: The vertical position of a slide in pixels. Can be negative.
-    
+
 * **data-scale**: Sets the scale of a slide, which is what creates the zoom.
   Defaults to 1. A value of 4 means the slide is four times larger. In short:
   Lower means zooming in, higher means zooming out.
@@ -213,13 +213,13 @@ current version, are the following:
   will cause the slide to be rotated clockwise or counter-clockwise.
 
 * **data-rotate**: The same as **data-rotate-z**.
-                                    
+
 * **data-rotate-x**: The rotation of a slide in the x-axis, in degrees. This
   means you are moving the slide in a third dimension compared with other
   slides. This is generally cooll effect, if used right.
 
 * **data-rotate-y**: The rotation of a slide in the x-axis, in degrees.
-                                
+
 * **data-z**: This controls the position of the slide on the z-axis. Setting
   this value to -3000 means it's positioned -3000 pixels away. This is only
   useful when you use **data-rotate-x** or **data-rotate-y**, otherwise it will
@@ -236,6 +236,16 @@ different slides or steps. A transition is simply a line with four or more
 dashes::
 
     ----
+
+You don't have to use dashes, you can use any of the characters used to
+underline headings, ``= - ` : . ' " ~ ^ _ * + #``. And just as width
+headings, using different characters indicates different "levels". In this
+way you can make a hierarchical presentation, with steps and substeps.
+However, impress.js does not support that, so this is only useful
+if you make your own templates that uses another Javascript library, for
+example Reveal.js_. If you have more than one transition level with
+the templates included with Hovercraft, the resulting presentation may
+behave strangely.
 
 All reStructuredText fields are converted into attributes on the current tag.
 Most of these will typically be ignored by the rendering to HTML, but there
@@ -262,14 +272,14 @@ A presentation can therefore look something like this::
     :skip-help: true
 
     .. title: Presentation Title
-    
+
     ----
 
     This is the first slide
     =======================
-    
+
     Here comes some text.
-    
+
     ----
 
     :data-x: 300
@@ -277,13 +287,13 @@ A presentation can therefore look something like this::
 
     This is the second slide
     ========================
-    
+
     #. Here we have
-    
+
     #. A numbered list
-    
-    #. It will get correct 
-    
+
+    #. It will get correct
+
     #. Numbers automatically
 
 
@@ -296,7 +306,7 @@ slide 500 pixels to the right and a thousand pixels above the previous slide::
 
     :data-x: r500
     :data-y: r-1000
-    
+
 Relative paths allow you to insert and remove slides and have other slides
 adjust automatically. It's probably the most useful way of positioning.
 
@@ -398,13 +408,13 @@ included with Hovercraft!
 
     hovercraft.rst_
         The demo presentation you can see at http://regebro.github.com/hovercraft
-    
+
     tutorial.rst_
         A step by step guide to the features of Hovercraft!
-    
+
     positions.rst_
         An explanation of how to use the positioning features.
-    
+
 
 .. _documentation: http://docutils.sourceforge.net/docs/index.html
 .. _parameters: http://docutils.sourceforge.net/docs/ref/rst/directives.html#images
@@ -414,3 +424,4 @@ included with Hovercraft!
 .. _hovercraft.rst: ./_sources/examples/hovercraft.txt
 .. _tutorial.rst: ./_sources/examples/tutorial.txt
 .. _positions.rst: ./_sources/examples/positions.txt
+.. _Reveal.js: http://lab.hakim.se/reveal-js/
