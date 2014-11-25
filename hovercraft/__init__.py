@@ -115,6 +115,10 @@ def main():
 
     args = parser.parse_args()
 
+    # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
+    if not args.template in ('simple', 'default'):
+        args.template = os.path.abspath(args.template)
+
     if args.targetdir:
         # Generate the presentation
         generate(args)
@@ -131,7 +135,6 @@ def main():
             thread = threading.Thread(target=generate_and_observe, args=(args, event))
             try:
                 # Serve presentation
-                os.chdir(targetdir)
                 if ':' in args.port:
                     bind, port = args.port.split(':')
                 else:
@@ -140,6 +143,7 @@ def main():
 
                 # First create the server. This checks that we can connect to
                 # the port we want to.
+                os.chdir(targetdir)
                 server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
                 print("Serving HTTP on", bind, "port", port, "...")
 

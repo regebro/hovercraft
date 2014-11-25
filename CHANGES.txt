@@ -12,6 +12,13 @@ Changes
 - Now includes a server-mode, that will serve the presentation via http and
   also re-generate the presentation if the source-files change.
 
+- Added support for multiple levels of slides. This is to make it able
+  to support for example Reveal.js through external templates.
+
+- Moved the "note" XML transformation into the templates, as this is an
+  impress.js feature, and other libraries, such as Reveal.js, will render
+  it differently.
+
 
 1.1 (2013-03-15)
 ----------------

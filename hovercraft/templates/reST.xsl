@@ -455,11 +455,6 @@ Modification by Carl Mayer, 2013:
 	</xsl:element>
 </xsl:template>
 
-<!-- Make a note into a div with a notes class, for Hovercraft! -->
-<xsl:template match="note">
-	<div class="notes"><xsl:apply-templates /></div>
-</xsl:template>
-
 <xsl:template match="inline">
 	<span>
 		<xsl:attribute name="class">

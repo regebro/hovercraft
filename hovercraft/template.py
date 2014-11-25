@@ -50,7 +50,7 @@ class Template(object):
             self.template = '/templates/%s/' % template
         else:
             self.builtin_template = False
-            self.template = template
+            self.template = os.path.abspath(template)
 
         self._load_template_config()
         self._load_template_xsl()
