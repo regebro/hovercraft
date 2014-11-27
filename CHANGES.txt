@@ -16,23 +16,20 @@ Changes
   and then have no coordinates on other slides, your positioning may no longer
   be correct with version 2.0.
 
+- IMPORTANT! Moved the "note" XML transformation into the templates, as this is an
+  impress.js feature, and other libraries, such as Reveal.js, will render it
+  differently. If you make your own templates, you need to update them accordingly!
+
 - Relative coordinates (starting with r) are now supported for all positioning,
   attributes including rotation and scaling.
-
-- Images can now also have a :class: attribute.
-
-- Having the "Requires Python 3" error when setup.py runs messes with some
-  tools, so I moved it to a custom install class instead.
 
 - Now includes a server-mode, that will serve the presentation via http and
   also re-generate the presentation if the source-files change.
 
+- Images can now also have a :class: attribute.
+
 - Added support for multiple levels of slides. This is to make it able
   to support for example Reveal.js through external templates.
-
-- Moved the "note" XML transformation into the templates, as this is an
-  impress.js feature, and other libraries, such as Reveal.js, will render
-  it differently.
 
 
 1.1 (2013-03-15)
