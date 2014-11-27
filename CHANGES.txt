@@ -1,8 +1,8 @@
 Changes
 =======
 
-1.2 (unreleased)
-----------------
+2.0b1 (2014-11-27)
+------------------
 
 - IMPORTANT! The positioning has been reimplemented. The most important change
   is that there is no longer any calculation of relative movement when you use

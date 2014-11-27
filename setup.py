@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 import sys
 
-version = '1.2.dev0'
+version = '2.0b1'
 
 with open('README.rst', 'rt') as readme:
     description = readme.read()
@@ -31,7 +31,7 @@ setup(name='hovercraft',
                    'Programming Language :: Python :: 3.2',
                    'Programming Language :: Python :: 3.3',
                    'Programming Language :: Python :: 3.4',
-                   'License :: MIT',
+                   'License :: OSI Approved :: MIT License',
                    ],
       keywords='presentations restructuredtext',
       author='Lennart Regebro',

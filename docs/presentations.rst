@@ -341,7 +341,6 @@ placed on this path.
 
 There are some things you need to be careful about when using SVG paths.
 
-
 Relative and absolute coordinates
 .................................
 
