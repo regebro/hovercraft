@@ -203,17 +203,11 @@ def update_positions(tree, positions):
     """Updates the tree with new positions"""
 
     for step, pos in zip(tree.findall('step'), positions):
-        for key in pos:
+        for key in sorted(pos):
             step.attrib[key] = str(pos[key])
 
-        #if 'hovercraft-path' in step.attrib:
-            #del step.attrib['hovercraft-path']
-
-        #for key in persistent:
-            #if key in step.attrib:
-                #persistent[key] = step.attrib[key]
-            #elif persistent[key] != '0': # Skip if zero.
-                #step.attrib[key] = persistent[key]
+        if 'hovercraft-path' in step.attrib:
+            del step.attrib['hovercraft-path']
 
 
 def position_slides(tree):

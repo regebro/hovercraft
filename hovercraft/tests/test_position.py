@@ -327,8 +327,6 @@ class CalculateTests(unittest.TestCase):
 
 class PositionTest(unittest.TestCase):
 
-    maxDiff = None
-
     def test_complete(self):
         tree = make_tree('positioning.rst')
         # Position the slides:
