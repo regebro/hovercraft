@@ -8,11 +8,13 @@ from hovercraft.position import gather_positions, calculate_positions, position_
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
+
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
     rst = resource_string(__name__, os.path.join('test_data', file_name))
     xml = rst2xml(rst)
     return SlideMaker(etree.fromstring(xml)).walk()
+
 
 class GatherTests(unittest.TestCase):
     """Tests that position information is correctly parsed"""
@@ -22,7 +24,7 @@ class GatherTests(unittest.TestCase):
 
         positions = list(gather_positions(tree))
 
-        self.assertEqual(positions,[
+        self.assertEqual(positions, [
             {'data-x': 'r0', 'data-y': 'r0', 'data-z': 'r0',
              'data-rotate-x': 'r0', 'data-rotate-y': 'r0',
              'data-rotate-z': 'r0', 'data-scale': '1', 'is_path': False},
@@ -125,7 +127,6 @@ class CalculateTests(unittest.TestCase):
              'data-rotate-z': 0, 'data-scale': 1},
         ])
 
-
     def test_relative_positioning(self):
         # Relative positioning is probably the most useful positioning.
         # It allows you to insert or remove a slide, and everything adjusts.
@@ -197,7 +198,8 @@ class CalculateTests(unittest.TestCase):
     def test_absolute_path(self):
         # Position slides along a path
         positions = [
-            {'data-x': 'r0', 'data-y': 'r0', 'path': 'M 100 100 L 300 100 L 300 300', 'is_path': True},
+            {'data-x': 'r0', 'data-y': 'r0', 'path': 'M 100 100 L 300 100 L 300 300',
+             'is_path': True},
             {'is_path': True},
             {'is_path': True},
             {'is_path': True},
@@ -230,8 +232,8 @@ class CalculateTests(unittest.TestCase):
             {'data-x': 'r1600', 'data-y': 'r0'},
             {'data-x': 'r1600', 'data-y': 'r0', 'is_path': True,
              'path': 'm 100 100 l 200 0 l 0 200', },
-            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True,},
-            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True,},
+            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True},
+            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True},
             {'data-x': 'r1600', 'data-y': 'r0'},
             {'data-x': 'r0', 'data-y': 'r2400'},
         ]
@@ -265,12 +267,12 @@ class CalculateTests(unittest.TestCase):
              'data-rotate-z': 90.0, 'data-scale': 1},
         ])
 
-
     def test_complex_path(self):
         positions = [
-            {'data-x': 'r0', 'data-y': 'r0',},
-            {'data-x': 'r1600', 'data-y': 'r0',},
-            {'data-x': 'r1600', 'data-y': 'r0', 'path': 'm 100 100 l 200 0 l 0 200', 'is_path': True},
+            {'data-x': 'r0', 'data-y': 'r0'},
+            {'data-x': 'r1600', 'data-y': 'r0'},
+            {'data-x': 'r1600', 'data-y': 'r0', 'path': 'm 100 100 l 200 0 l 0 200',
+             'is_path': True},
             {'is_path': True},
             {'is_path': True},
             # Note that we don't change the rotation, so it stays at 90, here.
@@ -324,6 +326,7 @@ class CalculateTests(unittest.TestCase):
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 1},
         ])
+
 
 class PositionTest(unittest.TestCase):
 
@@ -392,4 +395,3 @@ class PositionTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

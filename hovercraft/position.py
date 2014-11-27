@@ -2,7 +2,7 @@ import math
 
 from svg.path import parse_path
 
-DEFAULT_MOVEMENT = 1600 # If no other movement is specified, go 1600px to the right.
+DEFAULT_MOVEMENT = 1600  # If no other movement is specified, go 1600px to the right.
 POSITION_ATTRIBS = ['data-x', 'data-y', 'data-z', 'data-rotate-x',
                     'data-rotate-y', 'data-rotate-z', 'data-scale']
 
@@ -87,10 +87,10 @@ def _path_angle(path, point):
 
     distance = path.point(end) - path.point(start)
     hyp = math.hypot(distance.real, distance.imag)
-    result = math.degrees(math.asin(distance.imag/hyp))
+    result = math.degrees(math.asin(distance.imag / hyp))
 
     if distance.real < 0:
-        result = -180-result
+        result = -180 - result
 
     if abs(result) < 0.1:
         result = 0
@@ -178,12 +178,12 @@ def calculate_positions(positions):
             path_iter = iter(deferred_positions)
             for x in range(count):
 
-                point = path.point(x/(endcount-1))
+                point = path.point(x / (endcount - 1))
                 point = ((point - offset) * multiplier) + first_point
 
                 current_position.update(_coord_to_pos(point))
 
-                rotation = _path_angle(path, x/(endcount-1))
+                rotation = _path_angle(path, x / (endcount - 1))
                 current_position['data-rotate-z'] = rotation
                 yield current_position.copy()
                 position = next(path_iter)

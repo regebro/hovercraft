@@ -7,6 +7,7 @@ from hovercraft.template import (Template, CSS_RESOURCE, JS_RESOURCE,
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
+
 class TemplateInfoTests(unittest.TestCase):
     """Tests that template information is correctly parsed"""
 
@@ -25,7 +26,8 @@ class TemplateInfoTests(unittest.TestCase):
         template_files = [each.filepath for each in template_info.resources]
         self.assertIn('js/impress.js', template_files)
         self.assertIn('js/hovercraft-minimal.js', template_files)
-        css_files = list(each.filepath for each in template_info.resources if each.resource_type == CSS_RESOURCE)
+        css_files = list(each.filepath for each in template_info.resources if
+                         each.resource_type == CSS_RESOURCE)
         self.assertEqual(len(css_files), 0)
         self.assertEqual(template_info.doctype, b'<!DOCTYPE html>')
 
@@ -88,7 +90,6 @@ class TemplateInfoNodeTests(unittest.TestCase):
             b'<body><js src="js/impress.js"/><js src="js/impressConsole.js"/>'
             b'<js src="js/hovercraft.js"/>'
             b'</body></templateinfo>'))
-
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ from hovercraft.tests.test_data import HTML_OUTPUTS
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
+
 class GeneratorTests(unittest.TestCase):
     """Tests that the resulting HTML is correct.
 
@@ -26,7 +27,6 @@ class GeneratorTests(unittest.TestCase):
         template = Template(os.path.join(TEST_DATA, 'maximal'))
         html = rst2html(os.path.join(TEST_DATA, 'presenter-notes.rst'), template)
         self.assertEqual(html, HTML_OUTPUTS['presenter-notes'])
-
 
     def test_skip_presenter_notes(self):
         template = Template(os.path.join(TEST_DATA, 'maximal'))
@@ -60,5 +60,3 @@ class GeneratorTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
