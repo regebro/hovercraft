@@ -67,48 +67,6 @@ class GatherTests(unittest.TestCase):
 class CalculateTests(unittest.TestCase):
     """Tests that positions are correctly calculated"""
 
-    maxDiff = None
-
-    def test_no_position(self):
-        # Ten slides, none have any position information:
-        positions = [None] * 10
-
-        positions = list(calculate_positions(positions))
-
-        self.assertEqual(positions, [
-            {'data-x': 0, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 1600, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 3200, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 4800, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 6400, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 8000, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 9600, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 11200, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 12800, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': 14400, 'data-y': 0, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-        ])
-
-
     def test_square(self):
         # Slides, positioned in a square
         positions = [
@@ -239,31 +197,31 @@ class CalculateTests(unittest.TestCase):
     def test_absolute_path(self):
         # Position slides along a path
         positions = [
-            ('M 100 100 L 300 100 L 300 300',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None,
-            None,
-            None,
-            None,
+            {'data-x': 'r0', 'data-y': 'r0', 'path': 'M 100 100 L 300 100 L 300 300', 'is_path': True},
+            {'is_path': True},
+            {'is_path': True},
+            {'is_path': True},
+            {'is_path': True},
         ]
 
         positions = list(calculate_positions(positions))
 
         self.assertEqual(positions, [
-            {'data-rotate': 0, 'data-x': 0, 'data-y': 0, 'data-z': 0,
+            {'data-x': 0, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 0, 'data-x': 2000, 'data-y': 0, 'data-z': 0,
+            {'data-x': 2000, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 44.99999999999999, 'data-x': 4000, 'data-y': 0, 'data-z': 0,
+            {'data-x': 4000, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 90.0, 'data-x': 4000, 'data-y': 2000, 'data-z': 0,
+             'data-rotate-z': 44.99999999999999, 'data-scale': 0},
+            {'data-x': 4000, 'data-y': 2000, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 90.0, 'data-x': 4000, 'data-y': 4000, 'data-z': 0,
+             'data-rotate-z': 90.0, 'data-scale': 0},
+            {'data-x': 4000, 'data-y': 4000, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
+             'data-rotate-z': 90.0, 'data-scale': 0},
         ])
 
     def test_relative_path(self):
@@ -272,9 +230,8 @@ class CalculateTests(unittest.TestCase):
             {'data-x': 'r1600', 'data-y': 'r0'},
             {'data-x': 'r1600', 'data-y': 'r0', 'is_path': True,
              'path': 'm 100 100 l 200 0 l 0 200', },
-            # X and Y are only used on the first path, then ignored.
-            {'data-x': 'r1600', 'data-y': 'r0', 'is_path': True,},
-            {'data-x': 'r1600', 'data-y': 'r0', 'is_path': True,},
+            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True,},
+            {'data-x': 'r0', 'data-y': 'r0', 'is_path': True,},
             {'data-x': 'r1600', 'data-y': 'r0'},
             {'data-x': 'r0', 'data-y': 'r2400'},
         ]
@@ -294,16 +251,16 @@ class CalculateTests(unittest.TestCase):
             # This point is exactly on a 90 degree angle. Therefore,
             # it's angle is calculated as 45 degrees, it being the
             # average.
-            {'data-x': 4800, 'data-y': 0, 'data-z': 0,
+            {'data-x': 5600, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 44.99999999999999, 'data-scale': 0},
-            {'data-x': 4800, 'data-y': 1600, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 90, 'data-scale': 0},
-            {'data-x': 6400, 'data-y': 1600, 'data-z': 0,
+            {'data-x': 5600, 'data-y': 2400, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 90.0, 'data-scale': 0},
-            {'data-x': 7200, 'data-y': 4000, 'data-z': 0,
+            {'data-x': 7200, 'data-y': 2400, 'data-z': 0,
+             'data-rotate-x': 0, 'data-rotate-y': 0,
+             'data-rotate-z': 90.0, 'data-scale': 0},
+            {'data-x': 7200, 'data-y': 4800, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 90.0, 'data-scale': 0},
         ])
@@ -311,17 +268,19 @@ class CalculateTests(unittest.TestCase):
 
     def test_complex_path(self):
         positions = [
-            None,
-            None,
-            ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None,
-            None,
+            {'data-x': 'r0', 'data-y': 'r0',},
+            {'data-x': 'r1600', 'data-y': 'r0',},
+            {'data-x': 'r1600', 'data-y': 'r0', 'path': 'm 100 100 l 200 0 l 0 200', 'is_path': True},
+            {'is_path': True},
+            {'is_path': True},
+            # Note that we don't change the rotation, so it stays at 90, here.
             {'data-x': '0', 'data-y': '0'},
-            None,
-            ('m 100 100 l 200 0 l 0 200',  {'data-x': 'r0', 'data-y': 'r0'}),
-            None,
-            None,
-            {'data-x': '3000', 'data-y': '1000'},
+            # No new x and y, previous was absolute: Stay still!
+            {},
+            {'data-x': 'r0', 'data-y': 'r0', 'path': 'm 100 100 l 200 0 l 0 200', 'is_path': True},
+            {'is_path': True},
+            {'is_path': True},
+            {'data-x': '3000', 'data-y': '1000', 'data-rotate-z': '0'},
         ]
 
         positions = list(calculate_positions(positions))
@@ -333,36 +292,42 @@ class CalculateTests(unittest.TestCase):
             {'data-x': 1600, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 0, 'data-x': 3200, 'data-y': 0, 'data-z': 0,
+            {'data-x': 3200, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 44.99999999999999, 'data-x': 5600, 'data-y': 0, 'data-z': 0,
+            {'data-x': 5600, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 90.0, 'data-x': 5600, 'data-y': 2400, 'data-z': 0,
+             'data-rotate-z': 44.99999999999999, 'data-scale': 0},
+            {'data-x': 5600, 'data-y': 2400, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
+             'data-rotate-z': 90.0, 'data-scale': 0},
+            # Note that we don't change the rotation, so it stays at 90, here.
+            {'data-x': 0, 'data-y': 0, 'data-z': 0,
+             'data-rotate-x': 0, 'data-rotate-y': 0,
+             'data-rotate-z': 90.0, 'data-scale': 0},
+            # No settings, still same place and rotation.
+            {'data-x': 0, 'data-y': 0, 'data-z': 0,
+             'data-rotate-x': 0, 'data-rotate-y': 0,
+             'data-rotate-z': 90.0, 'data-scale': 0},
+            # We start a path, but x and y are r0, so no movement.
+            # However, the rotation will come from the path, so it resets to 0.
             {'data-x': 0, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
-            {'data-x': -5600, 'data-y': -2400, 'data-z': 0,
+            {'data-x': 2400, 'data-y': 0, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 0, 'data-x': -11200, 'data-y': -4800, 'data-z': 0,
+             'data-rotate-z': 44.99999999999999, 'data-scale': 0},
+            {'data-x': 2400, 'data-y': 2400, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 44.99999999999999, 'data-x': -8800, 'data-y': -4800, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
-            {'data-rotate': 90.0, 'data-x': -8800, 'data-y': -2400, 'data-z': 0,
-             'data-rotate-x': 0, 'data-rotate-y': 0,
-             'data-rotate-z': 0, 'data-scale': 0},
+             'data-rotate-z': 90.0, 'data-scale': 0},
             {'data-x': 3000, 'data-y': 1000, 'data-z': 0,
              'data-rotate-x': 0, 'data-rotate-y': 0,
              'data-rotate-z': 0, 'data-scale': 0},
         ])
 
 class PositionTest(unittest.TestCase):
+
+    maxDiff = None
 
     def test_complete(self):
         tree = make_tree('positioning.rst')
@@ -378,30 +343,52 @@ class PositionTest(unittest.TestCase):
                 if key.startswith('data-'):
                     pos[key] = step.attrib[key]
 
-            if 'hovercraft-path' in step.attrib:
-                positions.append((step.attrib['hovercraft-path'], pos))
-            else:
-                positions.append(pos)
+            positions.append(pos)
 
         self.assertEqual(positions, [
-            {'data-x': '0', 'data-y': '0'},
-             {'data-x': '1600', 'data-y': '0'},
-             # Because of the path, we now get an explicit rotation:
-             {'data-x': '3200', 'data-y': '0', 'data-rotate-z': '0'},
-             {'data-x': '5600', 'data-y': '0', 'data-rotate-z': '44.99999999999999'},
-             {'data-x': '5600', 'data-y': '2400', 'data-rotate-z': '90.0'},
-             # Rotation carries over from last part of path.
-             {'data-x': '0', 'data-y': '0', 'data-rotate-z': '90.0'},
-             {'data-x': '-5600', 'data-y': '-2400', 'data-rotate-z': '90'},
-             # The explicit rotate should continue here:
-             {'data-x': '-11200', 'data-y': '-4800', 'data-rotate-z': '90'},
-             # Path starts, rotation comes from path:
-             {'data-x': '-16800', 'data-y': '-7200', 'data-rotate-z': '0'},
-             {'data-x': '-14400', 'data-y': '-7200', 'data-rotate-z': '44.99999999999999'},
-             # Explicit rotate-x and z, automatic position including rotate-z from path.
-             {'data-x': '-14400', 'data-y': '-4800', 'data-rotate-z': '90.0', 'data-rotate-x': '180', 'data-z': '1000'},
-             # Explicit x and y, all other carry over from last slide.
-             {'data-x': '3000', 'data-y': '1000', 'data-rotate-z': '90.0', 'data-rotate-x': '180', 'data-z': '1000'},
+            {'data-x': '0', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '0', 'data-scale': '0'},
+            {'data-x': '1600', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '0', 'data-scale': '0'},
+            # Because of the path, we now get an explicit rotation:
+            {'data-x': '3200', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '0', 'data-scale': '0'},
+            {'data-x': '5600', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '44.99999999999999', 'data-scale': '0'},
+            {'data-x': '5600', 'data-y': '2400', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '0'},
+            # Rotation carries over from last part of path.
+            {'data-x': '0', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '0'},
+            # No position change
+            {'data-x': '0', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '90', 'data-scale': '0'},
+            # No change at all.
+            {'data-x': '0', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '90', 'data-scale': '0'},
+            # Path starts, rotation comes from path:
+            {'data-x': '0', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '0', 'data-scale': '0'},
+            {'data-x': '2400', 'data-y': '0', 'data-z': '0',
+             'data-rotate-x': '0', 'data-rotate-y': '0',
+             'data-rotate-z': '44.99999999999999', 'data-scale': '0'},
+            # Explicit rotate-x and z, automatic position including rotate-z from path.
+            {'data-x': '2400', 'data-y': '2400', 'data-z': '1000',
+             'data-rotate-x': '180', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '0'},
+            # Explicit x and y, all other carry over from last slide.
+            {'data-x': '3000', 'data-y': '1000', 'data-z': '1000',
+             'data-rotate-x': '180', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '0'},
         ])
 
 

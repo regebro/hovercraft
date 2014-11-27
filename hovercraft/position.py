@@ -2,7 +2,7 @@ import math
 
 from svg.path import parse_path
 
-DEFAULT_MOVEMENT = 1600
+DEFAULT_MOVEMENT = 1600 # If no other movement is specified, go 1600px to the right.
 POSITION_ATTRIBS = ['data-x', 'data-y', 'data-z', 'data-rotate-x',
                     'data-rotate-y', 'data-rotate-z', 'data-scale']
 
@@ -93,10 +93,22 @@ def _path_angle(path, point):
 
     return result
 
+def _update_position(pos1, pos2):
+
+    for key in POSITION_ATTRIBS:
+        val = pos2.get(key)
+        if val is not None:
+            if val[0] == 'r':
+                # Relative movement
+                newval = pos1[key] + int(val[1:])
+            else:
+                newval = int(val)
+            pos1[key] = newval
+
 
 def calculate_positions(positions):
     """Calculates position information"""
-    last_position = {'data-x': 0,
+    current_position = {'data-x': 0,
                      'data-y': 0,
                      'data-z': 0,
                      'data-rotate-x': 0,
@@ -107,25 +119,15 @@ def calculate_positions(positions):
 
     positer = iter(positions)
     position = next(positer)
+    _update_position(current_position, position)
 
     while True:
-        for key in POSITION_ATTRIBS:
-            val = position.get(key)
-            if val:
-                if val[0] == 'r':
-                    # Relative movement
-                    print(last_position)
-                    newval = last_position[key] + int(val[1:])
-                else:
-                    newval = int(val)
-                last_position[key] = newval
 
         if 'path' in position:
-            import pdb;pdb.set_trace()
             # Start of a new path!
             path = position['path']
             # Follow the path specification
-            first_point = _pos_to_cord(last_position)
+            first_point = _pos_to_cord(current_position)
 
             # Paths that end in Z or z are closed.
             closed_path = path.strip()[-1].upper() == 'Z'
@@ -134,9 +136,11 @@ def calculate_positions(positions):
             # Find out how many positions should be calculated:
             count = 1
             last = False
+            deferred_positions = []
             while True:
                 try:
                     position = next(positer)
+                    deferred_positions.append(position)
                 except StopIteration:
                     last = True  # This path goes to the end
                     break
@@ -156,26 +160,31 @@ def calculate_positions(positions):
             else:
                 endcount = count
 
-            multiplier = ((endcount - 1 ) * DEFAULT_MOVEMENT) / path.length()
+            multiplier = (endcount * DEFAULT_MOVEMENT) / path.length()
             offset = path.point(0)
 
+            path_iter = iter(deferred_positions)
             for x in range(count):
+
                 point = path.point(x/(endcount-1))
                 point = ((point - offset) * multiplier) + first_point
 
-                last_position.update(_coord_to_pos(point))
+                current_position.update(_coord_to_pos(point))
 
                 rotation = _path_angle(path, x/(endcount-1))
-                last_position['data-rotate-z'] = rotation
-                yield last_position.copy()
+                current_position['data-rotate-z'] = rotation
+                yield current_position.copy()
+                position = next(path_iter)
+                _update_position(current_position, position)
 
             if last:
                 break
 
             continue
 
-        yield last_position.copy()
+        yield current_position.copy()
         position = next(positer)
+        _update_position(current_position, position)
 
 
 def update_positions(tree, positions):
