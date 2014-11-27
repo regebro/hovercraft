@@ -1,12 +1,13 @@
 import os
 import sys
-from  tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory
 import unittest
 
 from hovercraft import main
 from hovercraft.tests.test_data import HTML_OUTPUTS
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
+
 
 class HTMLTests(unittest.TestCase):
     """Test the procedure from rst to html"""
@@ -45,7 +46,8 @@ class HTMLTests(unittest.TestCase):
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['extra_css'])
 
             out_files = os.listdir(tmpdir)
-            self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
+            self.assertEqual(set(out_files),
+                             {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
 
     def test_big(self):
         with TemporaryDirectory() as tmpdir:
@@ -64,9 +66,11 @@ class HTMLTests(unittest.TestCase):
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['advanced'])
 
             out_files = os.listdir(tmpdir)
-            self.assertEqual(set(out_files), {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
+            self.assertEqual(set(out_files),
+                             {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
-            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
+            self.assertEqual(set(js_files),
+                             {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
@@ -78,7 +82,6 @@ class HTMLTests(unittest.TestCase):
                 'texgyreschola-regular-webfont.woff',
                 'texgyreschola-regular-webfont.svg',
             })
-
 
     def test_skip_notes(self):
         with TemporaryDirectory() as tmpdir:
@@ -100,7 +103,8 @@ class HTMLTests(unittest.TestCase):
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images', 'fonts'})
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
-            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
+            self.assertEqual(set(js_files),
+                             {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
@@ -112,7 +116,6 @@ class HTMLTests(unittest.TestCase):
                 'texgyreschola-regular-webfont.woff',
                 'texgyreschola-regular-webfont.svg',
             })
-
 
     def test_default_template(self):
         with TemporaryDirectory() as tmpdir:
@@ -155,7 +158,6 @@ class HTMLTests(unittest.TestCase):
                 result = outfile.read()
                 self.assertIn(b'auto-console="True"', result)
 
-
     def test_subdirectory_css(self):
         with TemporaryDirectory() as tmpdir:
             sys.argv = [
@@ -169,7 +171,8 @@ class HTMLTests(unittest.TestCase):
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
-            self.assertEqual(set(css_files), {'hovercraft.css', 'highlight.css', 'sub.css', 'impressConsole.css'})
+            self.assertEqual(set(css_files),
+                             {'hovercraft.css', 'highlight.css', 'sub.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
 

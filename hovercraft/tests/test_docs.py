@@ -3,6 +3,7 @@ import manuel.codeblock
 import manuel.testing
 import unittest
 
+
 def additional_tests():
     m = manuel.doctest.Manuel()
     m += manuel.codeblock.Manuel()
@@ -10,4 +11,3 @@ def additional_tests():
 
 if __name__ == '__main__':
     unittest.TextTestRunner().run(additional_tests())
-

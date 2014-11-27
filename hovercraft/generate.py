@@ -8,6 +8,7 @@ from .parse import rst2xml, SlideMaker
 from .position import position_slides
 from .template import Template, CSS_RESOURCE
 
+
 class ResourceResolver(etree.Resolver):
 
     def resolve(self, url, pubid, context):
@@ -32,7 +33,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
 
     # Pick up CSS information from the tree:
     for attrib in tree.attrib:
-        if attrib.startswith ('css'):
+        if attrib.startswith('css'):
             if '-' in attrib:
                 dummy, media = attrib.split('-', 1)
             else:
@@ -70,6 +71,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
 
     return template_info.doctype + result
 
+
 def copy_resource(filename, sourcedir, targetdir):
     if filename[0] == '/' or ':' in filename:
         # Absolute path or URI: Do nothing
@@ -89,6 +91,7 @@ def copy_resource(filename, sourcedir, targetdir):
     shutil.copy2(sourcepath, targetpath)
     return sourcepath  # Monitor this file
 
+
 def generate(args):
     """Generates the presentation and returns a list of files used"""
 
@@ -103,7 +106,8 @@ def generate(args):
         source_files.append(args.css)
 
     # Make the resulting HTML
-    htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help, args.skip_notes)
+    htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help,
+                        args.skip_notes)
 
     # Write the HTML out
     if not os.path.exists(args.targetdir):
@@ -135,7 +139,8 @@ def generate(args):
         uris = [uri.decode() for uri in uris]
         if resource.is_in_template and template_info.builtin_template:
             for filename in uris:
-                template_info.add_resource(filename, OTHER_RESOURCE, target=css_targetdir, is_in_template=True)
+                template_info.add_resource(filename, OTHER_RESOURCE, target=css_targetdir,
+                                           is_in_template=True)
         else:
             for filename in uris:
                 source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))

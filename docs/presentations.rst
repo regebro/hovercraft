@@ -314,10 +314,11 @@ adjust automatically. It's probably the most useful way of positioning.
 Automatic positioning
 ---------------------
 
-If you don't specify either ``:data-x:`` or ``:data-y:`` the slide position
-will be automatic. That simply means it will move in the same direction
-and distance as the previous slide. This gives a linear movement, and your
-slides will end up in a straight line.
+If you don't specify an attribute, the slide settings
+will be the same as the previous slide. This means that if you used a
+relative positioning, the next slide will move the same distance.
+
+This gives a linear movement, and your slides will end up in a straight line.
 
 By default the movement is 1600 pixels to the right, which means that if you
 don't position any slides at all, you get a standard presentation where the
@@ -340,6 +341,7 @@ placed on this path.
 
 There are some things you need to be careful about when using SVG paths.
 
+
 Relative and absolute coordinates
 .................................
 
@@ -351,7 +353,7 @@ Specifically, if you take an SVG path that starts with a relative movement
 and extract that from the SVG document, you will lose the context. All
 coordinates later must then also be relative. If you have an absolute
 coordinate you then suddenly regain the context, and everything after the
-first absolute corrdinate will be misplaced compared to the points that come
+first absolute coordinate will be misplaced compared to the points that come
 before.
 
 Most notable, the open source software "Inkscape" will mix absolute and

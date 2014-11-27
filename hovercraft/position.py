@@ -2,43 +2,77 @@ import math
 
 from svg.path import parse_path
 
-DEFAULT_MOVEMENT = 1600 # If no other movement is specified, go 1600px to the right.
+DEFAULT_MOVEMENT = 1600  # If no other movement is specified, go 1600px to the right.
+POSITION_ATTRIBS = ['data-x', 'data-y', 'data-z', 'data-rotate-x',
+                    'data-rotate-y', 'data-rotate-z', 'data-scale']
+
 
 def gather_positions(tree):
     """Makes a list of positions and position commands from the tree"""
-    for step in tree.findall('step'):
-        pos = {'data-x': 'r0', 'data-y': 'r0'}
-        explicit_position = False
+    pos = {'data-x': 'r0',
+           'data-y': 'r0',
+           'data-z': 'r0',
+           'data-rotate-x': 'r0',
+           'data-rotate-y': 'r0',
+           'data-rotate-z': 'r0',
+           'data-scale': 'r0',
+           'is_path': False
+           }
 
-        for key in ('data-x', 'data-y'):
+    steps = 0
+    default_movement = True
+
+    for step in tree.findall('step'):
+        steps += 1
+
+        for key in POSITION_ATTRIBS:
             value = step.get(key)
+
             if value is not None:
-                explicit_position = True
+                # We have a new value
+                default_movement = False  # No longer use the default movement
                 pos[key] = value
+            elif pos[key] and not pos[key].startswith('r'):
+                # The old value was absolute and no new value, so stop
+                pos[key] = 'r0'
+            # We had no new value, and the old value was a relative
+            # movement, so we just keep moving.
+
+        if steps == 1 and pos['data-scale'] == 'r0':
+            # No scale given for first slide, it needs to start at 1
+            pos['data-scale'] = '1'
+
+        if default_movement and steps != 1:
+            # No positioning has been given, use default:
+            pos['data-x'] = 'r%s' % DEFAULT_MOVEMENT
+
+        if 'data-rotate' in step.attrib:
+            # data-rotate is an alias for data-rotate-z
+            pos['data-rotate-z'] = step.get('data-rotate')
+            del step.attrib['data-rotate']
 
         if 'hovercraft-path' in step.attrib:
-            # Path given
-            yield step.attrib['hovercraft-path'], pos
-        elif explicit_position:
-            # Position given
-            yield pos
+            # Path given x and y will be calculated from the path
+            default_movement = False  # No longer use the default movement
+            pos['is_path'] = True
+            # Add the path spec
+            pos['path'] = step.attrib['hovercraft-path']
+            yield pos.copy()
+            # And get rid of it for the next step
+            del pos['path']
         else:
-            # No position given
-            yield None
+            if 'data-x' in step.attrib or 'data-y' in step.attrib:
+                # No longer using a path
+                pos['is_path'] = False
+            yield pos.copy()
 
 
 def _coord_to_pos(coord):
-    return {'data-x': str(int(coord.real)), 'data-y': str(int(coord.imag))}
+    return {'data-x': int(coord.real), 'data-y': int(coord.imag)}
 
 
-def _val_to_int(val, cur):
-    if val[0] == 'r':
-        return cur + int(val[1:])
-    return int(val)
-
-
-def _pos_to_cord(coord, current_position):
-    return _val_to_int(coord['data-x'], current_position.real) + _val_to_int(coord['data-y'], current_position.imag) * 1j
+def _pos_to_cord(coord):
+    return coord['data-x'] + coord['data-y'] * 1j
 
 
 def _path_angle(path, point):
@@ -53,10 +87,10 @@ def _path_angle(path, point):
 
     distance = path.point(end) - path.point(start)
     hyp = math.hypot(distance.real, distance.imag)
-    result = math.degrees(math.asin(distance.imag/hyp))
+    result = math.degrees(math.asin(distance.imag / hyp))
 
     if distance.real < 0:
-        result = -180-result
+        result = -180 - result
 
     if abs(result) < 0.1:
         result = 0
@@ -64,45 +98,72 @@ def _path_angle(path, point):
     return result
 
 
+def num(s):
+    try:
+        return int(s)
+    except ValueError:
+        return float(s)
+
+
+def _update_position(pos1, pos2):
+
+    for key in POSITION_ATTRIBS:
+        val = pos2.get(key)
+        if val is not None:
+            if val[0] == 'r':
+                # Relative movement
+                newval = pos1[key] + num(val[1:])
+            else:
+                newval = num(val)
+            pos1[key] = newval
+
+
 def calculate_positions(positions):
     """Calculates position information"""
-    last_position = None
-    current_movement = DEFAULT_MOVEMENT
+    current_position = {'data-x': 0,
+                        'data-y': 0,
+                        'data-z': 0,
+                        'data-rotate-x': 0,
+                        'data-rotate-y': 0,
+                        'data-rotate-z': 0,
+                        'data-scale': 1,
+                        }
 
     positer = iter(positions)
     position = next(positer)
+    _update_position(current_position, position)
+
     while True:
 
-        # This is an SVG path specification
-        if isinstance(position, tuple):
-            position, newpos = position
-
-            if last_position is None:
-                first_point = 0
-            else:
-                first_point = last_position + current_movement
-            first_point = _pos_to_cord(newpos, first_point)
+        if 'path' in position:
+            # Start of a new path!
+            path = position['path']
+            # Follow the path specification
+            first_point = _pos_to_cord(current_position)
 
             # Paths that end in Z or z are closed.
-            closed_path = position.strip()[-1].upper() == 'Z'
-
-            # The the first point of the path is absolute,
-            # first_point is ignored.
-            path = parse_path(position)#, first_point)
+            closed_path = path.strip()[-1].upper() == 'Z'
+            path = parse_path(path)
 
             # Find out how many positions should be calculated:
             count = 1
             last = False
+            deferred_positions = []
             while True:
                 try:
                     position = next(positer)
+                    deferred_positions.append(position)
                 except StopIteration:
-                    last = True
+                    last = True  # This path goes to the end
                     break
-                if position is not None:
+                if not position.get('is_path') or 'path' in position:
+                    # The end of the path, or the start of a new one
                     break
                 count += 1
 
+            if count < 2:
+                raise AssertionError("The path specification is only used for "
+                                     "one slide, which makes it pointless.")
 
             if closed_path:
                 # This path closes in on itself. Skip the last part, so that
@@ -114,78 +175,39 @@ def calculate_positions(positions):
             multiplier = (endcount * DEFAULT_MOVEMENT) / path.length()
             offset = path.point(0)
 
+            path_iter = iter(deferred_positions)
             for x in range(count):
-                point = path.point(x/(endcount-1))
+
+                point = path.point(x / (endcount - 1))
                 point = ((point - offset) * multiplier) + first_point
-                if last_position is not None:
-                    current_movement = point - last_position
-                last_position = point
 
-                result = _coord_to_pos(point)
+                current_position.update(_coord_to_pos(point))
 
-                if not 'data-rotate' in result:
-                    rotation = _path_angle(path, x/(endcount-1))
-                    result['data-rotate'] = rotation
-                    yield result
+                rotation = _path_angle(path, x / (endcount - 1))
+                current_position['data-rotate-z'] = rotation
+                yield current_position.copy()
+                position = next(path_iter)
+                _update_position(current_position, position)
 
             if last:
                 break
 
-        # Calculate path from linear movements.
-        elif position is None:
-            if last_position is None:
-                pos = 0
-            else:
-                pos = last_position + current_movement
-            last_position = pos
-            position = _coord_to_pos(pos)
-            yield position
-            position = next(positer)
+            continue
 
-        # Absolute position specified
-        else:
-            if last_position is None:
-                start = 0
-            else:
-                start = last_position
-            pos = _pos_to_cord(position, start)
-            # Calculate the movement from previous slide, but not on the first slide.
-            if last_position is not None:
-                current_movement = pos - last_position
-            last_position = pos
-            position.update(_coord_to_pos(pos))
-            yield position
-            position = next(positer)
+        yield current_position.copy()
+        position = next(positer)
+        _update_position(current_position, position)
 
 
 def update_positions(tree, positions):
     """Updates the tree with new positions"""
-    # The persistent positioning variables:
-    persistent = {'data-rotate-x': '0',
-                  'data-rotate-y': '0',
-                  'data-rotate-z': '0',
-                  'data-z': '0',
-                  'data-scale': '0',
-                  }
 
     for step, pos in zip(tree.findall('step'), positions):
-        step.attrib['data-x'] = str(pos['data-x'])
-        step.attrib['data-y'] = str(pos['data-y'])
-        if 'data-rotate' in pos:
-            step.attrib['data-rotate'] = str(pos['data-rotate'])
+        for key in sorted(pos):
+            step.attrib[key] = str(pos[key])
+
         if 'hovercraft-path' in step.attrib:
             del step.attrib['hovercraft-path']
-
-        # data-rotate is an alias for data-rotate-z
-        if 'data-rotate' in step.attrib:
-            step.attrib['data-rotate-z'] = step.attrib['data-rotate']
-            del step.attrib['data-rotate']
-
-        for key in persistent:
-            if key in step.attrib:
-                persistent[key] = step.attrib[key]
-            elif persistent[key] != '0': # Skip if zero.
-                step.attrib[key] = persistent[key]
 
 
 def position_slides(tree):

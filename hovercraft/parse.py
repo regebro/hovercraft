@@ -5,6 +5,7 @@ from docutils.transforms.misc import Transitions
 from docutils.writers.docutils_xml import Writer
 from lxml import etree
 
+
 class HovercraftTransitions(Transitions):
 
     @property
@@ -67,11 +68,13 @@ class HovercraftReader(Reader):
         transforms.append(HovercraftTransitions)
         return transforms
 
+
 def rst2xml(rststring):
     return publish_string(rststring,
                           reader=HovercraftReader(),
                           writer=Writer(),
                           settings_overrides={'syntax_highlight': 'short'})
+
 
 def copy_node(node):
     """Makes a copy of a node with the same attributes and text, but no children."""
@@ -97,9 +100,9 @@ class SlideMaker(object):
 
     def _newstep(self, level):
         step = etree.Element('step', attrib={
-                'step': str(self.steps),
-                'class': 'step step-level-%s' % level,
-                })
+            'step': str(self.steps),
+            'class': 'step step-level-%s' % level,
+        })
         self.steps += 1
         return step
 

@@ -12,6 +12,7 @@ from watchdog.events import FileSystemEventHandler
 
 from .generate import generate
 
+
 class HovercraftEventHandler(FileSystemEventHandler):
     def __init__(self, filelist):
         self.filelist = filelist
@@ -71,9 +72,9 @@ def main():
         metavar='<targetdir>',
         nargs='?',
         help=('The directory where the presentation is saved. Will be created '
-             'if it does not exist. If you do not specify a targetdir '
-             'Hovercraft! will instead start a webserver and serve the '
-             'presentation from that server.'))
+              'if it does not exist. If you do not specify a targetdir '
+              'Hovercraft! will instead start a webserver and serve the '
+              'presentation from that server.'))
     parser.add_argument(
         '-h', '--help',
         action='help',
@@ -82,7 +83,7 @@ def main():
         '-t',
         '--template',
         help=('Specify a template. Must be a .cfg file, or a directory with a '
-             'template.cfg file. If not given it will use a default template.'))
+              'template.cfg file. If not given it will use a default template.'))
     parser.add_argument(
         '-c',
         '--css',
@@ -116,7 +117,7 @@ def main():
     args = parser.parse_args()
 
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
-    if not args.template in ('simple', 'default'):
+    if args.template and args.template not in ('simple', 'default'):
         args.template = os.path.abspath(args.template)
 
     if args.targetdir:

@@ -1,4 +1,4 @@
- ----
+----
 
 This text should appear.
 

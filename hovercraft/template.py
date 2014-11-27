@@ -11,6 +11,7 @@ CSS_RESOURCE, JS_RESOURCE, OTHER_RESOURCE = RESOURCE_TYPES
 JS_POSITIONS = range(2)
 JS_POSIION_HEADER, JS_POSIION_BODY = JS_POSITIONS
 
+
 class Resource(object):
 
     def __init__(self, filepath, resource_type, target=None, extra_info=None, is_in_template=False):
@@ -56,8 +57,10 @@ class Template(object):
         self._load_template_xsl()
         self._load_template_files()
 
-    def add_resource(self, filepath, resource_type, target=None, extra_info=None, is_in_template=False):
-        self.resources.append(Resource(filepath, resource_type, target=target, extra_info=extra_info, is_in_template=is_in_template))
+    def add_resource(self, filepath, resource_type, target=None, extra_info=None,
+                     is_in_template=False):
+        self.resources.append(Resource(filepath, resource_type, target=target,
+                                       extra_info=extra_info, is_in_template=is_in_template))
 
     def _load_template_config(self):
         config = configparser.ConfigParser()
@@ -87,16 +90,19 @@ class Template(object):
                 else:
                     media = 'all'
                 for filename in files.split():
-                    self.add_resource(filename, CSS_RESOURCE, extra_info=media, is_in_template=True)
+                    self.add_resource(filename, CSS_RESOURCE, extra_info=media,
+                                      is_in_template=True)
 
             # JS files:
             elif key == 'js-header':
                 for filename in files.split():
-                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_HEADER, is_in_template=True)
+                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_HEADER,
+                                      is_in_template=True)
 
             elif key == 'js-body':
                 for filename in files.split():
-                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_BODY, is_in_template=True)
+                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_BODY,
+                                      is_in_template=True)
 
             # Other files:
             elif key == 'resources':
@@ -165,7 +171,7 @@ class Template(object):
 
         if (os.path.exists(target_path) and
             os.path.getmtime(source_path) <= os.path.getmtime(target_path)):
-                # File has not changed since last copy, so skip.
+            # File has not changed since last copy, so skip.
             return source_path  # This file should be monitored for changes
 
         shutil.copy2(source_path, target_path)
@@ -184,7 +190,8 @@ class Template(object):
 
         for resource in self.resources:
             if resource.resource_type == CSS_RESOURCE:
-                header.append(etree.Element('css', attrib={'href': resource.final_path(), 'media': resource.extra_info}))
+                header.append(etree.Element('css', attrib={'href': resource.final_path(),
+                                                           'media': resource.extra_info}))
             elif resource.resource_type == JS_RESOURCE:
                 js_element = etree.Element('js', attrib={'src': resource.final_path()})
                 if resource.extra_info == JS_POSIION_BODY:
