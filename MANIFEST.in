@@ -1,4 +1,4 @@
-include README.rst CHANGES.txt
+include README.rst CHANGES.txt LICENSE.txt
 exclude .gitignore
 recursive-include docs conf.py Makefile make.bat *.rst *.css *.js *.png
 recursive-exclude docs/build *
