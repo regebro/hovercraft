@@ -38,6 +38,10 @@ def gather_positions(tree):
             # We had no new value, and the old value was a relative
             # movement, so we just keep moving.
 
+        if steps == 1 and pos['data-scale'] == 'r0':
+            # No scale given for first slide, it needs to start at 1
+            pos['data-scale'] = '1'
+
         if default_movement and steps != 1:
             # No positioning has been given, use default:
             pos['data-x'] = 'r%s' % DEFAULT_MOVEMENT
@@ -93,6 +97,14 @@ def _path_angle(path, point):
 
     return result
 
+
+def num(s):
+    try:
+        return int(s)
+    except ValueError:
+        return float(s)
+
+
 def _update_position(pos1, pos2):
 
     for key in POSITION_ATTRIBS:
@@ -100,22 +112,22 @@ def _update_position(pos1, pos2):
         if val is not None:
             if val[0] == 'r':
                 # Relative movement
-                newval = pos1[key] + int(val[1:])
+                newval = pos1[key] + num(val[1:])
             else:
-                newval = int(val)
+                newval = num(val)
             pos1[key] = newval
 
 
 def calculate_positions(positions):
     """Calculates position information"""
     current_position = {'data-x': 0,
-                     'data-y': 0,
-                     'data-z': 0,
-                     'data-rotate-x': 0,
-                     'data-rotate-y': 0,
-                     'data-rotate-z': 0,
-                     'data-scale': 0,
-                     }
+                        'data-y': 0,
+                        'data-z': 0,
+                        'data-rotate-x': 0,
+                        'data-rotate-y': 0,
+                        'data-rotate-z': 0,
+                        'data-scale': 1,
+                        }
 
     positer = iter(positions)
     position = next(positer)

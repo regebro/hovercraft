@@ -116,7 +116,7 @@ def main():
     args = parser.parse_args()
 
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
-    if not args.template in ('simple', 'default'):
+    if args.template and args.template not in ('simple', 'default'):
         args.template = os.path.abspath(args.template)
 
     if args.targetdir:
