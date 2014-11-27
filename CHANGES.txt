@@ -4,6 +4,15 @@ Changes
 1.2 (unreleased)
 ----------------
 
+- IMPORTANT! The positioning has been reimplemented. The most important change
+  is that there is no longer any calculation of relative movement when you use
+  absolute coordinates. Therefore, if you use absolute coordinates on some slides
+  and then have no coordinates on other slides, your positioning may no longer
+  be correct with version 2.0.
+
+- Relative coordinates (starting with r) are now supported for all positioning,
+  attributes including rotation and scaling.
+
 - Images can now also have a :class: attribute.
 
 - Having the "Requires Python 3" error when setup.py runs messes with some
