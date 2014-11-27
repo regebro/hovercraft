@@ -127,7 +127,7 @@ class SlideMakerTests(unittest.TestCase):
 
         target = (
             b'<document source="&lt;string&gt;"><paragraph>Intro</paragraph>'
-            b'step-level-1" step="0"><paragraph>Level 1</paragraph></step>'
+            b'<step class="step step-level-1" step="0"><paragraph>Level 1</paragraph></step>'
             b'<step class="step step-level-1" step="1"><paragraph>Level 1</paragraph>'
             b'<step class="step step-level-2" step="2"><paragraph>Level 2</paragraph>'
             b'<step class="step step-level-3" step="3"><paragraph>Level 3</paragraph></step>'
