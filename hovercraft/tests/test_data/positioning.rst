@@ -33,7 +33,7 @@ Explicit position
 
 :data-rotate: 90
 
-No position, but rotation
+No position change, but rotation
 
 ----
 
@@ -54,7 +54,7 @@ No position
 :data-rotate-x: 180
 :data-z: 1000
 
-No position (because z doesn't count)
+Move in Z and rotate. Path continues to be used.
 
 ----
 
