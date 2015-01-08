@@ -4,6 +4,7 @@ from docutils.readers.standalone import Reader
 from docutils.transforms.misc import Transitions
 from docutils.writers.docutils_xml import Writer
 from lxml import etree
+import re
 
 
 class HovercraftTransitions(Transitions):
@@ -151,7 +152,7 @@ class SlideMaker(object):
         # Walk back up to a transition of the same level
         curnode = self.curnode
         while (curnode.tag != 'step' or
-               int(curnode.attrib['class'].split('-')[-1]) >= level):
+               int(re.search( "step-level-(\d+)", curnode.attrib['class']).group(1)) >= level):
             parent = curnode.getparent()
             if parent is None:
                 # Top of tree
