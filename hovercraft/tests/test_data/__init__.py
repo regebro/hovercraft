@@ -233,7 +233,12 @@ HTML_OUTPUTS = {
         b'<div id="impress"><div class="step step-level-1 something-else" '
         b'step="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><p>This is some '
-        b'text</p></div></div><script type="text/javascript" '
+        b'text</p></div>'
+        b'<div class="step step-level-1 something-else" '
+        b'step="1" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
+        b'data-scale="1" data-x="1600" data-y="0" data-z="0"><p>This is some '
+        b'text</p></div></div>'
+        b'<script type="text/javascript" '
         b'src="js/impress.js"></script><script type="text/javascript" '
         b'src="js/hovercraft-minimal.js"></script></body></html>'
     ),
