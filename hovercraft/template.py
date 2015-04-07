@@ -9,7 +9,7 @@ RESOURCE_TYPES = range(3)
 CSS_RESOURCE, JS_RESOURCE, OTHER_RESOURCE = RESOURCE_TYPES
 
 JS_POSITIONS = range(2)
-JS_POSIION_HEADER, JS_POSIION_BODY = JS_POSITIONS
+JS_POSITION_HEADER, JS_POSITION_BODY = JS_POSITIONS
 
 
 class Resource(object):
@@ -96,12 +96,12 @@ class Template(object):
             # JS files:
             elif key == 'js-header':
                 for filename in files.split():
-                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_HEADER,
+                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSITION_HEADER,
                                       is_in_template=True)
 
             elif key == 'js-body':
                 for filename in files.split():
-                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSIION_BODY,
+                    self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSITION_BODY,
                                       is_in_template=True)
 
             # Other files:
