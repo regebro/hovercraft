@@ -3,7 +3,7 @@ import unittest
 from lxml import etree
 
 from hovercraft.template import (Template, CSS_RESOURCE, JS_RESOURCE,
-                                 JS_POSIION_BODY, JS_POSIION_HEADER)
+                                 JS_POSITION_BODY, JS_POSITION_HEADER)
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 
@@ -45,14 +45,14 @@ class TemplateInfoTests(unittest.TestCase):
 
         js_bodies = [each.filepath for each in template_info.resources if
                      each.resource_type == JS_RESOURCE and
-                     each.extra_info == JS_POSIION_BODY]
+                     each.extra_info == JS_POSITION_BODY]
         self.assertIn('js/impress.js', js_bodies)
         self.assertIn('js/impressConsole.js', js_bodies)
         self.assertIn('js/hovercraft.js', js_bodies)
 
         js_headers = [each.filepath for each in template_info.resources if
                       each.resource_type == JS_RESOURCE and
-                      each.extra_info == JS_POSIION_HEADER]
+                      each.extra_info == JS_POSITION_HEADER]
         self.assertIn('js/dummy.js', js_headers)
 
         self.assertEqual(template_info.resources[0].filepath, 'css/style.css')
