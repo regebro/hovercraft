@@ -39,6 +39,11 @@ xmlns="http://www.w3.org/1999/xhtml">
 
     <xsl:for-each select="/document">
       <div id="impress">
+        <xsl:if test="@data-perspective">
+          <xsl:attribute name="data-perspective">
+            <xsl:value-of select="@data-perspective" />
+          </xsl:attribute>
+        </xsl:if>
         <xsl:if test="@data-transition-duration">
           <xsl:attribute name="data-transition-duration">
             <xsl:value-of select="@data-transition-duration" />
