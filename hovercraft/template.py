@@ -194,7 +194,7 @@ class Template(object):
                                                            'media': resource.extra_info}))
             elif resource.resource_type == JS_RESOURCE:
                 js_element = etree.Element('js', attrib={'src': resource.final_path()})
-                if resource.extra_info == JS_POSIION_BODY:
+                if resource.extra_info == JS_POSITION_BODY:
                     body.append(js_element)
                 else:
                     header.append(js_element)
