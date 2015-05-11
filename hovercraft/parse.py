@@ -150,8 +150,13 @@ class SlideMaker(object):
         step = self._newstep(level)
         # Walk back up to a transition of the same level
         curnode = self.curnode
+        def get_level(clss):
+            for cls in clss.split():
+                # Skip unrelated classes, such as those added by the user.
+                if cls.startswith('step-level-'):
+                    return int(cls.split('-')[-1])
         while (curnode.tag != 'step' or
-               int(curnode.attrib['class'].split('-')[-1]) >= level):
+               get_level(curnode.attrib['class']) >= level):
             parent = curnode.getparent()
             if parent is None:
                 # Top of tree
