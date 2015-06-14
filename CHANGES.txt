@@ -1,8 +1,8 @@
 Changes
 =======
 
-2.0b2 (unreleased)
-------------------
+2.0 (2015-06-14)
+----------------
 
 - Better support for :class:. [fahhem]
 
