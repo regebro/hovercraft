@@ -4,8 +4,12 @@ Changes
 2.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Better support for :class:. [fahhem]
 
+- Now supports data-perspective. [fahhem]
+
+- Fixed typos in template.py. [fahhem, ggtools
+]
 
 2.0b1 (2014-11-27)
 ------------------
