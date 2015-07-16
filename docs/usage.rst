@@ -53,7 +53,7 @@ Optional arguments:
     ``-s, --skip-help``
         Do not show the initial help popup.
 
-    ``--n, --skip-notes``
+    ``-n, --skip-notes``
         Do not include presenter notes in the output.
 
     ``-p PORT, --port PORT``
