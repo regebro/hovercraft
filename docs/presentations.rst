@@ -155,7 +155,7 @@ You can then style that slide specifically with::
         /* Custom CSS here */
     }
 
-If you don't give it a specific ID, it will get an ID based on it's sequence
+If you don't give it a specific ID, it will get an ID based on its sequence
 number. And that means the slide's ID will change if you insert or remove
 slides that came before it, and in that case your custom stylings of that
 slide will stop working.
@@ -169,9 +169,9 @@ allows you both to put up the presentation online and to use a borrowed
 computer for your conference or customer presentation.
 
 When you travel you don't know what equipment you have to use when you show
-your presentaton, and it's surprsingly common to encounter a projector that
+your presentaton, and it's surprisingly common to encounter a projector that
 refuses to talk to your computer. It is also very easy to forget your dongle
-if you have a MacBook, and there has even been cases of computers going
+if you have a MacBook, and there have even been cases of computers going
 completely black and dead when you connect them to a projector, even though
 all other computers seem to work fine.
 
@@ -328,7 +328,7 @@ slides will simply slide from right to left.
 SVG Paths
 ---------
 
-Hovercraft! supports positioning slides along and SVG path. This is handy, as
+Hovercraft! supports positioning slides along an SVG path. This is handy, as
 you can create a drawing in a software that supports SVG, and then copy-paste
 that drawings path into your presentation.
 

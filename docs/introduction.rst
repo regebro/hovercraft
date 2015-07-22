@@ -52,13 +52,13 @@ Hovercraft!
 -----------
 
 So what I want is a tool that takes the power, flexibility and convenience of
-reStructuredText and allows me to generate Pan, rotate and zoom presentations
+reStructuredText and allows me to generate pan, rotate and zoom presentations
 with impress.js, without having to manually reposition each slide if I
 reorganize a little bit of the presentation. I couldn't find one, so I made
 Hovercraft.
 
-Hovercrafts power comes from the combination of reStructured texts
-convenience with the cool of impress.js, together with a felxible and
+Hovercraft’s power comes from the combination of reStructuredText’s
+convenience with the cool of impress.js, together with a flexible and
 powerful solution to position the slides.
 
 There are four ways to position slides:
@@ -73,7 +73,7 @@ There are four ways to position slides:
 
  #. Automatically: If you don’t specify any position the slide will end
     up the same distance from the previous slide as the previous slide was
-    from it’s previous slide. This defaults to moving 1600px to the right,
+    from its previous slide. This defaults to moving 1600px to the right,
     which means that if you supply no positions at all anywhere in the
     presentation, you get the standard boring slide-to-the-left presentation.
 
