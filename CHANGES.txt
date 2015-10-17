@@ -6,6 +6,8 @@ Changes
 
 - #87: Support multiple :css: statements. [bitwalker]
 
+- #88: In-template resources failed for external templates.
+
 
 2.0 (2015-06-14)
 ----------------

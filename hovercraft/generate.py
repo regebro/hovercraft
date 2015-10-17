@@ -134,7 +134,7 @@ def generate(args):
         if resource.resource_type != CSS_RESOURCE:
             continue
         # path in CSS is relative to CSS file; construct source/dest accordingly
-        css_base = template_info.template if resource.is_in_template else sourcedir
+        css_base = template_info.template_root if resource.is_in_template else sourcedir
         css_sourcedir = os.path.dirname(os.path.join(css_base, resource.filepath))
         css_targetdir = os.path.dirname(os.path.join(args.targetdir, resource.final_path()))
         uris = RE_CSS_URL.findall(template_info.read_data(resource))

@@ -53,7 +53,7 @@ class HTMLTests(unittest.TestCase):
         with TemporaryDirectory() as tmpdir:
             sys.argv = [
                 'bin/hovercraft',
-                '-t' + os.path.join(TEST_DATA, 'maximal'),
+                '-t' + os.path.join(TEST_DATA, 'maximal', 'template.cfg'),
                 os.path.join(TEST_DATA, 'advanced.rst'),
                 tmpdir,
             ]

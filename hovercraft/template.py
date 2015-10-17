@@ -67,7 +67,7 @@ class Template(object):
         if self.builtin_template:
             cfg_string = resource_string(__name__, self.template + 'template.cfg').decode('UTF-8')
             config.read_string(cfg_string)
-            self.template_root = None
+            self.template_root = self.template
         else:
             if os.path.isdir(self.template):
                 self.template_root = self.template
