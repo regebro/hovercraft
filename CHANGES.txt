@@ -4,7 +4,7 @@ Changes
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- #87: Support multiple :css: statements. [bitwalker]
 
 
 2.0 (2015-06-14)
