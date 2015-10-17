@@ -172,7 +172,7 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files),
-                             {'hovercraft.css', 'highlight.css', 'sub.css', 'impressConsole.css'})
+                             {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
 

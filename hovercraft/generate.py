@@ -38,11 +38,13 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
                 dummy, media = attrib.split('-', 1)
             else:
                 media = 'screen,projection'
-            template_info.add_resource(
-                os.path.abspath(os.path.join(presentation_dir, tree.attrib[attrib])),
-                CSS_RESOURCE,
-                target=tree.attrib[attrib],
-                extra_info=media)
+            css_files = tree.attrib[attrib].split()
+            for css_file in css_files:
+                template_info.add_resource(
+                    os.path.abspath(os.path.join(presentation_dir, css_file)),
+                    CSS_RESOURCE,
+                    target=css_file,
+                    extra_info=media)
 
     # Position all slides
     position_slides(tree)
