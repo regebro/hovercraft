@@ -8,6 +8,8 @@ Changes
 
 - #86, #88: In-template resources failed for external templates.
 
+- #89: The file monitoring could make the CPU go to 100%. [b6d]
+
 
 2.0 (2015-06-14)
 ----------------

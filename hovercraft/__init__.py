@@ -44,6 +44,7 @@ def generate_and_observe(args, event):
 
         observer.start()
         while event.wait(1):
+            time.sleep(0.05)
             if handler.quit:
                 break
 
