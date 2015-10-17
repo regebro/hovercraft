@@ -44,6 +44,7 @@ def generate_and_observe(args, event):
 
         observer.start()
         while event.wait(1):
+            time.sleep(0.05)  # small delay to avoid using 100% CPU
             if handler.quit:
                 break
 
