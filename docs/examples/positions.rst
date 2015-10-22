@@ -43,7 +43,7 @@ X & Y
 =====
 
 You don't have to give both X and Y coordinates. They will default to "no
-differece to the last slide" if not given. As the first slide ends up at
+difference from the last slide" if not given. As the first slide ends up at
 X=0 and Y=0, the ``:data-x: 0`` above is strictly speaking not necessary.
 
 ----
