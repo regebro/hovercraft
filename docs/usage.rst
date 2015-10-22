@@ -3,7 +3,7 @@ Using Hovercraft!
 
 You can either use Hovercraft! to generate the presentation as HTML in a
 target directory, or you can let Hovercraft! serve the presentation from
-it's builtin webserver.
+its builtin webserver.
 
 The latter have several benefits. One is that most webbrowsers will be very
 reluctant to open popup-windows from pages served from the file system
