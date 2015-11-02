@@ -10,6 +10,8 @@ Changes
 
 - #89: The file monitoring could make the CPU go to 100%. [b6d]
 
+- #81: positions.rst example was out of date.
+
 
 2.0 (2015-06-14)
 ----------------

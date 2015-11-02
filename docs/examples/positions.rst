@@ -48,16 +48,8 @@ X=0 and Y=0, the ``:data-x: 0`` above is strictly speaking not necessary.
 
 ----
 
-Automatic positioning
-=====================
-
-If you don't set a position, Hovercraft! will position the slide
-automatically, by simply continuing in the same direction and length as the
-last slide. This slide has no positioning at all, and that means it will end
-up at X=0 and Y=2000.
-
-
-----
+:data-x: 2000
+:data-y: 1000
 
 Positioning fields
 ==================
@@ -69,19 +61,12 @@ supported by impress.js, they should just work from Hovercraft! as well.
 The ones impress.js currently uses are::
 
     data-x          Position on the X-axis
-
     data-y          Position on the Y-axis
-
     data-z          Position on the Z-axis (which means 3D!)
-
     data-rotate     Rotation in degrees
-
     data-rotate-z   An alias for data-rotate
-
     data-rotate-x   Rotation on the X-axis, which agains means 3D effects
-
     data-rotate-y   Rotation on the Y-axis
-
     data-scale      The size of the slide, which means zooming effects
 
 Let's do some zoom and rotate!
@@ -90,7 +75,8 @@ Let's do some zoom and rotate!
 
 :data-scale: 5
 :data-rotate: 90
-:data-y: 6000
+:data-x: 3000
+:data-y: 1000
 
 Zoom out!
 =========
@@ -99,24 +85,9 @@ So here we rotated 90 degrees and zoomed out five times.
 
 ----
 
-:data-x: -4000
-
-Sticky data!
-============
-
-All fields except data-x and data-y are "sticky!" That means that
-they keep the same value as the last slide. So this slide will
-keep the 90 degree rotation and scale of 5.
-
-But I set the X position to -4000, so we now move on the X-scale instead.
-Negative numbers are not a problem.
-
-It needs to be -4000 now, since we zoomed out five times. That means that the
-ordinary presentation size of 1024*800 pixels are now 5120*400 pixels
-(assuming you use a 4:3 screen size).
-
-----
-
+:data-scale: 1
+:data-x: 4000
+:data-y: 2000
 
 Relative positions
 ==================
@@ -132,9 +103,7 @@ relative coordinate to the last slide.
 
 ----
 
-:data-scale: 1
-:data-y: r3000
-:data-rotate: 0
+:data-x: r1000
 
 Like this
 =========
@@ -152,10 +121,21 @@ to use relative positioning.
 
 ----
 
+:data-rotate: r15
+
+Automatic positioning
+=====================
+
+Every field will retain it's last value if you don't specify a new one.
+In this case, we keep a r1000 value for data-x and introduce a new
+r15 value for data-rotate. This and the next slide will therefore
+move right 1000 pixels and rotate 15 degrees more for each slide.
+
+It looks like it moves "up" because we are already rotated 90 degrees.
+
+----
+
 :data-scale: 0.15
-:data-y: r-275
-:data-x: r150
-:data-rotate: -90
 
 **A warning!**
 ==============
@@ -310,7 +290,7 @@ there is a ``:data-z`` as well.
 
 :data-z: 1000
 :data-x: r0
-:data-y: r0
+:data-y: r-50
 
 Z-space
 =======
@@ -341,14 +321,14 @@ But well used it can give an extra wow-factor,
 ----
 
 :data-z: 0
-:data-x: r0
+:data-x: r100
 :data-y: r-200
-:data-scale: 2
+:data-scale: 1
 
-and have text pop out at you!
+and make text pop!
+==================
 
 ----
-
 
 :data-x: r3000
 :data-y: r-1500
