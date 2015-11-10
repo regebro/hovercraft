@@ -126,6 +126,8 @@ def main():
     if args.template and args.template not in ('simple', 'default'):
         args.template = os.path.abspath(args.template)
 
+    args.basedir = os.getcwd()
+
     if args.build:
         # Generate the presentation
         generate(args)
@@ -155,7 +157,6 @@ def start_server(args):
 
         # First create the server. This checks that we can connect to
         # the port we want to.
-        os.chdir(args.targetdir)
         server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
         print("Serving HTTP on", bind, "port", port, "...")
 
