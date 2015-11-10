@@ -139,7 +139,6 @@ def main():
                 start_server(args)
 
 def start_server(args):
-    args.targetdir = targetdir
     args.presentation = os.path.abspath(args.presentation)
 
     # Set up watchdog to regenerate presentation if saved.
@@ -156,7 +155,7 @@ def start_server(args):
 
         # First create the server. This checks that we can connect to
         # the port we want to.
-        os.chdir(targetdir)
+        os.chdir(args.targetdir)
         server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
         print("Serving HTTP on", bind, "port", port, "...")
 
