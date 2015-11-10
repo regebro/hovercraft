@@ -136,7 +136,7 @@ def main():
         else:
             with TemporaryDirectory() as targetdir:
                 args.targetdir = targetdir
-                start_server(targetdir)
+                start_server(args)
 
 def start_server(args):
     args.targetdir = targetdir
