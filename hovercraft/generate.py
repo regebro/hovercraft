@@ -115,8 +115,6 @@ def generate(args):
                             args.skip_notes)
 
     # Write the HTML out
-    if not os.path.exists(args.targetdir):
-        os.makedirs(args.targetdir)
     with open(os.path.join(args.targetdir, 'index.html'), 'wb') as outfile:
         outfile.write(htmldata)
 

@@ -128,6 +128,10 @@ def main():
 
     args.basedir = os.getcwd()
 
+
+    if args.targetdir and not os.path.exists(args.targetdir):
+        os.makedirs(args.targetdir)
+
     if args.build:
         # Generate the presentation
         generate(args)
