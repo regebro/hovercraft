@@ -109,10 +109,14 @@ def generate(args):
         template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
         source_files.append(args.css)
 
-    with os.chdir(args.basedir):
-        # Make the resulting HTML
+    # Make the resulting HTML (generation is relative to the basedir)
+    saved_cwd = os.getcwd()
+    os.chdir(args.basedir)
+    try:
         htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help,
                             args.skip_notes)
+    finally:
+        os.chdir(saved_cwd)
 
     # Write the HTML out
     with open(os.path.join(args.targetdir, 'index.html'), 'wb') as outfile:
