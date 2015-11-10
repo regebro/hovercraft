@@ -109,6 +109,11 @@ def main():
         action='store_true',
         help=('Do not include presenter notes in the output.'))
     parser.add_argument(
+        '-b',
+        '--build',
+        action='store_true',
+        help=('Build only'))
+    parser.add_argument(
         '-p',
         '--port',
         default='0.0.0.0:8000',
@@ -121,57 +126,63 @@ def main():
     if args.template and args.template not in ('simple', 'default'):
         args.template = os.path.abspath(args.template)
 
-    if args.targetdir:
+    if args.build:
         # Generate the presentation
         generate(args)
     else:
         # Server mode. Start a server that serves a temporary directory.
+        if args.targetdir:
+            start_server(args)
+        else:
+            with TemporaryDirectory() as targetdir:
+                args.targetdir = targetdir
+                start_server(targetdir)
 
-        with TemporaryDirectory() as targetdir:
-            args.targetdir = targetdir
-            args.presentation = os.path.abspath(args.presentation)
+def start_server(args):
+    args.targetdir = targetdir
+    args.presentation = os.path.abspath(args.presentation)
 
-            # Set up watchdog to regenerate presentation if saved.
-            event = threading.Event()
-            event.set()
-            thread = threading.Thread(target=generate_and_observe, args=(args, event))
+    # Set up watchdog to regenerate presentation if saved.
+    event = threading.Event()
+    event.set()
+    thread = threading.Thread(target=generate_and_observe, args=(args, event))
+    try:
+        # Serve presentation
+        if ':' in args.port:
+            bind, port = args.port.split(':')
+        else:
+            bind, port = '0.0.0.0', args.port
+        port = int(port)
+
+        # First create the server. This checks that we can connect to
+        # the port we want to.
+        os.chdir(targetdir)
+        server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
+        print("Serving HTTP on", bind, "port", port, "...")
+
+        try:
+            # Now generate the presentation
+            thread.start()
+
             try:
-                # Serve presentation
-                if ':' in args.port:
-                    bind, port = args.port.split(':')
-                else:
-                    bind, port = '0.0.0.0', args.port
-                port = int(port)
+                # All is good, start the server
+                server.serve_forever()
+            except KeyboardInterrupt:
+                print("\nKeyboard interrupt received, exiting.")
+            finally:
+                # Server exited
+                server.server_close()
 
-                # First create the server. This checks that we can connect to
-                # the port we want to.
-                os.chdir(targetdir)
-                server = HTTPServer((bind, port), SimpleHTTPRequestHandler)
-                print("Serving HTTP on", bind, "port", port, "...")
+        finally:
+            # Stop the generation thread
+            event.clear()
+            # Wait for it to end
+            thread.join()
 
-                try:
-                    # Now generate the presentation
-                    thread.start()
-
-                    try:
-                        # All is good, start the server
-                        server.serve_forever()
-                    except KeyboardInterrupt:
-                        print("\nKeyboard interrupt received, exiting.")
-                    finally:
-                        # Server exited
-                        server.server_close()
-
-                finally:
-                    # Stop the generation thread
-                    event.clear()
-                    # Wait for it to end
-                    thread.join()
-
-            except PermissionError:
-                print("Can't bind to port %s:%s: No permission" % (bind, port))
-            except OSError as e:
-                if e.errno == 98:
-                    print("Can't bind to port %s:%s: port already in use" % (bind, port))
-                else:
-                    raise
+    except PermissionError:
+        print("Can't bind to port %s:%s: No permission" % (bind, port))
+    except OSError as e:
+        if e.errno == 98:
+            print("Can't bind to port %s:%s: port already in use" % (bind, port))
+        else:
+            raise
