@@ -145,11 +145,11 @@ Images
 
 You can insert an image with the .. image:: directive:
 
-.. image:: images/python-logo-master-v3-TM.png
+.. image:: images/hovercraft_logo.png
 
 And you can optionally set width and height:
 
-.. image:: images/python-logo-master-v3-TM.png
+.. image:: images/hovercraft_logo.png
     :width: 50px
     :height: 130px
 
@@ -158,7 +158,7 @@ works fine with Hovercraft! as well, as you can see on the next slide.
 
 ----
 
-.. image:: images/python-logo-master-v3-TM.png
+.. image:: images/hovercraft_logo.png
 
 ----
 

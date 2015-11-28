@@ -74,7 +74,7 @@ class HTMLTests(unittest.TestCase):
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
-            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            self.assertEqual(set(image_files), {'hovercraft_logo.png'})
             font_files = os.listdir(os.path.join(tmpdir, 'fonts'))
             self.assertEqual(set(font_files), {
                 'texgyreschola-regular-webfont.ttf',
@@ -108,7 +108,7 @@ class HTMLTests(unittest.TestCase):
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'print.css', 'style.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
-            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            self.assertEqual(set(image_files), {'hovercraft_logo.png'})
             font_files = os.listdir(os.path.join(tmpdir, 'fonts'))
             self.assertEqual(set(font_files), {
                 'texgyreschola-regular-webfont.ttf',
@@ -139,7 +139,7 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(css_files), {'hovercraft.css',
                                               'impressConsole.css', 'highlight.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
-            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
     def test_auto_console(self):
         with TemporaryDirectory() as tmpdir:
@@ -174,7 +174,7 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(css_files),
                              {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css', 'impressConsole.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
-            self.assertEqual(set(image_files), {'python-logo-master-v3-TM.png'})
+            self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
 
 if __name__ == '__main__':

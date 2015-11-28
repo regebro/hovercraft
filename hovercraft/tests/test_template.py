@@ -38,7 +38,7 @@ class TemplateInfoTests(unittest.TestCase):
         self.assertEqual(template_info.xsl, xsl)
 
         template_files = [each.filepath for each in template_info.resources]
-        self.assertIn('images/python-logo-master-v3-TM.png', template_files)
+        self.assertIn('images/hovercraft_logo.png', template_files)
         self.assertIn('js/impress.js', template_files)
         self.assertIn('js/impressConsole.js', template_files)
         self.assertIn('js/hovercraft.js', template_files)

@@ -54,7 +54,7 @@ preformatted text for code.
 
 An image, with attributes:
 
-.. image:: images/python-logo-master-v3-TM.png
+.. image:: images/hovercraft_logo.png
     :class: imageclass
     :width: 50%
 
