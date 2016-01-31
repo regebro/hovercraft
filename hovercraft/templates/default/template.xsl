@@ -58,7 +58,7 @@ xmlns="http://www.w3.org/1999/xhtml">
 
   </head>
   <body class="impress-not-supported">
-
+    <div id="overlay"></div>
     <xsl:for-each select="/document">
       <div id="impress">
         <xsl:if test="@data-perspective">
