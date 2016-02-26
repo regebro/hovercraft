@@ -12,6 +12,10 @@ Changes
 
 - #81: positions.rst example was out of date.
 
+- Dropped Python 3.2 support, because docutils doesn't seem to
+  work on Python 3.2 any longer. With docutils 0.9 it probably
+  still works.
+
 
 2.0 (2015-06-14)
 ----------------
