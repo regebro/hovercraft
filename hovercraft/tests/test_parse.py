@@ -8,7 +8,7 @@ from hovercraft.parse import SlideMaker, rst2xml
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
     rst = resource_string(__name__, file_name)
-    xml = rst2xml(rst)
+    xml, dependencies = rst2xml(rst)
     return etree.fromstring(xml)
 
 
@@ -100,7 +100,7 @@ class SlideMakerTests(unittest.TestCase):
 
     def test_transition_levels(self):
         # Make the XML
-        xml = rst2xml(
+        xml, deps = rst2xml(
             b'Intro\n\n====\n\nLevel 1\n\n====\n\nLevel 1\n\n----\n\nLevel 2\n\n'
             b'....\n\nLevel 3\n\n----\n\nLevel 2\n\n....\n\nLevel 3\n\n'
             b'====\n\nLevel 1')

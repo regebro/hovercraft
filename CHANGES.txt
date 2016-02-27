@@ -18,6 +18,10 @@ Changes
 
 - Updated tests to work with newer Pygments.
 
+- #96: Relative paths was not working.
+
+- #91: When modifying included files the presentation was not updated.
+
 
 2.0 (2015-06-14)
 ----------------

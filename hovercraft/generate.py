@@ -25,7 +25,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     presentation_dir = os.path.split(filepath)[0]
 
     # First convert reST to XML
-    xml = rst2xml(rststring)
+    xml, dependencies = rst2xml(rststring, filepath)
     tree = etree.fromstring(xml)
 
     # Fix up the resulting XML so it makes sense
@@ -71,7 +71,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     tree = transformer(tree)
     result = html.tostring(tree)
 
-    return template_info.doctype + result
+    return template_info.doctype + result, dependencies
 
 
 def copy_resource(filename, sourcedir, targetdir):
@@ -108,8 +108,10 @@ def generate(args):
         source_files.append(args.css)
 
     # Make the resulting HTML
-    htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help,
-                        args.skip_notes)
+    htmldata, dependencies = rst2html(args.presentation, template_info,
+                                      args.auto_console, args.skip_help,
+                                      args.skip_notes)
+    source_files.extend(dependencies)
 
     # Write the HTML out
     if not os.path.exists(args.targetdir):

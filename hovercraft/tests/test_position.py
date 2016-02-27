@@ -12,7 +12,7 @@ TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 def make_tree(file_name):
     """Loads reStructuredText, outputs an lxml tree"""
     rst = resource_string(__name__, os.path.join('test_data', file_name))
-    xml = rst2xml(rst)
+    xml, deps = rst2xml(rst)
     return SlideMaker(etree.fromstring(xml)).walk()
 
 

@@ -69,11 +69,16 @@ class HovercraftReader(Reader):
         return transforms
 
 
-def rst2xml(rststring):
-    return publish_string(rststring,
-                          reader=HovercraftReader(),
-                          writer=Writer(),
+def rst2xml(rststring, source_path=None):
+    reader = HovercraftReader()
+    writer = Writer()
+    result =  publish_string(rststring,
+                          source_path=source_path,
+                          reader=reader,
+                          writer=writer,
                           settings_overrides={'syntax_highlight': 'short'})
+    dependencies = reader.settings.record_dependencies.list
+    return result, dependencies
 
 
 def copy_node(node):
