@@ -16,6 +16,8 @@ Changes
   work on Python 3.2 any longer. With docutils 0.9 it probably
   still works.
 
+- Updated tests to work with newer Pygments.
+
 
 2.0 (2015-06-14)
 ----------------
