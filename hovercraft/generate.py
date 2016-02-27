@@ -97,6 +97,8 @@ def copy_resource(filename, sourcedir, targetdir):
 def generate(args):
     """Generates the presentation and returns a list of files used"""
 
+    os.chdir(args.targetdir)
+
     source_files = [args.presentation]
 
     # Parse the template info
@@ -107,13 +109,16 @@ def generate(args):
         template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
         source_files.append(args.css)
 
-    # Make the resulting HTML
-    htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help,
-                        args.skip_notes)
+    # Make the resulting HTML (generation is relative to the basedir)
+    saved_cwd = os.getcwd()
+    os.chdir(args.basedir)
+    try:
+        htmldata = rst2html(args.presentation, template_info, args.auto_console, args.skip_help,
+                            args.skip_notes)
+    finally:
+        os.chdir(saved_cwd)
 
     # Write the HTML out
-    if not os.path.exists(args.targetdir):
-        os.makedirs(args.targetdir)
     with open(os.path.join(args.targetdir, 'index.html'), 'wb') as outfile:
         outfile.write(htmldata)
 
