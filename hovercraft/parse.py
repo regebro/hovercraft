@@ -69,8 +69,9 @@ class HovercraftReader(Reader):
         return transforms
 
 
-def rst2xml(rststring):
+def rst2xml(rststring, source_path=None):
     return publish_string(rststring,
+                          source_path=source_path,
                           reader=HovercraftReader(),
                           writer=Writer(),
                           settings_overrides={'syntax_highlight': 'short'})

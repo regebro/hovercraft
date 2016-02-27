@@ -25,7 +25,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     presentation_dir = os.path.split(filepath)[0]
 
     # First convert reST to XML
-    xml = rst2xml(rststring)
+    xml = rst2xml(rststring, filepath)
     tree = etree.fromstring(xml)
 
     # Fix up the resulting XML so it makes sense

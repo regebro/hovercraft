@@ -58,5 +58,12 @@ class GeneratorTests(unittest.TestCase):
         html = rst2html(os.path.join(TEST_DATA, 'container.rst'), template)
         self.assertEqual(html, HTML_OUTPUTS['container_directive'])
 
+    def test_include(self):
+        template = Template(os.path.join(TEST_DATA, 'minimal'))
+        html = rst2html(os.path.join(TEST_DATA, 'include.rst'), template)
+        self.assertIn(b'Presentation with an include</h1>', html)
+        # Make sure the simple presentation was included:
+        self.assertIn(b'Simple Presentation</h1>', html)
+
 if __name__ == '__main__':
     unittest.main()
