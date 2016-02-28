@@ -36,7 +36,7 @@ Pan, rotate and zoom
 
 The tools that exist to make presentations from text-markup will make
 slideshows that has a sequence of slides from left to right. But the fashion
-now is to have presentations that rotate and zoon in and out. One open source
+now is to have presentations that rotate and zoom in and out. One open source
 solution for that is impress.js_.
 
 **With impress.js you can make modern cool presentations.**
@@ -71,11 +71,12 @@ There are four ways to position slides:
     positioning you can insert a slide, and the other slides will just move
     to make space for the new slide.
 
- #. Automatically: If you don’t specify any position the slide will end
-    up the same distance from the previous slide as the previous slide was
-    from its previous slide. This defaults to moving 1600px to the right,
-    which means that if you supply no positions at all anywhere in the
-    presentation, you get the standard boring slide-to-the-left presentation.
+ #. Automatically: If you don’t specify any position the slide will have the
+    same settings as the previous slide. With a relative positioning, this
+    means the slide will move as long as the previous slide moved. This
+    defaults to moving 1600px to the right, which means that if you supply
+    no positions at all anywhere in the presentation, you get the standard
+    slide-to-the-left presentation.
 
  #. With an SVG path: In this last way of positioning, you can take an
     SVG path from an SVG document and stick it into the presentation, and that

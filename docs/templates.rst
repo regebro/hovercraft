@@ -11,7 +11,7 @@ that Hovercraft! generates, for example if you need to use another version of
 HTML or if the reStructuredText you are using isn't being rendered in a way
 that is useful for you. Although if you aren't happy with the HTML generated
 from the reStructuredText that could very well be a bug, so open an issue on
-Github for discussion.
+`Github`_ for discussion.
 
 Hovercraft! generates presentations by converting the reStructuredText into
 XML and then using XSLT to translate the XML into HTML.
@@ -29,39 +29,45 @@ one to use by specifying the full path to the configuration file. However, if
 you just specify the template directory, ``template.cfg`` will be used.
 
 Template files are in configparser format, which is an extended ini-style
-format. They are very simple, and have only one section, [hovercraft]. Any
+format. They are very simple, and have only one section, ``[hovercraft]``. Any
 other sections will be ignored. Many of the parameters are lists that often
 do not fit on one line. In that case you can split the line up over several
 lines, but indenting the lines. The amount of indentation doesn't make any
-difference, except aestethically.
+difference, except aesthetically.
 
-The parameters in the [hovercraft] section are:
+The parameters in the ``[hovercraft]`` section are:
 
-    template     The name of the xsl template.
+  * ``template``
+    The name of the xsl template.
 
-    css          A list of CSS filenames separated by whitespace. These files
-                 will get included in the final file with "all" as the media
-                 specification.
+  * ``css``
+    A list of CSS filenames separated by whitespace. These files
+    will get included in the final file with "all" as the media
+    specification.
 
-    css-<media>  A list of CSS filenames separated by whitespace. These files
-                 will get included in the final file with the media given in
-                 the parameter. So the files listed for the parameter
-                 "css-print" will get "print" as their media specification
-                 and a key like "css-screen,print" will return media
-                 "screen,print".
+  * ``css-<media>``
+    A list of CSS filenames separated by whitespace. These files
+    will get included in the final file with the media given in
+    the parameter. So the files listed for the parameter
+    "css-print" will get "print" as their media specification
+    and a key like "css-screen,print" will return media
+    "screen,print".
 
-    js-header    A list of filenames separated by whitespace. These files
-                 will get included in the target file as header script links.
+  * ``js-header``
+    A list of filenames separated by whitespace. These files
+    will get included in the target file as header script links.
 
-    js-body      A list of filenames separated by whitespace. These files
-                 will get included in the target file as script links at the
-                 end of the file. The files impress.js, impressConsole.js and
-                 hovercraft.js typically need to be included here.
+  * ``js-body``
+    A list of filenames separated by whitespace. These files
+    will get included in the target file as script links at the
+    end of the file. The files impress.js, impressConsole.js and
+    hovercraft.js typically need to be included here.
 
-    resource     A list of filenames separated by whitespace that will be
-                 copied to the target directory, but nothing else is done
-                 with them. Images and fonts used by CSS will be copied
-                 anyway, but other resources may be added here.
+  * ``resource``
+    A list of filenames separated by whitespace that will be
+    copied to the target directory, but nothing else is done
+    with them. Images and fonts used by CSS will be copied
+    anyway, but other resources may be added here.
 
 An example::
 
@@ -122,3 +128,6 @@ template and change the reference in it to your modified XSLT file.
 
 None of the XSLT files need to be copied to the target, and should not be
 listed as a resource in the template configuration file.
+
+
+.. _Github: https://github.com/regebro/hovercraft

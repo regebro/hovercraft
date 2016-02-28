@@ -135,7 +135,6 @@ CSS media::
     :css-print: css/print.css
 
 You can specify any number of css files in this way.
-
 You can also add one extra CSS-file via a command-line parameter:
 
     hovercraft --extra-css=my_extra.css presentationfile.rst outdir/
@@ -216,7 +215,7 @@ current version, are the following:
 
 * **data-rotate-x**: The rotation of a slide in the x-axis, in degrees. This
   means you are moving the slide in a third dimension compared with other
-  slides. This is generally cooll effect, if used right.
+  slides. This is generally cool effect, if used right.
 
 * **data-rotate-y**: The rotation of a slide in the x-axis, in degrees.
 
@@ -253,8 +252,8 @@ is two places where the tags will make a difference, and that is by putting
 them first in the document, or first on a slide.
 
 Any fields you put first in a document will be rendered into attributes on
-the main impress.js ``<div>``. This is currently only used to set the
-transition-duration with ``data-transition-duration``.
+the main impress.js ``<div>``. The only ones that Hovercraft! will use are
+``data-transition-duration``, ``skip-help`` and ``auto-console``.
 
 Any fields you put first in a slide will be rendered into attributes on the
 slide ``<div>``. This is used primarily to set the position/zoom/rotation of
@@ -308,14 +307,14 @@ slide 500 pixels to the right and a thousand pixels above the previous slide::
     :data-y: r-1000
 
 Relative paths allow you to insert and remove slides and have other slides
-adjust automatically. It's probably the most useful way of positioning.
+adjust automatically. It's generally the most useful way of positioning.
 
 
 Automatic positioning
 ---------------------
 
 If you don't specify an attribute, the slide settings
-will be the same as the previous slide. This means that if you used a
+will be the same as the previous slide. This means that if you used
 relative positioning, the next slide will move the same distance.
 
 This gives a linear movement, and your slides will end up in a straight line.
@@ -344,7 +343,7 @@ There are some things you need to be careful about when using SVG paths.
 Relative and absolute coordinates
 .................................
 
-In SVG coordinates can either be absolute, with a reference to the page
+SVG coordinates can either be absolute, with a reference to the page
 origin; or relative, which is in reference to the last point. Hovercraft! can
 handle both, but what it can not handle very well is a mixture of them.
 

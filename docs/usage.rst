@@ -6,8 +6,8 @@ target directory, or you can let Hovercraft! serve the presentation from
 its builtin webserver.
 
 The latter have several benefits. One is that most webbrowsers will be very
-reluctant to open popup-windows from pages served from the file system
-this is a security measure which can be changed, but it's easier to
+reluctant to open popup-windows from pages served from the file system.
+This is a security measure which can be changed, but it's easier to
 just point the browser to http://localhost:8000 instead.
 
 The second benefit is that Hovercraft! will monitor the source files for the
@@ -50,8 +50,9 @@ Optional arguments:
         You can also set this by having ``:auto-console: true`` first in the
         presentation.
 
-    ``-s, --skip-help``
-        Do not show the initial help popup.
+    ``-s, --skip-help`` Do not show the initial help popup. You can also set
+        this by having ``:skip-help: true`` first in the presentation.
+
 
     ``-n, --skip-notes``
         Do not include presenter notes in the output.
