@@ -6,7 +6,7 @@ from pkg_resources import resource_string
 
 from .parse import rst2xml, SlideMaker
 from .position import position_slides
-from .template import Template, CSS_RESOURCE
+from .template import Template, CSS_RESOURCE, JS_RESOURCE, JS_POSITION_HEADER, JS_POSITION_BODY, OTHER_RESOURCE
 
 
 class ResourceResolver(etree.Resolver):
@@ -44,6 +44,19 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
                     os.path.abspath(os.path.join(presentation_dir, css_file)),
                     CSS_RESOURCE,
                     target=css_file,
+                    extra_info=media)
+        if attrib.startswith('js'):
+            if attrib == 'js-header':
+                media = JS_POSITION_HEADER
+            else:
+                # Put javascript in body tag as default.
+                media = JS_POSITION_BODY
+            js_files = tree.attrib[attrib].split()
+            for js_file in js_files:
+                template_info.add_resource(
+                    os.path.abspath(os.path.join(presentation_dir, js_file)),
+                    JS_RESOURCE,
+                    target=js_file,
                     extra_info=media)
 
     # Position all slides
@@ -106,6 +119,11 @@ def generate(args):
         target_path = os.path.relpath(args.css, presentation_dir)
         template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
         source_files.append(args.css)
+    if args.js:
+        presentation_dir = os.path.split(args.presentation)[0]
+        target_path = os.path.relpath(args.js, presentation_dir)
+        template_info.add_resource(args.js, JS_RESOURCE, target=target_path, extra_info=JS_POSITION_BODY)
+        source_files.append(args.js)
 
     # Make the resulting HTML
     htmldata, dependencies = rst2html(args.presentation, template_info,

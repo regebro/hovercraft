@@ -3,6 +3,7 @@
 :data-transition-duration: 2000
 :auto-console: True
 :css-screen: extra.css
+:js-body: extra.js
 
 
 This is an advanced presentation. It doesn't have a section in the first

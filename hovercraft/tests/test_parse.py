@@ -33,7 +33,7 @@ class SlideMakerTests(unittest.TestCase):
         target = (
             b'<document source="&lt;string&gt;" title="Presentation title" '
             b'data-transition-duration="2000" auto-console="True" '
-            b'css-screen="extra.css"><paragraph>This is an advanced '
+            b'css-screen="extra.css" js-body="extra.js"><paragraph>This is an advanced '
             b'presentation. It doesn\'t have a section in the first\nstep, '
             b'meaning the first step will not be a step at all, but a sort of\n'
             b'introductory comment about the presentation, that will not show up '

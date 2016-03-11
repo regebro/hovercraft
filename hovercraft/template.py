@@ -150,7 +150,7 @@ class Template(object):
     def copy_resource(self, resource, targetdir):
         """Copies a resource file and returns the source path for monitoring"""
         final_path = resource.final_path()
-        if final_path[0] == '/' or ':' in final_path:
+        if final_path[0] == '/' or (':' in final_path) or ('?' in final_path):
             # Absolute path or URI: Do nothing
             return None
 
