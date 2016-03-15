@@ -1,0 +1,9 @@
+/* Make slide numbers appear in the bottom right corner */
+div.slide-number
+{
+    position: fixed;
+    text-align: right;
+    right: 0em;
+    /*right: -2.5em;*/
+    bottom: 1em;
+}
