@@ -4,6 +4,5 @@ div.slide-number
     position: fixed;
     text-align: right;
     right: 0em;
-    /*right: -2.5em;*/
     bottom: 1em;
 }
