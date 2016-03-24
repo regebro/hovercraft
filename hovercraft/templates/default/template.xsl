@@ -21,6 +21,7 @@ xmlns="http://www.w3.org/1999/xhtml">
 <html>
   <head>
     <title><xsl:value-of select="/document/@title"/></title>
+    <meta charset="utf-8"/>
     <meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft"/>
     <xsl:if test="/document/author"> <!-- Author is a child to the document, everything else become attributes -->
       <meta name="author">
