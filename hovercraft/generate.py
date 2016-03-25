@@ -17,7 +17,7 @@ class ResourceResolver(etree.Resolver):
             return self.resolve_string(resource_string(__name__, filename), context)
 
 
-def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_notes=False):
+def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_notes=False, slide_numbers=False):
     # Read the infile
     with open(filepath, 'rb') as infile:
         rststring = infile.read()
@@ -59,6 +59,10 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     # If the console-should open automatically, set an attribute on the document:
     if skip_help:
         tree.attrib['skip-help'] = 'True'
+
+    # If slide numbers should be shown, set an attribute on the document:
+    if slide_numbers:
+        tree.attrib['slide-numbers'] = 'True'
 
     # We need to set up a resolver for resources, so we can include the
     # reST.xsl file if so desired.
@@ -110,7 +114,7 @@ def generate(args):
     # Make the resulting HTML
     htmldata, dependencies = rst2html(args.presentation, template_info,
                                       args.auto_console, args.skip_help,
-                                      args.skip_notes)
+                                      args.skip_notes, args.slide_numbers)
     source_files.extend(dependencies)
 
     # Write the HTML out
