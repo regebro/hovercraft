@@ -20,8 +20,14 @@ class HovercraftEventHandler(FileSystemEventHandler):
         super().__init__()
 
     def on_modified(self, event):
-        if event.src_path in self.filelist:
-            print("File %s modified, update presentation" % event.src_path)
+        self._update(event.src_path)
+
+    def on_created(self, event):
+        self._update(event.src_path)
+
+    def _update(self, src_path):
+        if src_path in self.filelist:
+            print("File %s modified, update presentation" % src_path)
             self.quit = True
 
 
