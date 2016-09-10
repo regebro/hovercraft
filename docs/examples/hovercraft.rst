@@ -7,7 +7,7 @@ at http://regebro.github.com/hovercraft/
 
 
 It's also useful as an example, in which case it's supposed to be read as
-`source code <../_sources/examples/hovercraft.txt>`_.
+`source code <../../../../raw/master/docs/examples/hovercraft.rst>`_.
 
 You can render this presentation to HTML with the command::
 
