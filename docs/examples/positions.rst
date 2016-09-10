@@ -2,7 +2,7 @@
 :css: tutorial.css
 
 This is a tutorial for Hovercraft! positioning. It's meant to be read as
-`source code <../_sources/examples/positions.txt>`_.
+`source code <../../../../raw/master/docs/examples/positions.rst>`_.
 
 You can render this presentation to HTML with the command::
 
