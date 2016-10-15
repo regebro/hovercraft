@@ -1,8 +1,8 @@
 Changes
 =======
 
-2.1.1 (unreleased)
-------------------
+2.2 (2016-10-15)
+----------------
 
 - #98: Presentation not update when using gedit
 
