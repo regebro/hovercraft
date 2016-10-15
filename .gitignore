@@ -1,5 +1,7 @@
 *.py[cod]
 pyvenv.cfg
+__pycache__/*
+*.*~
 
 # C extensions
 *.so
