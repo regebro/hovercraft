@@ -4,6 +4,7 @@ import os
 import sys
 import threading
 import time
+from sys import platform
 from collections import defaultdict
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from tempfile import TemporaryDirectory
@@ -24,6 +25,11 @@ class HovercraftEventHandler(FileSystemEventHandler):
 
     def on_moved(self, event):
         self._update(event.dest_path)
+
+    def on_created(self, event):
+        # workaround for detecting presentation file modification on OSX
+        if platform == 'darwin':
+            self._update(event.src_path)
 
     def _update(self, src_path):
         if src_path in self.filelist:
