@@ -6,6 +6,8 @@ Changes
 
 - Better implementation of #98
 
+- #72: Support for adding additional JS files [hbldh]
+
 
 2.2 (2016-10-15)
 ----------------
