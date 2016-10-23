@@ -102,6 +102,11 @@ def main():
         help=('An additional css file for the presentation to use. '
               'See also the ``:css:`` settings of the presentation.'))
     parser.add_argument(
+        '-j',
+        '--js',
+        help=('An additional javascript file for the presentation to use. Added as a js-body script.'
+              'See also the ``:js-body:`` settings of the presentation.'))
+    parser.add_argument(
         '-a',
         '--auto-console',
         action='store_true',

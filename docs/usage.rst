@@ -19,7 +19,7 @@ everytime you save a file, you only need to refresh the browser.
 Parameters
 ----------
 
-``hovercraft [-h] [-t TEMPLATE] [-c CSS] [-a] [-s] [-n] [-p PORT] <presentation> [<targetdir>]``
+``hovercraft [-h] [-t TEMPLATE] [-c CSS] [-j JS] [-a] [-s] [-n] [-p PORT] <presentation> [<targetdir>]``
 
 Positional arguments:
 
@@ -43,6 +43,10 @@ Optional arguments:
     ``-c CSS, --css CSS``
         An additional CSS file for the presentation to use.
         See also the ``:css:`` settings of the presentation.
+
+    ``-j JS, --js JS``
+        An additional Javascript file for the presentation to use. Added as a js-body script.
+        See also the ``:js-body:`` settings of the presentation.
 
     ``-a, --auto-console``
         Open the presenter console automatically. This is useful when you are

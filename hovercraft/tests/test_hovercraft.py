@@ -49,6 +49,26 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(out_files),
                              {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
 
+    def test_extra_js(self):
+        with TemporaryDirectory() as tmpdir:
+            sys.argv = [
+                'bin/hovercraft',
+                '-t' + os.path.join(TEST_DATA, 'maximal'),
+                '-j' + os.path.join(TEST_DATA, 'extra.js'),
+                '-n',
+                os.path.join(TEST_DATA, 'simple.rst'),
+                tmpdir,
+            ]
+
+            main()
+
+            with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
+                self.assertEqual(outfile.read(), HTML_OUTPUTS['extra_js'])
+
+            out_files = os.listdir(tmpdir)
+            self.assertEqual(set(out_files),
+                             {'extra.js', 'index.html', 'js', 'css', 'images', 'fonts'})
+
     def test_big(self):
         with TemporaryDirectory() as tmpdir:
             sys.argv = [
@@ -67,7 +87,7 @@ class HTMLTests(unittest.TestCase):
 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files),
-                             {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
+                             {'extra.css', 'extra.js', 'index.html', 'js', 'css', 'images', 'fonts'})
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files),
                              {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})

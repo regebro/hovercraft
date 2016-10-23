@@ -44,6 +44,34 @@ HTML_OUTPUTS = {
         b'src="js/hovercraft.js"></script></body></html>'
     ),
 
+    'extra_js': (
+        b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
+        b'xmlns="http://www.w3.org/1999/xhtml"><head><title></title><link '
+        b'rel="stylesheet" href="css/style.css" media="all"></link><link '
+        b'rel="stylesheet" href="css/print.css" media="print"></link><link '
+        b'rel="stylesheet" href="css/impressConsole.css" '
+        b'media="screen,projection"></link><script type="text/javascript" '
+        b'src="js/dummy.js"></script></head><body '
+        b'class="impress-not-supported"><div id="impress"><div class="step '
+        b'step-level-1" step="0" data-rotate-x="0" data-rotate-y="0" '
+        b'data-rotate-z="0" data-scale="1" data-x="0" data-y="0" data-z="0">'
+        b'<h1 id="simple-presentation">Simple Presentation</h1><p>This '
+        b'presentation has two slides, each with a header and some text.</p>'
+        b'</div><div class="step step-level-1" step="1" data-rotate-x="0" '
+        b'data-rotate-y="0" data-rotate-z="0" data-scale="1" data-x="1600" '
+        b'data-y="0" data-z="0"><h1 id="second-slide">Second '
+        b'slide</h1><p>There is no positioning or anything '
+        b'fancy.</p></div></div><div id="hovercraft-help" '
+        b'class="show"><table><tr><th>Left, Down, Page Down, Space</th><td>'
+        b'Next slide</td></tr><tr><th>Right, Up, Page Up</th><td>Previous '
+        b'slide</td></tr><tr><th>H</th><td>Toggle this help</td>'
+        b'</tr></table></div><script type="text/javascript" '
+        b'src="js/impress.js"></script><script type="text/javascript" '
+        b'src="js/impressConsole.js"></script><script type="text/javascript" '
+        b'src="js/hovercraft.js"></script><script type="text/javascript" '
+        b'src="extra.js"></script></body></html>'
+    ),
+
     'advanced': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
         b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Presentation '
@@ -91,7 +119,8 @@ HTML_OUTPUTS = {
         b'this help</td></tr></table></div><script type="text/javascript" '
         b'src="js/impress.js"></script><script type="text/javascript" '
         b'src="js/impressConsole.js"></script><script type="text/javascript" '
-        b'src="js/hovercraft.js"></script></body></html>'
+        b'src="js/hovercraft.js"></script><script type="text/javascript" '
+        b'src="extra.js"></script></body></html>'
     ),
 
     'default-template': (
@@ -143,7 +172,8 @@ HTML_OUTPUTS = {
         b'this help</td></tr></table></div><script type="text/javascript" '
         b'src="js/impress.js"></script><script type="text/javascript" '
         b'src="js/impressConsole.js"></script><script type="text/javascript" '
-        b'src="js/hovercraft.js"></script></body></html>'
+        b'src="js/hovercraft.js"></script><script type="text/javascript" '
+        b'src="extra.js"></script></body></html>'
     ),
 
     'presenter-notes': (

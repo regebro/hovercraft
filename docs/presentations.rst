@@ -137,8 +137,16 @@ CSS media::
 You can specify any number of css files in this way.
 You can also add one extra CSS-file via a command-line parameter:
 
-    hovercraft --extra-css=my_extra.css presentationfile.rst outdir/
+    hovercraft --css=my_extra.css presentationfile.rst outdir/
 
+In a similar fashion you can add Javascript files to either header or body::
+
+    :js-header: js/firstjsfile.js
+    :js-body: js/secondjsfile.js
+
+You can also add one extra Javascript-file via a command-line parameter:
+
+    hovercraft --js=my_extra.js presentationfile.rst outdir/
 
 Styling a specific slide
 ........................
