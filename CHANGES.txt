@@ -8,6 +8,8 @@ Changes
 
 - #72: Support for adding additional JS files [hbldh]
 
+- Upgraded impress.js to 0.6.0
+
 
 2.2 (2016-10-15)
 ----------------
