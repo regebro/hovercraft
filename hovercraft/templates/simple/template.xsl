@@ -28,12 +28,19 @@ xmlns="http://www.w3.org/1999/xhtml">
       </link>
     </xsl:for-each>
 
+	<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none",
+        TeX : { extensions : ['color.js'] }
+      });
+    </script>
+
     <xsl:for-each select="/document/templateinfo/header/js">
       <script type="text/javascript">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
-
   </head>
   <body class="impress-not-supported">
 

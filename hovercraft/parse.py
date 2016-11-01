@@ -102,6 +102,7 @@ class SlideMaker(object):
         self.steps = 0
         self.skip_notes = skip_notes
         self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
+        self.need_mathjax = False
 
     def _newstep(self, level):
         step = etree.Element('step', attrib={
@@ -209,3 +210,11 @@ class SlideMaker(object):
         # Skip this node completely, including children:
         while len(node) > 0:
             del node[0]
+
+    def start_math_block(self, node):
+        self.need_mathjax = True
+        self.default_start(node)
+
+    def start_math(self, node):
+        self.need_mathjax = True
+        self.default_start(node)
