@@ -120,6 +120,13 @@ def main():
         action='store_true',
         help=('Do not show the initial help popup.'))
     parser.add_argument(
+        '-b',
+        '--slide-numbers',
+        action='store_true',
+        help=('Show slide numbers in the bottom right corner during the '
+              'presentation. You can also set this by having '
+              '``:slide-numbers: true`` first in the presentation.'))
+    parser.add_argument(
         '-n',
         '--skip-notes',
         action='store_true',
