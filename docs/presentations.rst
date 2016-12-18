@@ -97,6 +97,15 @@ like links, footnotes, and more. It is in fact advanced enough so you can write 
 whole book_ in it, but for all that you need to read the documentation_.
 
 
+If you add a ``math`` directive then hovercraft! will add a link to the MathJax_ CDN
+so that this::
+
+    .. math:: e^{i \pi} + 1 = 0
+
+
+will be rendered by the MathJax javascript library. The math directive can also
+be used as a "role" with the equations inlined with the text flow.
+
 External files
 --------------
 
@@ -433,3 +442,4 @@ included with Hovercraft!
 .. _tutorial.rst: ./_sources/examples/tutorial.txt
 .. _positions.rst: ./_sources/examples/positions.txt
 .. _Reveal.js: http://lab.hakim.se/reveal-js/
+.. _MathJax: http://www.mathjax.org/

@@ -196,6 +196,21 @@ class HTMLTests(unittest.TestCase):
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
+    def test_mathjax(self):
+        with TemporaryDirectory() as tmpdir:
+            sys.argv = [
+                'bin/hovercraft',
+                os.path.join(TEST_DATA, 'math.rst'),
+                tmpdir,
+            ]
+
+            main()
+
+            with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
+                result = outfile.read()
+                self.assertIn(b'<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">', result)
+                self.assertIn(br'<div class="math-block ">$$\begin{align}dS = \frac{dQ}{T}\end{align}$$</div>', result)
+                self.assertIn(br'<span class="math ">\(S = k \log W\)</span>', result)
 
 if __name__ == '__main__':
     unittest.main()

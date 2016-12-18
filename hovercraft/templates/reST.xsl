@@ -162,6 +162,24 @@ Modification by Carl Mayer, 2013:
 </xsl:template>
 
 
+<xsl:template match="math_block">
+	<xsl:element name="div">
+		<xsl:attribute name="class">
+			<xsl:value-of select="concat('math-block ', @classes)" />
+		</xsl:attribute>
+		<xsl:text>$$\begin{align}</xsl:text><xsl:apply-templates /><xsl:text>\end{align}$$</xsl:text>
+	</xsl:element>
+</xsl:template>
+
+<xsl:template match="math">
+	<xsl:element name="span">
+		<xsl:attribute name="class">
+			<xsl:value-of select="concat('math ', @classes)" />
+		</xsl:attribute>
+		<xsl:text>\(</xsl:text><xsl:apply-templates /><xsl:text>\)</xsl:text>
+	</xsl:element>
+</xsl:template>
+
 <xsl:template match="paragraph">
 	<p>
         <xsl:if test="@classes">

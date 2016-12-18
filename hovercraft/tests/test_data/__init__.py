@@ -132,6 +132,13 @@ HTML_OUTPUTS = {
         b'href="css/impressConsole.css" media="all"></link>'
         b'<link rel="stylesheet" href="css/highlight.css" media="all"></link>'
         b'<link rel="stylesheet" href="extra.css" media="screen"></link>'
+        b'''<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none",
+        TeX : { extensions : ['color.js'] }
+      });
+    </script>'''
         b'</head><body class="impress-not-supported"><div id="impress" '
         b'data-transition-duration="2000" auto-console="True"><div '
         b'class="step step-level-1" step="0" data-x="1000" data-y="1600" '
