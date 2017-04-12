@@ -130,6 +130,11 @@ def main():
         default='0.0.0.0:8000',
         help=('The address and port that the server uses. '
               'Ex 8080 or 127.0.0.1:9000. Defaults to 0.0.0.0:8000.'))
+    parser.add_argument(
+        '--mathjax',
+        default=os.environ.get('HOVERCRAFT_MATHJAX', 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'),
+        help=('The URL to the mathjax library.'
+              ' (It will only be used if you have rST ``math::`` in your document)'))
 
     args = parser.parse_args()
 
