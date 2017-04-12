@@ -10,6 +10,8 @@ Changes
 
 - Upgraded impress.js to 0.6.0
 
+- Support for mathematical formulas with Mathjax [arabidopsis]
+
 
 2.2 (2016-10-15)
 ----------------

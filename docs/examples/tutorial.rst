@@ -277,6 +277,25 @@ And your visible code will now be runnable with Manuel:
 
 ----
 
+Render mathematics!
+===================
+
+Mathematical formulas can be rendered with Mathjax!
+
+.. math::
+
+    e^{i \pi} + 1 = 0
+
+    dS = \frac{dQ}{T}
+
+And inline: :math:`S = k \log W`
+
+.. _Mathjax: https://www.mathjax.org/
+
+----
+
+
+
 That's all folks!
 =================
 
