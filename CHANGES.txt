@@ -12,9 +12,11 @@ Changes
 
 - Support for mathematical formulas with Mathjax [arabidopsis]
 
-- Default template use UTF-8
+- Default template use UTF-8 [mariobodemann]
 
 - Added support for Python 3.6
+
+- readthedocs moved domain [adamchainz]
 
 
 2.2 (2016-10-15)

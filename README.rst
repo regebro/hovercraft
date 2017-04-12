@@ -67,6 +67,10 @@ Other contributors (see CHANGES.txt for details):
 
 * Mario Bodemann [mariobodemann]
 
+* Jürgen Hermann [jhermann]
+
+* Adam Johnson [adamchainz]
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/
