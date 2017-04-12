@@ -9,7 +9,7 @@ presentations. It will show the most important features of Hovercraft! with
 explanations.
 
 Hopefully you ended up here by the link from the official documentation at
-https://hovercraft.readthedocs.org/ . If not, you probably want to go there
+https://hovercraft.readthedocs.io/ . If not, you probably want to go there
 and read through it first.
 
 This tutorial is meant to be read as source code, not in any HTML form, so if

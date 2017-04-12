@@ -19,7 +19,7 @@ If you are seeing this text, and not reading this as source code, you are
 doing it wrong! It's going to be confusing and not very useful.
 
 Use The Source, Luke! But first you probably want to read through the
-official documentation at https://hovercraft.readthedocs.org/
+official documentation at https://hovercraft.readthedocs.io/
 
 ----
 
