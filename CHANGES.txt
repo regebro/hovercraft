@@ -12,6 +12,8 @@ Changes
 
 - Support for mathematical formulas with Mathjax [arabidopsis]
 
+- Default template use UTF-8
+
 
 2.2 (2016-10-15)
 ----------------

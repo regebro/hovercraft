@@ -125,8 +125,9 @@ HTML_OUTPUTS = {
 
     'default-template': (
         b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>'
-        b'<title>Presentation title</title><meta name="generator" '
-        b'content="Hovercraft! 1.0 http://regebro.github.com/hovercraft">'
+        b'<title>Presentation title</title><meta charset="UTF-8"></meta><meta '
+        b'name="generator" content="Hovercraft! 1.0 '
+        b'http://regebro.github.com/hovercraft">'
         b'</meta><link rel="stylesheet" href="css/hovercraft.css" '
         b'media="all"></link><link rel="stylesheet" '
         b'href="css/impressConsole.css" media="all"></link>'
