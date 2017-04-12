@@ -17,7 +17,7 @@ class ResourceResolver(etree.Resolver):
             return self.resolve_string(resource_string(__name__, filename), context)
 
 
-def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_notes=False):
+def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_notes=False, mathjax=False):
     # Read the infile
     with open(filepath, 'rb') as infile:
         rststring = infile.read()
@@ -29,7 +29,8 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     tree = etree.fromstring(xml)
 
     # Fix up the resulting XML so it makes sense
-    tree = SlideMaker(tree, skip_notes=skip_notes).walk()
+    sm = SlideMaker(tree, skip_notes=skip_notes)
+    tree = sm.walk()
 
     # Pick up CSS information from the tree:
     for attrib in tree.attrib:
@@ -58,6 +59,11 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
                     JS_RESOURCE,
                     target=js_file,
                     extra_info=media)
+
+    if sm.need_mathjax and mathjax:
+        template_info.add_resource(None, JS_RESOURCE,
+                                    target=mathjax,
+                                    extra_info=JS_POSITION_HEADER)
 
     # Position all slides
     position_slides(tree)
@@ -128,7 +134,7 @@ def generate(args):
     # Make the resulting HTML
     htmldata, dependencies = rst2html(args.presentation, template_info,
                                       args.auto_console, args.skip_help,
-                                      args.skip_notes)
+                                      args.skip_notes, args.mathjax)
     source_files.extend(dependencies)
 
     # Write the HTML out
