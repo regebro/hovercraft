@@ -4,7 +4,7 @@ Changes
 2.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- #51: Positioning relative to other slide [naraesk]
 
 
 2.3 (2017-04-12)

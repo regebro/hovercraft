@@ -106,15 +106,25 @@ def num(s):
 
 
 def _update_position(pos1, pos2):
-
+    
     for key in POSITION_ATTRIBS:
         val = pos2.get(key)
         if val is not None:
-            if val[0] == 'r':
-                # Relative movement
-                newval = pos1[key] + num(val[1:])
+            plus = val.find("+")
+            minus = val.find("-")
+            if plus > -1:
+                newval = num(val[plus+1:])
+                pos1[key + "-rel"] = val[0:plus]
+            elif minus > -1 and not val.startswith("r-"):
+                newval = num(val[minus:])
+                pos1[key + "-rel"] = val[0:minus]
             else:
-                newval = num(val)
+                if val[0] == 'r':
+                # Relative movement
+                    newval = pos1[key] + num(val[1:])
+                else:
+                    newval = num(val)
+                    pos1.pop(key+"-rel",  None)
             pos1[key] = newval
 
 
@@ -201,9 +211,19 @@ def calculate_positions(positions):
 
 def update_positions(tree, positions):
     """Updates the tree with new positions"""
-
+    
     for step, pos in zip(tree.findall('step'), positions):
         for key in sorted(pos):
+            value = pos.get(key)
+            if key.endswith("-rel"):
+                abs_key = key[:key.index("-rel")]
+                if value is not None:
+                    els = tree.findall(".//*[@id='" + value + "']")
+                    for el in els :
+                        pos[abs_key] = num(el.get(abs_key)) + pos.get(abs_key)
+                        print(num(el.get(abs_key)))
+                        print(pos.get(abs_key))
+                        step.attrib[abs_key] = str(pos.get(abs_key))
             step.attrib[key] = str(pos[key])
 
         if 'hovercraft-path' in step.attrib:
@@ -212,7 +232,7 @@ def update_positions(tree, positions):
 
 def position_slides(tree):
     """Position the slides in the tree"""
-
+    
     positions = gather_positions(tree)
     positions = calculate_positions(positions)
     update_positions(tree, positions)

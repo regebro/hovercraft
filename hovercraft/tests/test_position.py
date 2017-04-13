@@ -63,6 +63,12 @@ class GatherTests(unittest.TestCase):
             {'data-x': '3000', 'data-y': '1000', 'data-z': 'r0',
              'data-rotate-x': 'r0', 'data-rotate-y': 'r0',
              'data-rotate-z': 'r0', 'data-scale': 'r0', 'is_path': False},
+             {'data-x': 'firstID+1000', 'data-y': 'firstID-500', 'data-z': 'r0',
+             'data-rotate-x': 'r0', 'data-rotate-y': 'r0',
+             'data-rotate-z': 'r0', 'data-scale': 'r0', 'is_path': False},
+             {'data-x': 'secondID+800', 'data-y': '200', 'data-z': 'r0',
+             'data-rotate-x': 'r0', 'data-rotate-y': 'r0',
+             'data-rotate-z': 'r0', 'data-scale': 'r0', 'is_path': False}
         ])
 
 
@@ -388,6 +394,16 @@ class PositionTest(unittest.TestCase):
              'data-rotate-z': '90.0', 'data-scale': '1'},
             # Explicit x and y, all other carry over from last slide.
             {'data-x': '3000', 'data-y': '1000', 'data-z': '1000',
+             'data-rotate-x': '180', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '1'},
+            # Positioning relative to other slide by id
+            {'data-x': '4000', 'data-y': '500', 'data-z': '1000',
+             'data-x-rel': 'firstID',  'data-y-rel': 'firstID', 
+             'data-rotate-x': '180', 'data-rotate-y': '0',
+             'data-rotate-z': '90.0', 'data-scale': '1'},
+            # Positioning x relative to other slide by id, Explicit y
+            {'data-x': '4800', 'data-y': '200', 'data-z': '1000',
+             'data-x-rel': 'secondID', 
              'data-rotate-x': '180', 'data-rotate-y': '0',
              'data-rotate-z': '90.0', 'data-scale': '1'},
         ])
