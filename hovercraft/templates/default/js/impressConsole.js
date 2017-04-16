@@ -11,28 +11,28 @@
  *
  */
 
-(function ( document, window ) {
+(function (document, window) {
     'use strict';
 
     // This is the default template for the speaker console window
     var consoleTemplate = '<!DOCTYPE html>' +
         '<html id="impressconsole"><head>' +
-          '<link rel="stylesheet" type="text/css" media="screen" href="{{cssFile}}">' +
+        '<link rel="stylesheet" type="text/css" media="screen" href="{{cssFile}}">' +
         '</head><body>' +
         '<div id="console">' +
-          '<div id="views">' +
-            '<iframe id="slideView" scrolling="no"></iframe>' +
-            '<iframe id="preView" scrolling="no"></iframe>' +
-            '<div id="blocker"></div>' +
-          '</div>' +
-          '<div id="notes"></div>' +
+        '<div id="views">' +
+        '<iframe id="slideView" scrolling="no"></iframe>' +
+        '<iframe id="preView" scrolling="no"></iframe>' +
+        '<div id="blocker"></div>' +
+        '</div>' +
+        '<div id="notes"></div>' +
         '</div>' +
         '<div id="controls"> ' +
-          '<div id="prev"><a  href="#" onclick="impress().prev(); return false;" />Prev</a></div>' +
-          '<div id="next"><a  href="#" onclick="impress().next(); return false;" />Next</a></div>' +
-          '<div id="clock">00:00:00 AM</div>' +
-          '<div id="timer" onclick="timerReset()">00m 00s</div>' +
-          '<div id="status">Loading</div>' +
+        '<div id="prev"><a  href="#" onclick="impress().prev(); return false;" />Prev</a></div>' +
+        '<div id="next"><a  href="#" onclick="impress().next(); return false;" />Next</a></div>' +
+        '<div id="clock">00:00:00 AM</div>' +
+        '<div id="timer" onclick="timerReset()">00m 00s</div>' +
+        '<div id="status">Loading</div>' +
         '</div>' +
         '</body></html>';
 
@@ -45,7 +45,7 @@
     var useAMPM = false;
 
     // Zero padding helper function:
-    var zeroPad = function(i) {
+    var zeroPad = function (i) {
         return (i < 10 ? '0' : '') + i;
     };
 
@@ -59,17 +59,17 @@
         }
 
         // root presentation elements
-        var root = document.getElementById( rootId );
+        var root = document.getElementById(rootId);
 
         var consoleWindow = null;
 
-        var nextStep = function() {
+        var nextStep = function () {
             var nextElement = document.querySelector('.active').nextElementSibling;
             var classes = "";
             while (nextElement) {
                 classes = nextElement.attributes['class'];
                 if (classes && classes.value.indexOf('step') !== -1) {
-                   return nextElement;
+                    return nextElement;
                 }
                 nextElement = nextElement.nextElementSibling;
             }
@@ -78,8 +78,8 @@
         };
 
         // Sync the notes to the step
-        var onStepLeave = function(){
-            if(consoleWindow) {
+        var onStepLeave = function () {
+            if (consoleWindow) {
                 // Set notes to next steps notes.
                 var newNotes = document.querySelector('.active').querySelector('.notes');
                 if (newNotes) {
@@ -108,8 +108,8 @@
         };
 
         // Sync the previews to the step
-        var onStepEnter = function(){
-            if(consoleWindow) {
+        var onStepEnter = function () {
+            if (consoleWindow) {
                 // We do everything here again, because if you stopped the previos step to
                 // early, the onstepleave trigger is not called for that step, so
                 // we need this to sync things.
@@ -144,9 +144,9 @@
         var spaceHandler = function () {
             var notes = consoleWindow.document.getElementById('notes');
             if (notes.scrollTopMax - notes.scrollTop > 20) {
-               notes.scrollTop = notes.scrollTop + notes.clientHeight * 0.8;
+                notes.scrollTop = notes.scrollTop + notes.clientHeight * 0.8;
             } else {
-               impress().next();
+                impress().next();
             }
         };
 
@@ -180,35 +180,35 @@
 
             if (!consoleWindow.initialized) {
                 // Nudge the slide windows after load, or they will scrolled wrong on Firefox.
-                consoleWindow.document.getElementById('slideView').contentWindow.scrollTo(0,0);
-                consoleWindow.document.getElementById('preView').contentWindow.scrollTo(0,0);
+                consoleWindow.document.getElementById('slideView').contentWindow.scrollTo(0, 0);
+                consoleWindow.document.getElementById('preView').contentWindow.scrollTo(0, 0);
                 consoleWindow.initialized = true;
             }
         };
 
-        var registerKeyEvent = function(keyCodes, handler, window) {
+        var registerKeyEvent = function (keyCodes, handler, window) {
             if (window === undefined) {
                 window = consoleWindow;
             }
 
             // prevent default keydown action when one of supported key is pressed
-            window.document.addEventListener("keydown", function ( event ) {
-                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
+            window.document.addEventListener("keydown", function (event) {
+                if (!event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
                     event.preventDefault();
                 }
             }, false);
 
             // trigger impress action on keyup
-            window.document.addEventListener("keyup", function ( event ) {
-                if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
-                        handler();
-                        event.preventDefault();
+            window.document.addEventListener("keyup", function (event) {
+                if (!event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
+                    handler();
+                    event.preventDefault();
                 }
             }, false);
         };
 
-        var open = function() {
-            if(top.isconsoleWindow){
+        var open = function () {
+            if (top.isconsoleWindow) {
                 return;
             }
 
@@ -227,7 +227,7 @@
                 // Add clock tick
                 consoleWindow.timerStart = new Date();
                 consoleWindow.timerReset = timerReset;
-                consoleWindow.clockInterval = setInterval('impressConsole("' + rootId + '").clockTick()', 1000 );
+                consoleWindow.clockInterval = setInterval('impressConsole("' + rootId + '").clockTick()', 1000);
 
                 // keyboard navigation handlers
                 // 33: pg up, 37: left, 38: up
@@ -237,8 +237,13 @@
                 // 32: space
                 registerKeyEvent([32], spaceHandler);
 
+                // 66: b
+                registerKeyEvent([66], toggleBlack);
+                // 87: w
+                registerKeyEvent([87], toggleWhite);
+
                 // Cleanup
-                consoleWindow.onbeforeunload = function() {
+                consoleWindow.onbeforeunload = function () {
                     // I don't know why onunload doesn't work here.
                     clearInterval(consoleWindow.clockInterval);
                 };
@@ -252,7 +257,7 @@
             }
         };
 
-        var init = function(css) {
+        var init = function (css) {
             if (css !== undefined) {
                 cssFile = css;
             }
@@ -262,7 +267,7 @@
             root.addEventListener('impress:stepenter', onStepEnter);
 
             //When the window closes, clean up after ourselves.
-            window.onunload = function(){
+            window.onunload = function () {
                 if (consoleWindow && !consoleWindow.closed) {
                     consoleWindow.close();
                 }
@@ -273,7 +278,13 @@
         };
 
         // Return the object
-        allConsoles[rootId] = {init: init, open: open, clockTick: clockTick, registerKeyEvent: registerKeyEvent};
+        allConsoles[rootId] = {
+            init: init,
+            open: open,
+            clockTick: clockTick,
+            registerKeyEvent: registerKeyEvent,
+            toggleOverlay: toggleOverlay
+        };
         return allConsoles[rootId];
 
     };
