@@ -101,6 +101,9 @@ xmlns="http://www.w3.org/1999/xhtml">
         <tr><th>Space</th><td>Forward</td></tr>
         <tr><th>Right, Down, Page Down</th><td>Next slide</td></tr>
         <tr><th>Left, Up, Page Up</th><td>Previous slide</td></tr>
+        <xsl:if test="/document/@slide-numbers">
+          <tr><th>G</th><td>Go to slide number</td></tr>
+        </xsl:if>
         <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>
@@ -110,6 +113,12 @@ xmlns="http://www.w3.org/1999/xhtml">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
+    <xsl:if test="/document/@slide-numbers">
+        <script type="text/javascript">
+            insert_slide_numbers();
+            document.addEventListener("keypress", goto_slide_number);
+        </script>
+    </xsl:if>
 
 </body>
 </html>
