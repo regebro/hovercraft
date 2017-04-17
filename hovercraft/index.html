@@ -1,0 +1,34 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+        var ws = new WebSocket("ws://" + window.location.host + "/ws");
+        ws.onmessage = function (event) {
+            var iframe = document.getElementById("presentation");
+            iframe.src = "/presentation/index.html";
+            iframe.focus();
+            switch (event.data) {
+                case  "reload":
+                    iframe.contentDocument.location.reload();
+                // Navigation commands go here once we implement remote
+            };
+        };
+    </script>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        iframe#presentation {
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="presentation">
+        <p>Yeah, you need Javascript, and a modern browser.</p>
+    </iframe>
+</body>
+</html>

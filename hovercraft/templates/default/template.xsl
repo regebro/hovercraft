@@ -134,7 +134,7 @@ xmlns="http://www.w3.org/1999/xhtml">
     </xsl:for-each>
     <xsl:if test="/document/@slide-numbers">
       <script type="text/javascript">
-        document.getElementById("impress").addEventListener("impress:stepenter", update_slide_number, false);
+        document.getElementById("impress").addEventListener("impress:stepenter", updateSlideNumber, false);
       </script>
     </xsl:if>
 

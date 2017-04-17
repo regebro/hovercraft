@@ -21,7 +21,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['simple'])
@@ -40,7 +40,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['extra_css'])
@@ -60,7 +60,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['extra_js'])
@@ -78,7 +78,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 # We have verified the contents in test_generator.py, let's
@@ -123,7 +123,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 # We have verified the contents in test_generator.py, let's
@@ -157,7 +157,7 @@ class HTMLTests(unittest.TestCase):
                 os.path.join(TEST_DATA, 'advanced.rst'),
                 tmpdir,
             ]
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['default-template'])
@@ -182,7 +182,7 @@ class HTMLTests(unittest.TestCase):
                 os.path.join(TEST_DATA, 'simple.rst'),
                 tmpdir,
             ]
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 result = outfile.read()
@@ -196,7 +196,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
@@ -214,7 +214,7 @@ class HTMLTests(unittest.TestCase):
                 tmpdir,
             ]
 
-            main()
+            main.run()
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 result = outfile.read()

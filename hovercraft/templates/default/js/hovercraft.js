@@ -1,5 +1,6 @@
 // Initialize impress.js
-impress().init();
+var impressAPI = impress();
+impressAPI.init();
 
 // Set up the help-box
 var helpdiv = window.document.getElementById('hovercraft-help');
@@ -45,8 +46,17 @@ if (impressConsole) {
 }
 
 // Function updating the slide number counter
-function update_slide_number(evt)
-{
+function updateSlideNumber(evt) {
     var step = evt.target.attributes['step'].value;
     document.getElementById('slide-number').innerText = parseInt(step) + 1;
 }
+
+
+// Update the URL when entering a new slide
+function updateURL(evt) {
+    var step = evt.target.attributes['step'].value;
+    if (window.frameElement !== null)  {
+        window.parent.location.hash = '/step-' + (parseInt(step) + 1).toString();
+    }
+}
+document.getElementById("impress").addEventListener("impress:stepenter", updateURL, false);

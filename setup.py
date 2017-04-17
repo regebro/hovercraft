@@ -13,7 +13,7 @@ with open('CHANGES.txt', 'rt', encoding='utf8') as changes:
 class CustomInstall(install):
     def initialize_options(self):
         if sys.version < '3':
-            print("Hovercraft requires Python 3.2 or higher.")
+            print("Hovercraft requires Python 3.5 or higher.")
             sys.exit(1)
 
         return install.initialize_options(self)
@@ -47,7 +47,8 @@ setup(name='hovercraft',
           'lxml>=3.1.0',
           'svg.path',
           'pygments',
-          'watchdog',
+          'aiohttp',
+          'aionotify',
       ],
       tests_require=[
           'manuel',
@@ -55,7 +56,7 @@ setup(name='hovercraft',
       test_suite='tests',
       entry_points={
                'console_scripts': [
-                   'hovercraft = hovercraft:main',
+                   'hovercraft = hovercraft.main:run',
                ],
       },
       cmdclass={'install': CustomInstall}

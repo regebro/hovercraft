@@ -45,6 +45,9 @@ Changes
 
 - Switched the default MathJax URL to https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1
 
+- The default host is now 127.0.0.1, not 0.0.0.0, so the server is only
+  talking to localhost. This will be important when we get a remote control.
+
 
 2.3 (2017-04-12)
 ----------------

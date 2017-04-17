@@ -45,7 +45,7 @@ if (impressConsole) {
 }
 
 // Function updating the slide number counter
-function update_slide_number(evt)
+function updateSlideNumber(evt)
 {
     var step = evt.target.attributes['step'].value;
     document.getElementById('slide-number').innerText = parseInt(step) + 1;
