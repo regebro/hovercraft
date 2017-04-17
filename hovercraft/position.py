@@ -106,7 +106,7 @@ def num(s):
 
 
 def _update_position(pos1, pos2):
-    
+
     for key in POSITION_ATTRIBS:
         val = pos2.get(key)
         if val is not None:
@@ -211,7 +211,7 @@ def calculate_positions(positions):
 
 def update_positions(tree, positions):
     """Updates the tree with new positions"""
-    
+
     for step, pos in zip(tree.findall('step'), positions):
         for key in sorted(pos):
             value = pos.get(key)
@@ -224,7 +224,8 @@ def update_positions(tree, positions):
                         print(num(el.get(abs_key)))
                         print(pos.get(abs_key))
                         step.attrib[abs_key] = str(pos.get(abs_key))
-            step.attrib[key] = str(pos[key])
+            else: 
+                step.attrib[key] = str(pos[key])
 
         if 'hovercraft-path' in step.attrib:
             del step.attrib['hovercraft-path']
