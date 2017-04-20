@@ -66,10 +66,15 @@ There are four ways to position slides:
  #. Absolute positioning: You simply add X and Y coordinates to a slide,
     in pixels. Doing only this will not be fun, but someone might need it.
 
- #. Relative positioning: By specifying x and/or y with with a starting r,
-    you specify the distance from the previous slide. By using this form of
-    positioning you can insert a slide, and the other slides will just move
-    to make space for the new slide.
+ #. Relative positioning to last slide: By specifying x and/or y with with
+    a starting r,you specify the distance from the previous slide. By using
+    this form of positioning you can insert a slide, and the other slides 
+    will just move to make space for the new slide.
+    
+ #. Relative positiong to any slide: You can reference any *previous* slide
+    by its id and specify the position relative to it. This will work for
+    all positioning fields. However, you should not use ``r`` as a slide id
+    since the positioning might not behave as you expect. 
 
  #. Automatically: If you don’t specify any position the slide will have the
     same settings as the previous slide. With a relative positioning, this
