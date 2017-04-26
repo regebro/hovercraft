@@ -35,3 +35,10 @@ if (console) {
         consoleWindow = console().open();
     }
 }
+
+// Function updating the slide number counter
+function update_slide_number(evt)
+{
+    var step = evt.target.attributes['step'].value;
+    document.getElementById('slide-number').innerText = parseInt(step) + 1;
+}

@@ -71,6 +71,8 @@ Other contributors (see CHANGES.txt for details):
 
 * Adam Johnson [adamchainz]
 
+* Frederik Möllers [frederikmoellers]
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/

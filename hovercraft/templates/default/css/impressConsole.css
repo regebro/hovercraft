@@ -83,3 +83,10 @@ div#timer {
     text-align: center;
     float: left;
 }
+
+div#counter {
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: right;
+    float: right;
+}

@@ -33,6 +33,7 @@
           '<div id="clock">00:00:00 AM</div>' +
           '<div id="timer" onclick="timerReset()">00m 00s</div>' +
           '<div id="status">Loading</div>' +
+          '<div id="counter">Slide <span id="slide-number">1</span></div>' +
         '</div>' +
         '</body></html>';
 
@@ -136,6 +137,10 @@
                 if (preView.src !== preSrc) {
                     preView.src = preSrc;
                 }
+
+                // Update the slide number
+                var slide_number = parseInt(document.querySelector('.active').attributes['step'].value) + 1;
+                consoleWindow.document.getElementById('slide-number').innerHTML = '' + slide_number;
 
                 consoleWindow.document.getElementById('status').innerHTML = '<span style="color: green">Ready</span>';
             }

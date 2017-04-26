@@ -69,6 +69,11 @@ xmlns="http://www.w3.org/1999/xhtml">
         </xsl:for-each>
       </div>
     </xsl:for-each>
+	<xsl:if test="/document/@slide-numbers">
+	  <div id="slide-number" class="slide-number">
+	    1
+	  </div>
+    </xsl:if>
 
     <div id="hovercraft-help">
       <xsl:if test="not(/document/@skip-help)">
@@ -88,6 +93,11 @@ xmlns="http://www.w3.org/1999/xhtml">
         <xsl:copy-of select="@*"/>
       </script>
     </xsl:for-each>
+    <xsl:if test="/document/@slide-numbers">
+	  <script type="text/javascript">
+        document.getElementById("impress").addEventListener("impress:stepenter", update_slide_number, false);
+	  </script>
+    </xsl:if>
 
 </body>
 </html>

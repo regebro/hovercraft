@@ -46,3 +46,14 @@
 .impress-enabled #hovercraft-help.show {
     display: block;
 }
+
+/* Slide numbers */
+
+div#slide-number
+{
+    bottom: 1em;
+    font-size: 5vh;
+    position: absolute;
+    right: 2.5em;
+    text-align: right;
+}

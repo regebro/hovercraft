@@ -4,7 +4,7 @@ Changes
 2.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Option to display slide numbers [frederikmoellers]
 
 
 2.3 (2017-04-12)
