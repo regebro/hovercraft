@@ -1,7 +1,6 @@
 import os
 import configparser
 import shutil
-from pkg_resources import resource_string, resource_filename
 
 from lxml import etree
 
@@ -10,6 +9,8 @@ CSS_RESOURCE, JS_RESOURCE, OTHER_RESOURCE = RESOURCE_TYPES
 
 JS_POSITIONS = range(2)
 JS_POSITION_HEADER, JS_POSITION_BODY = JS_POSITIONS
+
+HOVERCRAFT_DIR = os.path.split(__file__)[0]
 
 
 class Resource(object):
@@ -63,20 +64,19 @@ class Template(object):
                                        extra_info=extra_info, is_in_template=is_in_template))
 
     def _load_template_config(self):
-        config = configparser.ConfigParser()
         if self.builtin_template:
-            cfg_string = resource_string(__name__, self.template + 'template.cfg').decode('UTF-8')
-            config.read_string(cfg_string)
-            self.template_root = self.template
+            self.template_root = os.path.join(HOVERCRAFT_DIR, self.template.strip('/'))
         else:
-            if os.path.isdir(self.template):
-                self.template_root = self.template
-                config_file = os.path.join(self.template, 'template.cfg')
-            else:
-                self.template_root = os.path.split(self.template)[0]
-                config_file = self.template
-            config.read(config_file)
+            self.template_root = self.template
 
+        if os.path.isdir(self.template_root):
+            config_file = os.path.join(self.template_root, 'template.cfg')
+        else:
+            config_file = self.template_root
+            self.template_root = os.path.split(self.template)[0]
+
+        config = configparser.ConfigParser()
+        config.read(config_file)
         self.config = config['hovercraft']
 
     def _load_template_files(self):
@@ -115,13 +115,8 @@ class Template(object):
 
     def _load_template_xsl(self):
         xsl_template = self.config['template']
-
-        # The template
-        if self.builtin_template:
-            self.xsl = resource_string(__name__, self.template + xsl_template)
-        else:
-            with open(os.path.join(self.template_root, xsl_template), 'rb') as xslfile:
-                self.xsl = xslfile.read()
+        with open(os.path.join(self.template_root, xsl_template), 'rb') as xslfile:
+            self.xsl = xslfile.read()
 
     def get_source_path(self, resource):
         # Non-template resource (extra css)
@@ -130,22 +125,15 @@ class Template(object):
 
         # In template
         if self.builtin_template:
-            resource_name = self.template + resource.filepath
-            # Note that this will raise NotImplementedError if Hovercraft! is
-            # installed as zip-file.
-            return resource_filename(__name__, resource_name)
+            return os.path.join(HOVERCRAFT_DIR, self.template.strip('/'), resource.filepath)
 
         # External template
         return os.path.join(self.template_root, resource.filepath)
 
     def read_data(self, resource):
-        try:
-            source_path = self.get_source_path(resource)
-            with open(source_path, 'rb') as infile:
-                return infile.read()
-        except NotImplementedError:
-            # Zip file! Read the data as binary and write out to the outfile.
-            return resource_string(__name__, self.template + file)
+        source_path = self.get_source_path(resource)
+        with open(source_path, 'rb') as infile:
+            return infile.read()
 
     def copy_resource(self, resource, targetdir):
         """Copies a resource file and returns the source path for monitoring"""
