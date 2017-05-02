@@ -135,6 +135,11 @@ def main():
         default=os.environ.get('HOVERCRAFT_MATHJAX', 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML'),
         help=('The URL to the mathjax library.'
               ' (It will only be used if you have rST ``math::`` in your document)'))
+    parser.add_argument(
+        '-N',
+        '--slide-numbers',
+        action='store_true',
+        help=('Show slide numbers during the presentation.'))
 
     args = parser.parse_args()
 

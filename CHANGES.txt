@@ -4,6 +4,8 @@ Changes
 2.4 (unreleased)
 ----------------
 
+- Option to display slide numbers [frederikmoellers]
+
 - #51: Positioning relative to other slide [naraesk]
 
 - Removed the code that uses pkg_util to access included templates. We don't

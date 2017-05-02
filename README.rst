@@ -71,6 +71,8 @@ Other contributors (see CHANGES.txt for details):
 
 * Adam Johnson [adamchainz]
 
+* Frederik Möllers [frederikmoellers]
+
 * David Baum [naraesk]
 
 .. _impress.js: http://github.com/bartaz/impress.js

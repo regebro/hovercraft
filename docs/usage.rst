@@ -57,9 +57,13 @@ Optional arguments:
     ``-s, --skip-help`` Do not show the initial help popup. You can also set
         this by having ``:skip-help: true`` first in the presentation.
 
-
     ``-n, --skip-notes``
         Do not include presenter notes in the output.
+
+    ``-N, --slide-numbers``
+        Show the current slide number on the slide itself and in the presenter
+        console. You can also set this by having ``slide-numbers: true`` in
+        the presentation preamble.
 
     ``-p PORT, --port PORT``
         The address and port that the server uses. Ex 8080 or
