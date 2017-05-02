@@ -186,7 +186,11 @@ def calculate_positions(positions):
                 rotation = _path_angle(path, x / (endcount - 1))
                 current_position['data-rotate-z'] = rotation
                 yield current_position.copy()
-                position = next(path_iter)
+                try:
+                    position = next(path_iter)
+                except StopIteration:
+                    last = True
+                    break
                 _update_position(current_position, position)
 
             if last:
@@ -195,7 +199,10 @@ def calculate_positions(positions):
             continue
 
         yield current_position.copy()
-        position = next(positer)
+        try:
+            position = next(positer)
+        except StopIteration:
+            break
         _update_position(current_position, position)
 
 
