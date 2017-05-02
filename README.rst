@@ -25,7 +25,7 @@ documentation subdirectory.
 Installation
 ------------
 
-Hovercraft requires Python 3.2 or later, and can be installed like any Python package.
+Hovercraft requires Python 3.4 or later, and can be installed like any Python package.
 The easiest way is to install pip_, and then run::
 
     $ pip3 install hovercraft

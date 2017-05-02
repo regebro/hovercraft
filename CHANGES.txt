@@ -6,6 +6,10 @@ Changes
 
 - #51: Positioning relative to other slide [naraesk]
 
+- Removed the code that uses pkg_util to access included templates. We don't
+  support installing Hovercraft as a ZIP file anyway, so it only complicates
+  things for no good reason.
+
 
 2.3 (2017-04-12)
 ----------------
