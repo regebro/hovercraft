@@ -88,9 +88,10 @@ So here we rotated 90 degrees and zoomed out five times.
 :data-scale: 1
 :data-x: 4000
 :data-y: 2000
+:id: positions_last_slide
 
-Relative positions
-==================
+Relative positions to last slide
+================================
 
 One thing that *is* a problem is the absolute positioning. All the positions
 we used so far above are in relation to the start of the coordinate system.
@@ -104,6 +105,8 @@ relative coordinate to the last slide.
 ----
 
 :data-x: r1000
+
+----
 
 Like this
 =========
@@ -121,12 +124,23 @@ to use relative positioning.
 
 ----
 
+:data-y: positions_last_slide+1000
+
+Relative positions to any slide
+===============================
+
+You can reference any *previous* slide by its id and specify the position relative to it.
+This will work for all fields.
+However, you should not use ``r`` as a slide id since the positioning might not behave as you expect. 
+
+----
+
 :data-rotate: r15
 
 Automatic positioning
 =====================
 
-Every field will retain it's last value if you don't specify a new one.
+Every field will retain its last value if you don't specify a new one.
 In this case, we keep a r1000 value for data-x and introduce a new
 r15 value for data-rotate. This and the next slide will therefore
 move right 1000 pixels and rotate 15 degrees more for each slide.
@@ -135,6 +149,7 @@ It looks like it moves "up" because we are already rotated 90 degrees.
 
 ----
 
+:data-x: r1000
 :data-scale: 0.15
 
 **A warning!**

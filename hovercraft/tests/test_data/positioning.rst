@@ -60,5 +60,18 @@ Move in Z and rotate. Path continues to be used.
 
 :data-x: 3000
 :data-y: 1000
+:id: firstID
 
 Explicit position
+
+
+----
+
+:id: secondID
+:data-x: firstID+1000
+:data-y: firstID-500
+
+----
+
+:data-x: secondID+800
+:data-y: 200
