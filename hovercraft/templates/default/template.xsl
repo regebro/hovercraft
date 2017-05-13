@@ -7,14 +7,14 @@ xmlns="http://www.w3.org/1999/xhtml">
 <xsl:import href="resource:templates/reST.xsl" />
 
 <xsl:template match="step" name="step">
-    <div class="step">
-      <xsl:copy-of select="@*"/>
-      <xsl:apply-templates />
-    </div>
+  <div class="step">
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates />
+  </div>
 </xsl:template>
 
 <xsl:template match="note" name="note">
-	<div class="notes"><xsl:apply-templates /></div>
+  <div class="notes"><xsl:apply-templates /></div>
 </xsl:template>
 
 <xsl:template match="/" name="main">
@@ -92,10 +92,10 @@ xmlns="http://www.w3.org/1999/xhtml">
         </xsl:for-each>
       </div>
     </xsl:for-each>
-	<xsl:if test="/document/@slide-numbers">
-	  <div id="slide-number" class="slide-number">
-	    1
-	  </div>
+      <xsl:if test="/document/@slide-numbers">
+        <div id="slide-number" class="slide-number">
+          1
+        </div>
     </xsl:if>
 
     <div id="hovercraft-help">
@@ -116,9 +116,9 @@ xmlns="http://www.w3.org/1999/xhtml">
       </script>
     </xsl:for-each>
     <xsl:if test="/document/@slide-numbers">
-	  <script type="text/javascript">
+      <script type="text/javascript">
         document.getElementById("impress").addEventListener("impress:stepenter", update_slide_number, false);
-	  </script>
+      </script>
     </xsl:if>
 
 </body>
