@@ -157,6 +157,28 @@ You can also add one extra Javascript-file via a command-line parameter:
 
     hovercraft --js=my_extra.js presentationfile.rst outdir/
 
+If you want static content, content that doesn't move with each slide; for
+example a header, footer, your company logo or a slide background pattern,
+then you can insert that content with the header and footer commands::
+
+    .. header::
+
+       .. image:: images/company-logo.png
+
+
+    .. footer::
+
+        "How to use Hovercraft", Yern Busfern, ImaginaryCon 2017
+
+The header will be located in the resulting HTML before the first slide, and
+the footer will be located after the last slide. However, they will be
+displayed statically on every slide, and you will have to position them with
+CSS.
+
+It doesn't matter where in the presentation you add these commands, I would
+recommend that you add them before the first slide.
+
+
 Styling a specific slide
 ........................
 

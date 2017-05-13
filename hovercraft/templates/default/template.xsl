@@ -68,6 +68,13 @@ xmlns="http://www.w3.org/1999/xhtml">
   <body class="impress-not-supported">
 
     <xsl:for-each select="/document">
+
+      <xsl:for-each select="decoration/header">
+        <div class="header">
+          <xsl:apply-templates />
+        </div>
+      </xsl:for-each>
+
       <div id="impress">
         <xsl:if test="@data-perspective">
           <xsl:attribute name="data-perspective">
@@ -84,6 +91,7 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@auto-console" />
           </xsl:attribute>
         </xsl:if>
+
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>
@@ -91,11 +99,19 @@ xmlns="http://www.w3.org/1999/xhtml">
           </div>
         </xsl:for-each>
       </div>
-    </xsl:for-each>
-      <xsl:if test="/document/@slide-numbers">
-        <div id="slide-number" class="slide-number">
-          1
+
+      <xsl:for-each select="decoration/footer">
+        <div class="footer">
+          <xsl:apply-templates />
         </div>
+      </xsl:for-each>
+
+    </xsl:for-each>
+
+    <xsl:if test="/document/@slide-numbers">
+      <div id="slide-number" class="slide-number">
+        1
+      </div>
     </xsl:if>
 
     <div id="hovercraft-help">

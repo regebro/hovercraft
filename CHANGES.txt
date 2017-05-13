@@ -12,6 +12,9 @@ Changes
   support installing Hovercraft as a ZIP file anyway, so it only complicates
   things for no good reason.
 
+- Support for .. header:: and .. footer:: that can be used for static
+  content.
+
 
 2.3 (2017-04-12)
 ----------------
