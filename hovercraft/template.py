@@ -147,15 +147,7 @@ class Template(object):
         if not os.path.exists(directory_name):
             os.makedirs(directory_name)
 
-        try:
-            source_path = self.get_source_path(resource)
-        except NotImplementedError:
-            # The template is in a zipped package!
-            # Read the data as binary and write out to the outfile.
-            with open(target_path, 'wb') as outfile:
-                outfile.write(self.read_data(resource))
-            # Done!
-            return None  # Although copied, we do not monitor zip-files.
+        source_path = self.get_source_path(resource)
 
         if (os.path.exists(target_path) and
             os.path.getmtime(source_path) <= os.path.getmtime(target_path)):
