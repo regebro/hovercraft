@@ -47,7 +47,7 @@ class HTMLTests(unittest.TestCase):
 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files),
-                             {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts'})
+                             {'extra.css', 'index.html', 'js', 'css', 'images', 'fonts', 'directory'})
 
     def test_extra_js(self):
         with TemporaryDirectory() as tmpdir:
@@ -67,7 +67,7 @@ class HTMLTests(unittest.TestCase):
 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files),
-                             {'extra.js', 'index.html', 'js', 'css', 'images', 'fonts'})
+                             {'extra.js', 'index.html', 'js', 'css', 'images', 'fonts', 'directory'})
 
     def test_big(self):
         with TemporaryDirectory() as tmpdir:
@@ -87,7 +87,17 @@ class HTMLTests(unittest.TestCase):
 
             out_files = os.listdir(tmpdir)
             self.assertEqual(set(out_files),
-                             {'extra.css', 'extra.js', 'index.html', 'js', 'css', 'images', 'fonts'})
+                             {'extra.css', 'extra.js', 'index.html', 'js', 'css', 'images', 'fonts', 'directory'})
+
+            # Make sure the whole tree of the directory resource was copies,
+            # except .dont-include, which should not be included.
+            out_files = os.listdir(os.path.join(tmpdir, 'directory'))
+            self.assertEqual(set(out_files),
+                             {'subdir', 'hovercraft_logo.png', 'print.css'})
+            out_files = os.listdir(os.path.join(tmpdir, 'directory', 'subdir'))
+            self.assertEqual(set(out_files),
+                             {'afile'})
+
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files),
                              {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
@@ -121,7 +131,7 @@ class HTMLTests(unittest.TestCase):
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['skip-presenter-notes'])
 
             out_files = os.listdir(tmpdir)
-            self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images', 'fonts'})
+            self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images', 'fonts', 'directory'})
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files),
                              {'impress.js', 'hovercraft.js', 'impressConsole.js', 'dummy.js'})
