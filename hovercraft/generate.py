@@ -62,9 +62,17 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
                     extra_info=media)
 
     if sm.need_mathjax and mathjax:
-        template_info.add_resource(None, JS_RESOURCE,
-                                    target=mathjax,
-                                    extra_info=JS_POSITION_HEADER)
+        if mathjax.startswith('http'):
+            template_info.add_resource(None, JS_RESOURCE,
+                                       target=mathjax,
+                                       extra_info=JS_POSITION_HEADER)
+        else:
+            # Local copy
+            template_info.add_resource(mathjax, DIRECTORY_RESOURCE,
+                                       target='mathjax')
+            template_info.add_resource(None, JS_RESOURCE,
+                                       target='mathjax/MathJax.js?config=TeX-MML-AM_CHTML',
+                                       extra_info=JS_POSITION_HEADER)
 
     # Position all slides
     position_slides(tree)
@@ -177,7 +185,7 @@ def generate(args):
                                            is_in_template=True)
         else:
             for filename in uris:
-                source_files.extend(copy_resource(filename, css_sourcedir, css_targetdir))
+                source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))
 
     # All done!
 

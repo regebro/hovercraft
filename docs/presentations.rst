@@ -104,7 +104,15 @@ so that this::
 
 
 will be rendered by the MathJax javascript library. The math directive can also
-be used as a "role" with the equations inlined with the text flow.
+be used as a "role" with the equations inlined with the text flow. Note that
+if you use the math statement, by default the MathJax library will be loaded
+from the internet, meaning that your presentation will need network connectivity
+to work, which can be a problem when presenting and conferences, which often have
+bad network connectivity.
+
+This can be solved by specifying a local copy of mathjax with the --mathjax
+command line.
+
 
 External files
 --------------
