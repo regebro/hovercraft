@@ -15,6 +15,14 @@ Changes
 - Support for .. header:: and .. footer:: that can be used for static
   content.
 
+- Dropped support for Python 3.3 and 3.4, because I now use recursive glob.
+
+- Added support for resource-directories. This is used by the local mathjax
+  support.
+
+- Templates can also have a resource-directories statements, to specify extra
+  directories of resources. That's probably not useful, but there it is.
+
 
 2.3 (2017-04-12)
 ----------------

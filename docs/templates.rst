@@ -63,11 +63,17 @@ The parameters in the ``[hovercraft]`` section are:
     end of the file. The files impress.js, impressConsole.js and
     hovercraft.js typically need to be included here.
 
-  * ``resource``
+  * ``resources``
     A list of filenames separated by whitespace that will be
     copied to the target directory, but nothing else is done
     with them. Images and fonts used by CSS will be copied
     anyway, but other resources may be added here.
+
+  * ``resource-directories``
+    A list of directory names separated by whitespace. These will be treated
+    like ``resources`` above, ie only copied to the target directory. The
+    directory contents will be copied recursively, but hidden files (like
+    files starting with a ``.`` are ignored.
 
 An example::
 
@@ -85,10 +91,10 @@ An example::
               js/impressConsole.js
               js/hovercraft.js
 
-    resource = images/back.png
-               images/forward.png
-               images/up.png
-               images/down.png
+    resources = images/back.png
+                images/forward.png
+                images/up.png
+                images/down.png
 
 
 The template file

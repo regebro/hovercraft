@@ -1,11 +1,12 @@
 import os
 import configparser
 import shutil
+import glob
 
 from lxml import etree
 
-RESOURCE_TYPES = range(3)
-CSS_RESOURCE, JS_RESOURCE, OTHER_RESOURCE = RESOURCE_TYPES
+RESOURCE_TYPES = range(4)
+CSS_RESOURCE, JS_RESOURCE, DIRECTORY_RESOURCE, OTHER_RESOURCE = RESOURCE_TYPES
 
 JS_POSITIONS = range(2)
 JS_POSITION_HEADER, JS_POSITION_BODY = JS_POSITIONS
@@ -104,6 +105,10 @@ class Template(object):
                     self.add_resource(filename, JS_RESOURCE, extra_info=JS_POSITION_BODY,
                                       is_in_template=True)
 
+            elif key == 'resource-directories':
+                for filename in self.config[key].split():
+                    self.add_resource(filename, DIRECTORY_RESOURCE, is_in_template=True)
+
             # Other files:
             elif key == 'resources':
                 for filename in self.config[key].split():
@@ -140,14 +145,25 @@ class Template(object):
         final_path = resource.final_path()
         if final_path[0] == '/' or (':' in final_path) or ('?' in final_path):
             # Absolute path or URI: Do nothing
-            return None
+            return
 
-        target_path = os.path.join(targetdir, final_path)
+        source_path = self.get_source_path(resource)
+
+        if resource.resource_type == DIRECTORY_RESOURCE:
+            for file_path in glob.iglob(os.path.join(source_path, '**'), recursive=True):
+                if os.path.isdir(file_path):
+                    continue
+                rest_target_path = file_path[len(source_path)+1:]
+                target_path = os.path.join(targetdir, final_path, rest_target_path)
+                yield self._copy_file(file_path, target_path)
+        else:
+            target_path = os.path.join(targetdir, final_path)
+            yield self._copy_file(source_path, target_path)
+
+    def _copy_file(self, source_path, target_path):
         directory_name, filename = os.path.split(target_path)
         if not os.path.exists(directory_name):
             os.makedirs(directory_name)
-
-        source_path = self.get_source_path(resource)
 
         if (os.path.exists(target_path) and
             os.path.getmtime(source_path) <= os.path.getmtime(target_path)):
@@ -159,7 +175,7 @@ class Template(object):
 
     def copy_resources(self, targetdir):
         for resource in self.resources:
-            yield self.copy_resource(resource, targetdir)
+            yield from self.copy_resource(resource, targetdir)
 
     def xml_node(self):
         node = etree.Element('templateinfo')

@@ -6,7 +6,8 @@ from pkg_resources import resource_string
 
 from .parse import rst2xml, SlideMaker
 from .position import position_slides
-from .template import Template, CSS_RESOURCE, JS_RESOURCE, JS_POSITION_HEADER, JS_POSITION_BODY, OTHER_RESOURCE
+from .template import (Template, CSS_RESOURCE, JS_RESOURCE, JS_POSITION_HEADER,
+                       JS_POSITION_BODY, OTHER_RESOURCE, DIRECTORY_RESOURCE)
 
 
 class ResourceResolver(etree.Resolver):
@@ -156,7 +157,7 @@ def generate(args):
     tree = html.fromstring(htmldata)
     for image in tree.iterdescendants('img'):
         filename = image.attrib['src']
-        source_files.append(copy_resource(filename, sourcedir, args.targetdir))
+        source_files.extend(copy_resource(filename, sourcedir, args.targetdir))
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
 
@@ -176,7 +177,7 @@ def generate(args):
                                            is_in_template=True)
         else:
             for filename in uris:
-                source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))
+                source_files.extend(copy_resource(filename, css_sourcedir, css_targetdir))
 
     # All done!
 
