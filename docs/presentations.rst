@@ -178,10 +178,12 @@ then you can insert that content with the header and footer commands::
 
         "How to use Hovercraft", Yern Busfern, ImaginaryCon 2017
 
-The header will be located in the resulting HTML before the first slide, and
+The header will be located in the resulting HTML before the first slide and
 the footer will be located after the last slide. However, they will be
 displayed statically on every slide, and you will have to position them with
-CSS.
+CSS. By default the header will be displayed behind the slides and the footer
+in front of the slides, so the header is useful for background designs and
+the footer for designs that should be in the foreground.
 
 It doesn't matter where in the presentation you add these commands, I would
 recommend that you add them before the first slide.
