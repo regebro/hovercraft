@@ -218,7 +218,7 @@ class HTMLTests(unittest.TestCase):
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 result = outfile.read()
-                self.assertIn(b'<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">', result)
+                self.assertIn(b'<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">', result)
                 self.assertIn(br'<div class="math-block ">$$\begin{align}dS = \frac{dQ}{T}\end{align}$$</div>', result)
                 self.assertIn(br'<span class="math ">\(S = k \log W\)</span>', result)
 

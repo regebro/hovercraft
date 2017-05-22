@@ -155,7 +155,8 @@ class Template(object):
                     continue
                 rest_target_path = file_path[len(source_path)+1:]
                 target_path = os.path.join(targetdir, final_path, rest_target_path)
-                yield self._copy_file(file_path, target_path)
+                # Don't yield the result, we don't monitor these.
+                self._copy_file(file_path, target_path)
         else:
             target_path = os.path.join(targetdir, final_path)
             yield self._copy_file(source_path, target_path)

@@ -17,11 +17,13 @@ Changes
 
 - Dropped support for Python 3.3 and 3.4, because I now use recursive glob.
 
-- Added support for resource-directories. This is used by the local mathjax
-  support.
+- Templates can now have a resource-directories statements, to specify extra
+  directories of resources. This can be used in templates for JS libraries,
+  like MathJax.
 
-- Templates can also have a resource-directories statements, to specify extra
-  directories of resources. That's probably not useful, but there it is.
+- The MathJax argument can now be a local copy.
+
+- Switched the default MathJax URL to https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1
 
 
 2.3 (2017-04-12)
