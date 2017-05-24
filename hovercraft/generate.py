@@ -129,7 +129,7 @@ def copy_resource(filename, sourcedir, targetdir):
 def generate(args):
     """Generates the presentation and returns a list of files used"""
 
-    source_files = [args.presentation]
+    source_files = {args.presentation}
 
     # Parse the template info
     template_info = Template(args.template)
@@ -137,19 +137,19 @@ def generate(args):
         presentation_dir = os.path.split(args.presentation)[0]
         target_path = os.path.relpath(args.css, presentation_dir)
         template_info.add_resource(args.css, CSS_RESOURCE, target=target_path, extra_info='all')
-        source_files.append(args.css)
+        source_files.add(args.css)
     if args.js:
         presentation_dir = os.path.split(args.presentation)[0]
         target_path = os.path.relpath(args.js, presentation_dir)
         template_info.add_resource(args.js, JS_RESOURCE, target=target_path, extra_info=JS_POSITION_BODY)
-        source_files.append(args.js)
+        source_files.add(args.js)
 
     # Make the resulting HTML
     htmldata, dependencies = rst2html(args.presentation, template_info,
                                       args.auto_console, args.skip_help,
                                       args.skip_notes, args.mathjax,
                                       args.slide_numbers)
-    source_files.extend(dependencies)
+    source_files.update(dependencies)
 
     # Write the HTML out
     if not os.path.exists(args.targetdir):
@@ -158,14 +158,14 @@ def generate(args):
         outfile.write(htmldata)
 
     # Copy supporting files
-    source_files.extend(template_info.copy_resources(args.targetdir))
+    source_files.update(template_info.copy_resources(args.targetdir))
 
     # Copy images from the source:
     sourcedir = os.path.split(os.path.abspath(args.presentation))[0]
     tree = html.fromstring(htmldata)
     for image in tree.iterdescendants('img'):
         filename = image.attrib['src']
-        source_files.extend(copy_resource(filename, sourcedir, args.targetdir))
+        source_files.add(copy_resource(filename, sourcedir, args.targetdir))
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
 
@@ -185,8 +185,8 @@ def generate(args):
                                            is_in_template=True)
         else:
             for filename in uris:
-                source_files.append(copy_resource(filename, css_sourcedir, css_targetdir))
+                source_files.add(copy_resource(filename, css_sourcedir, css_targetdir))
 
     # All done!
 
-    return [os.path.abspath(f) for f in source_files if f]
+    return {os.path.abspath(f) for f in source_files if f}
