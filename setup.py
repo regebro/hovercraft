@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 import sys
 
-version = '2.4.dev0'
+version = '2.4'
 
 with open('README.rst', 'rt') as readme:
     description = readme.read()
