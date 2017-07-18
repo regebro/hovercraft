@@ -49,3 +49,16 @@ a {
 .hidden {
     display: none;
 }
+
+.header img {
+    opacity: 0.2;
+    width: 25%;
+    position: absolute;
+    left: 0;
+}
+
+.footer {
+    position: absolute;
+    top: 95%;
+    font-size: 50%;
+}

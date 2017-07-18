@@ -4,6 +4,14 @@
 :keywords: presentation, restructuredtext, impress.js, tutorial
 :css: tutorial.css
 
+.. header::
+
+    .. image:: images/hovercraft_logo.png
+
+.. footer::
+
+   Hovercraft! Tutorial, https://hovercraft.readthedocs.io
+
 This slide show is a sort of tutorial of how to use Hovercraft! to make
 presentations. It will show the most important features of Hovercraft! with
 explanations.
