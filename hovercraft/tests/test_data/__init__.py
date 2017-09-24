@@ -176,12 +176,14 @@ HTML_OUTPUTS = {
         b'<table><tr><th>Space</th><td>Forward</td></tr><tr><th>'
         b'Right, Down, Page Down</th><td>Next slide</td></tr><tr><th>'
         b'Left, Up, Page Up</th><td>Previous slide</td></tr><tr><th>P</th>'
-        b'<td>Open presenter console</td></tr><tr><th>H</th><td>Toggle '
-        b'this help</td></tr></table></div><script type="text/javascript" '
-        b'src="js/impress.js"></script><script type="text/javascript" '
-        b'src="js/impressConsole.js"></script><script type="text/javascript" '
-        b'src="js/hovercraft.js"></script><script type="text/javascript" '
-        b'src="extra.js"></script></body></html>'
+        b'<td>Open presenter console</td></tr><tr><th>G</th><td>Go to slide'
+        b'</td></tr><tr><th>H</th><td>Toggle this help</td></tr></table>'
+        b'</div><script type="text/javascript" src="js/impress.js"></script>'
+        b'<script type="text/javascript" src="js/impressConsole.js">'
+        b'</script><script type="text/javascript" src="js/hovercraft.js">'
+        b'</script><script type="text/javascript" src="js/goto_slide.js">'
+        b'</script><script type="text/javascript" src="extra.js"></script>'
+        b'</body></html>'
     ),
 
     'presenter-notes': (

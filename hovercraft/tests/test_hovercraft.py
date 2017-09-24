@@ -164,7 +164,7 @@ class HTMLTests(unittest.TestCase):
 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js',
-                                             'impressConsole.js'})
+                                             'impressConsole.js', 'goto_slide.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'hovercraft.css',
                                               'impressConsole.css', 'highlight.css'})
