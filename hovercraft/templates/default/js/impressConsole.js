@@ -55,6 +55,7 @@
     const consoleTemplate = '<!DOCTYPE html>' +
         '<html id="impressconsole"><head>' +
           '<link rel="stylesheet" type="text/css" media="screen" href="{{cssFile}}">' +
+          '<script type="text/javascript" src="js/goto_slide.js" defer="defer"></script>' +
         '</head><body>' +
         '<div id="console">' +
           '<div id="views">' +
