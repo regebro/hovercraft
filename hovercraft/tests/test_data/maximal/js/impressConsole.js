@@ -5,17 +5,54 @@
  *
  * MIT Licensed, see license.txt.
  *
- * Copyright 2012 impress-console contributors (see README.txt)
+ * Copyright 2012, 2013, 2015 impress-console contributors (see README.txt)
  *
- * version: 1.1
+ * version: 1.3.1
  *
  */
 
 (function ( document, window ) {
     'use strict';
 
+    // create Language object depending on browsers language setting
+    var lang;
+    switch (navigator.language) {
+    case 'de':
+        lang = {
+            'noNotes' : '<div class="noNotes">Keine Notizen hierzu</div>',
+            'restart' : 'Neustart',
+            'clickToOpen' : 'Klicken um Sprecherkonsole zu öffnen',
+            'prev' : 'zurück',
+            'next' : 'weiter',
+            'loading' : 'initalisiere',
+            'ready' : 'Bereit',
+            'moving' : 'in Bewegung',
+            'useAMPM' : false
+        };
+        break;
+    case 'en':
+    default :
+        lang = {
+            'noNotes' : '<div class="noNotes">No notes for this step</div>',
+            'restart' : 'Restart',
+            'clickToOpen' : 'Click to open speaker console',
+            'prev' : 'Prev',
+            'next' : 'Next',
+            'loading' : 'Loading',
+            'ready' : 'Ready',
+            'moving' : 'Moving',
+            'useAMPM' : false
+        };
+        break;
+    }
+
+    // Settings to set iframe in speaker console
+    const preViewDefaultFactor = 0.7;
+    const preViewMinimumFactor = 0.5;
+    const preViewGap    = 4;
+
     // This is the default template for the speaker console window
-    var consoleTemplate = '<!DOCTYPE html>' +
+    const consoleTemplate = '<!DOCTYPE html>' +
         '<html id="impressconsole"><head>' +
           '<link rel="stylesheet" type="text/css" media="screen" href="{{cssFile}}">' +
         '</head><body>' +
@@ -28,21 +65,22 @@
           '<div id="notes"></div>' +
         '</div>' +
         '<div id="controls"> ' +
-          '<div id="prev"><a  href="#" onclick="impress().prev(); return false;" />Prev</a></div>' +
-          '<div id="next"><a  href="#" onclick="impress().next(); return false;" />Next</a></div>' +
-          '<div id="clock">00:00:00 AM</div>' +
+          '<div id="prev"><a  href="#" onclick="impress().prev(); return false;" />{{prev}}</a></div>' +
+          '<div id="next"><a  href="#" onclick="impress().next(); return false;" />{{next}}</a></div>' +
+          '<div id="clock">--:--</div>' +
           '<div id="timer" onclick="timerReset()">00m 00s</div>' +
-          '<div id="status">Loading</div>' +
+          '<div id="status">{{loading}}</div>' +
         '</div>' +
         '</body></html>';
 
     // Default css location
     var cssFile = "css/impressConsole.css";
 
-    // All console windows, so that you can call console() repeatedly.
-    var allConsoles = {};
+    // css for styling iframs on the console
+    var cssFileIframe = "css/impressConsolePreview.css";
 
-    var useAMPM = false;
+    // All console windows, so that you can call impressConsole() repeatedly.
+    var allConsoles = {};
 
     // Zero padding helper function:
     var zeroPad = function(i) {
@@ -50,7 +88,7 @@
     };
 
     // The console object
-    var console = window.console = function (rootId) {
+    var impressConsole = window.impressConsole = function (rootId) {
 
         rootId = rootId || 'impress';
 
@@ -64,14 +102,29 @@
         var consoleWindow = null;
 
         var nextStep = function() {
-            var nextElement = document.querySelector('.active').nextElementSibling;
             var classes = "";
+            var nextElement = document.querySelector('.active');
+            // return to parents as long as there is no next sibling
+            while (!nextElement.nextElementSibling && nextElement.parentNode) {
+                nextElement = nextElement.parentNode;
+            }
+            nextElement = nextElement.nextElementSibling;
             while (nextElement) {
                 classes = nextElement.attributes['class'];
                 if (classes && classes.value.indexOf('step') !== -1) {
-                   return nextElement;
+                    return nextElement;
                 }
-                nextElement = nextElement.nextElementSibling;
+
+                if (nextElement.firstElementChild) { // first go into deep
+                    nextElement = nextElement.firstElementChild;
+                }
+                else {
+                    // go to next sibling or through parents until there is a next sibling
+                    while (!nextElement.nextElementSibling && nextElement.parentNode) {
+                        nextElement = nextElement.parentNode;
+                    }
+                    nextElement = nextElement.nextElementSibling;
+                }
             }
             // No next element. Pick the first
             return document.querySelector('.step');
@@ -85,7 +138,7 @@
                 if (newNotes) {
                     newNotes = newNotes.innerHTML;
                 } else {
-                    newNotes = 'No notes for this step';
+                    newNotes = lang.noNotes;
                 }
                 consoleWindow.document.getElementById('notes').innerHTML = newNotes;
 
@@ -94,7 +147,7 @@
                 var slideSrc = baseURL + '#' + document.querySelector('.active').id;
                 var preSrc = baseURL + '#' + nextStep().id;
                 var slideView = consoleWindow.document.getElementById('slideView');
-                // Setting them when they are already set causes glithes in firexof, so we check first:
+                // Setting them when they are already set causes glithes in Firefox, so we check first:
                 if (slideView.src !== slideSrc) {
                     slideView.src = slideSrc;
                 }
@@ -103,7 +156,7 @@
                     preView.src = preSrc;
                 }
 
-                consoleWindow.document.getElementById('status').innerHTML = '<span style="color: red">Moving</span>';
+                consoleWindow.document.getElementById('status').innerHTML = '<span class="moving">' + lang.moving + '</span>';
             }
         };
 
@@ -117,7 +170,7 @@
                 if (newNotes) {
                     newNotes = newNotes.innerHTML;
                 } else {
-                    newNotes = 'No notes for this step';
+                    newNotes = lang.noNotes;
                 }
                 var notes = consoleWindow.document.getElementById('notes');
                 notes.innerHTML = newNotes;
@@ -128,7 +181,7 @@
                 var slideSrc = baseURL + '#' + document.querySelector('.active').id;
                 var preSrc = baseURL + '#' + nextStep().id;
                 var slideView = consoleWindow.document.getElementById('slideView');
-                // Setting them when they are already set causes glithes in firexof, so we check first:
+                // Setting them when they are already set causes glithes in Firefox, so we check first:
                 if (slideView.src !== slideSrc) {
                     slideView.src = slideSrc;
                 }
@@ -137,7 +190,7 @@
                     preView.src = preSrc;
                 }
 
-                consoleWindow.document.getElementById('status').innerHTML = '<span style="color: green">Ready</span>';
+                consoleWindow.document.getElementById('status').innerHTML = '<span  class="ready">' + lang.ready + '</span>';
             }
         };
 
@@ -162,7 +215,7 @@
             var seconds = now.getSeconds();
             var ampm = '';
 
-            if (useAMPM) {
+            if (lang.useAMPM) {
                 ampm = ( hours < 12 ) ? 'AM' : 'PM';
                 hours = ( hours > 12 ) ? hours - 12 : hours;
                 hours = ( hours === 0 ) ? 12 : hours;
@@ -207,6 +260,27 @@
             }, false);
         };
 
+        var consoleOnLoad = function() {
+                var slideView = consoleWindow.document.getElementById('slideView');
+                var preView = consoleWindow.document.getElementById('preView');
+
+                // Firefox:
+                slideView.contentDocument.body.classList.add('impress-console');
+                preView.contentDocument.body.classList.add('impress-console');
+                slideView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                preView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+
+                // Chrome:
+                slideView.addEventListener('load', function() {
+                        slideView.contentDocument.body.classList.add('impress-console');
+                        slideView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                });
+                preView.addEventListener('load', function() {
+                        preView.contentDocument.body.classList.add('impress-console');
+                        preView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                });
+        };
+
         var open = function() {
             if(top.isconsoleWindow){
                 return;
@@ -216,18 +290,39 @@
                 consoleWindow.focus();
             } else {
                 consoleWindow = window.open();
+
+                // if opening failes this may be because the browser prevents this from
+                // not (or less) interactive JavaScript...
+                if (consoleWindow == null) {
+                    // ... so I add a button to klick.
+                    // workaround on firefox
+                    var message = document.createElement('div');
+                    message.id = 'consoleWindowError';
+                    message.style.position = "fixed";
+                    message.style.left = 0;
+                    message.style.top = 0;
+                    message.style.right = 0;
+                    message.style.bottom = 0;
+                    message.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    message.innerHTML = '<button style="margin: 25vh 25vw;width:50vw;height:50vh;" onclick="var x = document.getElementById(\'consoleWindowError\');x.parentNode.removeChild(x);impressConsole().open();">' + lang.clickToOpen + '</button>';
+                    document.body.appendChild(message);
+                    return;
+                }
+
                 // This sets the window location to the main window location, so css can be loaded:
                 consoleWindow.document.open();
                 // Write the template:
-                consoleWindow.document.write(consoleTemplate.replace("{{cssFile}}", cssFile));
+                consoleWindow.document.write(consoleTemplate.replace("{{cssFile}}", cssFile).replace(/{{.*?}}/gi, function (x){ return lang[x.substring(2, x.length-2)]; }));
                 consoleWindow.document.title = 'Speaker Console (' + document.title + ')';
                 consoleWindow.impress = window.impress;
                 // We set this flag so we can detect it later, to prevent infinite popups.
                 consoleWindow.isconsoleWindow = true;
+                // Set the onload function:
+                consoleWindow.onload = consoleOnLoad;
                 // Add clock tick
                 consoleWindow.timerStart = new Date();
                 consoleWindow.timerReset = timerReset;
-                consoleWindow.clockInterval = setInterval('console("' + rootId + '").clockTick()', 1000 );
+                consoleWindow.clockInterval = setInterval('impressConsole("' + rootId + '").clockTick()', 1000 );
 
                 // keyboard navigation handlers
                 // 33: pg up, 37: left, 38: up
@@ -236,6 +331,8 @@
                 registerKeyEvent([34, 39, 40], impress().next);
                 // 32: space
                 registerKeyEvent([32], spaceHandler);
+                // 82: R
+                registerKeyEvent([82], timerReset);
 
                 // Cleanup
                 consoleWindow.onbeforeunload = function() {
@@ -248,13 +345,72 @@
                 consoleWindow.initialized = false;
                 consoleWindow.document.close();
 
+                //catch any window resize to pass size on
+                window.onresize = resize;
+                consoleWindow.onresize = resize;
+
                 return consoleWindow;
             }
         };
 
-        var init = function(css) {
+        var resize = function() {
+            var slideView = consoleWindow.document.getElementById('slideView');
+            var preView = consoleWindow.document.getElementById('preView');
+
+            // get ratio of presentation
+            var ratio = window.innerHeight / window.innerWidth;
+
+            // get size available for views
+            var views = consoleWindow.document.getElementById('views');
+
+            // slideView may have a border or some padding:
+            // asuming same border width on both direktions
+            var delta = slideView.offsetWidth - slideView.clientWidth;
+
+            // set views
+            var slideViewWidth = (views.clientWidth - delta);
+            var slideViewHeight = Math.floor(slideViewWidth * ratio);
+
+            var preViewTop = slideViewHeight + preViewGap;
+
+            var preViewWidth = Math.floor(slideViewWidth * preViewDefaultFactor);
+            var preViewHeight = Math.floor(slideViewHeight * preViewDefaultFactor);
+
+
+            // shrink preview to fit into space available
+            if (views.clientHeight - delta < preViewTop + preViewHeight) {
+                preViewHeight = views.clientHeight - delta - preViewTop;
+                preViewWidth = Math.floor(preViewHeight / ratio);
+            }
+
+            // if preview is not high enough forget ratios!
+            if (preViewWidth <= Math.floor(slideViewWidth * preViewMinimumFactor)) {
+                slideViewWidth = (views.clientWidth - delta);
+                slideViewHeight = Math.floor((views.clientHeight - delta - preViewGap) / (1 + preViewMinimumFactor));
+
+                preViewTop = slideViewHeight + preViewGap;
+
+                preViewWidth = Math.floor(slideViewWidth * preViewMinimumFactor);
+                preViewHeight = views.clientHeight - delta - preViewTop;
+            }
+
+            // set the calculated into styles
+            slideView.style.width = slideViewWidth + "px";
+            slideView.style.height = slideViewHeight + "px";
+
+            preView.style.top = preViewTop + "px";
+
+            preView.style.width = preViewWidth + "px";
+            preView.style.height = preViewHeight + "px";
+        }
+
+        var init = function(css, cssPreview) {
             if (css !== undefined) {
                 cssFile = css;
+            }
+
+            if (cssPreview !== undefined) {
+                cssFileIframe = cssPreview;
             }
 
             // Register the event
