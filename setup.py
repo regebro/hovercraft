@@ -42,6 +42,7 @@ setup(name='hovercraft',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+          'setuptools',
           'docutils >= 0.9',
           'lxml>=3.1.0',
           'svg.path',

@@ -4,6 +4,7 @@ import os
 import sys
 import threading
 import time
+import pkg_resources
 from collections import defaultdict
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from tempfile import TemporaryDirectory
@@ -11,6 +12,8 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 from .generate import generate
+
+__version__ = pkg_resources.require("hovercraft")[0].version
 
 
 class HovercraftEventHandler(FileSystemEventHandler):
@@ -140,6 +143,13 @@ def main():
         '--slide-numbers',
         action='store_true',
         help=('Show slide numbers during the presentation.'))
+    parser.add_argument(
+        '-v',
+        '--version',
+        action='version',
+        #help=('Display version and exit.'),
+        version="Hovercraft! %s" % __version__
+    )
 
     args = parser.parse_args()
 

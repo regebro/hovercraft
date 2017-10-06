@@ -4,7 +4,7 @@ Changes
 2.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Hovercraft! now displays the version number when called with -v or --version.
 
 
 2.4 (2017-07-18)
@@ -15,7 +15,7 @@ Changes
 - #51: Positioning relative to other slide [naraesk]
 
 - Removed the code that uses pkg_util to access included templates. We don't
-  support installing Hovercraft as a ZIP file anyway, so it only complicates
+  support installing Hovercraft! as a ZIP file anyway, so it only complicates
   things for no good reason.
 
 - Support for .. header:: and .. footer:: that can be used for static
