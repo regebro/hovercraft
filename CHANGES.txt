@@ -6,6 +6,9 @@ Changes
 
 - Hovercraft! now displays the version number when called with -v or --version.
 
+- New version of impressConsole that includes styling of the previews and
+  a goto command <G>.
+
 
 2.4 (2017-07-18)
 ----------------

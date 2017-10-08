@@ -5,9 +5,9 @@
  *
  * MIT Licensed, see license.txt.
  *
- * Copyright 2012, 2013, 2015 impress-console contributors (see README.txt)
+ * Copyright 2012-2017 impress-console contributors (see README.txt)
  *
- * version: 1.3.1
+ * version: 1.4
  *
  */
 
@@ -27,7 +27,8 @@
             'loading' : 'initalisiere',
             'ready' : 'Bereit',
             'moving' : 'in Bewegung',
-            'useAMPM' : false
+            'useAMPM' : false,
+            'gotoSlideNo': 'Gehe zur Foliennummer' // By Google translate
         };
         break;
     case 'en':
@@ -41,7 +42,8 @@
             'loading' : 'Loading',
             'ready' : 'Ready',
             'moving' : 'Moving',
-            'useAMPM' : false
+            'useAMPM' : false,
+            'gotoSlideNo': 'Go to slide number:'
         };
         break;
     }
@@ -207,6 +209,22 @@
             consoleWindow.timerStart = new Date();
         };
 
+        var gotoSlide = function (event) {
+            var target = event.view.prompt("Enter slide number");
+
+            if (isNaN(target)) {
+                var goto_status = impress().goto(target);
+            } else if (target === null) {
+                return;
+            } else {
+                // goto(0) goes to step-1, so substract
+                var goto_status = impress().goto(parseInt(target) - 1);
+            }
+            if (goto_status === false) {
+                event.view.alert("Slide not found: '" + target + "'");
+            }
+        };
+
         // Show a clock
         var clockTick = function () {
             var now = new Date();
@@ -239,22 +257,22 @@
             }
         };
 
-        var registerKeyEvent = function(keyCodes, handler, window) {
-            if (window === undefined) {
-                window = consoleWindow;
+        var registerKeyEvent = function(keyCodes, handler, wnd) {
+            if (wnd === undefined) {
+                wnd = consoleWindow;
             }
 
             // prevent default keydown action when one of supported key is pressed
-            window.document.addEventListener("keydown", function ( event ) {
+            wnd.document.addEventListener("keydown", function ( event ) {
                 if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
                     event.preventDefault();
                 }
             }, false);
 
             // trigger impress action on keyup
-            window.document.addEventListener("keyup", function ( event ) {
+            wnd.document.addEventListener("keyup", function ( event ) {
                 if ( !event.ctrlKey && !event.altKey && !event.shiftKey && !event.metaKey && keyCodes.indexOf(event.keyCode) !== -1) {
-                        handler();
+                        handler(event);
                         event.preventDefault();
                 }
             }, false);
@@ -315,7 +333,7 @@
                 consoleWindow.document.write(consoleTemplate.replace("{{cssFile}}", cssFile).replace(/{{.*?}}/gi, function (x){ return lang[x.substring(2, x.length-2)]; }));
                 consoleWindow.document.title = 'Speaker Console (' + document.title + ')';
                 consoleWindow.impress = window.impress;
-                // We set this flag so we can detect it later, to prevent infinite popups.
+                // We set this flag so we can d etect it later, to prevent infinite popups.
                 consoleWindow.isconsoleWindow = true;
                 // Set the onload function:
                 consoleWindow.onload = consoleOnLoad;
@@ -333,6 +351,8 @@
                 registerKeyEvent([32], spaceHandler);
                 // 82: R
                 registerKeyEvent([82], timerReset);
+                // 71: G
+                registerKeyEvent([71], gotoSlide);
 
                 // Cleanup
                 consoleWindow.onbeforeunload = function() {
@@ -417,15 +437,18 @@
             root.addEventListener('impress:stepleave', onStepLeave);
             root.addEventListener('impress:stepenter', onStepEnter);
 
-            //When the window closes, clean up after ourselves.
+            // When the window closes, clean up after ourselves.
             window.onunload = function(){
                 if (consoleWindow && !consoleWindow.closed) {
                     consoleWindow.close();
                 }
             };
 
-            //Open speaker console when they press 'p'
+            // Open speaker console when they press 'p'
             registerKeyEvent([80], open, window);
+            // Goto a slide number when they press 'g'
+            registerKeyEvent([71], gotoSlide, window);
+
         };
 
         // Return the object
