@@ -7,7 +7,7 @@
  *
  * Copyright 2012-2017 impress-console contributors (see README.txt)
  *
- * version: 1.4
+ * version: 1.4.1
  *
  */
 
@@ -79,7 +79,7 @@
     var cssFile = "css/impressConsole.css";
 
     // css for styling iframs on the console
-    var cssFileIframe = "css/impressConsolePreview.css";
+    var cssFileIframe = null;
 
     // All console windows, so that you can call impressConsole() repeatedly.
     var allConsoles = {};
@@ -285,17 +285,26 @@
                 // Firefox:
                 slideView.contentDocument.body.classList.add('impress-console');
                 preView.contentDocument.body.classList.add('impress-console');
-                slideView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
-                preView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
-
+                if (cssFileIframe !== null) {
+                    slideView.contentDocument.head.insertAdjacentHTML('beforeend',
+                        '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                    preView.contentDocument.head.insertAdjacentHTML('beforeend',
+                        '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                }
                 // Chrome:
                 slideView.addEventListener('load', function() {
                         slideView.contentDocument.body.classList.add('impress-console');
-                        slideView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                        if (cssFileIframe !== null) {
+                            slideView.contentDocument.head.insertAdjacentHTML('beforeend',
+                                '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                        }
                 });
                 preView.addEventListener('load', function() {
                         preView.contentDocument.body.classList.add('impress-console');
-                        preView.contentDocument.head.insertAdjacentHTML('beforeend', '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                        if (cssFileIframe !== null) {
+                            preView.contentDocument.head.insertAdjacentHTML('beforeend',
+                            '<link rel="stylesheet" type="text/css" href="' + cssFileIframe + '">');
+                        }
                 });
         };
 
