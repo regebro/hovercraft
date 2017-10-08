@@ -4,10 +4,10 @@ import sys
 
 version = '2.5.dev0'
 
-with open('README.rst', 'rt') as readme:
+with open('README.rst', 'rt', encoding='utf8') as readme:
     description = readme.read()
 
-with open('CHANGES.txt', 'rt') as changes:
+with open('CHANGES.txt', 'rt', encoding='utf8') as changes:
     history = changes.read()
 
 class CustomInstall(install):
