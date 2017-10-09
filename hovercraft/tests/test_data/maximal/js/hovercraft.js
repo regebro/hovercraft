@@ -16,7 +16,6 @@ if (window.top!=window.self) {
         else
             helpdiv.className = 'hide';
     };
-    console().registerKeyEvent([72], help, window);
 
     // The help is by default shown. Hide it after five seconds.
     setTimeout(function () {
@@ -27,11 +26,21 @@ if (window.top!=window.self) {
 }
 
 
-if (console) {
-    console().init(cssFile='css/impressConsole.css');
+if (impressConsole) {
+    impressConsole().init(css='css/impressConsole.css');
+
+    // P to open Console
+    impressConsole().registerKeyEvent([72], help, window);
 
     var impressattrs = document.getElementById('impress').attributes
     if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
         consoleWindow = console().open();
     }
+}
+
+// Function updating the slide number counter
+function update_slide_number(evt)
+{
+    var step = evt.target.attributes['step'].value;
+    document.getElementById('slide-number').innerText = parseInt(step) + 1;
 }
