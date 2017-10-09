@@ -16,26 +16,26 @@
 }
 
 .step {
-    width: 1000px;
+    width: 800px;
 }
 
 
 /* Help popup */
 
 #hovercraft-help {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     color: #EEEEEE;
-    font-size: 20px;
+    font-size: 70%;
     left: 2em;
     bottom: 2em;
-    width: 26em;
+    width: 28em;
     border-radius: 1em;
     padding: 1em;
     position: fixed;
     right: 0;
     text-align: center;
     z-index: 100;
-    display: none;
+    display: block;
     font-family: Verdana, Arial, Sans;
 }
 
@@ -43,8 +43,8 @@
     display: none;
 }
 
-.impress-enabled #hovercraft-help.show {
-    display: block;
+#hovercraft-help.disabled {
+    display: none;
 }
 
 /* Slide numbers */

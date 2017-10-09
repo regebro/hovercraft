@@ -122,6 +122,7 @@ xmlns="http://www.w3.org/1999/xhtml">
         <tr><th>Space</th><td>Forward</td></tr>
         <tr><th>Right, Down, Page Down</th><td>Next slide</td></tr>
         <tr><th>Left, Up, Page Up</th><td>Previous slide</td></tr>
+        <tr><th>G</th><td>Go to slide number</td></tr>
         <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>

@@ -18,8 +18,6 @@ if (window.top!=window.self) {
     };
     // P to open Console
     impressConsole().registerKeyEvent([72], help, window);
-    // G to goto a slide
-    impressConsole().registerKeyEvent([72], help, window);
 
     // The help is by default shown. Hide it after five seconds.
     setTimeout(function () {

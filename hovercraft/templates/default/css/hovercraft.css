@@ -23,12 +23,12 @@
 /* Help popup */
 
 #hovercraft-help {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     color: #EEEEEE;
-    font-size: 100%;
+    font-size: 70%;
     left: 2em;
     bottom: 2em;
-    width: 26em;
+    width: 28em;
     border-radius: 1em;
     padding: 1em;
     position: fixed;
