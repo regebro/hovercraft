@@ -156,6 +156,26 @@ You can also add one extra CSS-file via a command-line parameter:
 
     hovercraft --css=my_extra.css presentationfile.rst outdir/
 
+
+Styling the console
+-------------------
+
+You can also optionally add styles to your slides that are only shown in when
+the slide is shown in the presenter console::
+
+    :css-preview: css/slidepreview.css
+
+You can also style the presenter console itself:
+
+    :css-console: css/console.css
+
+That css file needs to be based on the impressConsole.css used by the default
+template, as it replaces that file.
+
+
+Adding Javascript
+-----------------
+
 In a similar fashion you can add Javascript files to either header or body::
 
     :js-header: js/firstjsfile.js
@@ -190,7 +210,7 @@ recommend that you add them before the first slide.
 
 
 Styling a specific slide
-........................
+------------------------
 
 If you want to have specific styling for a specific slide, it is a good
 idea to give that slide a unique ID::
@@ -209,7 +229,7 @@ slides that came before it, and in that case your custom stylings of that
 slide will stop working.
 
 Portable presentations
-......................
+----------------------
 
 Since Hovercraft! generates HTML5 presentations, you can use any computer
 that has a modern browser installed to view or show the presentation. This
