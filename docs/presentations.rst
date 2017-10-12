@@ -491,8 +491,8 @@ included with Hovercraft!
 .. _book: http://python3porting.com/
 .. _Pygments: http://pygments.org/
 .. _languages: http://pygments.org/docs/lexers/
-.. _hovercraft.rst: ./_sources/examples/hovercraft.txt
-.. _tutorial.rst: ./_sources/examples/tutorial.txt
-.. _positions.rst: ./_sources/examples/positions.txt
+.. _hovercraft.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/hovercraft.rst
+.. _tutorial.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/tutorial.txt
+.. _positions.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/positions.txt
 .. _Reveal.js: http://lab.hakim.se/reveal-js/
 .. _MathJax: http://www.mathjax.org/
