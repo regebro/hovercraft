@@ -27,12 +27,18 @@ if (window.top!=window.self) {
 
 
 if (impressConsole) {
-    impressConsole().init(css='css/impressConsole.css');
+    var impressattrs = document.getElementById('impress').attributes;
+    var consoleCss = impressattrs['console-css'];
+    var previewCss = null;
+    if (impressattrs.hasOwnProperty('preview-css')) {
+        previewCss = impressattrs['preview-css'];
+    }
+
+    impressConsole().init(css=consoleCss, cssPreview=previewCss);
 
     // P to open Console
     impressConsole().registerKeyEvent([72], help, window);
 
-    var impressattrs = document.getElementById('impress').attributes
     if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
         consoleWindow = console().open();
     }
