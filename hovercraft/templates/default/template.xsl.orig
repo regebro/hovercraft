@@ -5,7 +5,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:import href="resource:templates/reST.xsl" />
+<<<<<<< HEAD
 <xsl:import href="directives.xsl" />
+=======
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
 
 <xsl:template match="step" name="step">
   <div class="step">
@@ -123,7 +126,10 @@ xmlns="http://www.w3.org/1999/xhtml">
         <tr><th>Space</th><td>Forward</td></tr>
         <tr><th>Right, Down, Page Down</th><td>Next slide</td></tr>
         <tr><th>Left, Up, Page Up</th><td>Previous slide</td></tr>
+<<<<<<< HEAD
+=======
         <tr><th>G</th><td>Go to slide number</td></tr>
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
         <tr><th>P</th><td>Open presenter console</td></tr>
         <tr><th>H</th><td>Toggle this help</td></tr>
       </table>

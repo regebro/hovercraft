@@ -16,26 +16,43 @@
 }
 
 .step {
+<<<<<<< HEAD
+    width: 1000px;
+=======
     width: 800px;
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
 }
 
 
 /* Help popup */
 
 #hovercraft-help {
+<<<<<<< HEAD
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    color: #EEEEEE;
+    font-size: 20px;
+    left: 2em;
+    bottom: 2em;
+    width: 26em;
+=======
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     color: #EEEEEE;
     font-size: 70%;
     left: 2em;
     bottom: 2em;
     width: 28em;
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
     border-radius: 1em;
     padding: 1em;
     position: fixed;
     right: 0;
     text-align: center;
     z-index: 100;
+<<<<<<< HEAD
+    display: none;
+=======
     display: block;
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
     font-family: Verdana, Arial, Sans;
 }
 
@@ -43,8 +60,13 @@
     display: none;
 }
 
+<<<<<<< HEAD
+.impress-enabled #hovercraft-help.show {
+    display: block;
+=======
 #hovercraft-help.disabled {
     display: none;
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
 }
 
 /* Slide numbers */

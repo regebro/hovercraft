@@ -16,6 +16,10 @@ if (window.top!=window.self) {
         else
             helpdiv.className = 'hide';
     };
+<<<<<<< HEAD
+    console().registerKeyEvent([72], help, window);
+=======
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
 
     // The help is by default shown. Hide it after five seconds.
     setTimeout(function () {
@@ -26,11 +30,16 @@ if (window.top!=window.self) {
 }
 
 
+<<<<<<< HEAD
+if (console) {
+    console().init(cssFile='css/impressConsole.css');
+=======
 if (impressConsole) {
     impressConsole().init(css='css/impressConsole.css');
 
     // P to open Console
     impressConsole().registerKeyEvent([72], help, window);
+>>>>>>> 461489651de56c8ca9ba6c23a11bba7570d5270b
 
     var impressattrs = document.getElementById('impress').attributes
     if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
