@@ -1,0 +1,4 @@
+/* A CSS file in a subdirectory referencing a resource. */
+html {
+    background-image: url('../images/hovercraft_logo.png');
+}

@@ -1,0 +1,6 @@
+include README.rst CHANGES.txt LICENSE.txt
+exclude .gitignore
+recursive-include docs conf.py Makefile make.bat *.rst *.css *.js *.png
+recursive-exclude docs/build *
+recursive-include hovercraft/templates *
+recursive-include hovercraft/tests/test_data *

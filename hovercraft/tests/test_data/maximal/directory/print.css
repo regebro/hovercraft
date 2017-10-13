@@ -1,0 +1,18 @@
+/* This file left intentionally (almost) blank
+
+   Landslide always adds a print.css and a screen.css, but they
+   are not needed in impress.js, so this theme leaves them blank,
+   except for hiding some things you want to hide.
+
+   You can modify these files in your own fork, or you can add
+   css-files in the landslide configuration file.
+   See https://github.com/adamzap/landslide#presentation-configuration
+
+*/
+
+.impress-supported .fallback-message,
+.step .notes,
+aside.source,
+aside.page_number {
+    display: none;
+}

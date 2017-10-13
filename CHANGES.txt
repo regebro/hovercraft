@@ -1,0 +1,166 @@
+Changes
+=======
+
+2.5 (unreleased)
+----------------
+
+- Hovercraft! now displays the version number when called with -v or --version.
+
+- New version of impressConsole that includes styling of the previews and
+  a goto command <G>.
+
+
+2.4 (2017-07-18)
+----------------
+
+- Option to display slide numbers [frederikmoellers]
+
+- #51: Positioning relative to other slide [naraesk]
+
+- Removed the code that uses pkg_util to access included templates. We don't
+  support installing Hovercraft! as a ZIP file anyway, so it only complicates
+  things for no good reason.
+
+- Support for .. header:: and .. footer:: that can be used for static
+  content.
+
+- Dropped support for Python 3.3 and 3.4, because I now use recursive glob.
+
+- Templates can now have a resource-directories statements, to specify extra
+  directories of resources. This can be used in templates for JS libraries,
+  like MathJax.
+
+- The MathJax argument can now be a local copy.
+
+- Switched the default MathJax URL to https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1
+
+
+2.3 (2017-04-12)
+----------------
+
+- Better implementation of #98
+
+- #72: Support for adding additional JS files [hbldh]
+
+- Upgraded impress.js to 0.6.0
+
+- Support for mathematical formulas with Mathjax [arabidopsis]
+
+- Default template use UTF-8 [mariobodemann]
+
+- Added support for Python 3.6
+
+- readthedocs moved domain [adamchainz]
+
+
+2.2 (2016-10-15)
+----------------
+
+- #98: Presentation not update when using gedit
+
+
+2.1 (2016-02-27)
+----------------
+
+- #87: Support multiple :css: statements. [bitwalker]
+
+- #86, #88: In-template resources failed for external templates.
+
+- #89: The file monitoring could make the CPU go to 100%. [b6d]
+
+- #81: positions.rst example was out of date.
+
+- Dropped Python 3.2 support, because docutils doesn't seem to
+  work on Python 3.2 any longer. With docutils 0.9 it probably
+  still works.
+
+- Updated tests to work with newer Pygments.
+
+- #96: Relative paths was not working.
+
+- #91: When modifying included files the presentation was not updated.
+
+
+2.0 (2015-06-14)
+----------------
+
+- Better support for :class:. [fahhem]
+
+- Now supports data-perspective. [fahhem]
+
+- Fixed typos in template.py. [fahhem, ggtools]
+
+
+2.0b1 (2014-11-27)
+------------------
+
+- IMPORTANT! The positioning has been reimplemented. The most important change
+  is that there is no longer any calculation of relative movement when you use
+  absolute coordinates. Therefore, if you use absolute coordinates on some slides
+  and then have no coordinates on other slides, your positioning may no longer
+  be correct with version 2.0.
+
+- IMPORTANT! Moved the "note" XML transformation into the templates, as this is an
+  impress.js feature, and other libraries, such as Reveal.js, will render it
+  differently. If you make your own templates, you need to update them accordingly!
+
+- Relative coordinates (starting with r) are now supported for all positioning,
+  attributes including rotation and scaling.
+
+- Now includes a server-mode, that will serve the presentation via http and
+  also re-generate the presentation if the source-files change.
+
+- Images can now also have a :class: attribute.
+
+- Added support for multiple levels of slides. This is to make it able
+  to support for example Reveal.js through external templates.
+
+
+1.1 (2013-03-15)
+----------------
+
+- ReST comments are no longer rendered to HTML. [carljm]
+
+- Fixed a bug in the path handling for CSS resources. [carljm]
+
+- Various fixes and improvements in ReST handling. [cjw296]
+
+
+1.0 (2013-02-22)
+----------------
+
+- #1, #2: Add key-binding to pop up the help, a parameter and a presentation
+  field setting to not show the help at load.
+
+- Added documentation for #8: Naming steps.
+
+- #7: You can now define CSS-files to be included with a :css:-field in the
+  presentation.
+
+- #3: You can now leave out the presenter notes from the output with the
+  parameter -n or --skip-notes
+
+- Added a "simple" template that has no presenter console.
+
+- Updated to impress-console 1.1, fixing a Firefox bug.
+
+- Added support for more HTML metadata.
+
+- Finished documentation and examples.
+
+
+1.0b2 (2013-02-13)
+------------------
+
+- Added syntax highlighting support.
+
+- #9: All positioning variables except data-x and data-y are now "sticky" so
+      they will keep their previous value if not defined.
+
+- Documentation on https://hovercraft.readthedocs.io/
+
+
+1.0b1 (2013-02-07)
+------------------
+
+- Initial release.

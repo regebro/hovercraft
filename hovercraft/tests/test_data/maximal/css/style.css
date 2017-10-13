@@ -1,0 +1,30 @@
+/* This file left intentionally (almost) blank
+
+   Landslide always adds a print.css and a screen.css, but they
+   are not needed in impress.js, so this theme leaves them blank,
+   except for hiding some things you want to hide.
+
+   You can modify these files in your own fork, or you can add
+   css-files in the landslide configuration file.
+   See https://github.com/adamzap/landslide#presentation-configuration
+
+*/
+
+.impress-supported .fallback-message,
+.step .notes,
+aside.source,
+aside.page_number {
+    display: none;
+}
+
+@font-face {
+    font-family: 'TeXGyreSchola';
+    src: url('../fonts/texgyreschola-regular-webfont.eot');
+    src: url('../fonts/texgyreschola-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreschola-regular-webfont.woff') format('woff'),
+         url('../fonts/texgyreschola-regular-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreschola-regular-webfont.svg#TeXGyreScholaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
