@@ -113,7 +113,9 @@ Audio
 
 Much the same as Video, but without support for fullscreen or poster.
 
-**Note**: Support for <track> within <audio> on most browsers. `Captionjs<http://captionatorjs.com/>`_ or other polyfill libraries will be required until this issue is addressed.
+**Note**: Support for <track> within <audio> on most browsers. CaptionJS_ or other polyfill libraries will be required until this issue is addressed.
+
+.. _CaptionJS: http://captionatorjs.com/ 
 
 ---- 
 
