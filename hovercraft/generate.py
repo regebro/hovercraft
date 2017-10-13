@@ -36,6 +36,8 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     tree = sm.walk()
 
     # Pick up CSS information from the tree:
+    console_css = 'css/impressConsole.css'
+    preview_css = None
     for attrib in tree.attrib:
         if attrib.startswith('css'):
             if '-' in attrib:
@@ -44,6 +46,15 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
                 media = 'screen,projection'
             css_files = tree.attrib[attrib].split()
             for css_file in css_files:
+                if media == 'console':
+                    # The "console" media is used to style the presenter console
+                    console_css = css_file
+                    media = 'screen,projection'
+                if media == 'preview':
+                    # The "preview" media is used to style the presenter console previews.
+                    preview_css = css_file
+                    media = 'screen,projection'
+
                 template_info.add_resource(
                     os.path.abspath(os.path.join(presentation_dir, css_file)),
                     CSS_RESOURCE,
@@ -109,6 +120,10 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     # If the slide numbers should be displayed, set an attribute on the document:
     if slide_numbers:
         tree.attrib['slide-numbers'] = 'True'
+
+    tree.attrib['console-css'] = console_css
+    if preview_css:
+        tree.attrib['preview-css'] = preview_css
 
     # We need to set up a resolver for resources, so we can include the
     # reST.xsl file if so desired.
