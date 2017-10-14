@@ -12,7 +12,7 @@ a directive follows the following pattern
 
         Content
 
-The only part of this pattern which is mandatory is ".. DirectiveName::". 
+The only part of this pattern which is mandatory is ".. DirectiveName::".
 
 The example directive we are going to create is a video directive. It will have the following form:
 
@@ -30,7 +30,7 @@ Parsing
 ========
 Directives are included inside your reStructuredText file. Hovercraft passes this document to a programme called docutils to parse. Docutil parses the document into an internal node tree and then uses one of its inbuilt writers to write it out to an output format. Hovercraft request's docutil use its xml writer which creates (unsurprisingly) an xml output document. Hovercraft then uses another programme called lxml to convert that xml document into an html document using the conversion rules specified in the xslt file (template.xsl) stored in the template folder (or provided by the --template argument). Finally this hrml file is read by an internet browser (firefox, chrome, etc.) to actually produce our presentation
 
-Thus the coversion of our directives into the final output we see on the screen is a long an complicated one. Luckily, we don't have to worry about most of these stages. The only stage that is of interest to us here is reST →  node tree. We also have control over two other stages (xml →  html, html →  presentation). These steps are controlled by an xslt file and js/css files respectively. See README.rst for information on these stages. 
+Thus the coversion of our directives into the final output we see on the screen is a long an complicated one. Luckily, we don't have to worry about most of these stages. The only stage that is of interest to us here is reST →  node tree. We also have control over two other stages (xml →  html, html →  presentation). These steps are controlled by an xslt file and js/css files respectively. See README.rst for information on these stages.
 
 This file uses python, a popular programming language, to define the way a directive should be converted into docutil's internal node tree. If you are not familiar with python there are many free resources available such as Alan Downey's fantastic 'Think Python'.
 """
@@ -40,22 +40,16 @@ This file uses python, a popular programming language, to define the way a direc
 # Author: Your name
 # Copyright: MIT License
 
-# tell docutils that we are using reStructuredText 
+# tell docutils that we are using reStructuredText
 __docformat__ = 'reStructuredText'
 
 # import some useful modules
 import sys
-import re
-import langcodes
-from urllib.parse import urlparse
-from urllib.request import pathname2url
 from docutils import nodes, utils
 from docutils.nodes import fully_normalize_name, whitespace_normalize_name
 from docutils.parsers.rst import Directive, directives, states
 from docutils.parsers.rst.roles import set_classes
-from mimetypes import guess_type
 from distutils.util import strtobool
-from tinycss2 import parse_declaration_list, ast 
 from docutils.writers.docutils_xml import XMLTranslator
 
 """
@@ -73,7 +67,7 @@ That's a great question, but not an easy one to answer definitively. Nodes (with
 
 For the video directvie we are currently building, we could make an xslt rule that says if there is an xml 'image' element with an attribute of "is_a_video", then produce an html <video> tag, otherwise produce an html <img> tag. This, however, is a bit ugly, and making a video node (and hence a video xml element) is much nicer.
 
-Alternatively, if we were making a directive that takes some text in one language and translates it into an equivalent text in another language, the existing text node (nodes.Text) will do us just fine, and as a bonus we won't have to muck around with adding extra xslt rules either. 
+Alternatively, if we were making a directive that takes some text in one language and translates it into an equivalent text in another language, the existing text node (nodes.Text) will do us just fine, and as a bonus we won't have to muck around with adding extra xslt rules either.
 
 A note on naming node classes
 ++++++++++++++++++++++++++++++
@@ -98,10 +92,10 @@ All directive classes should inheret from the 'Directive' class. This may be a d
 
 """
 
-class Media(Directive): 
+class Media(Directive):
     # First define a bunch of useful attributes. See docutils/parsers/rst/__init__.py for more info
     messages = [] # this will hold any errors we raise.
-    required_arguments = 1 
+    required_arguments = 1
     optional_arguments = 0 # if you want an unlimited number of arguments use sys.maxsize
     final_argument_whitespace = True
 
@@ -109,18 +103,18 @@ class Media(Directive):
     option_spec
     ============
 
-    option_spec defines a directive's allowable options. It is made up of two parts, a 
-    string representing the key. This is followed by the name of a funciton which will 
+    option_spec defines a directive's allowable options. It is made up of two parts, a
+    string representing the key. This is followed by the name of a funciton which will
     be used to check the supplied value is appropriate. The key must not contain spaces.
     A list of useful functions can be found in docutils/parsers/rst/directives/__init__.py
-    (from which the function directives.flag, used below, comes) 
+    (from which the function directives.flag, used below, comes)
 
     You can also make your own functions, in which case, because you aren't actually
     calling the function, but rather passing the functions name to docutils for it to
     call, you need to define the function above where you define option_spec (like we
     have done for unchanged(), below).
 
-    To inheret the option_spec from a different directive class use 
+    To inheret the option_spec from a different directive class use
     "option_spec = Media.option_spec.copy()". You can then add (or delete) from this
     inhereted option_spec using normal dictionary operations (eg.
     "option_spec['key'] = checking_function" or "del option_spec['key'].
@@ -128,14 +122,14 @@ class Media(Directive):
 
     def unchanged(arg):
         return arg
-    option_spec = { 
+    option_spec = {
         # the 'name' value is used by docutils to allow internal hyperlinks form elsewhere
         # in your reST document. Putting 'name' in option_spec isn't mandatory, but it can
         # be useful if it would make sense for users to be able to link to the output of
         # your directive from elsewhere in the document.
-        'name': unchanged, 
+        'name': unchanged,
         # note: because we are not calling this in an instance of the Media class, but rather
-        # giving it to docutils to call, we reference the functions as "unchanged" rather 
+        # giving it to docutils to call, we reference the functions as "unchanged" rather
         # than "self.unchanged()"
         'autoplay': directives.flag # raises error if any value is provided to 'autoplay'
     }
@@ -144,14 +138,14 @@ class Media(Directive):
 run(self)
 ==========
 
-This is the actual meat of the directive. This method is called to create each new instance of our Directive class. There are three things to do here. Play with your input, raise useful errors and finally create a node instance and pass your attributes to the node instance. 
+This is the actual meat of the directive. This method is called to create each new instance of our Directive class. There are three things to do here. Play with your input, raise useful errors and finally create a node instance and pass your attributes to the node instance.
 
 Some potentially useful attributes that are created for you (thanks directive class!):
 self.options: contains the values entered by the user after having been run through the functions defined in option_spec
 self.content: a list made up of each line of content provided by the user (useful for debugging)
 self.block_text: a copy of the whole directive the user entered (used in error messages)
 """
-    def run(self): 
+    def run(self):
         # Play with our input
         if 'name' in self.options:
             if self.options['name'] in ('name', 'boringName', 'iCantThinkOfAName'):
@@ -165,17 +159,17 @@ self.block_text: a copy of the whole directive the user entered (used in error m
                     nodes.literal_block(self.block_text, self.block_text),
                     line=self.lineno)
                 self.options['name'] = 'AwesomeName!!!'
-        
+
         # Parse content. See definition below.
         parse_content(self)
 
         # create media node and return system messages
         set_classes(self.options)
-        # create an instance of the video node class called "video_node". This takes 
-        # everything is self.options and turns them into attributes of video_node. 
-        # Note: If you are using an inbuilt node class you will have to call it a 
-        # nodes.class_name. 
-        # Note: at present video_node is an orphan node, that is, it is not part of 
+        # create an instance of the video node class called "video_node". This takes
+        # everything is self.options and turns them into attributes of video_node.
+        # Note: If you are using an inbuilt node class you will have to call it a
+        # nodes.class_name.
+        # Note: at present video_node is an orphan node, that is, it is not part of
         # docutil's node tree.
         video_node = video(self.block_text, **self.options)
         # registers self.name which is the value of self.options['name'] if it has one,
@@ -187,13 +181,13 @@ self.block_text: a copy of the whole directive the user entered (used in error m
         ====================
 
         Video.run() was called by docutils/parsers/rst/states.py which is expecting a
-        list. The list can contain lists of messages (self.messages) or nodes. Every 
+        list. The list can contain lists of messages (self.messages) or nodes. Every
         node is a potential node tree, so we can return more than just a single node
         if we like. For example, thed video directive implemented in local_directives/media
         returns a node tree that looks like this [video [[source, source, ...][track,
         track, ...]]]
         This ends up as html that looks like <video> <source \> <source \> <track />
-        <track /> </video>. Thus, lists within lists represent parent-child node 
+        <track /> </video>. Thus, lists within lists represent parent-child node
         relationships, whereas list items within a list represent sibling node
         relationships.
         Returning video_node connects our little orphan node branch onto the correct
@@ -207,22 +201,22 @@ self.block_text: a copy of the whole directive the user entered (used in error m
         # key to hold our class values.
         self.options['class'] = []
         # create orphan container node for parsing
-        node = nodes.Element() # Element is the most basic of all the node classes        
-        # take content (defined as all text until a non-indented line is reached), 
+        node = nodes.Element() # Element is the most basic of all the node classes
+        # take content (defined as all text until a non-indented line is reached),
         # parse it and then put the output into node
         self.state.nested_parse(self.content, self.content_offset, node)
-        # If appropriate input has been given node should now be a list-like 
+        # If appropriate input has been given node should now be a list-like
         # object of the following form:
         # [Element[bullet_list[list_item[paragraph[Text]]]]]
         # The text in each list item will be contained with the the leaf Text nodes.
-        # However, goodness only know what users might do, so it is necessary to 
+        # However, goodness only know what users might do, so it is necessary to
         # check that the sort of input you were expecting is the input you got.
         if self.check_for_list(node):
             for list_item in node[0]: # node[0] == bullet_list
                 self.options['class'].append(list_item[0][0]) # list_item[0][0] == Text
 
     def check_for_list(self, node):
-        if len(node) is 0: # user didn't input any content 
+        if len(node) is 0: # user didn't input any content
             return False
         elif len(node) > 1 or not isinstance(node[0], nodes.bullet_list):
             self.state_machine.reporter.error(
@@ -233,7 +227,7 @@ self.block_text: a copy of the whole directive the user entered (used in error m
                 nodes.literal_block(self.block_text, self.block_text),
                 line=self.lineno)
         # So we are sure we have a bullet list, and nothing else,
-        # but bullet lists can contain nested lists. We only want a 
+        # but bullet lists can contain nested lists. We only want a
         # flat list.
         for i in range(len(node[0])):
             list_item = node[0][i]
