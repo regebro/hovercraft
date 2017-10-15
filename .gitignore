@@ -41,3 +41,6 @@ nosetests.xml
 *.wpr
 *.wpu
 .ropeproject
+
+# Merge files
+*.orig
