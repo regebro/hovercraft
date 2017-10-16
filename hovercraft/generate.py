@@ -8,6 +8,7 @@ from .parse import rst2xml, SlideMaker
 from .position import position_slides
 from .template import (Template, CSS_RESOURCE, JS_RESOURCE, JS_POSITION_HEADER,
                        JS_POSITION_BODY, OTHER_RESOURCE, DIRECTORY_RESOURCE)
+from . import local_directives
 
 
 class ResourceResolver(etree.Resolver):
@@ -16,7 +17,8 @@ class ResourceResolver(etree.Resolver):
         if url.startswith('resource:'):
             prefix, filename = url.split(':', 1)
             return self.resolve_string(resource_string(__name__, filename), context)
-
+        elif url == 'directives.xsl':
+            return self.resolve_string(local_directives.generate_xsl(), context)
 
 def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_notes=False, mathjax=False, slide_numbers=False):
     # Read the infile
@@ -84,6 +86,22 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
             template_info.add_resource(None, JS_RESOURCE,
                                        target='mathjax/MathJax.js?config=TeX-MML-AM_CHTML',
                                        extra_info=JS_POSITION_HEADER)
+
+    # local_directives
+    # TODO: think about some way of letting directives specify css/js extra_info
+    for js_path in local_directives.sources['js']:
+        template_info.add_resource(
+                js_path,
+                JS_RESOURCE,
+                target=os.path.basename(js_path),
+                extra_info=JS_POSITION_BODY)
+    for css_path in local_directives.sources['css']:
+        template_info.add_resource(
+                css_path,
+                CSS_RESOURCE,
+                target=os.path.basename(css_path),
+                extra_info='all')
+
 
     # Position all slides
     position_slides(tree)
@@ -175,12 +193,17 @@ def generate(args):
     # Copy supporting files
     source_files.update(template_info.copy_resources(args.targetdir))
 
+    # Copy content from local_directives.sources['content']
+    for content in local_directives.sources['content']:
+        sourcedir, filename = os.path.split(content)
+        source_files.add(copy_resource(filename, sourcedir, args.targetdir))
     # Copy images from the source:
     sourcedir = os.path.split(os.path.abspath(args.presentation))[0]
     tree = html.fromstring(htmldata)
-    for image in tree.iterdescendants('img'):
-        filename = image.attrib['src']
-        source_files.add(copy_resource(filename, sourcedir, args.targetdir))
+    for media in tree.iterdescendants('audio', 'embed', 'iframe', 'img', 'input', 'source', 'track', 'video'):
+        if 'src' in media.attrib:
+            filename = media.attrib['src']
+            source_files.add(copy_resource(filename, sourcedir, args.targetdir))
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
 

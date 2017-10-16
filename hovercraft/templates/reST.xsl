@@ -108,6 +108,13 @@ Modification by Carl Mayer, 2013:
 
 
 <!-- Generic body elements. -->
+
+<!-- The following image template will only be used if the media folder
+     is removed from local_directives. If you want to overwrite the 
+     template's behaviour, add an image template to template.xsl. This
+     will overide both the template here as well as the one imported
+     from local_directives -->
+
 <xsl:template match="image">
 	<xsl:element name="img">
 		<xsl:attribute name="src">
