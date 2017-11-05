@@ -94,6 +94,18 @@ Hovercraft! also includes impress-console_, a presenter console that will
 show you your notes, slide previews and the time, essential tools for any
 presentation.
 
+Shortcut/Navigation Keys:
+-------------------------
+
+A help popup appears upon launching a presentation; it shows the following shortcuts.
+
+* Space	-> Forward
+* Left, Down, Page Down	-> Next slide
+* Right, Up, Page Up	-> Previous slide
+* P	-> Open presenter console
+* H	-> Toggle the help popup
+
+
 .. _reStructuredText: http://docutils.sourceforge.net/docs/index.html
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _impress-console: https://github.com/regebro/impress-console
