@@ -4,7 +4,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from hovercraft import main
-from hovercraft.tests.test_data import HTML_OUTPUTS
+from .test_data import HTML_OUTPUTS
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 

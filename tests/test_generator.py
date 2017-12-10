@@ -3,7 +3,7 @@ import unittest
 
 from hovercraft.generate import rst2html
 from hovercraft.template import Template
-from hovercraft.tests.test_data import HTML_OUTPUTS
+from .test_data import HTML_OUTPUTS
 
 TEST_DATA = os.path.join(os.path.split(__file__)[0], 'test_data')
 

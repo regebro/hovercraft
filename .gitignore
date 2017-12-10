@@ -1,6 +1,6 @@
 *.py[cod]
 pyvenv.cfg
-__pycache__/*
+__pycache__
 *.*~
 
 # C extensions

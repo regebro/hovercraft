@@ -52,7 +52,7 @@ setup(name='hovercraft',
       tests_require=[
           'manuel',
       ],
-      test_suite='hovercraft.tests',
+      test_suite='tests',
       entry_points={
                'console_scripts': [
                    'hovercraft = hovercraft:main',
