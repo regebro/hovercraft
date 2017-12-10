@@ -1,7 +1,7 @@
 Changes
 =======
 
-2.5 (unreleased)
+2.5 (2017-12-10)
 ----------------
 
 - Hovercraft! now displays the version number when called with -v or --version.
