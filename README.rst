@@ -75,6 +75,8 @@ Other contributors (see CHANGES.txt for details):
 
 * David Baum [naraesk]
 
+* Keith Maxwell [maxwell-k]
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/

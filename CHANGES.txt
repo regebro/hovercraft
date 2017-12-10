@@ -12,6 +12,8 @@ Changes
 - ``:css-console:`` and ``:css-preview:`` added to style the console and
   add extra styles in the previews.
 
+- :auto-console: and -a had stopped working [maxwell-k].
+
 
 2.4 (2017-07-18)
 ----------------

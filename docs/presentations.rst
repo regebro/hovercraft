@@ -317,7 +317,7 @@ behave strangely.
 
 All reStructuredText fields are converted into attributes on the current tag.
 Most of these will typically be ignored by the rendering to HTML, but there
-is two places where the tags will make a difference, and that is by putting
+are two places where the tags will make a difference, and that is by putting
 them first in the document, or first on a slide.
 
 Any fields you put first in a document will be rendered into attributes on
