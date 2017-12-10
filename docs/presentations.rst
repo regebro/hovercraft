@@ -492,7 +492,7 @@ included with Hovercraft!
 .. _Pygments: http://pygments.org/
 .. _languages: http://pygments.org/docs/lexers/
 .. _hovercraft.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/hovercraft.rst
-.. _tutorial.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/tutorial.txt
-.. _positions.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/positions.txt
+.. _tutorial.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/tutorial.rst
+.. _positions.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/positions.rst
 .. _Reveal.js: http://lab.hakim.se/reveal-js/
 .. _MathJax: http://www.mathjax.org/
