@@ -40,7 +40,7 @@ if (impressConsole) {
     impressConsole().registerKeyEvent([72], help, window);
 
     if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
-        consoleWindow = console().open();
+        consoleWindow = impressConsole().open();
     }
 }
 
