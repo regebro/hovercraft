@@ -48,6 +48,8 @@ setup(name='hovercraft',
           'svg.path',
           'pygments',
           'watchdog',
+          'langcodes', 
+          'tinycss2'
       ],
       tests_require=[
           'manuel',
