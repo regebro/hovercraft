@@ -5,6 +5,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:import href="resource:templates/reST.xsl" />
+<xsl:import href="directives.xsl" />
 
 <xsl:template match="step" name="step">
   <div class="step">

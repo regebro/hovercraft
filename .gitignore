@@ -40,3 +40,7 @@ nosetests.xml
 # IDE project files
 *.wpr
 *.wpu
+.ropeproject
+
+# Merge files
+*.orig
