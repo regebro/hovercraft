@@ -113,6 +113,15 @@ bad network connectivity.
 This can be solved by specifying a local copy of mathjax with the --mathjax
 command line.
 
+Presenter notes
+---------------
+
+To add presenter notes, that will be displayed in the presenter console, use the
+following syntax:
+
+    .. note::
+    
+        Here goes the presenter note.
 
 External files
 --------------
