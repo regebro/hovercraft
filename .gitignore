@@ -44,3 +44,4 @@ nosetests.xml
 
 # Merge files
 *.orig
+.idea/

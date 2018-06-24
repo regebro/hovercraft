@@ -49,7 +49,8 @@ setup(name='hovercraft',
           'pygments',
           'watchdog',
           'langcodes', 
-          'tinycss2'
+          'tinycss2',
+          'pyembed-rst'
       ],
       tests_require=[
           'manuel',

@@ -1,0 +1,3 @@
+import hovercraft
+
+hovercraft.main()

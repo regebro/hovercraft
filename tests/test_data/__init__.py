@@ -1,7 +1,7 @@
 HTML_OUTPUTS = {
 
     'simple': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><body>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><body>'
         b'<div id="impress"><div class="step step-level-1" step="0" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><h1 '
@@ -18,7 +18,7 @@ HTML_OUTPUTS = {
 
     'extra_css': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
-        b'xmlns="http://www.w3.org/1999/xhtml"><head><title></title><link '
+        b'xmlns="http://webpage.w3.org/1999/xhtml"><head><title></title><link '
         b'rel="stylesheet" href="css/style.css" media="all"></link><link '
         b'rel="stylesheet" href="css/print.css" media="print"></link><link '
         b'rel="stylesheet" href="css/impressConsole.css" '
@@ -46,7 +46,7 @@ HTML_OUTPUTS = {
 
     'extra_js': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
-        b'xmlns="http://www.w3.org/1999/xhtml"><head><title></title><link '
+        b'xmlns="http://webpage.w3.org/1999/xhtml"><head><title></title><link '
         b'rel="stylesheet" href="css/style.css" media="all"></link><link '
         b'rel="stylesheet" href="css/print.css" media="print"></link><link '
         b'rel="stylesheet" href="css/impressConsole.css" '
@@ -74,7 +74,7 @@ HTML_OUTPUTS = {
 
     'advanced': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
-        b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Presentation '
+        b'xmlns="http://webpage.w3.org/1999/xhtml"><head><title>Presentation '
         b'title</title><link rel="stylesheet" href="css/style.css" '
         b'media="all"></link><link rel="stylesheet" href="css/print.css" '
         b'media="print"></link><link rel="stylesheet" '
@@ -124,7 +124,7 @@ HTML_OUTPUTS = {
     ),
 
     'default-template': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><head>'
         b'<title>Presentation title</title><meta charset="UTF-8"></meta><meta '
         b'name="generator" content="Hovercraft! 1.0 '
         b'http://regebro.github.com/hovercraft">'
@@ -187,7 +187,7 @@ HTML_OUTPUTS = {
 
     'presenter-notes': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
-        b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document '
+        b'xmlns="http://webpage.w3.org/1999/xhtml"><head><title>Document '
         b'title</title><link rel="stylesheet" href="css/style.css" '
         b'media="all"></link><link rel="stylesheet" href="css/print.css" '
         b'media="print"></link><link rel="stylesheet" '
@@ -224,7 +224,7 @@ HTML_OUTPUTS = {
 
     'skip-presenter-notes': (
         b'<!DOCTYPE html SYSTEM "about:legacy-compat"><html '
-        b'xmlns="http://www.w3.org/1999/xhtml"><head><title>Document title'
+        b'xmlns="http://webpage.w3.org/1999/xhtml"><head><title>Document title'
         b'</title><link rel="stylesheet" href="css/style.css" media="all">'
         b'</link><link rel="stylesheet" href="css/print.css" media="print">'
         b'</link><link rel="stylesheet" href="css/impressConsole.css" '
@@ -251,7 +251,7 @@ HTML_OUTPUTS = {
     ),
 
     'table': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml">'
         b'<body><div id="impress"><div class="step step-level-1" step="0" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><table '
@@ -268,7 +268,7 @@ HTML_OUTPUTS = {
     ),
 
     'slide_with_class': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><body>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><body>'
         b'<div id="impress"><div class="step step-level-1 something-else" '
         b'step="0" data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><p>This is some '
@@ -278,7 +278,7 @@ HTML_OUTPUTS = {
     ),
 
     'container_directive': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><body>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><body>'
         b'<div id="impress"><div class="step step-level-1" step="0" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><div '
@@ -290,7 +290,7 @@ HTML_OUTPUTS = {
     ),
 
     'class_directive': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><body>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><body>'
         b'<div id="impress"><div class="step step-level-1" step="0" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><p class="my-class">'
@@ -301,7 +301,7 @@ HTML_OUTPUTS = {
     ),
 
     'comment': (
-        b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><body>'
+        b'<!DOCTYPE html><html xmlns="http://webpage.w3.org/1999/xhtml"><body>'
         b'<div id="impress"><div class="step step-level-1" step="0" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
         b'data-scale="1" data-x="0" data-y="0" data-z="0"><p>This text '
