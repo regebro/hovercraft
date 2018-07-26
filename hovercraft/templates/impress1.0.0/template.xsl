@@ -114,6 +114,11 @@ xmlns="http://www.w3.org/1999/xhtml">
       </div>
     </xsl:if>
 
+    <div id="overview" class="step" data-x="5000" data-y="4000" data-scale="10" style="pointer-events: none;" data-rotate="5">
+    </div>
+
+    <div id="impress-toolbar"></div>
+
     <div id="hovercraft-help">
       <xsl:if test="/document/@skip-help">
         <xsl:attribute name="class">hide</xsl:attribute>
