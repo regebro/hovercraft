@@ -237,6 +237,20 @@ number. And that means the slide's ID will change if you insert or remove
 slides that came before it, and in that case your custom stylings of that
 slide will stop working.
 
+Adding a custom class to slides
+-------------------------------
+
+If you want to apply the same style to one or more slides you may prefer adding
+a class to those slides instead (or in addition to) a unique ID::
+
+    :id: my-custom-class
+
+You can then style those slides by adding CSS rules with::
+
+    .my-custom-class {
+        /* Custom CSS here */
+    }
+
 Portable presentations
 ----------------------
 
