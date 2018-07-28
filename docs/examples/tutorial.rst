@@ -3,6 +3,7 @@
 :description: The Hovercraft! tutorial.
 :keywords: presentation, restructuredtext, impress.js, tutorial
 :css: tutorial.css
+:data-autoplay: 10
 
 .. header::
 

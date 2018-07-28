@@ -268,7 +268,7 @@ The documentation on impress.js is contained as comments in the `demo html
 file <https://github.com/bartaz/impress.js/blob/master/index.html>`_. It is
 not always very clear, so here comes a short summary for convenience.
 
-The different data fields that impress.js will use in 0.5.3, which is the
+The different data fields that impress.js will use in 1.0.0, which is the
 current version, are the following:
 
 * **data-transition-duration**: The time it will take to move from one slide to
@@ -302,6 +302,10 @@ current version, are the following:
   useful when you use **data-rotate-x** or **data-rotate-y**, otherwise it will
   only give the impression that the slide is made smaller, which isn't really
   useful.
+  
+* **data-autoplay**: This controls de number of seconds before automatically 
+  navigating to the next slide. Autoplay will not be loaded by default if left
+  blank.
 
 
 Hovercraft! specialities
