@@ -91,6 +91,12 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@auto-console" />
           </xsl:attribute>
         </xsl:if>
+        
+        <xsl:if test="@data-autoplay">
+          <xsl:attribute name="data-autoplay">
+                  <xsl:value-of select="@data-autoplay" />
+          </xsl:attribute>
+        </xsl:if>
 
         <xsl:for-each select="step">
           <div class="step">
