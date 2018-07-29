@@ -91,12 +91,6 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@auto-console" />
           </xsl:attribute>
         </xsl:if>
-        
-        <xsl:if test="@data-autoplay">
-          <xsl:attribute name="data-autoplay">
-                  <xsl:value-of select="@data-autoplay" />
-          </xsl:attribute>
-        </xsl:if>
 
         <xsl:for-each select="step">
           <div class="step">
@@ -104,6 +98,10 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates />
           </div>
         </xsl:for-each>
+
+        <div id="overview" class="step" data-x="5000" data-y="4000" data-scale="20" style="pointer-events: none;" data-rotate="0">
+        </div>
+
       </div>
 
       <xsl:for-each select="decoration/footer">
@@ -119,9 +117,6 @@ xmlns="http://www.w3.org/1999/xhtml">
         1
       </div>
     </xsl:if>
-
-    <div id="overview" class="step" data-x="5000" data-y="4000" data-scale="10" style="pointer-events: none;" data-rotate="5">
-    </div>
 
     <div id="impress-toolbar"></div>
 
