@@ -228,10 +228,8 @@ def update_positions(tree, positions):
                     els = tree.findall(".//*[@id='" + value + "']")
                     for el in els :
                         pos[abs_key] = num(el.get(abs_key)) + pos.get(abs_key)
-                        print(num(el.get(abs_key)))
-                        print(pos.get(abs_key))
                         step.attrib[abs_key] = str(pos.get(abs_key))
-            else: 
+            else:
                 step.attrib[key] = str(pos[key])
 
         if 'hovercraft-path' in step.attrib:
@@ -240,7 +238,7 @@ def update_positions(tree, positions):
 
 def position_slides(tree):
     """Position the slides in the tree"""
-    
+
     positions = gather_positions(tree)
     positions = calculate_positions(positions)
     update_positions(tree, positions)
