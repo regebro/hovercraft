@@ -32,7 +32,12 @@
 	 SUCH DAMAGE.
 -->
 
-<!-- Modifications by Lennart Regebro, 2013:
+<!--
+Modifications by Lennart Regebro, 2018:
+
+* Added support for the HTML5 <figure> and <figcaption> tags.
+
+Modifications by Lennart Regebro, 2013:
 
 * Added support for the <notes>-tag.
 
@@ -481,6 +486,19 @@ Modification by Carl Mayer, 2013:
 		<xsl:apply-templates />
 	</span>
 </xsl:template>
+
+<xsl:template match="figure">
+	<figure>
+		<xsl:apply-templates />
+	</figure>
+</xsl:template>
+
+<xsl:template match="figure/caption">
+	<figcaption>
+		<xsl:apply-templates />
+	</figcaption>
+</xsl:template>
+
 
 <!-- Skip ReST comments -->
 <xsl:template match="comment">
