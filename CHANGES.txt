@@ -7,6 +7,9 @@ Changes
 - The ReStructuredText directive "figure" now is translated into the HTML5
   tag "figure", with the caption becoming a figcaption tag.
 
+- Restored the warning that you need Python 3.5 or higher when trying to
+  install with Python 2.
+
 
 2.5 (2017-12-10)
 ----------------
