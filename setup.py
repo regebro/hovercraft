@@ -1,3 +1,5 @@
+#Note that this program is in python.
+
 from io import open
 from setuptools import setup, find_packages
 from setuptools.command.install import install
