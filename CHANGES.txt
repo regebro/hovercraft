@@ -9,6 +9,10 @@ Changes
 
 - Restored the warning that you need Python 3.5 or higher when trying to
   install with Python 2.
+  
+- Simplify in-process execution of Hovercraft! [tonysyu]
+
+- Document how to make custom directorves. [tonysyu] 
 
 
 2.5 (2017-12-10)
