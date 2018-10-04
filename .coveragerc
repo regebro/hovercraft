@@ -1,0 +1,3 @@
+[run]
+source = hovercraft
+omit = tests*
