@@ -77,6 +77,8 @@ Other contributors (see CHANGES.txt for details):
 
 * Keith Maxwell [maxwell-k]
 
+* Tony S Yu [tonysyu]
+
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/
