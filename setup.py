@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 from setuptools.command.install import install
 import sys
 
-version = '2.6'
+version = '2.7.dev0'
 
 with open('README.rst', 'rt', encoding='utf8') as readme:
     description = readme.read()
