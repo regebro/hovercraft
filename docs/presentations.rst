@@ -251,6 +251,45 @@ You can then style those slides by adding CSS rules with::
         /* Custom CSS here */
     }
 
+
+Adding a custom directive
+-------------------------
+
+If you want to use a `custom docutils directive`_, you'll want to run
+hovercraft in the same process where you register your directive. For example,
+you can create a custom startup script like the following:
+
+.. code:: python
+
+    from docutils import nodes
+    from docutils.parsers.rst import Directive, directives
+
+    import hovercraft
+
+
+    class HelloWorld(Directive):
+        def run(self):
+            para = nodes.paragraph(text='Hello World')
+            return [para]
+
+    directives.register_directive('hello-world', HelloWorld)
+
+
+    if __name__ == "__main__":
+        cmd = ['--skip-help', 'slides.rst']
+        hovercraft.main(cmd)
+
+While creating your own directive might be daunting, it's possible to reuse
+useful directives from other projects. For example, you can reuse `Pelican's
+custom code block`_, which adds an ``hl_lines`` option to highlight specific
+lines of code. To use that directive, simply add the following import to the
+above script:
+
+.. code:: python
+
+    import pelican.rstdirectives
+
+
 Portable presentations
 ----------------------
 
@@ -519,3 +558,5 @@ included with Hovercraft!
 .. _positions.rst: https://raw.githubusercontent.com/regebro/hovercraft/master/docs/examples/positions.rst
 .. _Reveal.js: http://lab.hakim.se/reveal-js/
 .. _MathJax: http://www.mathjax.org/
+.. _custom docutils directive: http://docutils.sourceforge.net/docs/howto/rst-directives.html
+.. _Pelican's custom code block: http://docs.getpelican.com/en/3.6.3/content.html#syntax-highlighting
