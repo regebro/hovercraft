@@ -66,8 +66,13 @@ def generate_and_observe(args, event):
         observer.join()
 
 
-def main():
+def main(args=None):
+    parser = create_arg_parser()
+    args = parser.parse_args(args=args)
+    serve_presentation(args)
 
+
+def create_arg_parser():
     # That the argparse default strings are lowercase is ugly.
 
     def my_gettext(s):
@@ -151,7 +156,10 @@ def main():
         version="Hovercraft! %s" % __version__
     )
 
-    args = parser.parse_args()
+    return parser
+
+
+def serve_presentation(args):
 
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
     if args.template and args.template not in ('simple', 'default'):
