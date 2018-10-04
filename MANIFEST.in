@@ -1,5 +1,7 @@
 global-exclude __pycache__
 include *.txt
+include .coveragerc
+include Makefile
 exclude tests
 recursive-exclude tests *
 exclude docs/build
