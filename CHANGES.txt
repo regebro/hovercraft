@@ -1,7 +1,7 @@
 Changes
 =======
 
-3.0 (unreleased)
+2.6 (2018-10-04)
 ----------------
 
 - The ReStructuredText directive "figure" now is translated into the HTML5
