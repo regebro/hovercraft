@@ -25,25 +25,6 @@ if (window.top!=window.self) {
     }, 5000);
 }
 
-
-if (impressConsole) {
-    var impressattrs = document.getElementById('impress').attributes;
-    var consoleCss = impressattrs['console-css'];
-    var previewCss = null;
-    if (impressattrs.hasOwnProperty('preview-css')) {
-        previewCss = impressattrs['preview-css'];
-    }
-
-    impressConsole().init(css=consoleCss, cssPreview=previewCss);
-
-    // P to open Console
-    impressConsole().registerKeyEvent([72], help, window);
-
-    if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
-        consoleWindow = impressConsole().open();
-    }
-}
-
 // Function updating the slide number counter
 function update_slide_number(evt)
 {
