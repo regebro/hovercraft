@@ -163,11 +163,10 @@ class HTMLTests(unittest.TestCase):
                 self.assertEqual(outfile.read(), HTML_OUTPUTS['default-template'])
 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
-            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js',
-                                             'impressConsole.js'})
+            self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'hovercraft.css',
-                                              'impressConsole.css', 'highlight.css'})
+                                              'highlight.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
@@ -202,7 +201,7 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files),
-                             {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css', 'impressConsole.css'})
+                             {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 

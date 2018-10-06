@@ -4,7 +4,19 @@ Changes
 2.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+This release moves Hovercraft! over to impress.js 1.0.0. This version of
+impress.js has many new features and a new plugin system, which has plenty of
+benefits, especially since two of the additions of Hovercraft! to impress.js
+now are impress.js plugins: impressConsole.js and Mathjax.
+
+The most obvious changes from the previous version of Hovercraft! are:
+
+ - The ``--skip-help`` argument, and ``:skip-help:`` control now disables
+   the help popup altogether. This is because impress.js currently has no
+   way to stop the help from displaying on load except disabling the help
+   completely. This may change in the future.
+
+
 
 
 2.6 (2018-10-04)
@@ -15,10 +27,10 @@ Changes
 
 - Restored the warning that you need Python 3.5 or higher when trying to
   install with Python 2.
-  
+
 - Simplify in-process execution of Hovercraft! [tonysyu]
 
-- Document how to make custom directorves. [tonysyu] 
+- Document how to make custom directorves. [tonysyu]
 
 
 2.5 (2017-12-10)

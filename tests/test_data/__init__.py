@@ -125,12 +125,8 @@ HTML_OUTPUTS = {
 
     'default-template': (
         b'<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head>'
-        b'<title>Presentation title</title><meta charset="UTF-8"></meta><meta '
-        b'name="generator" content="Hovercraft! 1.0 '
-        b'http://regebro.github.com/hovercraft">'
-        b'</meta><link rel="stylesheet" href="css/hovercraft.css" '
-        b'media="all"></link><link rel="stylesheet" '
-        b'href="css/impressConsole.css" media="all"></link>'
+        b'<title>Presentation title</title>'
+        b'<link rel="stylesheet" href="css/hovercraft.css" media="all"></link>'
         b'<link rel="stylesheet" href="css/highlight.css" media="all"></link>'
         b'<link rel="stylesheet" href="extra.css" media="screen"></link>'
         b'''<script type="text/x-mathjax-config">
@@ -140,7 +136,8 @@ HTML_OUTPUTS = {
         TeX : { extensions : ['color.js'] }
       });
     </script>'''
-        b'</head><body class="impress-not-supported"><div id="impress" '
+        b'</head><body class="impress-not-supported">'
+        b'<div id="impress-help"></div><div id="impress" '
         b'data-transition-duration="2000" auto-console="True"><div '
         b'class="step step-level-1" step="0" data-x="1000" data-y="1600" '
         b'data-rotate-x="0" data-rotate-y="0" data-rotate-z="0" '
@@ -172,15 +169,8 @@ HTML_OUTPUTS = {
         b'data-rotate-z="0" data-scale="1" data-x="7400" data-y="1600" '
         b'data-z="0"><h1 id="character-sets">Character sets</h1>'
         b'<p>The character set is UTF-8 as of now. Like this: '
-        b'&#xE5;&#xE4;&#xF6;.</p></div></div><div id="hovercraft-help">'
-        b'<table><tr><th>Space</th><td>Forward</td></tr><tr><th>'
-        b'Right, Down, Page Down</th><td>Next slide</td></tr><tr><th>'
-        b'Left, Up, Page Up</th><td>Previous slide</td></tr><tr>'
-        b'<th>G</th><td>Go to slide number</td></tr><tr><th>P</th>'
-        b'<td>Open presenter console</td></tr><tr><th>H</th><td>Toggle '
-        b'this help</td></tr></table></div><script type="text/javascript" '
+        b'&#xE5;&#xE4;&#xF6;.</p></div></div><script type="text/javascript" '
         b'src="js/impress.js"></script><script type="text/javascript" '
-        b'src="js/impressConsole.js"></script><script type="text/javascript" '
         b'src="js/hovercraft.js"></script><script type="text/javascript" '
         b'src="extra.js"></script></body></html>'
     ),

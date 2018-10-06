@@ -22,7 +22,7 @@
 
 /* Help popup */
 
-#hovercraft-help {
+#impress-help {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     color: #EEEEEE;
     font-size: 70%;
@@ -39,11 +39,11 @@
     font-family: Verdana, Arial, Sans;
 }
 
-.impress-enabled #hovercraft-help.hide {
+.impress-enabled #impress-help.hide {
     display: none;
 }
 
-#hovercraft-help.disabled {
+#impress-help.disabled {
     display: none;
 }
 
