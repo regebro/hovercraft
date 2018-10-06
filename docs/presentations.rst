@@ -117,7 +117,7 @@ Presenter notes
 ---------------
 
 To add presenter notes, that will be displayed in the presenter console, use the
-following syntax:
+following syntax::
 
     .. note::
     
