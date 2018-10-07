@@ -1,7 +1,6 @@
 :title: Hovercraft! demo
 :data-transition-duration: 1500
 :css: hovercraft.css
-:css-preview: console.css
 
 This is a demo for Hovercraft! You can view it as a finished presentation
 at http://regebro.github.com/hovercraft/

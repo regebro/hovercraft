@@ -44,6 +44,12 @@
     font-size: 98%;
 }
 
+/* Small hack to prevent the help from showing in previews */
+.impress-console #impress-help {
+    opacity: 0;
+    background-color: green;
+}
+
 /* Slide numbers */
 
 div#slide-number
