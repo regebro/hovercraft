@@ -63,6 +63,16 @@ xmlns="http://www.w3.org/1999/xhtml">
             <xsl:value-of select="@auto-console" />
           </xsl:attribute>
         </xsl:if>
+        <xsl:if test="/document/@css-console">
+          <xsl:attribute name="data-console-css">
+            <xsl:value-of select="/document/@css-console" />
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:if test="/document/@css-preview">
+          <xsl:attribute name="data-console-css-iframe">
+            <xsl:value-of select="/document/@css-preview" />
+          </xsl:attribute>
+        </xsl:if>
         <xsl:for-each select="step">
           <div class="step">
             <xsl:copy-of select="@*"/>

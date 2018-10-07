@@ -81,7 +81,6 @@ An example::
     template = template.xsl
 
     css = css/screen.css
-          css/impressConsole.css
 
     css-print = css/print.css
 

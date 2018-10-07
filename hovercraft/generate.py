@@ -38,27 +38,31 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     preview_css = None
     for attrib in tree.attrib:
         if attrib.startswith('css'):
+
             if '-' in attrib:
                 dummy, media = attrib.split('-', 1)
             else:
                 media = 'screen,projection'
             css_files = tree.attrib[attrib].split()
             for css_file in css_files:
-                if media == 'console':
-                    # The "console" media is used to style the presenter console
-                    console_css = css_file
-                    media = 'screen,projection'
-                if media == 'preview':
-                    # The "preview" media is used to style the presenter console previews.
-                    preview_css = css_file
-                    media = 'screen,projection'
+                if media in ('console', 'preview'):
+                    # The "console" media is used to style the presenter
+                    # console and does not need to be included in the header,
+                    # but must be copied. So we add it as a non css file,
+                    # even though it's a css-file.
+                    template_info.add_resource(
+                        os.path.abspath(os.path.join(presentation_dir, css_file)),
+                        OTHER_RESOURCE,
+                        target=css_file)
+                else:
+                    # Add as a css resource:
+                    template_info.add_resource(
+                        os.path.abspath(os.path.join(presentation_dir, css_file)),
+                        CSS_RESOURCE,
+                        target=css_file,
+                        extra_info=media)
 
-                template_info.add_resource(
-                    os.path.abspath(os.path.join(presentation_dir, css_file)),
-                    CSS_RESOURCE,
-                    target=css_file,
-                    extra_info=media)
-        if attrib.startswith('js'):
+        elif attrib.startswith('js'):
             if attrib == 'js-header':
                 media = JS_POSITION_HEADER
             else:
@@ -102,11 +106,6 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     # If the slide numbers should be displayed, set an attribute on the document:
     if slide_numbers:
         tree.attrib['slide-numbers'] = 'True'
-
-    if console_css:
-        tree.attrib['console-css'] = console_css
-    if preview_css:
-        tree.attrib['preview-css'] = preview_css
 
     # We need to set up a resolver for resources, so we can include the
     # reST.xsl file if so desired.

@@ -120,7 +120,7 @@ To add presenter notes, that will be displayed in the presenter console, use the
 following syntax::
 
     .. note::
-    
+
         Here goes the presenter note.
 
 External files
@@ -137,9 +137,7 @@ Images or fonts referenced by absolute paths or URI's will not be copied.
 Styling your Presentation
 -------------------------
 
-The css that is included by the default template are three files.
-
-* ``impressConsole.css`` contains the CSS needed for the presenter console to work,
+The css that is included by the default template are:
 
 * ``highlight.css`` contains a default style for code syntax highlighting, as
   that otherwise would be a lot of work. If you don't like the default colors
@@ -169,7 +167,7 @@ You can also add one extra CSS-file via a command-line parameter:
 Styling the console
 -------------------
 
-You can also optionally add styles to your slides that are only shown in when
+You can also optionally add styles to your slides that are only used when
 the slide is shown in the presenter console::
 
     :css-preview: css/slidepreview.css
@@ -178,8 +176,8 @@ You can also style the presenter console itself:
 
     :css-console: css/console.css
 
-That css file needs to be based on the impressConsole.css used by the default
-template, as it replaces that file.
+There are default styles that are automatic, anything you add in the file
+for the css-console will just be to override the existing styling.
 
 
 Adding Javascript
