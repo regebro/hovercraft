@@ -231,14 +231,13 @@ impress.js
 plus
 ....
 
-impressConsole.js
------------------
-
-plus
-....
-
 positioning!
 ------------
+
+and
+...
+
+More!
 
 ----
 
@@ -272,6 +271,21 @@ Presenter console!
 .. note::
 
     You found the presenter console already!
+
+----
+
+Mathjax!
+========
+
+Beautiful maths!
+
+.. math::
+
+    e^{i \pi} + 1 = 0
+
+    dS = \frac{dQ}{T}
+
+And inline: :math:`S = k \log W`
 
 ----
 

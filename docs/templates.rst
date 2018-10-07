@@ -88,7 +88,6 @@ An example::
     js-header = js/dateinput.js
 
     js-body = js/impress.js
-              js/impressConsole.js
               js/hovercraft.js
 
     resources = images/back.png

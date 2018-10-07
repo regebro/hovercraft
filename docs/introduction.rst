@@ -68,13 +68,13 @@ There are four ways to position slides:
 
  #. Relative positioning to last slide: By specifying x and/or y with with
     a starting r,you specify the distance from the previous slide. By using
-    this form of positioning you can insert a slide, and the other slides 
+    this form of positioning you can insert a slide, and the other slides
     will just move to make space for the new slide.
-    
+
  #. Relative positiong to any slide: You can reference any *previous* slide
     by its id and specify the position relative to it. This will work for
     all positioning fields. However, you should not use ``r`` as a slide id
-    since the positioning might not behave as you expect. 
+    since the positioning might not behave as you expect.
 
  #. Automatically: If you don’t specify any position the slide will have the
     same settings as the previous slide. With a relative positioning, this
@@ -90,22 +90,20 @@ There are four ways to position slides:
     awesome results, such as positioning the slides as snaking Python or
     similar.
 
-Hovercraft! also includes impress-console_, a presenter console that will
+Hovercraft! also includes a presenter console that will
 show you your notes, slide previews and the time, essential tools for any
 presentation.
 
 Shortcut/Navigation Keys:
 -------------------------
 
-A help popup appears upon launching a presentation; it shows the following shortcuts.
+A help popup appears upon launching a presentation; it shows the keyboard shortcuts.
 
-* Space	-> Forward
-* Left, Down, Page Down	-> Next slide
-* Right, Up, Page Up	-> Previous slide
-* P	-> Open presenter console
 * H	-> Toggle the help popup
-
+* Left, Down, Page Down, Space	-> Next slide
+* Right, Up, Page Up	-> Previous slide
+* G	-> Go to slide
+* P	-> Open presenter console
 
 .. _reStructuredText: http://docutils.sourceforge.net/docs/index.html
 .. _impress.js: http://github.com/bartaz/impress.js
-.. _impress-console: https://github.com/regebro/impress-console

@@ -15,6 +15,10 @@ Features
 
 * A presenter console with notes and slide previews!
 
+* Support for showing mathematical formulas.
+
+* Styling is easy with CSS.
+
 * The slide show generated is in HTML, so you only need a web browser to show it.
 
 * Easy sharing, as it can be put up on a website for anyone to see!
@@ -25,7 +29,7 @@ documentation subdirectory.
 Installation
 ------------
 
-Hovercraft requires Python 3.4 or later, and can be installed like any Python package.
+Hovercraft requires Python 3 and can be installed like any Python package.
 The easiest way is to install pip_, and then run::
 
     $ pip3 install hovercraft
@@ -78,6 +82,8 @@ Other contributors (see CHANGES.txt for details):
 * Keith Maxwell [maxwell-k]
 
 * Tony S Yu [tonysyu]
+
+* Carlos Cámara [ccamara]
 
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft

@@ -164,10 +164,10 @@ class HTMLTests(unittest.TestCase):
 
             js_files = os.listdir(os.path.join(tmpdir, 'js'))
             self.assertEqual(set(js_files), {'impress.js', 'hovercraft.js',
-                                             'impressConsole.js'})
+                                             'gotoSlide.js'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files), {'hovercraft.css',
-                                              'impressConsole.css', 'highlight.css'})
+                                              'highlight.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
@@ -202,7 +202,7 @@ class HTMLTests(unittest.TestCase):
             self.assertEqual(set(out_files), {'index.html', 'js', 'css', 'images'})
             css_files = os.listdir(os.path.join(tmpdir, 'css'))
             self.assertEqual(set(css_files),
-                             {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css', 'impressConsole.css'})
+                             {'hovercraft.css', 'highlight.css', 'sub.css', 'sub2.css'})
             image_files = os.listdir(os.path.join(tmpdir, 'images'))
             self.assertEqual(set(image_files), {'hovercraft_logo.png'})
 
@@ -218,7 +218,7 @@ class HTMLTests(unittest.TestCase):
 
             with open(os.path.join(tmpdir, 'index.html'), 'rb') as outfile:
                 result = outfile.read()
-                self.assertIn(b'<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">', result)
+                self.assertIn(b'<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">', result)
                 self.assertIn(br'<div class="math-block ">$$\begin{align}dS = \frac{dQ}{T}\end{align}$$</div>', result)
                 self.assertIn(br'<span class="math ">\(S = k \log W\)</span>', result)
 

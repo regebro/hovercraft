@@ -1,48 +1,28 @@
-// Initialize impress.js
-impress().init();
+// Main hovercraft js file
+( function( document ) {
+    "use strict";
 
-// Set up the help-box
-var helpdiv = window.document.getElementById('hovercraft-help');
+    document.addEventListener( "impress:init", function( event ) {
 
-if (window.top!=window.self) {
-    // This is inside an iframe, so don't show the help.
-    helpdiv.className = "disabled";
-
-} else {
-    // Install a funtion to toggle help on and off.
-    var help = function() {
-        if(helpdiv.className == 'hide')
-            helpdiv.className = 'show';
-        else
-            helpdiv.className = 'hide';
-    };
-
-    // The help is by default shown. Hide it after five seconds.
-    setTimeout(function () {
-        var helpdiv = window.document.getElementById('hovercraft-help');
-        if(helpdiv.className != 'show')
-            helpdiv.className = 'hide';
-    }, 5000);
-}
+        var api = event.detail.api;
+        var util = api.lib.util;
 
 
-if (impressConsole) {
-    var impressattrs = document.getElementById('impress').attributes;
-    var consoleCss = impressattrs['console-css'];
-    var previewCss = null;
-    if (impressattrs.hasOwnProperty('preview-css')) {
-        previewCss = impressattrs['preview-css'];
-    }
+        // Set up the help-box
+        // Overwrite the default navigation help
+        util.triggerEvent( document, "impress:help:add", { command: "Left, Down, Page Down, Space",
+                                                           text: "Next step",
+                                                           row: 1 } );
+        util.triggerEvent( document, "impress:help:add", { command: "Right, Up, Page Up",
+                                                           text: "Previous step",
+                                                           row: 2 } );
+    });
 
-    impressConsole().init(css=consoleCss, cssPreview=previewCss);
+    // Initialize impress.js
+    impress().init();
 
-    // P to open Console
-    impressConsole().registerKeyEvent([72], help, window);
+}) (document);
 
-    if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
-        consoleWindow = impressConsole().open();
-    }
-}
 
 // Function updating the slide number counter
 function update_slide_number(evt)

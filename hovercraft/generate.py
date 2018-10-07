@@ -34,7 +34,7 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     tree = sm.walk()
 
     # Pick up CSS information from the tree:
-    console_css = 'css/impressConsole.css'
+    console_css = None
     preview_css = None
     for attrib in tree.attrib:
         if attrib.startswith('css'):
@@ -103,7 +103,8 @@ def rst2html(filepath, template_info, auto_console=False, skip_help=False, skip_
     if slide_numbers:
         tree.attrib['slide-numbers'] = 'True'
 
-    tree.attrib['console-css'] = console_css
+    if console_css:
+        tree.attrib['console-css'] = console_css
     if preview_css:
         tree.attrib['preview-css'] = preview_css
 

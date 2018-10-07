@@ -22,13 +22,13 @@
 
 /* Help popup */
 
-#hovercraft-help {
+#impress-help {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     color: #EEEEEE;
-    font-size: 70%;
+    font-size: 60%;
     left: 2em;
     bottom: 2em;
-    width: 28em;
+    width: 30em;
     border-radius: 1em;
     padding: 1em;
     position: fixed;
@@ -39,12 +39,9 @@
     font-family: Verdana, Arial, Sans;
 }
 
-.impress-enabled #hovercraft-help.hide {
-    display: none;
-}
-
-#hovercraft-help.disabled {
-    display: none;
+#impress-help strong {
+    font-family: inherit;
+    font-size: 98%;
 }
 
 /* Slide numbers */

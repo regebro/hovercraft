@@ -45,7 +45,8 @@ Optional arguments:
         See also the ``:css:`` settings of the presentation.
 
     ``-j JS, --js JS``
-        An additional Javascript file for the presentation to use. Added as a js-body script.
+        An additional Javascript file for the presentation to use.
+        Added as a js-body script.
         See also the ``:js-body:`` settings of the presentation.
 
     ``-a, --auto-console``
@@ -54,20 +55,28 @@ Optional arguments:
         You can also set this by having ``:auto-console: true`` first in the
         presentation.
 
-    ``-s, --skip-help`` Do not show the initial help popup. You can also set
+    ``-s, --skip-help``
+        Do not show the initial help popup. You can also set
         this by having ``:skip-help: true`` first in the presentation.
 
     ``-n, --skip-notes``
         Do not include presenter notes in the output.
+
+    ``-p PORT, --port PORT``
+        The address and port that the server uses. Ex 8080 or
+        127.0.0.1:9000. Defaults to 0.0.0.0:8000.
+
+    ``--mathjax MATHJAX``
+        The URL to the mathjax library. (It will only be used
+        if you have rST ``math::`` in your document)
 
     ``-N, --slide-numbers``
         Show the current slide number on the slide itself and in the presenter
         console. You can also set this by having ``slide-numbers: true`` in
         the presentation preamble.
 
-    ``-p PORT, --port PORT``
-        The address and port that the server uses. Ex 8080 or
-        127.0.0.1:9000. Defaults to 0.0.0.0:8000.
+    ``-v, --version``
+        Show program's version number and exit
 
 
 Built in templates
@@ -77,6 +86,5 @@ There are two templates that come with Hovercraft! One is called ``default``
 and will be used unless you specify a template. This is the template you will
 use most of the time.
 
-The second is called ``simple`` and it doesn't have a presenter console. This
-template is especially useful if you combine it with the ``--skip-notes``
-parameter to prepare a version of your presentation to be put online.
+The second is called ``simple`` and right now it only lacks the Goto function.
+You can ignore it.
