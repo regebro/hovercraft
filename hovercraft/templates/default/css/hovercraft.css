@@ -60,3 +60,23 @@ div#slide-number
     right: 2.5em;
     text-align: right;
 }
+
+/* Toolbar */
+
+body.impress-mouse-timeout div#impress-toolbar {
+    display: none;
+}
+
+#impress-toolbar button, #impress-toolbar select {
+    background-color: lightgray;
+    height: 36px;
+    border: None;
+    border-radius: 5px;
+    padding: 3px;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#impress-toolbar button {
+    width: 36px;
+}

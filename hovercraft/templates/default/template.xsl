@@ -43,6 +43,7 @@ xmlns="http://www.w3.org/1999/xhtml">
     </xsl:for-each>
   </head>
   <body class="impress-not-supported">
+    <div id="impress-toolbar"></div>
     <xsl:if test="not(/document/@skip-help)">
       <div id="impress-help"/>
     </xsl:if>
