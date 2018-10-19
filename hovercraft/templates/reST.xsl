@@ -138,6 +138,11 @@ Modification by Carl Mayer, 2013:
 				<xsl:value-of select="@classes" />
 			</xsl:attribute>
 		</xsl:if>
+		<xsl:if test="@align">
+			<xsl:attribute name="align">
+				<xsl:value-of select="@align" />
+			</xsl:attribute>
+		</xsl:if>
 	</xsl:element>
 </xsl:template>
 
