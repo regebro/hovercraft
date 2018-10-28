@@ -21,6 +21,11 @@
     // Initialize impress.js
     impress().init();
 
+    var impressattrs = document.getElementById('impress').attributes;
+    if (impressattrs.hasOwnProperty('auto-console') && impressattrs['auto-console'].value.toLowerCase() === 'true') {
+        impressConsole().open();
+    }
+
 }) (document);
 
 

@@ -35,6 +35,8 @@
 <!--
 Modifications by Lennart Regebro, 2018:
 
+* Added "class" support for lists and list items.
+
 * Added support for the HTML5 <figure> and <figcaption> tags.
 
 Modifications by Lennart Regebro, 2013:
@@ -298,16 +300,37 @@ Modification by Carl Mayer, 2013:
 
 <!-- Basic lists. -->
 <xsl:template match="bullet_list">
-	<ul><xsl:apply-templates /></ul>
+	<ul>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+	</ul>
 </xsl:template>
 
 <xsl:template match="enumerated_list">
-	<ol><xsl:apply-templates /></ol>
+	<ol>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+	</ol>
 </xsl:template>
 
 <!-- Basic list items. -->
 <xsl:template match="list_item">
-	<li><xsl:apply-templates /></li>
+	<li>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+	</li>
 </xsl:template>
 
 <!-- TODO Lists are currently stripped of their paragraph wrapping.
