@@ -97,22 +97,6 @@ like links, footnotes, and more. It is in fact advanced enough so you can write 
 whole book_ in it, but for all that you need to read the documentation_.
 
 
-If you add a ``math`` directive then hovercraft! will add a link to the MathJax_ CDN
-so that this::
-
-    .. math:: e^{i \pi} + 1 = 0
-
-
-will be rendered by the MathJax javascript library. The math directive can also
-be used as a "role" with the equations inlined with the text flow. Note that
-if you use the math statement, by default the MathJax library will be loaded
-from the internet, meaning that your presentation will need network connectivity
-to work, which can be a problem when presenting and conferences, which often have
-bad network connectivity.
-
-This can be solved by specifying a local copy of mathjax with the --mathjax
-command line.
-
 Presenter notes
 ---------------
 
@@ -424,6 +408,55 @@ A presentation can therefore look something like this::
     #. It will get correct
 
     #. Numbers automatically
+
+
+Showing lists item by item
+..........................
+
+A common feature in presentation software is to have a list that appears item
+by item. This is called "substeps" and is enabled by setting the ``substep``
+class on the items to be shown. In Hovercraft! the easiest was to do this is
+to use paragraphs, since you can set the class on multiple paragraphs at once::
+
+    .. class:: substep
+
+        This paragraph will be shown first
+
+        This will only show when you press next
+
+        And so on for the rest of the paragraphs
+
+You can also do it with bullet lists or numbered lists, although then you
+have to set the class on each item::
+
+    1. This will be shown when you get to this slide
+        .. class:: substep
+
+    1. The second item shows only after you press next
+        .. class:: substep
+
+    1. And so on for the rest of the numbered items
+        .. class:: substep
+
+
+Mathematical equations
+......................
+
+If you add a ``math`` directive then hovercraft! will add a link to the MathJax_ CDN
+so that this::
+
+    .. math:: e^{i \pi} + 1 = 0
+
+
+will be rendered by the MathJax javascript library. The math directive can also
+be used as a "role" with the equations inlined with the text flow. Note that
+if you use the math statement, by default the MathJax library will be loaded
+from the internet, meaning that your presentation will need network connectivity
+to work, which can be a problem when presenting and conferences, which often have
+bad network connectivity.
+
+This can be solved by specifying a local copy of mathjax with the --mathjax
+command line.
 
 
 Relative positioning

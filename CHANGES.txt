@@ -21,6 +21,9 @@ The most obvious changes from the previous version of Hovercraft! are:
   impress.js MathJax extension is simply just Mathjax, there is no additional
   integration, so Hovercraft! doesn't change how Mathjax is integrated.
 
+- Hovecraft! now supports the new impress.js "substep" plugin, so that
+  you can show lists item by item (see documentation).
+
 
 2.6 (2018-10-04)
 ----------------
