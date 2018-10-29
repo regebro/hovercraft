@@ -7,14 +7,14 @@ xmlns="http://www.w3.org/1999/xhtml">
 <xsl:import href="resource:templates/reST.xsl" />
 
 <xsl:template match="step" name="step">
-    <div class="step">
-      <xsl:copy-of select="@*"/>
-      <xsl:apply-templates />
-    </div>
+  <div class="step">
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates />
+  </div>
 </xsl:template>
 
 <xsl:template match="note" name="note">
-        <div class="notes"><xsl:apply-templates /></div>
+  <div class="notes"><xsl:apply-templates /></div>
 </xsl:template>
 
 <xsl:template match="/" name="main">
@@ -22,13 +22,37 @@ xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><xsl:value-of select="/document/@title"/></title>
 
+    <meta charset="UTF-8"/>
+    <meta name="generator" content="Hovercraft! 1.0 http://regebro.github.com/hovercraft"/>
+    <xsl:if test="/document/author"> <!-- Author is a child to the document, everything else become attributes -->
+      <meta name="author">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/author" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@description">
+      <meta name="description">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@description" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+    <xsl:if test="/document/@keywords">
+      <meta name="keywords">
+        <xsl:attribute name="content">
+          <xsl:value-of select="/document/@keywords" />
+        </xsl:attribute>
+      </meta>
+    </xsl:if>
+
     <xsl:for-each select="/document/templateinfo/header/css">
       <link rel="stylesheet">
         <xsl:copy-of select="@*"/>
       </link>
     </xsl:for-each>
 
-        <script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         showProcessingMessages: false,
         messageStyle: "none",
@@ -47,6 +71,12 @@ xmlns="http://www.w3.org/1999/xhtml">
       <div id="impress-help"/>
     </xsl:if>
     <xsl:for-each select="/document">
+      <xsl:for-each select="decoration/header">
+        <div class="header">
+          <xsl:apply-templates />
+        </div>
+      </xsl:for-each>
+
       <div id="impress">
         <xsl:if test="@data-perspective">
           <xsl:attribute name="data-perspective">
@@ -80,11 +110,16 @@ xmlns="http://www.w3.org/1999/xhtml">
           </div>
         </xsl:for-each>
       </div>
+      <xsl:for-each select="decoration/footer">
+        <div class="footer">
+          <xsl:apply-templates />
+        </div>
+      </xsl:for-each>
     </xsl:for-each>
-        <xsl:if test="/document/@slide-numbers">
-          <div id="slide-number" class="slide-number">
-            1
-          </div>
+    <xsl:if test="/document/@slide-numbers">
+      <div id="slide-number" class="slide-number">
+         1
+      </div>
     </xsl:if>
 
     <xsl:for-each select="/document/templateinfo/body/js">
@@ -93,10 +128,10 @@ xmlns="http://www.w3.org/1999/xhtml">
       </script>
     </xsl:for-each>
     <xsl:if test="/document/@slide-numbers">
-          <script type="text/javascript">
-        document.getElementById("impress").addEventListener("impress:stepenter", update_slide_number, false);
-          </script>
-    </xsl:if>
+    <script type="text/javascript">
+      document.getElementById("impress").addEventListener("impress:stepenter", update_slide_number, false);
+    </script>
+  </xsl:if>
 
 </body>
 </html>
