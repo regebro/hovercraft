@@ -352,7 +352,7 @@ dashes::
 You don't have to use dashes, you can use any of the characters used to
 underline headings, ``= - ` : . ' " ~ ^ _ * + #``. And just as width
 headings, using different characters indicates different "levels". In this
-way you can make a hierarchical presentation, with steps and substeps.
+way you can make a hierarchical presentation with multiple "levels" of steps.
 However, impress.js does not support that, so this is only useful
 if you make your own templates that uses another Javascript library, for
 example Reveal.js_. If you have more than one transition level with
