@@ -103,6 +103,7 @@ class SlideMaker(object):
         self.skip_notes = skip_notes
         self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
         self.need_mathjax = False
+        self.lists_with_substeps = []
 
     def _newstep(self, level):
         step = etree.Element('step', attrib={
@@ -218,3 +219,46 @@ class SlideMaker(object):
     def start_math(self, node):
         self.need_mathjax = True
         self.default_start(node)
+
+    def start_list_item(self, node):
+        if self.lists_with_substeps:
+            # We are currently in a list hierarchy that should have
+            # substeps
+            classes = node.attrib.get('classes', '')
+            if not 'substep' in classes:
+                classes += ' substep'
+                node.attrib['classes'] = classes.strip()
+
+        self.default_start(node)
+
+    def _fix_substep_list(self, node):
+        # The list istelf should not have the substep class.
+        # For some reason we can't modify nodes in the end_...() functions,
+        # only in the start_...() functions, so we drop the substep class
+        # but add the node to a stack of nodes with the class
+        classes = node.attrib.get('classes', '')
+        if 'substep' in classes:
+            self.lists_with_substeps.append(node)
+            classes = classes.replace('substep', '').strip()
+            if not classes:
+                del node.attrib['classes']
+            else:
+                node.attrib['classes'] = classes
+
+    def start_enumerated_list(self, node):
+        self._fix_substep_list(node)
+        self.default_start(node)
+
+    def end_enumerated_list(self, node):
+        if node in self.lists_with_substeps:
+            self.lists_with_substeps.remove(node)
+        self.default_end(node)
+
+    def start_bullet_list(self, node):
+        self._fix_substep_list(node)
+        self.default_start(node)
+
+    def end_bullet_list(self, node):
+        if node in self.lists_with_substeps:
+            self.lists_with_substeps.remove(node)
+        self.default_end(node)

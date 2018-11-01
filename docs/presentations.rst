@@ -420,23 +420,49 @@ to use paragraphs, since you can set the class on multiple paragraphs at once::
 
     .. class:: substep
 
-        This paragraph will be shown first
+        This paragraph will be shown when you press <next>
 
-        This will only show when you press next
+        This will show on the second <next> press
 
-        And so on for the rest of the paragraphs
+        And this will be shown third
 
-You can also do it with bullet lists or numbered lists, although then you
-have to set the class on each item::
+You can also set the class just on individual paragraphs, in which case
+all other paragraphs will be visible from the beginning.
+
+    This paragraph will always be visible
+
+    .. class:: substep
+    This paragraph will be shown when you press <next>
+
+    And this paragraph will also be always visible
+
+    .. class:: substep
+    And this paragraph will show second
+
+
+You can also do it with bullet lists or numbered lists::
+
+    .. class:: substep
+
+        * This is an unordered list
+
+            * In two levels
+
+            * One new item will be shown on every <next> press
+
+And, as with pagarphs you can have individual control of each item. But
+Due to the ReStructuredText syntax you can't have individual control
+on the first item of a list, it will always be shown from the start::
 
     1. This will be shown when you get to this slide
-        .. class:: substep
 
-    1. The second item shows only after you press next
-        .. class:: substep
+       .. class:: substep
+    1. The second item shows only after you press <next>
 
-    1. And so on for the rest of the numbered items
-        .. class:: substep
+    1. This also will always be shown.
+
+       .. class:: substep
+    1. And this will be shown after another <next> press.
 
 
 Mathematical equations
