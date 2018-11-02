@@ -22,7 +22,7 @@ The most obvious changes from the previous version of Hovercraft! are:
   integration, so Hovercraft! doesn't change how Mathjax is integrated.
 
 - Hovecraft! now supports the new impress.js "substep" plugin, so that
-  you can show lists item by item (see documentation).
+  you can show paragraphs lists item by item (see documentation).
 
 
 2.6 (2018-10-04)
