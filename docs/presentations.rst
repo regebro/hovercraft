@@ -145,6 +145,8 @@ CSS media::
 You can specify any number of css files in this way.
 You can also add one extra CSS-file via a command-line parameter:
 
+.. code-block:: console
+
     hovercraft --css=my_extra.css presentationfile.rst outdir/
 
 
@@ -156,7 +158,7 @@ the slide is shown in the presenter console::
 
     :css-preview: css/slidepreview.css
 
-You can also style the presenter console itself:
+You can also style the presenter console itself::
 
     :css-console: css/console.css
 
@@ -173,6 +175,8 @@ In a similar fashion you can add Javascript files to either header or body::
     :js-body: js/secondjsfile.js
 
 You can also add one extra Javascript-file via a command-line parameter:
+
+.. code-block:: console
 
     hovercraft --js=my_extra.js presentationfile.rst outdir/
 
@@ -427,7 +431,7 @@ to use paragraphs, since you can set the class on multiple paragraphs at once::
         And this will be shown third
 
 You can also set the class just on individual paragraphs, in which case
-all other paragraphs will be visible from the beginning.
+all other paragraphs will be visible from the beginning::
 
     This paragraph will always be visible
 
