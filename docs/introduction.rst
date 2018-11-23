@@ -100,8 +100,8 @@ Shortcut/Navigation Keys:
 A help popup appears upon launching a presentation; it shows the keyboard shortcuts.
 
 * H	-> Toggle the help popup
-* Left, Down, Page Down, Space	-> Next slide
-* Right, Up, Page Up	-> Previous slide
+* Right, Down, Page Down, Space	-> Next slide
+* Left, Up, Page Up	-> Previous slide
 * G	-> Go to slide
 * P	-> Open presenter console
 
