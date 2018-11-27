@@ -436,12 +436,14 @@ all other paragraphs will be visible from the beginning::
     This paragraph will always be visible
 
     .. class:: substep
-    This paragraph will be shown when you press <next>
+
+        This paragraph will be shown when you press <next>
 
     And this paragraph will also be always visible
 
     .. class:: substep
-    And this paragraph will show second
+
+        And this paragraph will show second
 
 
 You can also do it with bullet lists or numbered lists::
@@ -458,15 +460,17 @@ And, as with pagarphs you can have individual control of each item. But
 Due to the ReStructuredText syntax you can't have individual control
 on the first item of a list, it will always be shown from the start::
 
-    1. This will be shown when you get to this slide
+    #. This will be shown when you get to this slide
 
        .. class:: substep
-    1. The second item shows only after you press <next>
 
-    1. This also will always be shown.
+    #. The second item shows only after you press <next>
+
+    #. This also will always be shown.
 
        .. class:: substep
-    1. And this will be shown after another <next> press.
+
+    #. And this will be shown after another <next> press.
 
 
 Mathematical equations
