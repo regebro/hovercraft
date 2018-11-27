@@ -28,7 +28,7 @@ links to the source code in the Examples section.
 
 You can render this presentation to HTML with the command::
 
-    hovercraft positions.rst outdir
+    hovercraft tutorial.rst outdir
 
 And then view the outdir/index.html file to see how it turned out.
 
