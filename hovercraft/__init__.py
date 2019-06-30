@@ -5,6 +5,7 @@ import sys
 import threading
 import time
 import pkg_resources
+import hovercraft.directive.null
 from collections import defaultdict
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from tempfile import TemporaryDirectory
@@ -155,18 +156,40 @@ def create_arg_parser():
         #help=('Display version and exit.'),
         version="Hovercraft! %s" % __version__
     )
+    parser.add_argument(
+        '-D',
+        '--directive-plugin',
+        action='append',
+        help=('Package name of the direcvtive plugin to load. '
+              'Can be applied multiple times.'),
+    )
 
     return parser
 
 
-def serve_presentation(args):
+def register_directive_plugin(plugin, args):
+    if isinstance(plugin, (str,)):
+        plugin = __import__(plugin, globals(), locals(), 'module')
+    print('Registering directive plugin {}.'.format(plugin.__name__))
+    plugin.register(args)
 
+
+def register_directives(args):
+    directives = [hovercraft.directive.null]
+    if args.directive_plugin:
+        directives.extend(args.directive_plugin)
+    for plugin in directives:
+        register_directive_plugin(plugin, args)
+
+
+def serve_presentation(args):
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
     if args.template and args.template not in ('simple', 'default'):
         args.template = os.path.abspath(args.template)
 
     if args.targetdir:
         # Generate the presentation
+        register_directives(args)
         generate(args)
     else:
         # Server mode. Start a server that serves a temporary directory.
@@ -174,6 +197,7 @@ def serve_presentation(args):
         with TemporaryDirectory() as targetdir:
             args.targetdir = targetdir
             args.presentation = os.path.abspath(args.presentation)
+            register_directives(args)
 
             # Set up watchdog to regenerate presentation if saved.
             event = threading.Event()
