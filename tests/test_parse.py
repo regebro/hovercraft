@@ -81,7 +81,7 @@ class SlideMakerTests(unittest.TestCase):
             b'class="step step-level-1" step="0"><section ids="hovercrafts-presenter-notes" '
             b'names="hovercrafts\\ presenter\\ notes"><title>Hovercrafts presenter '
             b'notes</title><paragraph>Hovercraft! supports presenter notes. It does '
-            b'this by taking anything in a\nwhat is calles a "notes-admonition" and '
+            b'this by taking anything in a\nwhat is called a "notes-admonition" and '
             b'making that into presenter notes.</paragraph><note><paragraph>Hence, '
             b'this will show up as presenter notes.\nYou have still access to a lot '
             b'of formatting, like</paragraph><bullet_list bullet="*"><list_item>'
