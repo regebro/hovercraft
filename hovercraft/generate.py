@@ -128,6 +128,10 @@ def copy_resource(filename, sourcedir, targetdir):
     sourcepath = os.path.join(sourcedir, filename)
     targetpath = os.path.join(targetdir, filename)
 
+    if not os.path.exists(sourcepath) and os.path.exists(targetpath):
+        # Generated image, no source file available
+        return None  # No monitoring needed
+
     if (os.path.exists(targetpath) and
         os.path.getmtime(sourcepath) <= os.path.getmtime(targetpath)):
         # File has not changed since last copy, so skip.
