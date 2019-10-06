@@ -202,11 +202,14 @@ def generate(args):
     # Copy supporting files
     source_files.update(template_info.copy_resources(args.targetdir))
 
-    # Copy images from the source:
+    # Copy files from the source:
     sourcedir = os.path.split(os.path.abspath(args.presentation))[0]
     tree = html.fromstring(htmldata)
     for image in tree.iterdescendants("img"):
         filename = image.attrib["src"]
+        source_files.add(copy_resource(filename, sourcedir, args.targetdir))
+    for source in tree.iterdescendants('source'):
+        filename = source.attrib['src']
         source_files.add(copy_resource(filename, sourcedir, args.targetdir))
 
     RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
