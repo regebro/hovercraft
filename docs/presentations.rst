@@ -229,7 +229,7 @@ Adding a custom class to slides
 If you want to apply the same style to one or more slides you may prefer adding
 a class to those slides instead (or in addition to) a unique ID::
 
-    :id: my-custom-class
+    :class: my-custom-class
 
 You can then style those slides by adding CSS rules with::
 
