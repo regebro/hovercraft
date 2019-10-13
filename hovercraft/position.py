@@ -19,11 +19,12 @@ def gather_positions(tree):
            'is_path': False
            }
 
-    steps = 0
+    step_number = 0
     default_movement = True
 
-    for step in tree.findall('step'):
-        steps += 1
+    steps = tree.findall('step')
+    for step in steps:
+        step_number += 1
 
         for key in POSITION_ATTRIBS:
             value = step.get(key)
@@ -38,11 +39,11 @@ def gather_positions(tree):
             # We had no new value, and the old value was a relative
             # movement, so we just keep moving.
 
-        if steps == 1 and pos['data-scale'] == 'r0':
+        if step_number == 1 and pos['data-scale'] == 'r0':
             # No scale given for first slide, it needs to start at 1
             pos['data-scale'] = '1'
 
-        if default_movement and steps != 1:
+        if default_movement and step_number != 1:
             # No positioning has been given, use default:
             pos['data-x'] = 'r%s' % DEFAULT_MOVEMENT
 
@@ -50,6 +51,25 @@ def gather_positions(tree):
             # data-rotate is an alias for data-rotate-z
             pos['data-rotate-z'] = step.get('data-rotate')
             del step.attrib['data-rotate']
+
+
+        # multiply data-x, data-y, data-z with the scale if we use "r". Otherwise all the relative positions would not look the same anymore if we change the scale somewhere
+        ATTRIBUTES_TO_FIX = ['data-x', 'data-y', 'data-z']
+
+        if pos['data-scale'] == 'r0':
+            # make sure every step has a scale value and is not "r0". This works as the first slide always has a value.
+            pos['data-scale'] = steps[step_number-2].get('data-scale')
+
+        for attribute_to_fix in ATTRIBUTES_TO_FIX:
+
+            value = pos[attribute_to_fix]
+            
+            if value.startswith('r'):
+                number_only = int(value.replace('r',''))
+                scale_factor = float(pos['data-scale'])
+                pos[attribute_to_fix] = 'r' + str( int( number_only * scale_factor) )
+
+
 
         if 'hovercraft-path' in step.attrib:
             # Path given x and y will be calculated from the path
