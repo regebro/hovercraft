@@ -7,7 +7,7 @@ Hovercrafts presenter notes
 ===========================
 
 Hovercraft! supports presenter notes. It does this by taking anything in a
-what is calles a "notes-admonition" and making that into presenter notes.
+what is called a "notes-admonition" and making that into presenter notes.
 
 .. note:: Hence, this will show up as presenter notes.
     You have still access to a lot of formatting, like
