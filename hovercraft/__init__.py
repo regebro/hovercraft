@@ -1,7 +1,6 @@
 import argparse
 import gettext
 import os
-import sys
 import threading
 import time
 import pkg_resources
@@ -81,79 +80,105 @@ def create_arg_parser():
     gettext.gettext = my_gettext
 
     parser = argparse.ArgumentParser(
-        description='Create impress.js presentations with reStructuredText',
-        add_help=False)
+        description="Create impress.js presentations with reStructuredText",
+        add_help=False,
+    )
     parser.add_argument(
-        'presentation',
-        metavar='<presentation>',
-        help='The path to the reStructuredText presentation file.')
+        "presentation",
+        metavar="<presentation>",
+        help="The path to the reStructuredText presentation file.",
+    )
     parser.add_argument(
-        'targetdir',
-        metavar='<targetdir>',
-        nargs='?',
-        help=('The directory where the presentation is saved. Will be created '
-              'if it does not exist. If you do not specify a targetdir '
-              'Hovercraft! will instead start a webserver and serve the '
-              'presentation from that server.'))
+        "targetdir",
+        metavar="<targetdir>",
+        nargs="?",
+        help=(
+            "The directory where the presentation is saved. Will be created "
+            "if it does not exist. If you do not specify a targetdir "
+            "Hovercraft! will instead start a webserver and serve the "
+            "presentation from that server."
+        ),
+    )
+    parser.add_argument("-h", "--help", action="help", help="Show this help.")
     parser.add_argument(
-        '-h', '--help',
-        action='help',
-        help='Show this help.')
+        "-t",
+        "--template",
+        help=(
+            "Specify a template. Must be a .cfg file, or a directory with a "
+            "template.cfg file. If not given it will use a default template."
+        ),
+    )
     parser.add_argument(
-        '-t',
-        '--template',
-        help=('Specify a template. Must be a .cfg file, or a directory with a '
-              'template.cfg file. If not given it will use a default template.'))
+        "-c",
+        "--css",
+        help=(
+            "An additional css file for the presentation to use. "
+            "See also the ``:css:`` settings of the presentation."
+        ),
+    )
     parser.add_argument(
-        '-c',
-        '--css',
-        help=('An additional css file for the presentation to use. '
-              'See also the ``:css:`` settings of the presentation.'))
+        "-j",
+        "--js",
+        help=(
+            "An additional javascript file for the presentation to use. Added as a js-body script."
+            "See also the ``:js-body:`` settings of the presentation."
+        ),
+    )
     parser.add_argument(
-        '-j',
-        '--js',
-        help=('An additional javascript file for the presentation to use. Added as a js-body script.'
-              'See also the ``:js-body:`` settings of the presentation.'))
+        "-a",
+        "--auto-console",
+        action="store_true",
+        help=(
+            "Open the presenter console automatically. This is useful when "
+            "you are rehearsing and making sure the presenter notes are "
+            "correct. You can also set this by having ``:auto-console: "
+            "true`` first in the presentation."
+        ),
+    )
     parser.add_argument(
-        '-a',
-        '--auto-console',
-        action='store_true',
-        help=('Open the presenter console automatically. This is useful when '
-              'you are rehearsing and making sure the presenter notes are '
-              'correct. You can also set this by having ``:auto-console: '
-              'true`` first in the presentation.'))
+        "-s",
+        "--skip-help",
+        action="store_true",
+        help=("Do not show the initial help popup."),
+    )
     parser.add_argument(
-        '-s',
-        '--skip-help',
-        action='store_true',
-        help=('Do not show the initial help popup.'))
+        "-n",
+        "--skip-notes",
+        action="store_true",
+        help=("Do not include presenter notes in the output."),
+    )
     parser.add_argument(
-        '-n',
-        '--skip-notes',
-        action='store_true',
-        help=('Do not include presenter notes in the output.'))
+        "-p",
+        "--port",
+        default="0.0.0.0:8000",
+        help=(
+            "The address and port that the server uses. "
+            "Ex 8080 or 127.0.0.1:9000. Defaults to 0.0.0.0:8000."
+        ),
+    )
     parser.add_argument(
-        '-p',
-        '--port',
-        default='0.0.0.0:8000',
-        help=('The address and port that the server uses. '
-              'Ex 8080 or 127.0.0.1:9000. Defaults to 0.0.0.0:8000.'))
+        "--mathjax",
+        default=os.environ.get(
+            "HOVERCRAFT_MATHJAX",
+            "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML",
+        ),
+        help=(
+            "The URL to the mathjax library."
+            " (It will only be used if you have rST ``math::`` in your document)"
+        ),
+    )
     parser.add_argument(
-        '--mathjax',
-        default=os.environ.get('HOVERCRAFT_MATHJAX', 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'),
-        help=('The URL to the mathjax library.'
-              ' (It will only be used if you have rST ``math::`` in your document)'))
+        "-N",
+        "--slide-numbers",
+        action="store_true",
+        help=("Show slide numbers during the presentation."),
+    )
     parser.add_argument(
-        '-N',
-        '--slide-numbers',
-        action='store_true',
-        help=('Show slide numbers during the presentation.'))
-    parser.add_argument(
-        '-v',
-        '--version',
-        action='version',
-        #help=('Display version and exit.'),
-        version="Hovercraft! %s" % __version__
+        "-v",
+        "--version",
+        action="version",
+        # help=('Display version and exit.'),
+        version="Hovercraft! %s" % __version__,
     )
 
     return parser
@@ -162,7 +187,7 @@ def create_arg_parser():
 def serve_presentation(args):
 
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
-    if args.template and args.template not in ('simple', 'default'):
+    if args.template and args.template not in ("simple", "default"):
         args.template = os.path.abspath(args.template)
 
     if args.targetdir:
@@ -181,10 +206,10 @@ def serve_presentation(args):
             thread = threading.Thread(target=generate_and_observe, args=(args, event))
             try:
                 # Serve presentation
-                if ':' in args.port:
-                    bind, port = args.port.split(':')
+                if ":" in args.port:
+                    bind, port = args.port.split(":")
                 else:
-                    bind, port = '0.0.0.0', args.port
+                    bind, port = "0.0.0.0", args.port
                 port = int(port)
 
                 # First create the server. This checks that we can connect to
@@ -216,6 +241,8 @@ def serve_presentation(args):
                 print("Can't bind to port %s:%s: No permission" % (bind, port))
             except OSError as e:
                 if e.errno == 98:
-                    print("Can't bind to port %s:%s: port already in use" % (bind, port))
+                    print(
+                        "Can't bind to port %s:%s: port already in use" % (bind, port)
+                    )
                 else:
                     raise

@@ -7,10 +7,9 @@ from lxml import etree
 
 
 class HovercraftTransitions(Transitions):
-
     @property
     def _doc_transitions(self):
-        if not hasattr(self.document, '_transitions'):
+        if not hasattr(self.document, "_transitions"):
             self.document._transitions = []
         return self.document._transitions
 
@@ -20,7 +19,7 @@ class HovercraftTransitions(Transitions):
         if char not in self._doc_transitions:
             self._doc_transitions.append(char)
         level = self._doc_transitions.index(char) + 1
-        node.attributes['level'] = str(level)
+        node.attributes["level"] = str(level)
 
         index = node.parent.index(node)
         error = None
@@ -28,9 +27,11 @@ class HovercraftTransitions(Transitions):
         # the first thing in a section. I don't see why.
         if isinstance(node.parent[index - 1], nodes.transition):
             error = self.document.reporter.error(
-                'At least one body element must separate transitions; '
-                'adjacent transitions are not allowed.',
-                source=node.source, line=node.line)
+                "At least one body element must separate transitions; "
+                "adjacent transitions are not allowed.",
+                source=node.source,
+                line=node.line,
+            )
         if error:
             # Insert before node and update index.
             node.parent.insert(index, error)
@@ -49,8 +50,8 @@ class HovercraftTransitions(Transitions):
                 # Transition at the end of document.  Do not move the
                 # transition up, and place an error behind.
                 error = self.document.reporter.error(
-                    'Document may not end with a transition.',
-                    line=node.line)
+                    "Document may not end with a transition.", line=node.line
+                )
                 node.parent.insert(node.parent.index(node) + 1, error)
                 return
             index = sibling.parent.index(sibling)
@@ -61,7 +62,6 @@ class HovercraftTransitions(Transitions):
 
 
 class HovercraftReader(Reader):
-
     def get_transforms(self):
         transforms = Reader().get_transforms()
         transforms.remove(Transitions)
@@ -72,11 +72,13 @@ class HovercraftReader(Reader):
 def rst2xml(rststring, source_path=None):
     reader = HovercraftReader()
     writer = Writer()
-    result =  publish_string(rststring,
-                          source_path=source_path,
-                          reader=reader,
-                          writer=writer,
-                          settings_overrides={'syntax_highlight': 'short'})
+    result = publish_string(
+        rststring,
+        source_path=source_path,
+        reader=reader,
+        writer=writer,
+        settings_overrides={"syntax_highlight": "short"},
+    )
     dependencies = reader.settings.record_dependencies.list
     return result, dependencies
 
@@ -101,29 +103,34 @@ class SlideMaker(object):
         self.curnode = None
         self.steps = 0
         self.skip_notes = skip_notes
-        self.skip_nodes = ('docinfo', 'field_list', 'field', 'field_body',)
+        self.skip_nodes = (
+            "docinfo",
+            "field_list",
+            "field",
+            "field_body",
+        )
         self.need_mathjax = False
         self.lists_with_substeps = []
 
     def _newstep(self, level):
-        step = etree.Element('step', attrib={
-            'step': str(self.steps),
-            'class': 'step step-level-%s' % level,
-        })
+        step = etree.Element(
+            "step",
+            attrib={"step": str(self.steps), "class": "step step-level-%s" % level,},
+        )
         self.steps += 1
         return step
 
     def walk(self):
-        walken = etree.iterwalk(self.intree, events=('start', 'end'))
+        walken = etree.iterwalk(self.intree, events=("start", "end"))
         for event, node in walken:
             if node.tag in self.skip_nodes:
                 continue
-            method = getattr(self, '%s_%s' % (event, node.tag), None)
+            method = getattr(self, "%s_%s" % (event, node.tag), None)
             if method is None:
-                if event == 'start':
+                if event == "start":
                     self.default_start(node)
                 else:
-                    if event == 'end':
+                    if event == "end":
                         self.default_end(node)
             else:
                 method(node)
@@ -136,7 +143,7 @@ class SlideMaker(object):
         self.curnode = new
 
     def default_end(self, node):
-        if self.curnode.tag != 'step':
+        if self.curnode.tag != "step":
             self.curnode = self.curnode.getparent()
 
     def start_document(self, node):
@@ -153,17 +160,18 @@ class SlideMaker(object):
         self.default_start(node)
 
     def start_transition(self, node):
-        level = int(node.attrib['level'])
+        level = int(node.attrib["level"])
         step = self._newstep(level)
         # Walk back up to a transition of the same level
         curnode = self.curnode
+
         def get_level(clss):
             for cls in clss.split():
                 # Skip unrelated classes, such as those added by the user.
-                if cls.startswith('step-level-'):
-                    return int(cls.split('-')[-1])
-        while (curnode.tag != 'step' or
-               get_level(curnode.attrib['class']) >= level):
+                if cls.startswith("step-level-"):
+                    return int(cls.split("-")[-1])
+
+        while curnode.tag != "step" or get_level(curnode.attrib["class"]) >= level:
             parent = curnode.getparent()
             if parent is None:
                 # Top of tree
@@ -189,11 +197,11 @@ class SlideMaker(object):
     def start_paragraph(self, node):
         # Fields are made into attributes.
         parent = node.getparent()
-        if parent.tag == 'field_body':
+        if parent.tag == "field_body":
             fieldname = parent.getprevious().text
             current = self.curnode.get(fieldname)
             if current:
-                value = current + ' ' + node.text
+                value = current + " " + node.text
             else:
                 value = node.text
             self.curnode.set(fieldname, value)
@@ -202,7 +210,7 @@ class SlideMaker(object):
 
     def end_paragraph(self, node):
         parent = node.getparent()
-        if parent.tag != 'field_body':
+        if parent.tag != "field_body":
             self.default_end(node)
 
     def start_note(self, node):
@@ -224,10 +232,10 @@ class SlideMaker(object):
         if self.lists_with_substeps:
             # We are currently in a list hierarchy that should have
             # substeps
-            classes = node.attrib.get('classes', '')
-            if not 'substep' in classes:
-                classes += ' substep'
-                node.attrib['classes'] = classes.strip()
+            classes = node.attrib.get("classes", "")
+            if "substep" not in classes:
+                classes += " substep"
+                node.attrib["classes"] = classes.strip()
 
         self.default_start(node)
 
@@ -236,14 +244,14 @@ class SlideMaker(object):
         # For some reason we can't modify nodes in the end_...() functions,
         # only in the start_...() functions, so we drop the substep class
         # but add the node to a stack of nodes with the class
-        classes = node.attrib.get('classes', '')
-        if 'substep' in classes:
+        classes = node.attrib.get("classes", "")
+        if "substep" in classes:
             self.lists_with_substeps.append(node)
-            classes = classes.replace('substep', '').strip()
+            classes = classes.replace("substep", "").strip()
             if not classes:
-                del node.attrib['classes']
+                del node.attrib["classes"]
             else:
-                node.attrib['classes'] = classes
+                node.attrib["classes"] = classes
 
     def start_enumerated_list(self, node):
         self._fix_substep_list(node)
