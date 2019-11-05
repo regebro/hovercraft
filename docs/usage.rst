@@ -78,6 +78,25 @@ Optional arguments:
     ``-v, --version``
         Show program's version number and exit
 
+Presenter Console
+-----------------
+
+The presenter console feature is designed for showing an annotated version of
+the presentation on the local laptop display, while showing the presentation
+itself on a projector.
+
+To use this feature, open the presentation in a browser, and press "P". A new
+browser tab will be created, and the browser focus will switch to that tab
+automatically. At this point, the two tabs are linked, and the slide
+navigation controls will affect both tabs.
+
+Now, you'll need to move the presenter console tab into its own browser
+window. With Firefox, right-click on the tab title, and click on Move Tab -->
+Move to New Window. With Chromium, drag the tab title down and the tab will be
+moved into a new browser window.
+
+Finally, drag the presentation window onto the projector's part of the
+desktop.
 
 Built in templates
 ------------------
