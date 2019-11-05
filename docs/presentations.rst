@@ -66,6 +66,24 @@ You can include images::
 As you see you can also specify height and width and loads of other parameters_, but they
 are all optional.
 
+
+You can also include videos::
+
+    .. raw::
+        <video width="100%" controls>
+            <source src="./path/to/your/video.mp4" type="video/mp4">
+            Your browser does not support the video element.
+        </video>
+
+or audio::
+
+    .. raw::
+        <audio controls>
+            <source src="./path/to/your/audio.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+
 And you can mark text as being preformatted. You do that by ending the
 previous row with double colons, or have a row of double colons by itself::
 
