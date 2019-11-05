@@ -96,7 +96,7 @@ Move to New Window. With Chromium, drag the tab title down and the tab will be
 moved into a new browser window.
 
 Finally, drag the presentation window onto the projector's part of the
-desktop.
+desktop, and press F11 to make the presentation fullscreen.
 
 Built in templates
 ------------------
