@@ -24,6 +24,11 @@ The most obvious changes from the previous version of Hovercraft! are:
 - Hovecraft! now supports the new impress.js "substep" plugin, so that
   you can show paragraphs lists item by item (see documentation).
 
+Other changes are:
+
+- You can now include audio and video by including the HTML5 <video> and 
+  <audio> tags in ..raw: html sections.
+  
 
 2.6 (2018-10-04)
 ----------------
