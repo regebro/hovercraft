@@ -69,7 +69,8 @@ are all optional.
 
 You can also include videos::
 
-    .. raw::
+    .. raw:: html
+
         <video width="100%" controls>
             <source src="./path/to/your/video.mp4" type="video/mp4">
             Your browser does not support the video element.
@@ -77,7 +78,8 @@ You can also include videos::
 
 or audio::
 
-    .. raw::
+    .. raw:: html
+
         <audio controls>
             <source src="./path/to/your/audio.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
