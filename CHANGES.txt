@@ -26,9 +26,13 @@ The most obvious changes from the previous version of Hovercraft! are:
 
 Other changes are:
 
-- You can now include audio and video by including the HTML5 <video> and 
+- You can now include audio and video by including the HTML5 <video> and
   <audio> tags in ..raw: html sections.
-  
+
+- Dropped support for Python 3.5, added support for 3.8.
+
+- Many, many documentation fixes and improvements.
+
 
 2.6 (2018-10-04)
 ----------------
