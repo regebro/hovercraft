@@ -85,7 +85,7 @@ The presenter console feature is designed for showing an annotated version of
 the presentation on the local laptop display, while showing the presentation
 itself on a projector.
 
-To use this feature, open the presentation in a browser, and press "P". A new
+To use this feature, open the presentation in a browser, and press `p`. A new
 browser tab will be created, and the browser focus will switch to that tab
 automatically. At this point, the two tabs are linked, and the slide
 navigation controls will affect both tabs.
