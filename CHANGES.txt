@@ -1,6 +1,12 @@
 Changes
 =======
 
+2.7beta2 (unreleased)
+---------------------
+
+- Nothing changed yet.
+
+
 2.7beta1 (2019-11-06)
 ---------------------
 
