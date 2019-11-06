@@ -1,8 +1,8 @@
 Changes
 =======
 
-2.7 (unreleased)
-----------------
+2.7beta1 (2019-11-06)
+---------------------
 
 This release moves Hovercraft! over to impress.js 1.0.0. This version of
 impress.js has many new features and a new plugin system, which has plenty of
