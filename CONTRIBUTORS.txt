@@ -1,0 +1,75 @@
+Contributors
+------------
+
+Hovercraft! was written by Lennart Regebro <regebro@gmail.com>, and is licensed
+with an MIT license, except for the following:
+
+* ``reST.xsl`` is (c) Michael Alyn Miller <malyn@strangeGizmo.com> and
+  published under a BSD-style license included in reST.xsl itself.
+
+* ``impress.js`` is (c) Bartek Szopka (@bartaz) released under MIT and GPL
+  licenses. See the impress.js_ page for more information.
+
+Other contributors (see CHANGES.txt for details):
+
+* Carl Meyer [carljm]
+
+* Chris Withers [cjw296]
+
+* Fahrzin Hemmati [fahhem]
+
+* Christophe Labouisse [ggtools]
+
+* Paul Schoenfelder [bitwalker]
+
+* Bernhard Weitzhofer [b6d]
+
+* Russ Ferriday [topiaruss]
+
+* Henrik Blidh [hbldh]
+
+* Ian Castleden [arabidopsis]
+
+* Mario Bodemann [mariobodemann]
+
+* Jürgen Hermann [jhermann]
+
+* Adam Johnson [adamchainz]
+
+* Frederik Möllers [frederikmoellers]
+
+* David Baum [naraesk]
+
+* Keith Maxwell [maxwell-k]
+
+* Tony S Yu [tonysyu]
+
+* Carlos Cámara [ccamara]
+
+* Ramiro Morales [ramiro]
+
+* Johannes Wünsch [PostPollux]
+
+* Mark Kohler [mkohler]
+
+* Brian Murray [murraybd]
+
+* Maxime Weyl [MaximeWeyl]
+
+* Bart Kummel [bartkummel]
+
+* Baptiste Mispelon [bmispelon]
+
+* Martín Gaitán [mgaitan]
+
+* Eugene Yunak [yunake]
+
+* Nejc Zupan [zupo]
+
+* Graham Williamson [00willo]
+
+* FredInChina [ReblochonMasque]
+
+* Dan Jacka [danjacka]
+
+.. _impress.js: http://github.com/bartaz/impress.js

@@ -37,58 +37,6 @@ The easiest way is to install pip_, and then run::
 Hovercraft is untested on Windows, but there is no reason it shouldn't work, at least in theory.
 
 
-Contributors
-------------
-
-Hovercraft! was written by Lennart Regebro <regebro@gmail.com>, and is licensed
-as CC-0, except for the following:
-
-* ``reST.xsl`` is (c) Michael Alyn Miller <malyn@strangeGizmo.com> and
-  published under a BSD-style license included in reST.xsl itself.
-
-* ``impress.js`` is (c) Bartek Szopka (@bartaz) released under MIT and GPL
-  licenses. See the impress.js_ page for more information.
-
-Other contributors (see CHANGES.txt for details):
-
-* Carl Meyer [carljm]
-
-* Chris Withers [cjw296]
-
-* Fahrzin Hemmati [fahhem]
-
-* Christophe Labouisse [ggtools]
-
-* Paul Schoenfelder [bitwalker]
-
-* Bernhard Weitzhofer [b6d]
-
-* Russ Ferriday [topiaruss]
-
-* Henrik Blidh [hbldh]
-
-* Ian Castleden [arabidopsis]
-
-* Mario Bodemann [mariobodemann]
-
-* Jürgen Hermann [jhermann]
-
-* Adam Johnson [adamchainz]
-
-* Frederik Möllers [frederikmoellers]
-
-* David Baum [naraesk]
-
-* Keith Maxwell [maxwell-k]
-
-* Tony S Yu [tonysyu]
-
-* Carlos Cámara [ccamara]
-
-* Ramiro Morales [ramiro]
-
-* Johannes Wünsch [PostPollux]
-
 .. _impress.js: http://github.com/bartaz/impress.js
 .. _demo: http://regebro.github.com/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/
