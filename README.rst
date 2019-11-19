@@ -30,9 +30,27 @@ Installation
 ------------
 
 Hovercraft requires Python 3 and can be installed like any Python package.
+
 The easiest way is to install pip_, and then run::
 
     $ pip3 install hovercraft
+
+* Installation on Ubuntu and Debian based computers:
+
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://youtu.be/embed/tHSJLF9OnKQ" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
+* Installation on Windows:
+
+.. raw:: html
+
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/I63I8Az24d8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
+
 
 Hovercraft is untested on Windows, but there is no reason it shouldn't work, at least in theory.
 
