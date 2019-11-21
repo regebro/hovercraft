@@ -51,19 +51,13 @@ The easiest way is to install pip_, and then run::
 =======
 * Installation on Ubuntu and Debian based computers:
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://youtu.be/embed/tHSJLF9OnKQ" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
+.. image:: https://img.youtube.com/vi/tHSJLF9OnKQ/0.jpg
+   :target: https://www.youtube.com/watch?v=tHSJLF9OnKQ
 
 * Installation on Windows:
 
-.. raw:: html
-
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe src="https://www.youtube.com/embed/I63I8Az24d8" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
-    </div>
+.. image:: https://img.youtube.com/vi/I63I8Az24d8/0.jpg
+   :target: https://www.youtube.com/watch?v=I63I8Az24d8
 
 
 >>>>>>> Add videos on README as per #188
