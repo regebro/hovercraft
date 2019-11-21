@@ -4,7 +4,8 @@ Changes
 2.7beta2 (unreleased)
 ---------------------
 
-- Nothing changed yet.
+- Added the pre-check for file or folder existance when serving or
+creating the presentation.
 
 
 2.7beta1 (2019-11-06)

@@ -186,6 +186,11 @@ def create_arg_parser():
 
 def serve_presentation(args):
 
+    # Check whether the file or folder as input exists.
+    if not os.path.exists(os.path.abspath(args.presentation)):
+        print(f"File or folder '{args.presentation}' does not exists.")
+        exit(-1)
+
     # XXX Bit of a hack, clean this up, I check for this twice, also in the template.
     if args.template and args.template not in ("simple", "default"):
         args.template = os.path.abspath(args.template)
