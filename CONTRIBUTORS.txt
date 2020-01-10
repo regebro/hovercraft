@@ -72,4 +72,6 @@ Other contributors (see CHANGES.txt for details):
 
 * Dan Jacka [danjacka]
 
+* Juan Biondi [yeyeto2788]
+
 .. _impress.js: http://github.com/bartaz/impress.js
