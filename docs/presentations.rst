@@ -477,7 +477,7 @@ You can also do it with bullet lists or numbered lists::
             * One new item will be shown on every <next> press
 
 And, as with pagarphs you can have individual control of each item. But
-Due to the ReStructuredText syntax you can't have individual control
+due to the ReStructuredText syntax you can't have individual control
 on the first item of a list, it will always be shown from the start::
 
     #. This will be shown when you get to this slide
