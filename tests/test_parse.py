@@ -66,7 +66,7 @@ class SlideMakerTests(unittest.TestCase):
             b'</inline>\n    <inline classes="n">a</inline> <inline '
             b'classes="o">=</inline> <inline classes="mi">1</inline> <inline '
             b'classes="o">+</inline> <inline classes="s2">"hubbub"</inline>'
-            b'\n    <inline classes="k">return</inline> <inline classes="bp">'
+            b'\n    <inline classes="k">return</inline> <inline classes="kc">'
             b'None</inline></literal_block></step><step step="3" class="step step-level-1">'
             b"<paragraph>An image, with attributes:</paragraph><image "
             b'classes="imageclass" uri="images/hovercraft_logo.png" width="50%"/>'
