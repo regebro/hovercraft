@@ -35,32 +35,12 @@ The easiest way is to install pip_, and then run::
 
     $ pip3 install hovercraft
 
-<<<<<<< HEAD
-* Installation on Ubuntu and Debian based computers:
+Juan Bondi has made videos of how to install:
 
-.. image:: https://img.youtube.com/vi/tHSJLF9OnKQ/0.jpg
-   :target: https://www.youtube.com/watch?v=tHSJLF9OnKQ
+* Installation on Ubuntu and Debian based computers: https://www.youtube.com/watch?v=tHSJLF9OnKQ
 
-* Installation on Windows:
+* Installation on Windows: https://www.youtube.com/watch?v=I63I8Az24d8
 
-.. image:: https://img.youtube.com/vi/I63I8Az24d8/0.jpg
-   :target: https://www.youtube.com/watch?v=I63I8Az24d8
-
-
-||||||| merged common ancestors
-=======
-* Installation on Ubuntu and Debian based computers:
-
-.. image:: https://img.youtube.com/vi/tHSJLF9OnKQ/0.jpg
-   :target: https://www.youtube.com/watch?v=tHSJLF9OnKQ
-
-* Installation on Windows:
-
-.. image:: https://img.youtube.com/vi/I63I8Az24d8/0.jpg
-   :target: https://www.youtube.com/watch?v=I63I8Az24d8
-
-
->>>>>>> Add videos on README as per #188
 Hovercraft is untested on Windows, but there is no reason it shouldn't work, at least in theory.
 
 
