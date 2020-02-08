@@ -1,8 +1,8 @@
 Changes
 =======
 
-2.7beta2 (unreleased)
----------------------
+2.7 (2020-02-08)
+----------------
 
 - Added the pre-check for file or folder existence when serving or
   creating the presentation.
