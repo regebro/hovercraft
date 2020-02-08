@@ -5,7 +5,7 @@ Changes
 ---------------------
 
 - Added the pre-check for file or folder existence when serving or
-creating the presentation.
+  creating the presentation.
 
 - Juan Bondi made videos of the installation.
 
