@@ -200,6 +200,10 @@ You can also add one extra Javascript-file via a command-line parameter:
 
     hovercraft --js=my_extra.js presentationfile.rst outdir/
 
+
+Adding Headers and Footers
+--------------------------
+
 If you want static content, content that doesn't move with each slide; for
 example a header, footer, your company logo or a slide background pattern,
 then you can insert that content with the header and footer commands::
@@ -363,8 +367,8 @@ current version, are the following:
   useful.
 
 
-Hovercraft! specialities
-------------------------
+Hovercraft! specialties
+-----------------------
 
 Hovercraft! has some specific ways it uses reStructuredText. First of all, the
 reStructuredText "transition" is used to mark the separation between
