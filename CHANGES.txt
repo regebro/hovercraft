@@ -4,8 +4,10 @@ Changes
 2.7beta2 (unreleased)
 ---------------------
 
-- Added the pre-check for file or folder existance when serving or
+- Added the pre-check for file or folder existence when serving or
 creating the presentation.
+
+- Juan Bondi made videos of the installation.
 
 
 2.7beta1 (2019-11-06)
@@ -52,7 +54,7 @@ Other changes are:
 
 - Simplify in-process execution of Hovercraft! [tonysyu]
 
-- Document how to make custom directorves. [tonysyu]
+- Document how to make custom directives. [tonysyu]
 
 
 2.5 (2017-12-10)
