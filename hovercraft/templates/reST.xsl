@@ -203,6 +203,28 @@ Modification by Carl Mayer, 2013:
         </p>
 </xsl:template>
 
+<xsl:template match="superscript">
+	<sup>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+        </sup>
+</xsl:template>
+
+<xsl:template match="subscript">
+	<sub>
+        <xsl:if test="@classes">
+	<xsl:attribute name="class">
+		<xsl:value-of select="@classes" />
+	</xsl:attribute>
+        </xsl:if>
+	<xsl:apply-templates />
+        </sub>
+</xsl:template>
+
 <xsl:template match="container">
 	<div>
         <xsl:if test="@classes">
