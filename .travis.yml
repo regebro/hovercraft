@@ -12,6 +12,19 @@ matrix:
     - python: nightly
       sudo: required
       dist: xenial
+    #power_jobs
+    - python: 3.6
+      arch: pp64le
+    - python: 3.7
+      arch: ppc64le
+    - python: 3.8
+      arch: ppc64le
+      sudo: required
+      dist: xenial
+    - python: nightly
+      arch: ppc64le
+      sudo: required
+      dist: xenial       
   allow_failures:
     - python: nightly
 # command to run tests
