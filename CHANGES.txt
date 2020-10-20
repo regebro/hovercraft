@@ -4,7 +4,7 @@ Changes
 2.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Changed official support to 3.7, 3.8 and 3.9. Other Python 3 versions may or may not work.
 
 
 2.7 (2020-02-08)
