@@ -1,6 +1,9 @@
 Hovercraft!
 ===========
 
+.. image:: https://travis-ci.org/regebro/hovercraft.svg?branch=master
+    :target: https://travis-ci.org/regebro/hovercraft
+    
 *The merge of convenience and cool!*
 
 Hovercraft! is a tool to make impress.js_ presentations from
