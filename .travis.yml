@@ -3,6 +3,7 @@ os: linux
 dist: xenial
 arch:
   - amd64
+  - ppc64le
 jobs:
   fast_finish: true
   include:
