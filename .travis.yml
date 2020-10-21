@@ -1,15 +1,13 @@
 language: python
+python:
+  - 3.7
+  - 3.8
+  - 3.9-dev
 os: linux
 dist: xenial
 arch:
   - amd64
   - ppc64le
-jobs:
-  fast_finish: true
-  include:
-    - python: 3.7
-    - python: 3.8
-    - python: 3.9-dev
 # command to run tests
 install: python setup.py develop
 script: python setup.py test
