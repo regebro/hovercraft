@@ -48,6 +48,6 @@ Hovercraft is untested on Windows, but there is no reason it shouldn't work, at 
 
 
 .. _impress.js: http://github.com/bartaz/impress.js
-.. _demo: http://regebro.github.com/hovercraft
+.. _demo: https://regebro.github.io/hovercraft
 .. _readthedocs.org: https://hovercraft.readthedocs.io/
 .. _pip: http://www.pip-installer.org/en/latest/
