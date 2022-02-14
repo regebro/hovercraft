@@ -628,7 +628,7 @@ To see how to use Hovercraft! in practice, there are three example presentations
 included with Hovercraft!
 
     hovercraft.rst_
-        The demo presentation you can see at http://regebro.github.com/hovercraft
+        The demo presentation you can see at http://regebro.github.io/hovercraft
 
     tutorial.rst_
         A step by step guide to the features of Hovercraft!
