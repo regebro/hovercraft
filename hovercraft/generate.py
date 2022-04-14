@@ -208,11 +208,11 @@ def generate(args):
     for image in tree.iterdescendants("img"):
         filename = image.attrib["src"]
         source_files.add(copy_resource(filename, sourcedir, args.targetdir))
-    for source in tree.iterdescendants('source'):
-        filename = source.attrib['src']
+    for source in tree.iterdescendants("source"):
+        filename = source.attrib["src"]
         source_files.add(copy_resource(filename, sourcedir, args.targetdir))
 
-    RE_CSS_URL = re.compile(br"""url\(['"]?(.*?)['"]?[\)\?\#]""")
+    RE_CSS_URL = re.compile(rb"""url\(['"]?(.*?)['"]?[\)\?\#]""")
 
     # Copy any files referenced by url() in the css-files:
     for resource in template_info.resources:

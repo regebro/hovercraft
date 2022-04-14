@@ -1,0 +1,28 @@
+# Runs the unit tests for the svg.path package
+# Based on https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Syntax and style check
+
+on: [pull_request, push]
+
+jobs:
+  build:
+    name: Run Syntax and style checks
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+      - name: Install tools
+        run: pip install flake8 black
+      - name: Run black
+        run: black --quiet --check .
+      - name: Run flake8
+        run: flake8 .

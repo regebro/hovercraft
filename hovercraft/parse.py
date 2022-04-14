@@ -115,7 +115,10 @@ class SlideMaker(object):
     def _newstep(self, level):
         step = etree.Element(
             "step",
-            attrib={"step": str(self.steps), "class": "step step-level-%s" % level,},
+            attrib={
+                "step": str(self.steps),
+                "class": "step step-level-%s" % level,
+            },
         )
         self.steps += 1
         return step
