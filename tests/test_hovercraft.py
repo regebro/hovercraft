@@ -266,10 +266,10 @@ class HTMLTests(unittest.TestCase):
                     result,
                 )
                 self.assertIn(
-                    br'<div class="math-block ">$$\begin{align}dS = \frac{dQ}{T}\end{align}$$</div>',
+                    rb'<div class="math-block ">$$\begin{align}dS = \frac{dQ}{T}\end{align}$$</div>',
                     result,
                 )
-                self.assertIn(br'<span class="math ">\(S = k \log W\)</span>', result)
+                self.assertIn(rb'<span class="math ">\(S = k \log W\)</span>', result)
 
 
 if __name__ == "__main__":
