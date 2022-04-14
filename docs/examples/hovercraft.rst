@@ -3,7 +3,7 @@
 :css: hovercraft.css
 
 This is a demo for Hovercraft! You can view it as a finished presentation
-at http://regebro.github.com/hovercraft/
+at http://regebro.github.io/hovercraft/
 
 
 It's also useful as an example, in which case it's supposed to be read as
